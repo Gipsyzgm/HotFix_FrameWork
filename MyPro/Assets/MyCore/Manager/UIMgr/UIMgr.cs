@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
-using CSF.Tasks;
 
 namespace CSF
 {
@@ -133,35 +132,35 @@ namespace CSF
         /// UI渐隐渐显效果(主工程用)
         /// </summary>
         /// <param name="targetGO">菜单游戏对象</param>
-        public async CTask UIAnim(GameObject target, EUIAnim anim)
-        {
-            if (anim == EUIAnim.None) return;
-            //UI淡入淡出效果
-            if (anim == EUIAnim.FadeIn || anim == EUIAnim.FadeOut)
-            {
-                Graphic[] comps = target.GetComponentsInChildren<Graphic>();
-                for (int i = comps.Length; --i >= 0;)
-                {
-                    if (anim == EUIAnim.FadeIn)
-                        comps[i].DOFade(0, 0.5f).From();
-                    else
-                        comps[i].DOFade(0, 0.5f);
-                }
-                await CTask.WaitForSeconds(0.5f);
-            }
-            else if (anim == EUIAnim.ScaleIn || anim == EUIAnim.ScaleOut)
-            {
-                if (anim == EUIAnim.ScaleIn)
-                {
-                    target.transform.DOScale(0, 0.5f).SetEase(Ease.OutBack).From();
-                    await CTask.WaitForSeconds(0.5f);
-                }
-                else
-                {
-                    target.transform.DOScale(0, 0.3f).SetEase(Ease.InBack);
-                    await CTask.WaitForSeconds(0.3f);
-                }
-            }
-        }
+        //public async CTask UIAnim(GameObject target, EUIAnim anim)
+        //{
+        //    if (anim == EUIAnim.None) return;
+        //    //UI淡入淡出效果
+        //    if (anim == EUIAnim.FadeIn || anim == EUIAnim.FadeOut)
+        //    {
+        //        Graphic[] comps = target.GetComponentsInChildren<Graphic>();
+        //        for (int i = comps.Length; --i >= 0;)
+        //        {
+        //            if (anim == EUIAnim.FadeIn)
+        //                comps[i].DOFade(0, 0.5f).From();
+        //            else
+        //                comps[i].DOFade(0, 0.5f);
+        //        }
+        //        await CTask.WaitForSeconds(0.5f);
+        //    }
+        //    else if (anim == EUIAnim.ScaleIn || anim == EUIAnim.ScaleOut)
+        //    {
+        //        if (anim == EUIAnim.ScaleIn)
+        //        {
+        //            target.transform.DOScale(0, 0.5f).SetEase(Ease.OutBack).From();
+        //            await CTask.WaitForSeconds(0.5f);
+        //        }
+        //        else
+        //        {
+        //            target.transform.DOScale(0, 0.3f).SetEase(Ease.InBack);
+        //            await CTask.WaitForSeconds(0.3f);
+        //        }
+        //    }
+        //}
     }
 }
