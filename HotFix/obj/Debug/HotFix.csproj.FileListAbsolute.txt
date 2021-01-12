@@ -1,0 +1,12 @@
+F:\HotFixDlls\HotFix.dll
+F:\HotFixDlls\HotFix.pdb
+F:\anyelse\HotFix_FrameWork\HotFix\obj\Debug\HotFix.csproj.CoreCompileInputs.cache
+F:\anyelse\HotFix_FrameWork\HotFix\obj\Debug\HotFix.dll
+F:\anyelse\HotFix_FrameWork\HotFix\obj\Debug\HotFix.pdb
+F:\StreamingAssets\HotFix.dll
+F:\StreamingAssets\HotFix.pdb
+F:\anyelse\HotFix_FrameWork\MyPro\Assets\GameRes\HotFixDlls\HotFix.dll
+F:\anyelse\HotFix_FrameWork\MyPro\Assets\GameRes\HotFixDlls\HotFix.pdb
+F:\anyelse\HotFix_FrameWork\HotFix\obj\Debug\HotFix.csprojAssemblyReference.cache
+F:\anyelse\HotFix_FrameWork\Product\ILR\HotFix.dll
+F:\anyelse\HotFix_FrameWork\Product\ILR\HotFix.pdb
