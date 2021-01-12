@@ -16,5 +16,14 @@ namespace HotFix
              
         }
 
+
+
+        public static void Update(float deltaTime)
+        {
+            Debug.Log("模拟Update");
+
+        }
+
+
     }
 }
