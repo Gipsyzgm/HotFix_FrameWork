@@ -7,6 +7,7 @@ using System.IO;
 using System.Threading.Tasks;
 using ILRuntime.CLR.TypeSystem;
 using ILRuntime.CLR.Method;
+using UObject = UnityEngine.Object;
 
 public class ILRMgr :BaseMgr<ILRMgr>
 {
@@ -29,11 +30,9 @@ public class ILRMgr :BaseMgr<ILRMgr>
     /// 热更工程内模拟Update
     /// </summary>
     IMethod HotFixMainUpdate;
-    private void Start()
+    public void Init()
     {
         StartCoroutine(LoadHotFixAssembly());
-
-        CallHotFix("Test",111);
     }
     /// <summary>
     /// 加载热更dll资源
@@ -128,6 +127,17 @@ public class ILRMgr :BaseMgr<ILRMgr>
     {
         appdomain.Invoke(HotFixClass, method , null,args);
     }
+
+    /// <summary>
+    /// 返回热更方法的值
+    /// </summary>
+    /// <param name="method">方法名</param>
+    /// <param name="args">参数</param>
+    public object CallBackHotFix (string method, params object[] args)
+    {
+        return  appdomain.Invoke(HotFixClass, method, null, args) ;
+    }
+
     /// <summary>
     /// 通过无GC Alloc方式调用方法模拟Update
     /// </summary>
