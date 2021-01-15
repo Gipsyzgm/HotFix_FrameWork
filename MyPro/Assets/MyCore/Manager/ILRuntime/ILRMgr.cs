@@ -7,7 +7,7 @@ using System.IO;
 using System.Threading.Tasks;
 using ILRuntime.CLR.TypeSystem;
 using ILRuntime.CLR.Method;
-using UObject = UnityEngine.Object;
+using Cysharp.Threading.Tasks;
 
 public class ILRMgr :BaseMgr<ILRMgr>
 {
@@ -30,15 +30,16 @@ public class ILRMgr :BaseMgr<ILRMgr>
     /// 热更工程内模拟Update
     /// </summary>
     IMethod HotFixMainUpdate;
-    public void Init()
+    public async UniTask Init()
     {
-        StartCoroutine(LoadHotFixAssembly());
+       await  LoadHotFixAssembly();
+  
     }
     /// <summary>
     /// 加载热更dll资源
     /// </summary>
     /// <returns></returns>
-    IEnumerator LoadHotFixAssembly()
+    async UniTask LoadHotFixAssembly()
     {
         bool isDebug = getIsDebug();
         appdomain = new AppDomain();
@@ -56,7 +57,7 @@ public class ILRMgr :BaseMgr<ILRMgr>
             //ILR DLL 直接加载
             string dllpath = AppSetting.ILRCodeDir + AppSetting.HotFixName + ".dll";
             UnityWebRequest dllrequest = UnityWebRequest.Get(dllpath);
-            yield return dllrequest.SendWebRequest();
+            await dllrequest.SendWebRequest();
             if (!string.IsNullOrEmpty(dllrequest.error))
                 UnityEngine.Debug.LogError(dllrequest.error + " URL:" + dllpath);
             byte[] dllfileByte = dllrequest.downloadHandler.data;
@@ -66,7 +67,7 @@ public class ILRMgr :BaseMgr<ILRMgr>
             {
                 string pdbpath = AppSetting.ILRCodeDir + AppSetting.HotFixName + ".pdb";
                 UnityWebRequest pdbrequest = UnityWebRequest.Get(pdbpath);
-                yield return pdbrequest.SendWebRequest();
+                await pdbrequest.SendWebRequest();
                 if (!string.IsNullOrEmpty(pdbrequest.error))
                     UnityEngine.Debug.LogError(pdbrequest.error + " URL:" + pdbpath);
                 byte[] pdbfileByte = pdbrequest.downloadHandler.data;
