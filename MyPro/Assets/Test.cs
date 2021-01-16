@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using DG.Tweening;
 
 public class Test : MonoBehaviour
@@ -9,14 +10,13 @@ public class Test : MonoBehaviour
     public GameObject Object;
     public GameObject Par;
     public GameObject NewPar;
-    public float space;
-    public float y;
+    private float space;
+    private float y;
     public float aniTime = 0.1f;
     // Start is called before the first frame update
     List<GameObject> gameObjects = new List<GameObject>();
     void Start()
     {
-
          space = NewPar.transform.GetComponent<RectTransform>().rect.width/5f;
          y = NewPar.transform.GetComponent<RectTransform>().rect.height / 2f;
 

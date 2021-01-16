@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using DG.Tweening;
 
 public class ContryClick : MonoBehaviour
 {
@@ -20,7 +19,7 @@ public class ContryClick : MonoBehaviour
 
     void Start()
     {
-        cam.DOLocalMove(earthStartPos, 1);
+        //cam.DOLocalMove(earthStartPos, 1);
     }
 
     void LateUpdate()

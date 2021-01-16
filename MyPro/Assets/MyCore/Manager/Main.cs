@@ -1,8 +1,10 @@
 ﻿using Cysharp.Threading.Tasks;
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Main : MonoBehaviour
 {
@@ -17,6 +19,7 @@ public class Main : MonoBehaviour
     {
         Mgr.Initialize();
         StartTask();
+   
     }
 
     async void StartTask()
@@ -24,6 +27,7 @@ public class Main : MonoBehaviour
         //初始化ILR
         await Mgr.ILR.Init();
         IsStart = true;
+        
     }
 
 
