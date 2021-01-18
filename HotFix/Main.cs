@@ -1,4 +1,5 @@
-﻿using DG.Tweening;
+﻿using Cysharp.Threading.Tasks;
+using DG.Tweening;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,13 +15,22 @@ namespace HotFix
         public static void Start()
         {
             Debug.Log("=====进入热更主程序,启动游戏!!!!=====");
-
-            GameObject obj = GameObject.Find("Main Camera");
-            obj.transform.DOMove(Vector3.one, 0f);
-   
-
+            Initialize();
         }
 
+        private static async UniTask Initialize()
+        {
+            await Mgr.Initialize();
+        
+            //await Mgr.UI.Show<LoginUI>().Await();         
+            //await Mgr.UI.Show<War.WarUI>().Await();
+
+            //加载玩家数据
+            //DataMgr.I.LoadAll();
+            //await LoginMgr.I.Login();  //登录游戏
+
+
+        }
 
 
         public static void Update(float deltaTime)

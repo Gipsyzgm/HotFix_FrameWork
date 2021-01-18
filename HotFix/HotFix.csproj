@@ -59,8 +59,37 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="UniTask">
+      <HintPath>..\MyPro\Library\ScriptAssemblies\UniTask.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UniTask.Addressables">
+      <HintPath>..\MyPro\Library\ScriptAssemblies\UniTask.Addressables.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UniTask.DOTween">
+      <HintPath>..\MyPro\Library\ScriptAssemblies\UniTask.DOTween.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UniTask.Linq">
+      <HintPath>..\MyPro\Library\ScriptAssemblies\UniTask.Linq.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UniTask.TextMeshPro">
+      <HintPath>..\MyPro\Library\ScriptAssemblies\UniTask.TextMeshPro.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.ResourceManager">
+      <HintPath>..\MyPro\Library\ScriptAssemblies\Unity.ResourceManager.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="UnityEngine">
       <HintPath>..\Product\ILR\UnityEngine.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.AssetBundleModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Product\ILR\UnityEngine.AssetBundleModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.AudioModule">
@@ -87,11 +116,23 @@
       <HintPath>..\Product\ILR\UnityEngine.UIModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Product\ILR\UnityEngine.UnityWebRequestModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ILRMainCall.cs" />
     <Compile Include="Main.cs" />
+    <Compile Include="Mgr.cs" />
+    <Compile Include="Module\UI\BaseUI.cs" />
+    <Compile Include="Module\UI\UIMgr.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Module\UI\Item\" />
+    <Folder Include="Module\UI\UIPanel\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
