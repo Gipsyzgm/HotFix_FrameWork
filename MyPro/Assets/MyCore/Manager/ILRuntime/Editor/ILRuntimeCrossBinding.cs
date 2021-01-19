@@ -4,6 +4,8 @@ using UnityEngine;
 using System;
 using System.Text;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+
 [System.Reflection.Obfuscation(Exclude = true)]
 public class ILRuntimeCrossBinding
 {
@@ -27,11 +29,11 @@ public class ILRuntimeCrossBinding
     public static void AntoGenerateCrossbindAdapter()
     {
         //生成位置
-        //using (System.IO.StreamWriter sw = new System.IO.StreamWriter("Assets/MyCore/Manager/ILRuntime/Generated/TestClassBaseAdapter.cs"))
-        //{
-        //    //类名，生成类的命名空间
-        //    sw.WriteLine(ILRuntime.Runtime.Enviorment.CrossBindingCodeGenerator.GenerateCrossBindingAdapterCode(typeof(TestClassBase), "ILRAdapter"));
-        //}
+        using (System.IO.StreamWriter sw = new System.IO.StreamWriter("Assets/MyCore/Manager/ILRuntime/Adapters/ICriticalNotifyCompletionAdapter.cs"))
+        {
+            //类名，生成类的命名空间
+            sw.WriteLine(ILRuntime.Runtime.Enviorment.CrossBindingCodeGenerator.GenerateCrossBindingAdapterCode(typeof(ICriticalNotifyCompletion), "ILRAdapter"));
+        }
 
     }
 

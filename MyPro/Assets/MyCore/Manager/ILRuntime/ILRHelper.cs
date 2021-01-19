@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 using ILRuntime.CLR.Method;
 using ILRuntime.CLR.TypeSystem;
 using ILRuntime.CLR.Utils;
@@ -24,6 +26,119 @@ public static class ILRHelper
         appdomain.RegisterValueTypeBinder(typeof(Quaternion), new QuaternionBinder());
         appdomain.RegisterValueTypeBinder(typeof(Vector2), new Vector2Binder());
         //注册委托
+
+        //注册UGUI事件委托
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityAction>((action) =>
+        {
+            return new UnityAction(() =>
+            {
+                ((System.Action)action)();
+            });
+        });
+
+        appdomain.DelegateManager.RegisterMethodDelegate<BaseEventData>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityAction<BaseEventData>>((action) =>
+        {
+            return new UnityAction<BaseEventData>((a) =>
+            {
+                ((System.Action<BaseEventData>)action)(a);
+            });
+        });
+        appdomain.DelegateManager.RegisterMethodDelegate<PointerEventData>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<EventListener.PointerDataDelegate>((act) =>
+        {
+            return new EventListener.PointerDataDelegate((eventData) =>
+            {
+                ((Action<UnityEngine.EventSystems.PointerEventData>)act)(eventData); 
+            });
+        });
+        appdomain.DelegateManager.RegisterMethodDelegate<AxisEventData>();
+        appdomain.DelegateManager.RegisterDelegateConvertor<EventListener.AxisDataDelegate>((act) =>
+        {
+            return new EventListener.AxisDataDelegate((eventData) => 
+            {
+                ((Action<UnityEngine.EventSystems.AxisEventData>)act)(eventData);
+            });
+        });
+        //其他事件委托
+        appdomain.DelegateManager.RegisterMethodDelegate<System.Object>();
+        appdomain.DelegateManager.RegisterFunctionDelegate<System.Object, UniTask, UniTask>();
+        appdomain.DelegateManager.RegisterFunctionDelegate<System.Object, UniTask<object>, UniTask<object>>();
+        appdomain.DelegateManager.RegisterFunctionDelegate<UniTask,UniTask>();
+        appdomain.DelegateManager.RegisterFunctionDelegate<CancellationToken, UniTaskVoid, UniTaskVoid>();
+        appdomain.DelegateManager.RegisterFunctionDelegate<UniTaskVoid, UniTaskVoid>();
+        appdomain.DelegateManager.RegisterMethodDelegate<System.Object, ILTypeInstance>();
+        appdomain.DelegateManager.RegisterMethodDelegate<List<object>>();
+        appdomain.DelegateManager.RegisterMethodDelegate<ILTypeInstance>();
+        appdomain.DelegateManager.RegisterFunctionDelegate<System.Boolean>();
+        appdomain.DelegateManager.RegisterMethodDelegate<System.Int32>();
+        appdomain.DelegateManager.RegisterMethodDelegate<System.Boolean>();
+        appdomain.DelegateManager.RegisterMethodDelegate<Vector2>();
+        appdomain.DelegateManager.RegisterMethodDelegate<System.Single>();
+        appdomain.DelegateManager.RegisterFunctionDelegate<ILTypeInstance, System.Int32>();
+        appdomain.DelegateManager.RegisterFunctionDelegate<ILTypeInstance, System.Single>();
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.Vector3, System.Single>();
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.Vector2, System.Single>();
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.Collider>();
+        appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.Collider2D>();
+        appdomain.DelegateManager.RegisterFunctionDelegate<System.Single>();
+
+        appdomain.DelegateManager.RegisterDelegateConvertor<DG.Tweening.TweenCallback>((act) =>
+        {
+            return new DG.Tweening.TweenCallback(() =>
+            {
+                ((Action)act)();
+            });
+        });
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.Events.UnityAction<UnityEngine.Vector2>>((act) =>
+        {
+            return new UnityEngine.Events.UnityAction<UnityEngine.Vector2>((arg0) =>
+            {
+                ((Action<UnityEngine.Vector2>)act)(arg0);
+            });
+        });
+        appdomain.DelegateManager.RegisterDelegateConvertor<DG.Tweening.Core.DOSetter<System.Single>>((act) =>
+        {
+            return new DG.Tweening.Core.DOSetter<System.Single>((pNewValue) =>
+            {
+                ((Action<System.Single>)act)(pNewValue);
+            });
+        });
+        appdomain.DelegateManager.RegisterDelegateConvertor<DG.Tweening.Core.DOGetter<System.Single>>((act) =>
+        {
+            return new DG.Tweening.Core.DOGetter<System.Single>(() =>
+            {
+                return ((Func<System.Single>)act)();
+            });
+        });
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityAction<System.Int32>>((act) =>
+        {
+            return new UnityEngine.Events.UnityAction<System.Int32>((arg0) =>
+            {
+                ((Action<System.Int32>)act)(arg0);
+            });
+        });
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityAction<System.Boolean>>((act) =>
+        {
+            return new UnityEngine.Events.UnityAction<System.Boolean>((arg0) =>
+            {
+                ((Action<System.Boolean>)act)(arg0);
+            });
+        });
+        appdomain.DelegateManager.RegisterDelegateConvertor<System.Action<UnityEngine.Vector3, System.Single>>((act) =>
+        {
+            return new System.Action<UnityEngine.Vector3, System.Single>((arg1, arg2) =>
+            {
+                ((Action<UnityEngine.Vector3, System.Single>)act)(arg1, arg2);
+            });
+        });
+        appdomain.DelegateManager.RegisterDelegateConvertor<System.Action<UnityEngine.Vector2, System.Single>>((act) =>
+        {
+            return new System.Action<UnityEngine.Vector2, System.Single>((arg1, arg2) =>
+            {
+                ((Action<UnityEngine.Vector2, System.Single>)act)(arg1, arg2);
+            });
+        });
 
 
 

@@ -154,23 +154,7 @@ namespace CSF
                 }
             }
             ToolsHelper.Log("请选择有效果的Item对象!!!,Item包含UIOutlet脚本，并且以Item(或Icon)命名结尾");
-        }
-        [MenuItem("GameObject/★UI扩展★/生成 Panel脚本", false, 21)]
-        static void CreatePanelScript(MenuCommand menuCommadn)
-        {
-            GameObject target = menuCommadn.context as GameObject;
-            if (target != null && (target.name.EndsWith("Panel")))
-            {
-                UIOutlet uiObj = target.GetComponent<UIOutlet>();
-                if (uiObj != null)
-                {
-                    UIScriptExport.ExportPanelScript(uiObj);
-                    ToolsHelper.Log("生成成功!!!");
-                    return;
-                }
-            }
-            ToolsHelper.Log("请选择有效果的Panel对象!!!,Panel包含UIOutlet脚本，并且以Panel命名结尾");
-        }
+        }      
 
         [MenuItem("GameObject/★UI扩展★/生成UI脚本", false, 21)]
         static void CreateUIScript(MenuCommand menuCommadn)

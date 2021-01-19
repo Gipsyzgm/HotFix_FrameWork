@@ -15,4 +15,6 @@ public class UIOutlet : MonoBehaviour
 
     }
     public List<OutletInfo> OutletInfos = new List<OutletInfo>();
+
+    public int Layer;
 }

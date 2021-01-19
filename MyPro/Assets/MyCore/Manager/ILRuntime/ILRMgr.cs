@@ -90,7 +90,6 @@ public class ILRMgr :BaseMgr<ILRMgr>
         //通过IMethod调用方法;预先获得IMethod，可以减低每次调用查找方法耗用的时间,根据方法名称和参数个数获取方法
         HotFixMainUpdate = appdomain.LoadedTypes[HotFixMainClass].GetMethod("Update", 1);
         InitializeILRuntime(isDebug);
-        StartHotFixPro();
     }
 
     void InitializeILRuntime(bool isDebug)
@@ -102,6 +101,7 @@ public class ILRMgr :BaseMgr<ILRMgr>
 #endif
         ILRHelper.InitILRuntime(appdomain);
         SetIsDebug(isDebug);
+        Debug.Log("注册完成");
     }
     /// <summary>
     /// 启动热更项目

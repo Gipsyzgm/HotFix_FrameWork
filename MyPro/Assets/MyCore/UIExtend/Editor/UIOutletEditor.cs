@@ -109,6 +109,11 @@ public class UIOutletEditor : Editor
 
     private HashSet<string> _CachedPropertyNames = new HashSet<string>();
 
+    private string[] layer;
+
+    //默认Ui层级
+    public int templayer = 1;
+
     void OnEnable()
     {
         GreenFont = new GUIStyle();
@@ -119,6 +124,15 @@ public class UIOutletEditor : Editor
         RedFont.fontStyle = FontStyle.Bold;
         RedFont.fontSize = 11;
         RedFont.normal.textColor = Color.red;
+
+        layer = new string[System.Enum.GetValues(typeof(PanelLayer)).Length];
+        int tempCount = 0;
+        foreach (PanelLayer suit in System.Enum.GetValues(typeof(PanelLayer)))
+        {
+            layer[tempCount] = suit.ToString();
+            tempCount++;
+        }
+
     }
     /// <summary>
     /// 自定义对Inspector面板的绘制
@@ -127,11 +141,18 @@ public class UIOutletEditor : Editor
     {
         _CachedPropertyNames.Clear();
 
+     
         //检查代码块中是否有任何控件被更改
         EditorGUI.BeginChangeCheck();
         UIOutlet outlet = target as UIOutlet;
         #region 扩展功能
         GUILayout.Space(10);
+
+        templayer = EditorGUILayout.Popup("选择Layer",templayer, layer);
+        outlet.Layer = templayer;
+
+        GUILayout.Space(10);
+
         GUILayout.BeginHorizontal();
         //拖拽添加
         var aEvent = Event.current;
@@ -344,4 +365,20 @@ public class UIOutletEditor : Editor
     }
 
 
+}
+//设置UI层级，需要和热更的PanelLayer对应
+public enum PanelLayer
+{
+    /// <summary>UI主界面节点,如:人物头像，右上角地小图，功能栏按钮等</summary>
+    UIWar = 0,
+    /// <summary>UI窗口节点,如:商店,人物背包，任务面板，商城面板</summary>
+    UIMain = 1,
+    /// <summary>Tips节点,如:物品详细信息</summary>
+    UITips = 2,
+    /// <summary>剧情节点</summary>
+    UIStory = 3,
+    /// <summary>系统消息节点</summary>
+    UIMsg = 4,
+    /// <summary>页面等待</summary>
+    UILoading = 5,
 }

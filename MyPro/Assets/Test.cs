@@ -30,9 +30,10 @@ public class Test : MonoBehaviour
             gameObjects.Add(gameObject);
         }
 
-
+        gameObject.SetVisible(true);
         StartCoroutine(BoxAni());
-        
+      
+
     }
 
     IEnumerator BoxAni() 
