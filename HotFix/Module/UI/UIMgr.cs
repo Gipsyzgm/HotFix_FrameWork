@@ -28,30 +28,30 @@ namespace HotFix
         /// </summary>
         private List<string> ExictPanel = new List<string>();
 
-        public Transform canvas
-        {
-            get { return _canvas; }
-        }
         public void InitUIMgr()
         {
             InitLayer();
-
         }
         /// <summary>
         /// 初始化
         /// </summary>
         private void InitLayer()
         {
-            Debug.LogError("初始化layer");
-            _canvas = GameObject.FindGameObjectWithTag("Canvas").transform;
+            Debug.Log("初始化layer");
+            _canvas = GameObject.Find("UICanvas").transform;
             if (_canvas == null)
-                Debug.LogError("PanelMgr.InitLayerfail,Canvas is null");
+                Debug.Log("UIMgr.InitLayerFail,Canvas is null");
+            Transform UIRoot = _canvas.Find("UIRoot");
+            if (UIRoot==null)
+                Debug.Log("UICanvas下未找到UIRoot");
             layer_dict = new Dictionary<PanelLayer, Transform>();
             //存layer的位置
             foreach (PanelLayer pl in Enum.GetValues(typeof(PanelLayer)))
             {
                 string name = pl.ToString();
                 Transform transform = _canvas.Find(name);
+                if (transform == null)
+                    Debug.Log("UIRoot未找到节点："+name);
                 layer_dict.Add(pl, transform);
             }
         }
@@ -68,9 +68,9 @@ namespace HotFix
             if (Paneldict.ContainsKey(name))
             {
                 //设置页面在最后面（摄像机最先渲染位置）
-                GetPanel(name).curView.transform.SetAsLastSibling();
+                GetPanel(name).CurObj.transform.SetAsLastSibling();
                 //如果物体是处于显示状态，直接显示出来。
-                if (GetPanel(name).curView.gameObject.activeInHierarchy)
+                if (GetPanel(name).CurObj.gameObject.activeInHierarchy)
                 {
                     AddToListLast(name);
                     return;
@@ -85,8 +85,8 @@ namespace HotFix
             //创建实例
             BaseUI UIPanel = Activator.CreateInstance(type) as BaseUI;
             //加载物体
-            await UIPanel.InitGameObject();
-            UIPanel.curView.transform.SetAsLastSibling();
+            await UIPanel.LoadGameObject();
+            UIPanel.CurObj.transform.SetAsLastSibling();
             //赋值
             UIPanel.Init(_args);
             Paneldict.Add(name, UIPanel);
@@ -94,7 +94,7 @@ namespace HotFix
             Transform Parent;
             if (layer_dict.TryGetValue(UIPanel.layer, out Parent))
             {
-                UIPanel.curView.transform.SetParent(Parent, false);
+                UIPanel.CurObj.transform.SetParent(Parent, false);
             }
             else 
             {
@@ -108,7 +108,7 @@ namespace HotFix
             //rect.offsetMax = Vector2.zero;
             AddToList(name);
             //Show之前可以播显示动画
-            await ShowUIAnim(UIPanel.curView, uIAnim);
+            await ShowUIAnim(UIPanel.CurObj, uIAnim);
             UIPanel.OnShow();
         }
 
@@ -134,7 +134,7 @@ namespace HotFix
         /// 关闭页面
         /// </summary>
         /// <param name="name"></param>
-        private async void ClosePanel(string name,UIAnim uIAnim = UIAnim.None)
+        public async void ClosePanel(string name,UIAnim uIAnim = UIAnim.None)
         {
             BaseUI panel;
             Paneldict.TryGetValue(name, out panel);
@@ -142,7 +142,7 @@ namespace HotFix
                 return;
             Paneldict.Remove(name);
             RomoveToList(name);
-            await ShowUIAnim(panel.curView, uIAnim);
+            await ShowUIAnim(panel.CurObj, uIAnim);
             panel.OnClose();
         }
         /// <summary>
@@ -154,7 +154,7 @@ namespace HotFix
             BaseUI panel = GetPanel(panelName);
             if (panel != null)
             {
-                if (!panel.curView.activeInHierarchy)
+                if (!panel.CurObj.activeInHierarchy)
                     return;
                 RomoveToList(panelName.ToString());
                 panel.OnHide();

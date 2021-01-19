@@ -42,8 +42,9 @@ namespace HotFix
         {
 
             UI = new UIMgr();
-
-            await UniTask.Delay(100);
+            UI.InitUIMgr();
+            await UniTask.Delay(10000);
+            Debug.Log("初始化完成");
         }
 
         /// <summary>

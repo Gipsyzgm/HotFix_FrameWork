@@ -19,7 +19,9 @@ namespace HotFix
         /// <summary>剧情节点</summary>
         UIStory = 3,
         /// <summary>系统消息节点</summary>
-        UIMessage = 4,
+        UIMsg = 4,
+        /// <summary>页面等待</summary>
+        UILoading = 5,
     }
 
     /// <summary>
@@ -42,16 +44,8 @@ namespace HotFix
 
     }
 
-    public class BaseUI
-    {
-        /// <summary>
-        /// 代表Panel面板在场景中的物体
-        /// </summary>
-        public GameObject curView;
-        /// <summary>
-        /// UI所属节点类型
-        /// </summary>
-        public PanelLayer layer = PanelLayer.UIMain;
+    public class BaseUI:UIObject
+    {     
         /// <summary>
         /// 打开UI传进来的参数
         /// </summary>
@@ -69,14 +63,6 @@ namespace HotFix
         /// </summary>
         protected UILoading Loading = UILoading.None;
         /// <summary>
-        /// 面板下包含的已标记的子物体
-        /// </summary>
-        protected Dictionary<string, GameObject> ObjectList = new Dictionary<string, GameObject>();
-
-
-        protected bool IsDispose = false;
-
-        /// <summary>
         /// 预制体路径
         /// </summary>
         public virtual string CurViewPath
@@ -88,41 +74,28 @@ namespace HotFix
             }
         }
 
-        public async UniTask InitGameObject()
+        public async UniTask LoadGameObject()
         {
             ShowLoading();
             //加载物体
-            curView = (GameObject)await Resources.LoadAsync<GameObject>(CurViewPath);
-            if (curView == null)
-                Debug.LogError("panelMgr.OpenPanelfail,skin is null,skinPath= " + CurViewPath);
-            //赋值
-            UIOutlet uiInfo = curView.GetComponent<UIOutlet>();
-            for (int i = 0; i < uiInfo.OutletInfos.Count; i++)
-            {
-                ObjectList.Add(uiInfo.OutletInfos[i].Name, uiInfo.OutletInfos[i].Object as GameObject);
-            }
-            layer = (PanelLayer)uiInfo.Layer;
-            InitComponent();
-
+            CurObj = (GameObject)await Resources.LoadAsync<GameObject>(CurViewPath);
+            if (CurObj == null)
+                Debug.Log("UI Load Fail,UIPath= " + CurViewPath);
+            //初始化该物体
+            InitGameObject(CurObj);    
             CloseLoading();
-        }
-        protected virtual void InitComponent()
-        {
-
-
         }
         public virtual void Init(params object[] _args)
         {
             this.args = _args;
         }
 
-
         /// <summary>
-        /// 可重写，页面显示的逻辑。动画等
+        /// 显示页面
         /// </summary>
         public virtual void OnShow()
         {
-            curView.SetActive(true);
+            CurObj.SetActive(true);
         }
 
         /// <summary>
@@ -130,7 +103,7 @@ namespace HotFix
         /// </summary>
         public virtual void OnHide()
         {
-            curView.SetActive(false);
+            SetActive(false);
 
         }
 
@@ -140,7 +113,6 @@ namespace HotFix
         public virtual void Refresh()
         {
 
-
         }
         /// <summary>
         /// 可重写，页面关闭的逻辑。动画等
@@ -149,29 +121,24 @@ namespace HotFix
         {
             Debug.LogError("关闭的页面：" + CurViewPath.ToLower());         
             Dispose();
-            GameObject.DestroyImmediate(curView);
+            GameObject.DestroyImmediate(CurObj);
         }
-
-
         /// <summary>
         /// 备用的自己关闭自己的方法
         /// </summary>
         protected virtual void CloseSelf()
         {
             string name = this.GetType().ToString();
-            //Mgr.UI.CloseForName(name);
+            Mgr.UI.ClosePanel(name);
         }
-
-
         /// <summary>
         /// 清除数据
         /// </summary>
-        public virtual void Dispose()
+        public override void Dispose()
         {
-            IsDispose = true;
-            ObjectList = null;
-            curView = null;
             args = null;
+            base.Dispose();
+           
         }
 
         /// <summary>
@@ -190,32 +157,6 @@ namespace HotFix
             return value;
         }
 
-
-        /// <summary>
-        /// 获取控件引用对象(在UIOutlet中定义的)
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="name">控件名</param>
-        /// <returns></returns>
-        public T Get<T>(string name) where T : Component
-        {
-            GameObject obj = Get(name);
-            if (obj == null)
-                return null;
-            return obj.GetComponent<T>();
-        }
-        /// <summary>
-        /// 获取引用对象(在UIOutlet中定义的)
-        /// </summary>
-        public GameObject Get(string name)
-        {
-            GameObject obj;
-            if (!ObjectList.TryGetValue(name, out obj))
-            {
-                Debug.Log($"未找到GameObject对象,请在UIOutlet中设置:{name}");
-            }
-            return obj;
-        }
         protected virtual void ShowLoading()
         {
             if (Loading != UILoading.None)

@@ -15,19 +15,53 @@ namespace HotFix
         public static void Start()
         {
             Debug.Log("=====进入热更主程序,启动游戏!!!!=====");
-            Initialize();
+         
+            Initialize().AsTask();
         }
 
         private static async UniTask Initialize()
         {
             await Mgr.Initialize();
-        
-            //await Mgr.UI.Show<LoginUI>().Await();         
-            //await Mgr.UI.Show<War.WarUI>().Await();
+            Button button = GameObject.Find("Canvas").transform.Find("Button").GetComponent<Button>();
+            if (button != null)
+            {
 
-            //加载玩家数据
-            //DataMgr.I.LoadAll();
-            //await LoginMgr.I.Login();  //登录游戏
+                Debug.Log("空吗？");
+                button.onClick.AddListener(() =>
+                {
+                    Debug.Log("可以吗？");
+                });
+
+            }
+            else
+            {
+                Debug.Log("空");
+            }
+            GameObject gameObject =  GameObject.Find("Main Camera");
+            gameObject.GetComponent<Camera>().backgroundColor = Color.green;
+
+            Debug.Log("到这里了吗？");
+            Slider slider = GameObject.Find("Canvas").transform.Find("Slider").GetComponent<Slider>();
+            if (slider != null)
+            {
+                Debug.Log("sliderBu空");
+                slider.onValueChanged.AddListener((f) =>
+                {
+
+                    Debug.Log(f);
+                });
+            }
+            else
+            {
+                Debug.Log("slider空");
+            }
+
+            Debug.Log("到这里了吗？111");
+
+
+
+
+
 
 
         }
