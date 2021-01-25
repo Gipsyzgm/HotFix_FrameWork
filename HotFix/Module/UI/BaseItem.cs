@@ -1,10 +1,10 @@
-﻿using Cysharp.Threading.Tasks;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 namespace HotFix
 {
@@ -13,17 +13,18 @@ namespace HotFix
         public virtual string ItemPath {
             get {
                 Type type = this.GetType();
-                return "MyUI/Item" + " / " + type.Name;
+                return type.Name;
             }
         }
         /// <summary>
         /// 实例化Item
         /// 这是一个异步实例
         /// </summary>
-        public async UniTask LoadGameObject(Transform parent = null)
+        public async CTask LoadGameObject(Transform parent = null)
         {
             //加载物体
-            CurObj = (GameObject)await Resources.LoadAsync<GameObject>(ItemPath);
+            GameObject TempObj = await Addressables.LoadAssetAsync<GameObject>(ItemPath).Task;
+            CurObj = GameObject.Instantiate(TempObj);
             if (CurObj == null)
                 Debug.Log("Item Load Fail,ItemPath= " + ItemPath);
             //初始化该物体

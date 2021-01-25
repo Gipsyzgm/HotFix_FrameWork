@@ -1,5 +1,4 @@
-﻿using Cysharp.Threading.Tasks;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -38,14 +37,16 @@ namespace HotFix
 
         /// <summary>缓存的数据管理器,用来统一清空缓存数据用</summary>
         public static List<IDisposable> __dataMgrList = new List<IDisposable>();
-        public static async UniTask Initialize()
+        public static async CTask Initialize()
         {
 
             UI = new UIMgr();
-            UI.InitUIMgr();
-            await UniTask.Delay(10000);
+        
+
             Debug.Log("初始化完成");
+  
         }
+
 
         /// <summary>
         /// 释放全部缓存数据,断线重连后调用

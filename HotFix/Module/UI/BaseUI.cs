@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
-using Cysharp.Threading.Tasks;
 using System.Collections.Generic;
+using UnityEngine.AddressableAssets;
+
 namespace HotFix
 {
     /// <summary>
@@ -70,15 +71,16 @@ namespace HotFix
             get
             {
                 Type type = this.GetType();
-                return "MyUI/View" + " / " + type.Name;
+                return type.Name;
             }
         }
 
-        public async UniTask LoadGameObject()
+        public async CTask LoadGameObject()
         {
-            ShowLoading();
+            ShowLoading();       
             //加载物体
-            CurObj = (GameObject)await Resources.LoadAsync<GameObject>(CurViewPath);
+            GameObject TempObj = await Addressables.LoadAssetAsync<GameObject>(CurViewPath).Task;
+            CurObj = GameObject.Instantiate(TempObj);
             if (CurObj == null)
                 Debug.Log("UI Load Fail,UIPath= " + CurViewPath);
             //初始化该物体

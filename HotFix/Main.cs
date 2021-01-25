@@ -1,5 +1,4 @@
-﻿using Cysharp.Threading.Tasks;
-using DG.Tweening;
+﻿using DG.Tweening;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,55 +13,15 @@ namespace HotFix
     {
         public static void Start()
         {
-            Debug.Log("=====进入热更主程序,启动游戏!!!!=====");
-         
-            Initialize().AsTask();
+            Debug.Log("=====进入热更主程序,启动游戏!!!!=====");         
+            Initialize().Run();
         }
 
-        private static async UniTask Initialize()
+        private static async CTask Initialize()
         {
             await Mgr.Initialize();
-            Button button = GameObject.Find("Canvas").transform.Find("Button").GetComponent<Button>();
-            if (button != null)
-            {
-
-                Debug.Log("空吗？");
-                button.onClick.AddListener(() =>
-                {
-                    Debug.Log("可以吗？");
-                });
-
-            }
-            else
-            {
-                Debug.Log("空");
-            }
-            GameObject gameObject =  GameObject.Find("Main Camera");
-            gameObject.GetComponent<Camera>().backgroundColor = Color.green;
-
-            Debug.Log("到这里了吗？");
-            Slider slider = GameObject.Find("Canvas").transform.Find("Slider").GetComponent<Slider>();
-            if (slider != null)
-            {
-                Debug.Log("sliderBu空");
-                slider.onValueChanged.AddListener((f) =>
-                {
-
-                    Debug.Log(f);
-                });
-            }
-            else
-            {
-                Debug.Log("slider空");
-            }
-
-            Debug.Log("到这里了吗？111");
-
-
-
-
-
-
+            Debug.Log("结束等待");
+            await Mgr.UI.Show<MainUI>();
 
         }
 

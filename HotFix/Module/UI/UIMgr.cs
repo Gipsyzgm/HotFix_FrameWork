@@ -7,11 +7,11 @@
  *  例：在Tips层的UI页面打开Panel层的UI页面。在Tips层的UI处于显示状态的话一定遮挡Panel层的UI。
  *  如果不需要Layer控制，全部放在Start层也没问题。
  */
-using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -28,7 +28,7 @@ namespace HotFix
         /// </summary>
         private List<string> ExictPanel = new List<string>();
 
-        public void InitUIMgr()
+        public UIMgr()
         {
             InitLayer();
         }
@@ -49,7 +49,7 @@ namespace HotFix
             foreach (PanelLayer pl in Enum.GetValues(typeof(PanelLayer)))
             {
                 string name = pl.ToString();
-                Transform transform = _canvas.Find(name);
+                Transform transform = UIRoot.Find(name);
                 if (transform == null)
                     Debug.Log("UIRoot未找到节点："+name);
                 layer_dict.Add(pl, transform);
@@ -61,7 +61,7 @@ namespace HotFix
         /// <typeparam name="T"></typeparam>
         /// <param name="skinPath"></param>
         /// <param name="_args"></param>
-        public async UniTask Show<T>(UIAnim uIAnim = UIAnim.None,params object[] _args) where T : BaseUI
+        public async CTask Show<T>(UIAnim uIAnim = UIAnim.None,params object[] _args) where T : BaseUI
         {
             string name = typeof(T).ToString();
             Type type = Type.GetType(name);
@@ -217,7 +217,7 @@ namespace HotFix
         /// 渐现菜单
         /// </summary>
         /// <param name="targetGO">菜单游戏对象</param>
-        public async UniTask ShowUIAnim(GameObject target, UIAnim anim)
+        public async CTask ShowUIAnim(GameObject target, UIAnim anim)
         {
             float time = 0.5f;
             switch (anim)
@@ -231,7 +231,7 @@ namespace HotFix
             }
             await ObjectAnim(target, anim, time);
         }
-        public async UniTask ObjectAnim(GameObject target, UIAnim anim, float time = 0.5f)
+        public async CTask ObjectAnim(GameObject target, UIAnim anim, float time = 0.5f)
         {
             if (anim == UIAnim.None || target == null) return;
             //UI淡入淡出效果
@@ -245,19 +245,19 @@ namespace HotFix
                     else
                         comps[i].DOFade(0, time).SetUpdate(true);
                 }
-                await UniTask.Delay(TimeSpan.FromSeconds(time));
+                await Task.Delay(TimeSpan.FromSeconds(time));
             }
             else if (anim == UIAnim.ScaleIn || anim == UIAnim.ScaleOut)
             {
                 if (anim == UIAnim.ScaleIn)
                 {
                     target.transform.DOScale(0, time).SetUpdate(true).SetEase(Ease.OutBack).From();
-                    await UniTask.Delay(TimeSpan.FromSeconds(time));
+                    await Task.Delay(TimeSpan.FromSeconds(time));
                 }
                 else
                 {
                     target.transform.DOScale(0, time).SetUpdate(true).SetEase(Ease.InBack);
-                    await UniTask.Delay(TimeSpan.FromSeconds(time));
+                    await Task.Delay(TimeSpan.FromSeconds(time));
                 }
             }
         }
