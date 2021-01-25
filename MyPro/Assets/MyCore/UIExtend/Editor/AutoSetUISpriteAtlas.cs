@@ -60,7 +60,7 @@ public class AutoSetUISpriteAtlas : UnityEditor.AssetModificationProcessor
                 }
                 else
                 {
-                    ToolsHelper.Warning("SpriteAtlas未找到:"+spriteAtlasPath);
+                    Debug.LogWarning("SpriteAtlas未找到:"+spriteAtlasPath);
                 }
             }
         }        

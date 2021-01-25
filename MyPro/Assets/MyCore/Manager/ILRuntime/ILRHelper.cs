@@ -5,7 +5,6 @@ using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using Cysharp.Threading.Tasks;
 using ILRuntime.CLR.Method;
 using ILRuntime.CLR.TypeSystem;
 using ILRuntime.CLR.Utils;
@@ -61,12 +60,7 @@ public static class ILRHelper
             });
         });
         //其他事件委托
-        appdomain.DelegateManager.RegisterMethodDelegate<System.Object>();
-        appdomain.DelegateManager.RegisterFunctionDelegate<System.Object, UniTask, UniTask>();
-        appdomain.DelegateManager.RegisterFunctionDelegate<System.Object, UniTask<object>, UniTask<object>>();
-        appdomain.DelegateManager.RegisterFunctionDelegate<UniTask,UniTask>();
-        appdomain.DelegateManager.RegisterFunctionDelegate<CancellationToken, UniTaskVoid, UniTaskVoid>();
-        appdomain.DelegateManager.RegisterFunctionDelegate<UniTaskVoid, UniTaskVoid>();
+        appdomain.DelegateManager.RegisterMethodDelegate<System.Object>();      
         appdomain.DelegateManager.RegisterMethodDelegate<System.Object, ILTypeInstance>();
         appdomain.DelegateManager.RegisterMethodDelegate<List<object>>();
         appdomain.DelegateManager.RegisterMethodDelegate<ILTypeInstance>();
@@ -97,6 +91,14 @@ public static class ILRHelper
                 ((Action<UnityEngine.Vector2>)act)(arg0);
             });
         });
+        appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.Events.UnityAction<System.Single>>((act) =>
+        {
+            return new UnityEngine.Events.UnityAction<System.Single>((arg0) =>
+            {
+                ((Action<System.Single>)act)(arg0);
+            });
+        });
+
         appdomain.DelegateManager.RegisterDelegateConvertor<DG.Tweening.Core.DOSetter<System.Single>>((act) =>
         {
             return new DG.Tweening.Core.DOSetter<System.Single>((pNewValue) =>
@@ -153,7 +155,7 @@ public static class ILRHelper
         LitJson.JsonMapper.RegisterILRuntimeCLRRedirection(appdomain);
 
         //最后CLR绑定
-        ILRuntime.Runtime.Generated.CLRBindings.Initialize(appdomain);
+        //ILRuntime.Runtime.Generated.CLRBindings.Initialize(appdomain);
     }
 
     #region 重定向方法

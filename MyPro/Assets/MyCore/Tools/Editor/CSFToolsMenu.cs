@@ -233,7 +233,7 @@ namespace CSF
             if (!string.IsNullOrEmpty(lastScene))
                 ToolsHelper.OpenScene(lastScene);
             else
-                ToolsHelper.Error("Not found last scene!");
+                Debug.LogError("Not found last scene!");
         }
         /// <summary>
         /// 打开主场景
@@ -249,9 +249,7 @@ namespace CSF
             var mainScene = "Assets/Main.unity";
             if (mainScene != currentScene)
                 EditorPrefs.SetString(LastScenePrefKey, currentScene);
-
             ToolsHelper.OpenScene(mainScene);
-
             if (!EditorApplication.isPlaying)
                 EditorApplication.isPlaying = true;
 

@@ -1,5 +1,4 @@
-﻿using Cysharp.Threading.Tasks;
-using DG.Tweening;
+﻿using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -15,14 +14,14 @@ public class Main : MonoBehaviour
         DontDestroyOnLoad(this);
     }
     // Start is called before the first frame update
-    async void Start()
+    void Start()
     {
         Mgr.Initialize();
-        await StartTask();
+        StartTask().Run();
  
     }
 
-    async UniTask StartTask()
+    async CTask StartTask()
     {     
         //初始化ILR
         await Mgr.ILR.Init();

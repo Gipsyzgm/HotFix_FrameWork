@@ -19,7 +19,7 @@ using UnityEngine.AddressableAssets;
 public class AddressableEditor
 {
     //加载目录地址资源路径
-    static string resPath = ""/*AppSetting.BundleResDir*/;
+    static string resPath = AppSetting.AssetResDir;
     [MenuItem("AddressableEditor/自动分组",false,0)]
     public static void AutoGroup()
     {

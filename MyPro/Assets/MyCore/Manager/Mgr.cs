@@ -13,12 +13,14 @@ public class Mgr
     //public static UIMgr UI;
     /// <summary>ILRuntime管理器</summary>
     public static ILRMgr ILR;
+    public static CTaskMgr Task;
 
     public static void Initialize()
     {
 
         //UI = UIMgr.Create();
         ILR = ILRMgr.Create();
+        Task = CTaskMgr.Create();
 
     }
 

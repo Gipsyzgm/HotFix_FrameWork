@@ -7,7 +7,6 @@ using System.IO;
 using System.Threading.Tasks;
 using ILRuntime.CLR.TypeSystem;
 using ILRuntime.CLR.Method;
-using Cysharp.Threading.Tasks;
 
 public class ILRMgr :BaseMgr<ILRMgr>
 {
@@ -30,16 +29,15 @@ public class ILRMgr :BaseMgr<ILRMgr>
     /// 热更工程内模拟Update
     /// </summary>
     IMethod HotFixMainUpdate;
-    public async UniTask Init()
+    public async CTask Init()
     {
-       await  LoadHotFixAssembly();
-  
+        await  LoadHotFixAssembly();
     }
     /// <summary>
     /// 加载热更dll资源
     /// </summary>
     /// <returns></returns>
-    async UniTask LoadHotFixAssembly()
+    async CTask LoadHotFixAssembly()
     {
         bool isDebug = getIsDebug();
         appdomain = new AppDomain();

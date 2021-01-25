@@ -17,6 +17,7 @@ public class UIScriptExport
     public static void ExportUIScript(UIOutlet ui)
     { 
         string uiName = ui.gameObject.name;
+        ToolsHelper.CratePrefab(ui.gameObject, AppSetting.UIPrefabsPath);
         CreateUI(uiName, ui);
         CreateUIView(uiName, ui);
     }
@@ -32,7 +33,7 @@ public class UIScriptExport
     #region 创建UI       
     private static void CreateUI(string uiName, UIOutlet ui)
     {
-        string saveFilePath = $"{ExportScriptDir}/UIPanel/Panel/{uiName}.cs";
+        string saveFilePath = $"{AppSetting.ExportScriptDir}/UIPanel/Panel/{uiName}.cs";
         StringBuilder eventAddStrs = new StringBuilder();
         StringBuilder eventStrs = new StringBuilder();
         UIOutlet.OutletInfo info;
@@ -92,7 +93,7 @@ namespace HotFix
     #region 创建UIView 
     private static void CreateUIView(string uiName, UIOutlet ui)
     {
-        string saveFilePath = $"{ExportScriptDir}/UIPanel/View/{uiName}View.cs";
+        string saveFilePath = $"{AppSetting.ExportScriptDir}/UIPanel/View/{uiName}View.cs";
 
         StringBuilder fieldStrs = new StringBuilder();
         StringBuilder getStrs = new StringBuilder();
@@ -136,7 +137,7 @@ namespace HotFix
     #region 创建Item       
     private static void CreateItem(string uiName, UIOutlet ui)
     {
-        string saveFilePath = $"{ExportScriptDir}/UIItem/Item/{uiName}.cs";
+        string saveFilePath = $"{AppSetting.ExportScriptDir}/UIItem/Item/{uiName}.cs";
         StringBuilder eventAddStrs = new StringBuilder();
         StringBuilder eventStrs = new StringBuilder();
         UIOutlet.OutletInfo info;
@@ -201,7 +202,7 @@ namespace HotFix
     #region 创建ItemView 
     private static void CreateItemView(string uiName, UIOutlet ui)
     {
-        string saveFilePath = $"{ExportScriptDir}/UIItem/View/{uiName}View.cs";
+        string saveFilePath = $"{AppSetting.ExportScriptDir}/UIItem/View/{uiName}View.cs";
 
         StringBuilder fieldStrs = new StringBuilder();
         StringBuilder getStrs = new StringBuilder();
@@ -247,12 +248,6 @@ namespace HotFix
     {
         return fullName.Substring(fullName.LastIndexOf(".") + 1);
     }
-    /// <summary>
-    /// 文件生成位置
-    /// </summary>
-    private static string ExportScriptDir
-    {
-        get { return Path.GetFullPath("../" + AppSetting.HotFixName + "/Module/UI/").Replace("\\", "/"); }
-    }
+  
 }
 

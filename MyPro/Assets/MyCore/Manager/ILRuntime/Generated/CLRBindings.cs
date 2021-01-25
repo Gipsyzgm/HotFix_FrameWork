@@ -17,9 +17,9 @@ namespace ILRuntime.Runtime.Generated
         public static void Initialize(ILRuntime.Runtime.Enviorment.AppDomain app)
         {
             UnityEngine_Debug_Binding.Register(app);
-            Cysharp_Threading_Tasks_UniTask_Binding.Register(app);
-            Cysharp_Threading_Tasks_CompilerServices_AsyncUniTaskMethodBuilder_Binding.Register(app);
-            Cysharp_Threading_Tasks_UniTask_Binding_Awaiter_Binding.Register(app);
+            System_Runtime_CompilerServices_AsyncVoidMethodBuilder_Binding.Register(app);
+            CTask_Binding.Register(app);
+            RoutineBase_Binding.Register(app);
             UnityEngine_GameObject_Binding.Register(app);
             UnityEngine_Transform_Binding.Register(app);
             UnityEngine_Component_Binding.Register(app);
@@ -31,16 +31,13 @@ namespace ILRuntime.Runtime.Generated
             UnityEngine_UI_Slider_Binding.Register(app);
             UnityEngine_Events_UnityEvent_1_Single_Binding.Register(app);
             System_Collections_Generic_List_1_IDisposable_Binding.Register(app);
+            System_Threading_Tasks_Task_Binding.Register(app);
+            System_Runtime_CompilerServices_TaskAwaiter_Binding.Register(app);
             System_Object_Binding.Register(app);
             System_Reflection_MemberInfo_Binding.Register(app);
             System_String_Binding.Register(app);
             System_Collections_Generic_Dictionary_2_String_GameObject_Binding.Register(app);
-            UnityEngine_Resources_Binding.Register(app);
-            Cysharp_Threading_Tasks_UnityAsyncExtensions_Binding.Register(app);
-            Cysharp_Threading_Tasks_UnityAsyncExtensions_Binding_ResourceRequestAwaiter_Binding.Register(app);
-            UIOutlet_Binding.Register(app);
-            System_Collections_Generic_List_1_UIOutlet_Binding_OutletInfo_Binding.Register(app);
-            UIOutlet_Binding_OutletInfo_Binding.Register(app);
+            UnityEngine_Vector3_Binding.Register(app);
             System_Collections_Generic_Dictionary_2_Int32_Transform_Binding.Register(app);
             System_Type_Binding.Register(app);
             System_Enum_Binding.Register(app);
@@ -48,12 +45,15 @@ namespace ILRuntime.Runtime.Generated
             System_Collections_IEnumerator_Binding.Register(app);
             System_IDisposable_Binding.Register(app);
             System_Collections_Generic_List_1_String_Binding.Register(app);
-            System_Runtime_CompilerServices_AsyncVoidMethodBuilder_Binding.Register(app);
             System_Collections_Generic_Dictionary_2_String_ILTypeInstance_Binding.Register(app);
             DG_Tweening_DOTweenModuleUI_Binding.Register(app);
             DG_Tweening_TweenSettingsExtensions_Binding.Register(app);
             System_TimeSpan_Binding.Register(app);
             DG_Tweening_ShortcutExtensions_Binding.Register(app);
+            UIOutlet_Binding.Register(app);
+            System_Collections_Generic_List_1_UIOutlet_Binding_OutletInfo_Binding.Register(app);
+            UIOutlet_Binding_OutletInfo_Binding.Register(app);
+            ExtensionMethods_Binding.Register(app);
 
             ILRuntime.CLR.TypeSystem.CLRType __clrType = null;
             __clrType = (ILRuntime.CLR.TypeSystem.CLRType)app.GetType (typeof(UnityEngine.Vector3));
