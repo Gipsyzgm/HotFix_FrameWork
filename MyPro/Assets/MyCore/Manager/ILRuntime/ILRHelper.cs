@@ -194,7 +194,6 @@ public static class ILRHelper
             {
                 continue;
             }
-            Debug.Log("什么东西啊：" + adaptor.ToString());
             appdomain.RegisterCrossBindingAdaptor(adaptor);
         }
     }

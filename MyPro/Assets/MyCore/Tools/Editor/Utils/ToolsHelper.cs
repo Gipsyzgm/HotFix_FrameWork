@@ -100,6 +100,10 @@ public class ToolsHelper
         clearConsoleMethod.Invoke(new object(), null);
 #endif
     }
+    /// <summary>
+    /// 项目是否是运行当中
+    /// </summary>
+    /// <returns></returns>
     public static bool IsPlaying()
     {
         if (EditorApplication.isPlaying)
@@ -109,9 +113,6 @@ public class ToolsHelper
         }
         return false;
     }
-
-  
-
     /// <summary>
     /// 打开外部程序
     /// </summary>
@@ -166,7 +167,11 @@ public class ToolsHelper
         fs.Close();
         Log($"成功生成文件 {path}", false);
     }
-
+    /// <summary>
+    /// 物体存为预制体
+    /// </summary>
+    /// <param name="Prefab"></param>
+    /// <param name="path"></param>
     public static void CratePrefab(GameObject Prefab,string path) 
     {
         //创建Prefab
@@ -179,13 +184,86 @@ public class ToolsHelper
         else 
         {
             UnityEngine.Debug.LogWarning("已存在预制体："+ dirObj+",不进行覆盖，可直接在预制体上编辑。");
-        }
-            
+        }        
         //PrefabUtility.UnloadPrefabContents(Prefab);
 
     }
+    /// <summary>
+    /// 拷贝文件
+    /// </summary>
+    /// <param name="srcDir">起始文件夹</param>
+    /// <param name="tgtDir">目标文件夹</param>
+    public static void CopyDirectory(string srcDir, string tgtDir, bool copySubDirs)
+    {
+        // Get the subdirectories for the specified directory.
+        DirectoryInfo dir = new DirectoryInfo(srcDir);
+        if (!dir.Exists)
+        {
+            throw new DirectoryNotFoundException("Source directory does not exist or could not be found: " + srcDir);
+        }
 
-
+        DirectoryInfo[] dirs = dir.GetDirectories();
+        // If the destination directory doesn't exist, create it.
+        if (!Directory.Exists(tgtDir))
+            Directory.CreateDirectory(tgtDir);
+        // Get the files in the directory and copy them to the new location.
+        FileInfo[] files = dir.GetFiles();
+        foreach (FileInfo file in files)
+        {
+            string temppath = Path.Combine(tgtDir, file.Name);
+            file.CopyTo(temppath, true);
+        }
+        // If copying subdirectories, copy them and their contents to new location.
+        if (copySubDirs)
+        {
+            foreach (DirectoryInfo subdir in dirs)
+            {
+                string temppath = Path.Combine(tgtDir, subdir.Name);
+                CopyDirectory(subdir.FullName, temppath, true);
+            }
+        }
+    }
+    /// <summary>
+    /// 删除文件夹
+    /// </summary>
+    /// <param name="dir"></param>
+    public static void DeleteDir(string dir)
+    {
+        FileUtil.DeleteFileOrDirectory(dir);
+    }
+    /// <summary>
+    /// 删除目标文件夹下面所有文件
+    /// </summary>
+    /// <param name="dir"></param>
+    public static void CleanDirectory(string dir)
+    {
+        foreach (string subdir in Directory.GetDirectories(dir))
+        {
+            Directory.Delete(subdir, true);
+        }
+        foreach (string subFile in Directory.GetFiles(dir))
+        {
+            File.Delete(subFile);
+        }
+    }
+    /// <summary>
+    /// 给物体添加一个路径下所有同尾缀的组件
+    /// </summary>
+    /// <param name="obj">物体</param>
+    /// <param name="path">路径</param>
+    /// <param name="end">尾缀比如.cs</param>
+    public static void AddFileComment(GameObject obj, string path, string end)
+    {
+        DirectoryInfo direction = new DirectoryInfo(path);
+        FileInfo[] files = direction.GetFiles("*", SearchOption.AllDirectories);
+        for (int i = 0; i < files.Length; i++)
+        {
+            if (!files[i].Name.EndsWith(end)) continue;
+            string tempName = files[i].Name.Split('.')[0];
+            Type t = Type.GetType(tempName);
+            obj.AddComponent(t);
+        }
+    }
     /// <summary>
     /// 复制到剪切板
     /// </summary>

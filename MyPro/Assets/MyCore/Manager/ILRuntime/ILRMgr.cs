@@ -7,6 +7,7 @@ using System.IO;
 using System.Threading.Tasks;
 using ILRuntime.CLR.TypeSystem;
 using ILRuntime.CLR.Method;
+using UnityEngine.AddressableAssets;
 
 public class ILRMgr :BaseMgr<ILRMgr>
 {
@@ -45,14 +46,22 @@ public class ILRMgr :BaseMgr<ILRMgr>
         byte[] pdb = null;
         if (AppSetting.IsRelease && !AppSetting.ILRNotABTest)
         {
+            Debug.Log("Addressablesd加载Dll资源");
             // Addressablesd加载Dll资源
-
-            TextAsset asset = new TextAsset();
+            TextAsset asset = await Addressables.LoadAssetAsync<TextAsset>(AppSetting.HotFixName).Task;
             dll = asset.bytes;
+            if (isDebug)
+            {
+                string pdbpath = AppSetting.HotFixName + "_pdb";
+                TextAsset asset2 = await Addressables.LoadAssetAsync<TextAsset>(pdbpath).Task;             
+                pdb = asset2.bytes;
+            }
+
         }
         else
         {
             //ILR DLL 直接加载
+            Debug.Log("ILR DLL 直接加载Dll资源");
             string dllpath = AppSetting.ILRCodeDir + AppSetting.HotFixName + ".dll";
             UnityWebRequest dllrequest = UnityWebRequest.Get(dllpath);
             await dllrequest.SendWebRequest();
@@ -99,7 +108,7 @@ public class ILRMgr :BaseMgr<ILRMgr>
 #endif
         ILRHelper.InitILRuntime(appdomain);
         SetIsDebug(isDebug);
-        Debug.Log("注册完成");
+        Debug.Log("ILR注册完成");
     }
     /// <summary>
     /// 启动热更项目
@@ -108,7 +117,6 @@ public class ILRMgr :BaseMgr<ILRMgr>
     {
         appdomain.Invoke("HotFix.Main", "Start", null, null);
     }
-
     public void SetIsDebug(bool isDebug)
     {
 

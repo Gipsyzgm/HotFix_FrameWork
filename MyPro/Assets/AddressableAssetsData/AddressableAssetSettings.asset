@@ -12,19 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 468a46d0ae32c3544b7d98094e6448a9, type: 3}
   m_Name: AddressableAssetSettings
   m_EditorClassIdentifier: 
-  m_DefaultGroup: 5207b2c7b7ca7ff4bb7883e9554d495c
-  m_BuildRemoteCatalog: 0
+  m_DefaultGroup: ea39bedd05674fe40bf2e1d9903238f5
+  m_BuildRemoteCatalog: 1
   m_BundleLocalCatalog: 0
-  m_DisableCatalogUpdateOnStart: 0
+  m_DisableCatalogUpdateOnStart: 1
   m_UniqueBundleIds: 0
   m_RemoteCatalogBuildPath:
-    m_Id: 
+    m_Id: c46104defa2f18b4ca6e8d9c53f2ac4d
   m_RemoteCatalogLoadPath:
-    m_Id: 
+    m_Id: 0bce99a8135622342ab51eee23de357c
   m_overridePlayerVersion: 
   m_GroupAssets:
   - {fileID: 11400000, guid: 6062250a78f8abc47b0b941b2ab77c0f, type: 2}
-  - {fileID: 11400000, guid: b9e42829cb45cda469734d5c8df50520, type: 2}
+  - {fileID: 11400000, guid: 2b876ef645c6c4f4fa8cff275bdd4928, type: 2}
+  - {fileID: 11400000, guid: 4121ff22944cee340894d5092129014e, type: 2}
+  - {fileID: 11400000, guid: 35e6e143d8e239b4bbeac9421c7befea, type: 2}
+  - {fileID: 11400000, guid: 58c64b1f75550c94ab20f83f17c44248, type: 2}
   m_BuildSettings:
     m_CompileScriptsInVirtualMode: 0
     m_CleanupStreamingAssetsAfterBuilds: 1
@@ -45,7 +48,7 @@ MonoBehaviour:
       - m_Id: c46104defa2f18b4ca6e8d9c53f2ac4d
         m_Value: ServerData/[BuildTarget]
       - m_Id: 0bce99a8135622342ab51eee23de357c
-        m_Value: http://localhost/[BuildTarget]
+        m_Value: http://localhost/hotfix/[BuildTarget]
     m_ProfileEntryNames:
     - m_Id: 6ac1822258c500f4d865eaa9a30d19a3
       m_Name: BuildTarget

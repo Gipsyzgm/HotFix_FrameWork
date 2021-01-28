@@ -20,23 +20,41 @@ public class AddressableEditor
 {
     //加载目录地址资源路径
     static string resPath = AppSetting.AssetResDir;
-    [MenuItem("AddressableEditor/自动分组",false,0)]
+    [MenuItem("★工具★/Addressable/自动分组", false,2)]
     public static void AutoGroup()
     {
-        //是否启用简单命名方式
-        bool simplied = false;
-        string assetPath;
+        string targetPath = Path.Combine(AppSetting.HotFixDir, AppSetting.HotFixName);
+        FileInfo file = new FileInfo(targetPath + ".bytes");
+        if (!file.Exists)
+        {
+            Debug.LogError("热更dll文件不存在，如不需要请忽略，如果需要请尝试先执行CopyHotFix!");
+        }
         string[] dirs = Directory.GetDirectories(resPath);
         foreach (var item in dirs)
         {
             DirectoryInfo dir = new DirectoryInfo(item);
             var settings = AddressableAssetSettingsDefaultObject.Settings;
-            AddressableAssetGroup Group = CreateOrGetNonStaticGroup(settings, dir.Name);        
-            FileSystemInfo[] files = dir.GetFileSystemInfos();
-            foreach (var file in files)
+            AddressableAssetGroup Group = CreateOrGetNonStaticGroup(settings, dir.Name);
+            SetAssets(item, Group,settings);
+        }
+        AssetDatabase.SaveAssets();
+        AssetDatabase.Refresh();
+    }
+    //该文件夹下所有文件均放在同一Group
+    static void SetAssets(string path, AddressableAssetGroup Group, AddressableAssetSettings settings)
+    {
+        //是否启用简单命名方式
+        bool simplied = true;
+        DirectoryInfo dir = new DirectoryInfo(path);
+        FileSystemInfo[] files = dir.GetFileSystemInfos();
+        for (int i = 0; i < files.Length; i++)
+        {
+            if (files[i] is DirectoryInfo)
+                SetAssets(files[i].FullName, Group, settings);
+            else
             {
-                if (file.FullName.EndsWith(".meta")) continue;
-                assetPath = "Assets" + file.FullName.Substring(Application.dataPath.Length);
+                if (files[i].FullName.EndsWith(".meta")) continue;
+                string  assetPath = "Assets" + files[i].FullName.Substring(Application.dataPath.Length);
                 var guid = AssetDatabase.AssetPathToGUID(assetPath);
                 var entry = settings.CreateOrMoveEntry(guid, Group);
                 Debug.Log(assetPath);
@@ -46,12 +64,11 @@ public class AddressableEditor
                     entry.address = Path.GetFileNameWithoutExtension(assetPath);
                 }
                 //设置资源标签
-                //entry.SetLabel("labelname",true,true);
+                //entry.SetLabel("labelname", true, true);              
             }
         }
-        AssetDatabase.SaveAssets();
-        AssetDatabase.Refresh();
     }
+
     //创建组
     private static AddressableAssetGroup CreateOrGetNonStaticGroup(AddressableAssetSettings settings, string groupName)
     {
@@ -64,27 +81,48 @@ public class AddressableEditor
         //groupSchema.BundleNaming = BundledAssetGroupSchema.BundleNamingStyle.OnlyHash;
         groupSchema.BundleMode = BundledAssetGroupSchema.BundlePackingMode.PackSeparately;
         groupSchema.BuildPath.SetVariableByName(settings, AddressableAssetSettings.kRemoteBuildPath);
-        groupSchema.BuildPath.SetVariableByName(settings, AddressableAssetSettings.kRemoteLoadPath);
+        groupSchema.LoadPath.SetVariableByName(settings, AddressableAssetSettings.kRemoteLoadPath);
         return group;    
     }
 
     //打包
-    [MenuItem("AddressableEditor/DefaultBuild",false, 1)]
+    [MenuItem("★工具★/Addressable/DefaultBuild", false, 4)]
     public static void BuildContent()
     {
-        Debug.LogError("首次打包使用,会总把bundle资源克隆到对应的StreamingAsset目录");
+        Debug.LogWarning("首次打包使用,会总把bundle资源克隆到对应的StreamingAsset目录");
+        string path = AddressableAssetSettingsDefaultObject.Settings.RemoteCatalogBuildPath.GetValue(AddressableAssetSettingsDefaultObject.Settings);
+        if (path=="")
+        {
+            Debug.LogError("Addressable未配置BuildRemoteCatalog!!!");
+            return;
+        }   
         AddressableAssetSettings.BuildPlayerContent();
         string linkPath = Application.dataPath.Substring(0, Application.dataPath.LastIndexOf('/')) + "/" + AddressableAssetSettingsDefaultObject.Settings.RemoteCatalogBuildPath.GetValue(AddressableAssetSettingsDefaultObject.Settings);
-        Debug.LogError(linkPath);
+        Debug.LogWarning(linkPath);
         var exportPath = Application.dataPath.Substring(0, Application.dataPath.LastIndexOf('/')) + "/" + Addressables.BuildPath+"/"+UnityEditor.EditorUserBuildSettings.activeBuildTarget;
-        Debug.LogError(exportPath);
-        //MyEditorTools.CopyDirectory(linkPath,exportPath,true); 
+        Debug.LogWarning(exportPath);
+        ToolsHelper.CopyDirectory(linkPath,exportPath,true); 
         AssetDatabase.Refresh();
-
     }
 
+    [MenuItem("★工具★/Addressable/CopyHotFix", false,0)]
+    public static void CopyHotFix()
+    {
+        string fileDll = AppSetting.ILRCodeDir + AppSetting.HotFixName + ".dll";
+        string filePdb = AppSetting.ILRCodeDir + AppSetting.HotFixName + ".pdb";
+        FileInfo file = new FileInfo(fileDll);
+        if (file.Exists)
+        {
+            string targetPath = Path.Combine(AppSetting.HotFixDir,AppSetting.HotFixName);
+            file.CopyTo(targetPath + ".bytes", true);
+            new FileInfo(filePdb).CopyTo(targetPath + "_pdb.bytes", true);
+        }
+        AssetDatabase.Refresh();
+    }
+
+
     //更新
-    [MenuItem("AddressableEditor/打静态资源更新包", false, 2)]
+    [MenuItem("★工具★/Addressable/打静态资源更新包", false, 6)]
     public static void CheckForUpdateContent()
     {
         //与上次打包做资源对比
@@ -108,7 +146,7 @@ public class AddressableEditor
         ContentUpdateScript.CreateContentUpdateGroup(m_Settings, entrys, groupName);
     }
 
-    [MenuItem("AddressableEditor/清除所有标签",false,3)]
+    [MenuItem("★工具★/Addressable/清除所有标签", false,8)]
     public static void ClearLabel()
     {
         AddressableAssetSettings assetSettings = AddressableAssetSettingsDefaultObject.GetSettings(false);
@@ -119,7 +157,7 @@ public class AddressableEditor
         }
     }
 
-    [MenuItem("AddressableEditor/添加已定义的标签",false,4)]
+    [MenuItem("★工具★/Addressable/添加已定义的标签", false,10)]
     public static void ClearAllLabel()
     {
         //需要添加标签
@@ -129,27 +167,28 @@ public class AddressableEditor
             AddressableAssetGroup assetGroup = assetSettings.groups[i];
             foreach (var item in assetGroup.entries)
             {
-               // item.SetLabel("已定义的标签名",true);
+               //item.SetLabel("标签",true);
             }       
         }
     }
 
-    [MenuItem("AddressableEditor/打开远程Build目录",false,5)]
+    [MenuItem("★工具★/Addressable/打开远程Build目录", false,12)]
     public static void BuildUpdate()
     {
         var m_Settings = AddressableAssetSettingsDefaultObject.Settings;
-        string path = (Application.dataPath.Substring(0,Application.dataPath.LastIndexOf('/')) +"/"+m_Settings.RemoteCatalogBuildPath.GetValue(m_Settings)) ;
-        //MyEditorTools.ShowExplorer(path.Substring(0, path.LastIndexOf('/')));
+        string path = (Application.dataPath.Substring(0,Application.dataPath.LastIndexOf('/')) +"/"+m_Settings.RemoteCatalogBuildPath.GetValue(m_Settings));
+        ToolsHelper.ShowExplorer(path.Substring(0, path.LastIndexOf('/')));
     }
 
-    [MenuItem("AddressableEditor/打开本地构建目录", false, 6)]
+    [MenuItem("★工具★/Addressable/打开本地构建目录", false, 14)]
     public static void OpenLocalBuild()
     {
-        //MyEditorTools.ShowExplorer(Application.dataPath.Substring(0, Application.dataPath.LastIndexOf('/')) +"/"+Addressables.BuildPath);
+        Debug.Log("路径：" + Application.dataPath.Substring(0, Application.dataPath.LastIndexOf('/')) + "/" + Addressables.BuildPath);
+        ToolsHelper.ShowExplorer(Application.dataPath.Substring(0, Application.dataPath.LastIndexOf('/')) +"/"+Addressables.BuildPath);
     }
 
 
-    [MenuItem("AddressableEditor/打开缓存目录", false, 7)]
+    [MenuItem("★工具★/Addressable/打开缓存目录", false, 16)]
     public static void OpenPersist()
     {
         Application.OpenURL(Application.persistentDataPath);

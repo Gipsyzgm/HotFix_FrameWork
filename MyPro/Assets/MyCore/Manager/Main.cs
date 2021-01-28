@@ -13,22 +13,18 @@ public class Main : MonoBehaviour
     {
         DontDestroyOnLoad(this);
     }
+  
     // Start is called before the first frame update
-    void Start()
+    public void InitMgr()
     {
-        Mgr.Initialize();
-        StartTask().Run();
- 
+        Mgr.Initialize();      
     }
-
-    async CTask StartTask()
+    public async CTask StartTask()
     {     
         //初始化ILR
         await Mgr.ILR.Init();
         IsStart = true;
         Mgr.ILR.StartHotFixPro();
-
-
     }
 
 

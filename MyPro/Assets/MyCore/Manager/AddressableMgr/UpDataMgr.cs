@@ -12,23 +12,27 @@ using UnityEngine.UI;
 public class UpDataMgr : MonoBehaviour
 {
     public Slider LoadProgress;
-
     public Text Status;
+    public Main main;
     void Start()
     {
+        if (main == null)
+        {
+            main = GameObject.Find("Main").GetComponent<Main>();
+        }
+        //先创建实例
+        main.InitMgr();
         Addressables.InternalIdTransformFunc = InternalIdTransformFunc;
         //检查网络
         if (Application.internetReachability == NetworkReachability.NotReachable)
         {
-
             Status.text = "网络连接失败...";
         }
         else
         {
             //更新Catalog文件
             CheckUpdate();
-        }
-     
+        }   
     }
     //重新定向一下资源路径
     private string InternalIdTransformFunc(UnityEngine.ResourceManagement.ResourceLocations.IResourceLocation location)
@@ -43,7 +47,6 @@ public class UpDataMgr : MonoBehaviour
 #else
             var path = string.Format("{0}/{1}/{2}", Addressables.RuntimePath, "StandaloneWindows64", location.PrimaryKey);
 #endif
-      
             if (File.Exists(path))
             {
                 return path;
@@ -88,24 +91,27 @@ public class UpDataMgr : MonoBehaviour
                 Debug.Log("下载大小：" + totalDownloadSize);
                 if (totalDownloadSize > 0)
                 {
-
                     LoadProgress.gameObject.SetActive(true);
-                    Status.text = "正在更新中";
+                    Status.text = "正在更新中...";
                     Debug.Log("download bundle start");
                     var downloadHandle = Addressables.DownloadDependenciesAsync(keys, Addressables.MergeMode.Union);                 
                     while (!downloadHandle.IsDone)
                     {
                         float percent = downloadHandle.PercentComplete;
-                        LoadProgress.value = percent;                     
+                        if (percent>0.1f)
+                        {
+                            LoadProgress.value = percent - 0.1f;
+                        }                                     
                         await Task.Yield();
                     }
-                    LoadProgress.value = downloadHandle.PercentComplete;
+                    LoadProgress.value = downloadHandle.PercentComplete - 0.1f;
                     Addressables.Release(downloadHandle);
-     
+                    Status.text = "更新完成";
                     Debug.Log("download bundle finish");
                 }
                 else
                 {
+                    Status.text = "正在进入游戏...";
                     Debug.Log("不需要更新");
                 }
                 Addressables.Release(updateHandle);
@@ -124,13 +130,14 @@ public class UpDataMgr : MonoBehaviour
             }
             else 
             {
+                Status.text = "正在进入游戏...";
                 Debug.Log("不需要更新");
             } 
         }
         Addressables.Release(checkHandle);
-        Debug.Log("CheckUpdate结束");
-        Status.text = "更新完成";
-        Create();
+        LoadProgress.value = 0.9f;
+        Status.text = "加载游戏资源...";
+        StartInitGame().Run();
     }
     /// <summary>
     /// 这个方法和Addressables.UpdateCatalogs获取到的资源是一致的。
@@ -152,27 +159,11 @@ public class UpDataMgr : MonoBehaviour
     //    Debug.Log("更新完成");
     //}
 
-
-
-    async void Create()
+    async CTask StartInitGame()
     {
-        Debug.Log("开始加载");
-        var handle = Addressables.LoadAssetAsync<GameObject>("tree1");
-        await handle.Task;
-        GameObject obj = Instantiate(handle.Result);
-
-        obj.transform.position = Vector3.zero;
-        obj.transform.localScale = Vector3.one * 10;
-        Debug.Log("加载成功1");
-        var handle2 = Addressables.LoadAssetAsync<GameObject>("tree2");
-        await handle2.Task;
-        GameObject obj2 = Instantiate(handle2.Result);
-        obj2.transform.position = Vector3.one;
-        obj2.transform.localScale = Vector3.one * 10;
-        Debug.Log("加载成功2");
+        await main.StartTask();
+        LoadProgress.value = 1.0f;
+        Status.text = "进入游戏";
+        Destroy(gameObject);
     }
-   
-
-   
-
 }

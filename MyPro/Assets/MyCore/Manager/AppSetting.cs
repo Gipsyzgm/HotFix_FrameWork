@@ -8,8 +8,8 @@ public class AppSetting
     /// <summary>
     /// 是否为发布版
     /// </summary>
-    public static bool IsRelease = false;                             //走正式流程设为true(发布会强制修改)
-    public static bool ILRNotABTest = true;                        //不使用AB资源加载ILR(只有编辑器下有效)  
+    public static bool IsRelease = true;                             //走正式流程设为true(发布会强制修改)
+    public static bool ILRNotABTest = false;                        //不使用AB资源加载ILR(只有编辑器下有效)  
     /// <summary>
     /// 热更工程名
     /// </summary>
@@ -39,6 +39,12 @@ public class AppSetting
     /// <summary>
     /// 需要放进Addressable的文件位置
     /// </summary>
-    public static string AssetResDir = "Assets/GameRes/";
+    public static string AssetResDir = "Assets/GameRes/AdsRes/";
+
+    /// <summary>
+    /// 存放热更工程dll的位置
+    /// </summary>
+    public static string HotFixDir = AssetResDir+ "HotFixDlls/";
+
 
 }
