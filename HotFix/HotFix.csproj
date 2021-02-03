@@ -112,6 +112,7 @@
     <Compile Include="Mgr.cs" />
     <Compile Include="Module\UI\BaseItem.cs" />
     <Compile Include="Module\UI\BaseUI.cs" />
+    <Compile Include="Module\UI\UIExtension.cs" />
     <Compile Include="Module\UI\UIMgr.cs" />
     <Compile Include="Module\UI\UIObject.cs" />
     <Compile Include="Module\UI\UIPanel\Panel\MainUI.cs" />

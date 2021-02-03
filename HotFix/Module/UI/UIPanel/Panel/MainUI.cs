@@ -17,10 +17,10 @@ namespace HotFix
             Setting.onClick.AddListener(Setting_Click);   //
 
         }
-
          /// <summary>刷新</summary>
         public override void Refresh()
         {
+
         }
 
         /// <summary></summary>

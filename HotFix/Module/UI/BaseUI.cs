@@ -42,7 +42,6 @@ namespace HotFix
         None,               //无
         Translucent,      //半透明  
         Mask,               //全遮档
-
     }
 
     public class BaseUI:UIObject
@@ -62,7 +61,17 @@ namespace HotFix
         /// <summary>
         /// 是否启用加载等待动画(默认开启)
         /// </summary>
-        protected UILoading Loading = UILoading.None;
+        public UILoading IsLoading = UILoading.None;
+
+        /// <summary>top栏</summary>
+        //public TopItem topItem;
+
+        /// <summary>
+        /// 关闭界面执行
+        /// </summary>
+        public Action CloseAction;
+
+
         /// <summary>
         /// 预制体路径
         /// </summary>
@@ -130,6 +139,7 @@ namespace HotFix
         /// </summary>
         protected virtual void CloseSelf()
         {
+            CloseAction?.Invoke();
             string name = this.GetType().ToString();
             Mgr.UI.ClosePanel(name);
         }
@@ -158,22 +168,28 @@ namespace HotFix
             }
             return value;
         }
-
         protected virtual void ShowLoading()
         {
-            if (Loading != UILoading.None)
+            if (IsLoading != UILoading.None)
             {
-                //Mgr.UI.Loading.SetVisible(true);
-                //float alpha = Loading == UILoading.Translucent ? 0.5f : 1f;
-                //Mgr.UI.LoadingMask.SetAlpha(alpha);
+                if (Mgr.UI.Loading!=null)
+                {
+                    Mgr.UI.Loading.SetVisible(true);
+                    float alpha = IsLoading == UILoading.Translucent ? 0.5f : 1f;
+                    Mgr.UI.LoadingMask.SetAlpha(alpha);
+                }
             }
         }
 
         protected virtual void CloseLoading()
         {
-            if (Loading != UILoading.None) 
+            if (IsLoading != UILoading.None) 
             {
-                //Mgr.UI.Loading.SetVisible(false);
+                if (Mgr.UI.Loading!=null)
+                {
+                    Mgr.UI.Loading.SetVisible(false);
+                }
+             
             }
 
         }

@@ -21,7 +21,7 @@ namespace HotFix
         {
             await Mgr.Initialize();
             Debug.Log("结束等待");
-            await Mgr.UI.Show<MainUI>();
+            await Mgr.UI.Show<MainUI>(UIAnim.FadeIn,UILoading.Mask);
 
         }
 

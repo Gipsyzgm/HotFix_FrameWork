@@ -28,6 +28,9 @@ namespace HotFix
         /// </summary>
         private List<string> ExictPanel = new List<string>();
 
+        public GameObject Loading;
+        public Image LoadingMask { get; private set; }
+
         public UIMgr()
         {
             InitLayer();
@@ -44,7 +47,10 @@ namespace HotFix
             Transform UIRoot = _canvas.Find("UIRoot");
             if (UIRoot==null)
                 Debug.Log("UICanvas下未找到UIRoot");
+            Loading = UIRoot.Find("UILoading").gameObject;
+            LoadingMask = Loading.transform.Find("Mask").GetComponent<Image>();
             layer_dict = new Dictionary<PanelLayer, Transform>();
+           
             //存layer的位置
             foreach (PanelLayer pl in Enum.GetValues(typeof(PanelLayer)))
             {
@@ -61,7 +67,7 @@ namespace HotFix
         /// <typeparam name="T"></typeparam>
         /// <param name="skinPath"></param>
         /// <param name="_args"></param>
-        public async CTask Show<T>(UIAnim uIAnim = UIAnim.None,params object[] _args) where T : BaseUI
+        public async CTask Show<T>(UIAnim uIAnim = UIAnim.None,UILoading uILoading =UILoading.None,params object[] _args) where T : BaseUI
         {
             string name = typeof(T).ToString();
             Type type = Type.GetType(name);
@@ -84,6 +90,7 @@ namespace HotFix
             }
             //创建实例
             BaseUI UIPanel = Activator.CreateInstance(type) as BaseUI;
+            UIPanel.IsLoading = uILoading;
             //加载物体
             await UIPanel.LoadGameObject();
             UIPanel.CurObj.transform.SetAsLastSibling();
@@ -245,19 +252,19 @@ namespace HotFix
                     else
                         comps[i].DOFade(0, time).SetUpdate(true);
                 }
-                await Task.Delay(TimeSpan.FromSeconds(time));
+                await CTask.WaitForSeconds(time);
             }
             else if (anim == UIAnim.ScaleIn || anim == UIAnim.ScaleOut)
             {
                 if (anim == UIAnim.ScaleIn)
                 {
                     target.transform.DOScale(0, time).SetUpdate(true).SetEase(Ease.OutBack).From();
-                    await Task.Delay(TimeSpan.FromSeconds(time));
+                    await CTask.WaitForSeconds(time);
                 }
                 else
                 {
                     target.transform.DOScale(0, time).SetUpdate(true).SetEase(Ease.InBack);
-                    await Task.Delay(TimeSpan.FromSeconds(time));
+                    await CTask.WaitForSeconds(time);
                 }
             }
         }

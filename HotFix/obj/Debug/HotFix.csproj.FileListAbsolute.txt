@@ -3,6 +3,6 @@ F:\anyelse\HotFix_FrameWork\HotFix\bin\Debug\HotFix.pdb
 F:\anyelse\HotFix_FrameWork\Product\ILR\HotFix.dll
 F:\anyelse\HotFix_FrameWork\Product\ILR\HotFix.pdb
 F:\anyelse\HotFix_FrameWork\HotFix\obj\Debug\HotFix.csproj.CoreCompileInputs.cache
-F:\anyelse\HotFix_FrameWork\HotFix\obj\Debug\HotFix.csproj.CopyComplete
 F:\anyelse\HotFix_FrameWork\HotFix\obj\Debug\HotFix.dll
 F:\anyelse\HotFix_FrameWork\HotFix\obj\Debug\HotFix.pdb
+F:\anyelse\HotFix_FrameWork\HotFix\obj\Debug\HotFix.csprojAssemblyReference.cache
