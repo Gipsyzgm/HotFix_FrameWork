@@ -41,12 +41,13 @@ public class UpDataMgr : MonoBehaviour
         if (location.Data is AssetBundleRequestOptions)
         {
             //PrimaryKey是AB包的名字
-            //path就是StreamingAssets/Bundles/AB包名.bundle,其中Bundles是自定义文件夹名字,发布应用程序时,、
+            //path就是StreamingAssets/Bundles/AB包名.bundle,其中Bundles是自定义文件夹名字,发布应用程序时。
 #if UNITY_EDITOR
-            var path = string.Format("{0}/{1}/{2}", Application.streamingAssetsPath, "StandaloneWindows64", location.PrimaryKey);//Path.Combine(Application.streamingAssetsPath, "Bundles", location.PrimaryKey);
+            var path = string.Format("{0}/{1}", Application.streamingAssetsPath, location.PrimaryKey);//Path.Combine(Application.streamingAssetsPath, "Bundles", location.PrimaryKey);
 #else
-            var path = string.Format("{0}/{1}/{2}", Addressables.RuntimePath, "StandaloneWindows64", location.PrimaryKey);
+            var path = string.Format("{0}/{1}/{2}/{3}", Application.streamingAssetsPath,"aa",Utility.GetPlatformName(), location.PrimaryKey);
 #endif
+            Debug.LogError(path);
             if (File.Exists(path))
             {
                 return path;
@@ -77,7 +78,6 @@ public class UpDataMgr : MonoBehaviour
                 foreach (var item in updateHandle.Result)
                 {
                     Debug.Log(item.LocatorId);
-
                     foreach (var key in item.Keys)
                     {
                         Debug.Log(item.LocatorId+":"+key);
@@ -115,18 +115,6 @@ public class UpDataMgr : MonoBehaviour
                     Debug.Log("不需要更新");
                 }
                 Addressables.Release(updateHandle);
-                //Debug.Log("download bundle start");
-                //foreach (var item in updateHandle.Result)
-                //{
-                //    var sizeHandle = Addressables.GetDownloadSizeAsync(item.Keys);
-                //    await sizeHandle.Task;
-                //    if (sizeHandle.Result>0)
-                //    {
-                //        var downloadHandle = Addressables.DownloadDependenciesAsync(item.Keys, Addressables.MergeMode.Union);
-                //        await downloadHandle.Task;
-                //    }
-                //}
-                //Debug.Log("download bundle finish");
             }
             else 
             {
@@ -140,24 +128,24 @@ public class UpDataMgr : MonoBehaviour
         StartInitGame().Run();
     }
     /// <summary>
-    /// 这个方法和Addressables.UpdateCatalogs获取到的资源是一致的。
+    /// 这个方法和Addressables.UpdateCatalogs获取到的资源是一致的，强制更新所有资源。
     /// </summary>
-    //async void StartUpdate()
-    //{
-    //    Debug.Log("开始更新资源");
-    //    IEnumerable<IResourceLocator> locators = Addressables.ResourceLocators;
-    //    foreach (var item in locators)
-    //    {
-    //        var sizeHandle  =  Addressables.GetDownloadSizeAsync(item.Keys);
-    //        await sizeHandle.Task;
-    //        if (sizeHandle.Result > 0) 
-    //        {
-    //            var downloadHandle = Addressables.DownloadDependenciesAsync(item.Keys, Addressables.MergeMode.Union);
-    //            await downloadHandle.Task;
-    //        }             
-    //    }
-    //    Debug.Log("更新完成");
-    //}
+    async void StartUpdate()
+    {
+        Debug.Log("开始更新资源");
+        IEnumerable<IResourceLocator> locators = Addressables.ResourceLocators;
+        foreach (var item in locators)
+        {
+            var sizeHandle = Addressables.GetDownloadSizeAsync(item.Keys);
+            await sizeHandle.Task;
+            if (sizeHandle.Result > 0)
+            {
+                var downloadHandle = Addressables.DownloadDependenciesAsync(item.Keys);
+                await downloadHandle.Task;
+            }
+        }
+        Debug.Log("更新完成");
+    }
 
     async CTask StartInitGame()
     {

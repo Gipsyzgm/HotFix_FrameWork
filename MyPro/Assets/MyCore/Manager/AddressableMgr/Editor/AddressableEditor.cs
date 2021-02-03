@@ -99,7 +99,7 @@ public class AddressableEditor
         AddressableAssetSettings.BuildPlayerContent();
         string linkPath = Application.dataPath.Substring(0, Application.dataPath.LastIndexOf('/')) + "/" + AddressableAssetSettingsDefaultObject.Settings.RemoteCatalogBuildPath.GetValue(AddressableAssetSettingsDefaultObject.Settings);
         Debug.LogWarning(linkPath);
-        var exportPath = Application.dataPath.Substring(0, Application.dataPath.LastIndexOf('/')) + "/" + Addressables.BuildPath+"/"+UnityEditor.EditorUserBuildSettings.activeBuildTarget;
+        var exportPath = Application.dataPath.Substring(0, Application.dataPath.LastIndexOf('/')) + "/" + Addressables.BuildPath+"/";
         Debug.LogWarning(exportPath);
         ToolsHelper.CopyDirectory(linkPath,exportPath,true); 
         AssetDatabase.Refresh();

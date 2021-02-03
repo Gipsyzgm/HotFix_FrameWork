@@ -1,0 +1,445 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Effect
+  m_EditorClassIdentifier: 
+  m_GroupName: Effect
+  m_Data:
+    m_SerializedData: []
+  m_GUID: aed6528ad0d66094484fa1a8d9526653
+  m_SerializeEntries:
+  - m_GUID: 01e4b78f12b03024ab3430867d6055c0
+    m_Address: eff_Blast1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 080c8516ac45d8f438a4cde417bea6b9
+    m_Address: eff_ui_GetItem
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 0dfaa27ea3205eb4cb5a87c55d402d7d
+    m_Address: Blade_out_Ice
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 156d5e75f52d07c4f82a336e3e95dc3d
+    m_Address: eff_spot_poison
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 1b75112218ccd764a9fa016c42e9a0eb
+    m_Address: eff_FireBall
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 1bb37b05ae512fc458b0006144f70dba
+    m_Address: eff_AddHealth
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 1be169c2764b7af43acea20a0c8bd494
+    m_Address: Blade_out_Fire
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 1cf5b5428bdfc404696aad6d35b64b36
+    m_Address: eff_Trap_Flame
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 21f70e077932098488d13b19578c7844
+    m_Address: eff_ui_Dispear
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 22a93d37fe5a42340b555d76766a2c08
+    m_Address: eff_ThunderGroup6
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 23bcc051ef61aae4a931ee109d5bb295
+    m_Address: eff_Hit_PurpleBoom
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 242fc557eeb678044a58601e9bc2e535
+    m_Address: eff_StoneBoss_Skill01
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 25fbfee858bdeb8409d9a333ed0ed642
+    m_Address: eff_Tornado
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 2794f5a24b1582b4299764246af58af9
+    m_Address: eff_Meteorite
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 2d54fc485bfe938409f6d46a51052c68
+    m_Address: eff_StoneBoss_Skill02
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 3015ed8361e30c546bd7f08e58025e5e
+    m_Address: eff_trap_SideRockSlide
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 331f9d33a93dd3f4caa8e9336c5a4289
+    m_Address: eff_BeamPurple
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 37af78df61f9af64a8c47e5d2de3d686
+    m_Address: eff_Hit_Ice
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 3989e3fc9cb47024bb8803925d5ecd7c
+    m_Address: eff_HaloLine
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 3c6be0c5effebdd4abdca68a3f6a6dd5
+    m_Address: eff_StoneBroken
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 47bb2de95649652459a8b1fed483c8b5
+    m_Address: eff_BeamYel
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 49f0393ac2f2efc4d89f6e672d578135
+    m_Address: eff_StoneBoss_Born
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 4b0f9df50effd5041bb0445ab07d6285
+    m_Address: eff_trap_RockSlide
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 4ea6626f9e87e794a95dcc0c04908c59
+    m_Address: eff_Trap_PoisionHit
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 543e5b69e60250348aa13cc5c613a301
+    m_Address: eff_ThunderGroup3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 5c7d609c3573da448baa161ecb12972e
+    m_Address: eff_Hit_Fire
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 5d532734d0ec8d440bd990a5418064b4
+    m_Address: Blade_out_Lighting
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 609c4fa8b2b2aa34eac12419e3a9b47d
+    m_Address: eff_Invincible
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 64433c5e10470d443804d8cd1ededb79
+    m_Address: eff_Buf_Reborn
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 6a30669f193cea540a057765254dff24
+    m_Address: eff_Crushedstone
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 6ca5ded95fd36f44693128668e7ce7ae
+    m_Address: eff_ThunderGroup4
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 7107bc84a268a2c4ca11b730319772c2
+    m_Address: eff_BeamLight
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 748227367ab83be4f9c95c414879a4e3
+    m_Address: eff_ui_Select
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 7be1c777693ddcb40a1ea511d788488a
+    m_Address: eff_GatherLine
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 805ab94fd1b921e4b9340b9e244b9ab5
+    m_Address: eff_spot_Fire
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 809580ac414ffe34fa387ab9749df112
+    m_Address: eff_Hit_blueIce
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 81281c0ae12720040a5dd39995efadb7
+    m_Address: eff_Vortex
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 919e6679f971a5d46a69bde56723bc1e
+    m_Address: eff_FireBall1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 9417249e3fb5c4046aa6f38af450ff1b
+    m_Address: eff_StoneBoss_Skill03
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 9f0ad3ddd9e053044aff3ebebeb14317
+    m_Address: eff_Skill_SpeedRot
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 9f406ca82222f8f4a80858c6081faae3
+    m_Address: eff_Skill_Wave
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: a040c9e42795dfd4ba9c5980ae172588
+    m_Address: eff_Buf_Shield
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: a0688ebeed00f2941a09ba974fca32f2
+    m_Address: eff_BlastPurple
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: a35b1b71f6732fb4795b0389db2ae0f0
+    m_Address: eff_ui_BlueFire
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: a5d5c393f7765074488ac955efdc8d1d
+    m_Address: eff_ThunderGroup5
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: a61935260319f8542a25174eff17113b
+    m_Address: eff_Hitbody_Poison_loop
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: b06e5646219748742b36af27a7ac87b8
+    m_Address: eff_Hitbody_Fire_3s
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: b12705f459464444d8c7df3c0524d435
+    m_Address: eff_Blast
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: b385e5313d53e1343ab29ad555a9c1b7
+    m_Address: eff_ThunderGroup2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: b63a047489681e944a6d4d04d5b978dc
+    m_Address: eff_BigGroundBoom
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: b837071209fa48a4091fd125b890fdb3
+    m_Address: eff_Hitbody_ice_3s
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: be44c46597993ab4aac922ce93b77887
+    m_Address: eff_GroundBroken
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: bf873cbe0d178d941b8a15670ee08d24
+    m_Address: eff_GatherLight
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: c08150055dc30fe4e9058049a2c07598
+    m_Address: Blade_out_Posion
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: c189431af26fe8c4a91c98d4b1773bd5
+    m_Address: eff_Hit_Blood
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: c280c2b2fa0e2ce4e8a45cf9f1dcdda3
+    m_Address: eff_ui_CandleFire
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: c4bf8598ecb75bc41b4bb73ee0b96e19
+    m_Address: eff_Blast2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: c85ebf0df45955842b6cc8144619229b
+    m_Address: eff_Mark
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: c8840a252c2ee8249afbc4cfb5c1d0c9
+    m_Address: eff_ThunderGroup1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: d60e3f8306a6ee74e948c347091721d7
+    m_Address: eff_Hit_LightBoom
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: e3453373c92bcba42ad86b0df0f9c2dc
+    m_Address: eff_Hit_Poison
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: ebcea9098c417784ea5d5f2bae16c734
+    m_Address: eff_Frame
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: ece6f3d6eecb66c4785cb7968ac5f558
+    m_Address: eff_Buf_LightShieldAround
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: f1fb799afc45a88499732b1cde7e428b
+    m_Address: eff_Hitbody_Lighting
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: f31fec8819c215b42a488d56c1e4332d
+    m_Address: eff_Hit_Hard
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: f33eba76804379542a57c85deef12d71
+    m_Address: eff_Buf_PurpleShieldAround
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: f54ffbfb711f4d74ca833473bcd16bad
+    m_Address: eff_Hit_Common1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: f70881353860e4a478847045541a9e64
+    m_Address: eff_spot_Ice
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: f98b431e32aab0e47bbd8abbd19d50d7
+    m_Address: eff_ui_Click
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: ff632a6f7a332394eb0eda35f3adfdad
+    m_Address: eff_WindSkill
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 6bc391ea693ebeb4b8acde5bcdd15b4f, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: f70b2ea0f74b4b44ba493846212f8543, type: 2}
+    - {fileID: 11400000, guid: a676d7b5d2950224f91721d42e0504c5, type: 2}
