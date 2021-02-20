@@ -9,7 +9,7 @@ public class AppSetting
     /// 是否为发布版
     /// </summary>
     public static bool IsRelease = true;                             //走正式流程设为true(发布会强制修改)
-    public static bool ILRNotABTest = true;                        //不使用AB资源加载ILR(只有编辑器下有效)  
+    public static bool ILRNotABTest = false;                        //不使用AB资源加载ILR(只有编辑器下有效)  
     /// <summary>
     /// 热更工程名
     /// </summary>

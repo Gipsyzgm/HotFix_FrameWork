@@ -8,14 +8,20 @@ using UnityEngine.AddressableAssets.ResourceLocators;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.ResourceManagement.ResourceProviders;
 using UnityEngine.UI;
+using UnityEngine.Networking;
+using System.Text;
 
 public class UpDataMgr : MonoBehaviour
 {
     public Slider LoadProgress;
     public Text Status;
     public Main main;
-    void Start()
-    {
+    /// <summary>
+    /// 本地用于比对的catalog
+    /// </summary>
+    public IResourceLocator LoaclLocator;
+    async void Start()
+    {       
         if (main == null)
         {
             main = GameObject.Find("Main").GetComponent<Main>();
@@ -30,10 +36,18 @@ public class UpDataMgr : MonoBehaviour
         }
         else
         {
+#if UNITY_EDITOR
+            var path = Application.dataPath.Substring(0, Application.dataPath.LastIndexOf('/')) + "/"+ Addressables.BuildPath + "/catalog.json";
+#else
+            var path = string.Format("{0}/{1}", Addressables.RuntimePath, "catalog.json");
+#endif
+            Debug.Log("地址："+path);
+            LoaclLocator = await Addressables.LoadContentCatalogAsync(path,true).Task;
             //更新Catalog文件
             CheckUpdate();
         }   
     }
+
     //重新定向一下资源路径
     private string InternalIdTransformFunc(UnityEngine.ResourceManagement.ResourceLocations.IResourceLocation location)
     {
@@ -43,16 +57,22 @@ public class UpDataMgr : MonoBehaviour
             //PrimaryKey是AB包的名字
             //path就是StreamingAssets/Bundles/AB包名.bundle,其中Bundles是自定义文件夹名字,发布应用程序时。
 #if UNITY_EDITOR
-            var path = string.Format("{0}/{1}", Application.streamingAssetsPath, location.PrimaryKey);//Path.Combine(Application.streamingAssetsPath, "Bundles", location.PrimaryKey);
-#else
-            var path = string.Format("{0}/{1}/{2}/{3}", Application.streamingAssetsPath,"aa",Utility.GetPlatformName(), location.PrimaryKey);
-#endif
-            Debug.LogError(path);
+            var path = Application.dataPath.Substring(0, Application.dataPath.LastIndexOf('/')) + "/" + Addressables.BuildPath + "/" + UnityEditor.EditorUserBuildSettings.activeBuildTarget+"/"+ location.PrimaryKey;
             if (File.Exists(path))
             {
+                Debug.Log("在本地找到了资源：" + path);
                 return path;
             }
+#else
+            var path = string.Format("{0}/{1}/{2}",Addressables.RuntimePath,Utility.GetPlatformName(), location.PrimaryKey);
+            if (LoaclLocator.Locate(location.PrimaryKey, location.ResourceType, out var locs))
+            {
+                Debug.Log("在本地找到了资源：" + path);
+                return path;
+            }
+#endif
         }
+        Debug.Log("资源地址：" + location.InternalId);
         return location.InternalId;
     }
     async void CheckUpdate()
@@ -74,16 +94,18 @@ public class UpDataMgr : MonoBehaviour
                 var updateHandle = Addressables.UpdateCatalogs(catalogs, false);
                 await updateHandle.Task;
                 Debug.Log("download catalogs finish");
-                List<object> keys = new List<object>();
-                foreach (var item in updateHandle.Result)
-                {
-                    Debug.Log(item.LocatorId);
-                    foreach (var key in item.Keys)
-                    {
-                        Debug.Log(item.LocatorId+":"+key);
-                    }
-                    keys.AddRange(item.Keys);
-                }
+                //获取所有需要更新的key
+                //List<object> keys = new List<object>();
+                //foreach (var item in updateHandle.Result)
+                //{
+                //    Debug.Log(item.LocatorId);
+                //    foreach (var key in item.Keys)
+                //    {
+                //        Debug.Log(item.LocatorId+":"+key);
+                //    }
+                //    keys.AddRange(item.Keys);
+                //}
+                IEnumerable<object> keys = updateHandle.Result[0].Keys;
                 // 获取下载内容的大小
                 var sizeHandle = Addressables.GetDownloadSizeAsync(keys);
                 await sizeHandle.Task;
@@ -112,17 +134,18 @@ public class UpDataMgr : MonoBehaviour
                 else
                 {
                     Status.text = "正在进入游戏...";
-                    Debug.Log("不需要更新");
                 }
                 Addressables.Release(updateHandle);
             }
             else 
             {
                 Status.text = "正在进入游戏...";
-                Debug.Log("不需要更新");
+                Debug.Log("Catalogs是空的!");
+             
             } 
         }
         Addressables.Release(checkHandle);
+
         LoadProgress.value = 0.9f;
         Status.text = "加载游戏资源...";
         StartInitGame().Run();

@@ -48,7 +48,7 @@ public class Utility
             case RuntimePlatform.WebGLPlayer:
                 return "WebGL";
             case RuntimePlatform.WindowsPlayer:
-                return "Windows";
+                return "StandaloneWindows64";
             case RuntimePlatform.OSXPlayer:
                 return "OSX";
             // Add more build targets for your own.

@@ -15,7 +15,7 @@ MonoBehaviour:
   m_GroupName: HotFixDlls
   m_Data:
     m_SerializedData: []
-  m_GUID: e424b685641a6934486e8d9eb5c65f51
+  m_GUID: 6c1cf16f712bf93438b35b49f5d9ff48
   m_SerializeEntries:
   - m_GUID: 044f6031667360f459779f47e077e62b
     m_Address: HotFix
@@ -30,8 +30,8 @@ MonoBehaviour:
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
   m_ReadOnly: 0
-  m_Settings: {fileID: 11400000, guid: 6bc391ea693ebeb4b8acde5bcdd15b4f, type: 2}
+  m_Settings: {fileID: 11400000, guid: 63695dd1c51bf8545bf5f6acfbda6b05, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 44ae9361cf0fe214bb45dcb34d47f881, type: 2}
-    - {fileID: 11400000, guid: 6b3177135eb4993498c2090b2c48a5b2, type: 2}
+    - {fileID: 11400000, guid: e6d4b65a1b2adfa4fba7bd1cfc0642f5, type: 2}
+    - {fileID: 11400000, guid: 8f6414904a20d1b4aa07127940e21c54, type: 2}

@@ -97,10 +97,9 @@ public class AddressableEditor
             return;
         }   
         AddressableAssetSettings.BuildPlayerContent();
-        string linkPath = Application.dataPath.Substring(0, Application.dataPath.LastIndexOf('/')) + "/" + AddressableAssetSettingsDefaultObject.Settings.RemoteCatalogBuildPath.GetValue(AddressableAssetSettingsDefaultObject.Settings);
-        Debug.LogWarning(linkPath);
-        var exportPath = Application.dataPath.Substring(0, Application.dataPath.LastIndexOf('/')) + "/" + Addressables.BuildPath+"/";
-        Debug.LogWarning(exportPath);
+        string linkPath = Application.dataPath.Substring(0, Application.dataPath.LastIndexOf('/')) + "/" + AddressableAssetSettingsDefaultObject.Settings.RemoteCatalogBuildPath.GetValue(AddressableAssetSettingsDefaultObject.Settings);   
+        var exportPath = Application.dataPath.Substring(0, Application.dataPath.LastIndexOf('/')) + "/" + Addressables.BuildPath+"/" + UnityEditor.EditorUserBuildSettings.activeBuildTarget;
+        Debug.LogWarning("文件从" + linkPath+"——Copy至"+ exportPath);
         ToolsHelper.CopyDirectory(linkPath,exportPath,true); 
         AssetDatabase.Refresh();
     }

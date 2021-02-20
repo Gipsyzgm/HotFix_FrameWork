@@ -189,7 +189,7 @@ public class ToolsHelper
 
     }
     /// <summary>
-    /// 拷贝文件
+    /// 覆盖文件夹
     /// </summary>
     /// <param name="srcDir">起始文件夹</param>
     /// <param name="tgtDir">目标文件夹</param>
@@ -206,6 +206,10 @@ public class ToolsHelper
         // If the destination directory doesn't exist, create it.
         if (!Directory.Exists(tgtDir))
             Directory.CreateDirectory(tgtDir);
+        {
+            DeleteDir(tgtDir);
+            Directory.CreateDirectory(tgtDir);
+        }
         // Get the files in the directory and copy them to the new location.
         FileInfo[] files = dir.GetFiles();
         foreach (FileInfo file in files)
