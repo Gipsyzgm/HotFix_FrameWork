@@ -35,11 +35,11 @@ public class UILangText : MonoBehaviour
     //        }
     //    }
     //}
-    
-    //public void Refresh()
-    //{
-    //    Value = Mgr.ILR.CallHotFixGetLang(key);
-    //}
+
+    public void Refresh()
+    {
+        //Value = Mgr.ILR.CallHotFixGetLang(key);
+    }
 
     public string Value
     {

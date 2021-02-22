@@ -7,24 +7,27 @@ using UnityEngine.UI;
 
 public class Main : MonoBehaviour
 {
+    /// <summary>
+    /// 是否进行资源更新
+    /// </summary>
+    public bool VerCheck = true;
     bool IsStart = false;
-
     void Awake()
     {
         DontDestroyOnLoad(this);
     }
-  
     // Start is called before the first frame update
     public void InitMgr()
     {
-        Mgr.Initialize();      
+        MainMgr.Initialize();   
     }
     public async CTask StartTask()
-    {     
+    {
+        MainMgr.UI.Initialize();
         //初始化ILR
-        await Mgr.ILR.Init();
+        await MainMgr.ILR.Init();
         IsStart = true;
-        Mgr.ILR.StartHotFixPro();
+        MainMgr.ILR.StartHotFixPro();
     }
 
 
@@ -32,6 +35,6 @@ public class Main : MonoBehaviour
     void Update()
     {
         if (IsStart)
-            Mgr.ILR.CallHotFixMainUpdate(Time.deltaTime);
+            MainMgr.ILR.CallHotFixMainUpdate(Time.deltaTime);
     }
 }

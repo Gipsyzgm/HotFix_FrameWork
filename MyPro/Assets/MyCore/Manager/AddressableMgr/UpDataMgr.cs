@@ -16,36 +16,64 @@ public class UpDataMgr : MonoBehaviour
     public Slider LoadProgress;
     public Text Status;
     public Main main;
-    /// <summary>
-    /// 本地用于比对的catalog
-    /// </summary>
-    public IResourceLocator LoaclLocator;
-    async void Start()
-    {       
+    public GameObject Tips;
+    public Button RetryBtn;
+    public Button QuitBtn;
+
+    void Awake()
+    {
         if (main == null)
         {
             main = GameObject.Find("Main").GetComponent<Main>();
         }
         //先创建实例
         main.InitMgr();
-        Addressables.InternalIdTransformFunc = InternalIdTransformFunc;
-        //检查网络
-        if (Application.internetReachability == NetworkReachability.NotReachable)
+        Tips.SetActive(false);
+        RetryBtn.onClick.AddListener(()=> 
         {
-            Status.text = "网络连接失败...";
-        }
-        else
+            Tips.SetActive(false);
+            StartCheck();
+        });
+        QuitBtn.onClick.AddListener(() =>
         {
+            Application.Quit();
+        });
+        StartCheck();
+    }
+
+    /// <summary>
+    /// 本地用于比对的catalog
+    /// </summary>
+    public IResourceLocator LoaclLocator;
+    async void StartCheck()
+    {      
+        if (main.VerCheck)
+        {
+            Addressables.InternalIdTransformFunc = InternalIdTransformFunc;
+            //检查网络
+            if (Application.internetReachability == NetworkReachability.NotReachable)
+            {
+                Status.text = "网络连接失败...";
+                Tips.SetActive(true);
+            }
+            else
+            {
 #if UNITY_EDITOR
-            var path = Application.dataPath.Substring(0, Application.dataPath.LastIndexOf('/')) + "/"+ Addressables.BuildPath + "/catalog.json";
+                var path = Application.dataPath.Substring(0, Application.dataPath.LastIndexOf('/')) + "/" + Addressables.BuildPath + "/catalog.json";
 #else
             var path = string.Format("{0}/{1}", Addressables.RuntimePath, "catalog.json");
 #endif
-            Debug.Log("地址："+path);
-            LoaclLocator = await Addressables.LoadContentCatalogAsync(path,true).Task;
-            //更新Catalog文件
-            CheckUpdate();
-        }   
+                Debug.Log("地址：" + path);
+                LoaclLocator = await Addressables.LoadContentCatalogAsync(path, true).Task;
+                //更新Catalog文件
+                CheckUpdate();
+            }
+        }
+        else 
+        {
+            Status.text = "进入游戏...";
+            StartInitGame().Run();
+        }
     }
 
     //重新定向一下资源路径
@@ -145,7 +173,6 @@ public class UpDataMgr : MonoBehaviour
             } 
         }
         Addressables.Release(checkHandle);
-
         LoadProgress.value = 0.9f;
         Status.text = "加载游戏资源...";
         StartInitGame().Run();
@@ -169,12 +196,12 @@ public class UpDataMgr : MonoBehaviour
         }
         Debug.Log("更新完成");
     }
-
     async CTask StartInitGame()
     {
         await main.StartTask();
         LoadProgress.value = 1.0f;
         Status.text = "进入游戏";
-        Destroy(gameObject);
+        await Task.Delay(200);
+        gameObject.SetActive(false);
     }
 }

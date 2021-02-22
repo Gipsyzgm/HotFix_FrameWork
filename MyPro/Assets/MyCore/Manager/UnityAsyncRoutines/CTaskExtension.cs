@@ -8,6 +8,6 @@ public static class CTaskExtension
 {
     public static CTaskHandle Run(this CTask task)
     {
-        return Mgr.Task.Manager.Run(task);
+        return MainMgr.Task.Manager.Run(task);
     }
 }

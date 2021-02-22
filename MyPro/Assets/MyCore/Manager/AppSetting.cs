@@ -14,6 +14,7 @@ public class AppSetting
     /// 热更工程名
     /// </summary>
     public const string HotFixName = "HotFix";
+
     /// <summary>
     /// ILR逻辑代码目录,只用于编辑环境
     /// </summary>
