@@ -17,18 +17,12 @@ namespace CSF
     HOME, END, PGUP, PGDN = 键盘上的特殊功能键
     特别注意的是，如果是键盘上的普通按键，比如a ~z，则要写成_a ~_z这种带_前缀的。
     */
-
     /// <summary>
     /// CSF框架工具菜单
     /// </summary>
     public partial class CSFToolsMenu
     {
-        private const string LastScenePrefKey = "CSF.LastSceneOpen."/*+AppSetting.ProjectName*/;
-
         #region 资源打包
-
-
-
         /// <summary>
         /// SpriteAtlas 
         /// isInBuild/true 编辑器下可显示图片，ab包会重复打包UI里
@@ -46,66 +40,7 @@ namespace CSF
         {
             Menu.SetChecked("★工具★/资源打包/SpriteAtlas 编辑下可使用(打包时关闭)", EditSpritAtlas.SpritAtlasIsInBuild);
             return true;
-        }
-   
-        ///// <summary>
-        ///// 资源缓存清理
-        ///// </summary>
-        //[MenuItem("★工具★/资源打包/其它/Clear Cache")]
-        //public static void ClearCache()
-        //{
-        //    Caching.ClearCache();
-        //    ToolsHelper.Log("缓存清理完成!");
-        //}
-        /// <summary>
-        /// 资源缓存清理
-        /// </summary>
-        //[MenuItem("★工具★/资源打包/其它/MkLink StreamingAssets")]
-        //public static void MkLinkStreamingAssets()
-        //{
-        //    LinkHelper.MkLinkStreamingAssets();
-        //}
-        [MenuItem("★工具★/资源打包/其它/Link StreamingAssets")]
-        public static void MkLinkStreamingAssets()
-        {
-            LinkHelper.IsLinkStreamingAssets = !LinkHelper.IsLinkStreamingAssets;
-            LinkHelper.MkLinkStreamingAssets();
-            ToolsHelper.Log("链接资源到StreamingAssets:" + (LinkHelper.IsLinkStreamingAssets ? "链接" : "关闭"));
-        }
-        [MenuItem("★工具★/资源打包/其它/Link StreamingAssets", true)]
-        public static bool MkLinkStreamingAssetsValidate()
-        {
-            Menu.SetChecked("★工具★/资源打包/其它/Link StreamingAssets", LinkHelper.IsLinkStreamingAssets);
-            return true;
-        }
-        //=====================================================
-
-        /// <summary>
-        /// 重新打包，删除原始文件
-        /// </summary>
-        [MenuItem("★工具★/资源打包/重新生成资源(Delete)")]
-        public static void ReBuildAllAssetBundles()
-        {
-            ResBundleTools.ReBuildAllAssetBundles();
-        }
-        /// <summary>
-        /// 导出资源
-        /// </summary>
-        [MenuItem("★工具★/资源打包/生成资源")]
-        public static void BuildAllAssetBundles()
-        {
-            ResBundleTools.BuildAllAssetBundles();
-        }
-
-
-        /// <summary>
-        /// 打开资源目录
-        /// </summary>
-        [MenuItem("★工具★/资源打包/Show in Explorer")]
-        public static void ShowInExplorer()
-        {
-            ToolsHelper.ShowExplorer(ResBundleTools.GetExportPath());
-        }
+        }   
         #endregion
 
         #region 用户数据
@@ -142,20 +77,12 @@ namespace CSF
         #endregion
 
         #region 工具
-        [MenuItem("★工具★/指引&&功能开放 调试")]
-        public static void OpenGuideDebugWindow()
-        {
-            GuideDebugWindow win = EditorWindow.GetWindow<GuideDebugWindow>(false, "指引&功能开放", true);
-            win.autoRepaintOnSceneChange = true;
-            win.Show(true);
-        }
         [MenuItem("★工具★/打开游戏工具")]
         public static void OpenTools()
         {
             string path = Path.Combine(System.Environment.CurrentDirectory, "../../工具/Tools.exe");
             ToolsHelper.OpenEXE(path);
         }
-
         #endregion
 
         #region 多语言设置
@@ -222,37 +149,18 @@ namespace CSF
         }
         #endregion
 
-        #region 场景切换       
-        /// <summary>
-        /// 打开主场景之前的一个场景
-        /// </summary>
-        [MenuItem("★工具★/打开上个场景 _F4")]
-        public static void OpenLastScene()
-        {
-            var lastScene = EditorPrefs.GetString(LastScenePrefKey);
-            if (!string.IsNullOrEmpty(lastScene))
-                ToolsHelper.OpenScene(lastScene);
-            else
-                Debug.LogError("Not found last scene!");
-        }
+        #region 场景       
+
         /// <summary>
         /// 打开主场景
         /// </summary>
         [MenuItem("★工具★/开始游戏 _F5")]
         public static void OpenMainScene()
         {
-#if UNITY_5|| UNITY_2017_1_OR_NEWER
-            var currentScene = EditorSceneManager.GetActiveScene().path;
-#else
-            var currentScene = EditorApplication.currentScene;
-#endif
             var mainScene = "Assets/Main.unity";
-            if (mainScene != currentScene)
-                EditorPrefs.SetString(LastScenePrefKey, currentScene);
             ToolsHelper.OpenScene(mainScene);
             if (!EditorApplication.isPlaying)
                 EditorApplication.isPlaying = true;
-
         }
         #endregion
 
@@ -315,7 +223,6 @@ namespace CSF
             Menu.SetChecked("★工具★/一键打包/平台宏切换/正式服", DefineSymbolsTools.IsUnDefineSymbols("LTEST", "TEST"));
             return true;
         }
-
         [MenuItem("★工具★/一键打包/平台宏切换/外网测试服", false, 1)]
         public static void ChangeOuternetTest()
         {
@@ -328,7 +235,6 @@ namespace CSF
             Menu.SetChecked("★工具★/一键打包/平台宏切换/外网测试服", DefineSymbolsTools.IsDefineSymbols("TEST"));
             return true;
         }
-
         [MenuItem("★工具★/一键打包/平台宏切换/内网测试服", false, 1)]
         public static void ChangeInnetTest()
         {
@@ -350,8 +256,7 @@ namespace CSF
             BuildAPKTools.BulidTarget(true);
         }
 #endif
-
-        [MenuItem("★工具★/一键打包/打包")]
+        [MenuItem("★工具★/一键打包/Build")]
         public static void CreateApp()
         {
             BuildAPKTools.BulidTarget();
@@ -387,10 +292,6 @@ namespace CSF
 
         #endregion
 
-    
-
-
-
 #if REFLECT
         /// <summary>
         /// pdb 转成 mdb文件,Unity调试用
@@ -410,7 +311,7 @@ namespace CSF
             Time.timeScale = Time.timeScale == 3 ? 1 : 3;
             Debug.LogError("切换速度" + Time.timeScale.ToString());
         }
-        [MenuItem("★工具★/批量添加受伤效果预制体")]
+        [MenuItem("★工具★/批量修改预制体")]
         public static void ChangePre()
         {
             string TargetPath = Application.dataPath + "/GameRes/BundleRes/Maps";
@@ -470,9 +371,6 @@ namespace CSF
                     {
                         Debug.Log("已存在该物体");
                     }
-
-
-
                     AssetDatabase.Refresh();
                 }
 

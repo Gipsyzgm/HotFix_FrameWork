@@ -165,6 +165,7 @@ public class ToolsHelper
         sWriter.Flush();
         sWriter.Close();
         fs.Close();
+        UnityEngine.Debug.Log($"成功生成文件 {path}");
         Log($"成功生成文件 {path}", false);
     }
     /// <summary>

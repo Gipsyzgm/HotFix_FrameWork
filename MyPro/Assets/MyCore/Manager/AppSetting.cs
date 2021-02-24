@@ -25,11 +25,11 @@ public class AppSetting
     /// <summary>
     /// UIPrefabs的储存位置
     /// </summary>
-    public static string UIPrefabsPath = "Assets/GameRes/MyUI/View/";
+    public static string UIPrefabsPath = "Assets/GameRes/AddressableRes/MyUI/View/";
     /// <summary>
     /// UIItemPrefabs的储存位置
     /// </summary>
-    public static string UIItemPrefabsPath = "Assets/GameRes/MyUI/Item/";
+    public static string UIItemPrefabsPath = "Assets/GameRes/AddressableRes/MyUI/Item/";
     /// <summary>
     /// UI文件生成位置
     /// </summary>

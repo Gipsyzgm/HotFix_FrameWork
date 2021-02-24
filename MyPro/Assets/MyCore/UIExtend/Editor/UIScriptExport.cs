@@ -25,7 +25,8 @@ public class UIScriptExport
     /// <summary>导出Item</summary>
     public static void ExportItemScript(UIOutlet ui)
     {
-        string uiName = ui.gameObject.name.Replace("prefab", "");
+        string uiName = ui.gameObject.name;
+        ToolsHelper.CratePrefab(ui.gameObject, AppSetting.UIItemPrefabsPath);
         CreateItem(uiName, ui);
         CreateItemView(uiName, ui);
     }
