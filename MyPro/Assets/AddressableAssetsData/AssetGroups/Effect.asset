@@ -293,12 +293,6 @@ MonoBehaviour:
     m_SerializedLabels: []
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
-  - m_GUID: 49f0393ac2f2efc4d89f6e672d578135
-    m_Address: eff_StoneBoss_Born
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
   - m_GUID: 242fc557eeb678044a58601e9bc2e535
     m_Address: eff_StoneBoss_Skill01
     m_ReadOnly: 0

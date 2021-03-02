@@ -7,5 +7,5 @@ using UnityEngine.U2D;
 /// </summary>
 public class SpriteAtlasList : MonoBehaviour
 {
-    [ReadOnly] [SerializeField] public SpriteAtlas[] AtlasList;
+     [SerializeField] public SpriteAtlas[] AtlasList;
 }

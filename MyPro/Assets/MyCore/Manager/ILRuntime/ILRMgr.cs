@@ -40,11 +40,11 @@ public class ILRMgr :BaseMgr<ILRMgr>
     /// <returns></returns>
     async CTask LoadHotFixAssembly()
     {
-        bool isDebug = getIsDebug();
+        bool isDebug = !AppSetting.IsRelease;
         appdomain = new AppDomain();
         byte[] dll = null;
         byte[] pdb = null;
-        if (AppSetting.IsRelease && !AppSetting.ILRNotABTest)
+        if (AppSetting.IsRelease)
         {
             Debug.Log("Addressablesd加载Dll资源");
             // Addressablesd加载Dll资源
@@ -56,7 +56,6 @@ public class ILRMgr :BaseMgr<ILRMgr>
                 TextAsset asset2 = await Addressables.LoadAssetAsync<TextAsset>(pdbpath).Task;             
                 pdb = asset2.bytes;
             }
-
         }
         else
         {
@@ -158,15 +157,22 @@ public class ILRMgr :BaseMgr<ILRMgr>
         }
     }
 
-    private bool getIsDebug()
+    /// <summary>
+    /// 调用热更工程中获取语言
+    /// </summary>
+    /// <param name="key"></param>
+    IMethod getLangMethod;
+    object[] getLangparam = new object[2];
+    public string CallHotFixGetLang(string key, int type = -1)
     {
-        //设置日志开关
-        bool isShowLog = false;
-#if UNITY_EDITOR
-        isShowLog = true;//(PlayerPrefs.GetInt("Reporter_msglog", 1) == 1) ? true : false; //默认显示日志
+        getLangparam[0] = key;
+        getLangparam[1] = type;
+#if REFLECT
+            return Invoke(HotFixClass, "GetLang", getLangparam).ToString();
 #else
-            isShowLog = (PlayerPrefs.GetInt("Reporter_msglog") == 1) ? true : false;          
+        if (getLangMethod == null)
+            getLangMethod = appdomain.LoadedTypes[HotFixClass].GetMethod("GetLang", 2);
+        return appdomain.Invoke(getLangMethod, null, getLangparam).ToString();
 #endif
-        return isShowLog;
     }
 }

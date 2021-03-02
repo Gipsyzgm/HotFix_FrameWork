@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-
+//拖拽旋转图片,拖拽目标不能是旋转目标
 public class ImageScrol : MonoBehaviour, IDragHandler
 {
+
     public Transform Target;
     public float speed = 1;
     public bool Horizontal;
     public bool Vertical;
     public void OnDrag(PointerEventData eventData)
-    {
-        //拖拽旋转图片
+    {     
         SetDraggedRotation(eventData);
     }
 

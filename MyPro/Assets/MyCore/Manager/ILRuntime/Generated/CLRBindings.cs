@@ -35,7 +35,6 @@ namespace ILRuntime.Runtime.Generated
             System_String_Binding.Register(app);
             UnityEngine_Vector3_Binding.Register(app);
             System_Action_Binding.Register(app);
-            ExtensionMethods_Binding.Register(app);
             UnityEngine_UI_Graphic_Binding.Register(app);
             UnityEngine_Color_Binding.Register(app);
             UnityEngine_Component_Binding.Register(app);
@@ -55,6 +54,8 @@ namespace ILRuntime.Runtime.Generated
             System_Collections_Generic_List_1_String_Binding.Register(app);
             System_Runtime_CompilerServices_AsyncVoidMethodBuilder_Binding.Register(app);
             System_Collections_Generic_Dictionary_2_String_ILTypeInstance_Binding.Register(app);
+            MainMgr_Binding.Register(app);
+            UIMgr_Binding.Register(app);
             DG_Tweening_DOTweenModuleUI_Binding.Register(app);
             DG_Tweening_TweenSettingsExtensions_Binding.Register(app);
             DG_Tweening_ShortcutExtensions_Binding.Register(app);

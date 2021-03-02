@@ -56,5 +56,4 @@ public class DragEventListener : UIBehaviour, IBeginDragHandler, IDragHandler, I
             this.onClick(eventData);
         }
     }
-
 }

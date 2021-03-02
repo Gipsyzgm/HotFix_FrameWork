@@ -10,23 +10,17 @@ using UnityEngine;
 public class BuildAPKTools
 {
     static string[] SCENES = FindEnabledEditorScenes();
-
     public static void BulidTarget(bool isRun = false)
     {
-        //EPlatformType pfType = AppSetting.PlatformType;
-        string serverLable = "";
-#if LTEST //本地测试
-        serverLable =  "LT";
-#elif TEST
-        serverLable =  "T";
-#else
-        serverLable =  "R";
-#endif
-        string app_name =
-            $"{Application.productName}.{""}[{serverLable}{Application.version}]_{DateTime.Now.ToString("yyyyMMdd_HHmm")}";
-        string target_dir = "";
-        string target_name = "";
         BuildTarget buildTarget = EditorUserBuildSettings.activeBuildTarget;
+        if (buildTarget == BuildTarget.Android)
+        {
+            EditorKeyStore();
+        }      
+        string app_name =
+            $"{Application.productName}.[{Application.version}]_{DateTime.Now.ToString("yyyyMMdd_HHmm")}";
+        string target_dir = "";
+        string target_name = ""; 
         string applicationPath = Application.dataPath.Replace("/Assets", "");
         Debug.Log("Start Bulid:" + app_name);
         if (buildTarget == BuildTarget.Android)
@@ -39,12 +33,10 @@ public class BuildAPKTools
             target_dir = applicationPath + $"/Builds/{Application.productName}_iOS";
             target_name = app_name;
         }
-
         Directory.CreateDirectory(target_dir);        
         BuildPipeline.BuildPlayer(SCENES, target_dir + "/" + target_name, buildTarget,
             isRun ? BuildOptions.AutoRunPlayer : BuildOptions.None);
     }
-
 
     private static string[] FindEnabledEditorScenes()
     {
@@ -55,5 +47,13 @@ public class BuildAPKTools
             EditorScenes.Add(scene.path);
         }
         return EditorScenes.ToArray();
+    }
+
+    public static void EditorKeyStore() 
+    {
+        //PlayerSettings.Android.keystoreName = "完整路径（包含文件后缀）";
+        //PlayerSettings.Android.keystorePass = "moqikaka";
+        //PlayerSettings.Android.keyaliasName = "dazhuzai";
+        //PlayerSettings.Android.keyaliasPass = "mqkkdzz";
     }
 }

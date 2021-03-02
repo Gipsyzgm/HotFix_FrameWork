@@ -14,8 +14,6 @@ public class AutoSetUISpriteAtlas : UnityEditor.AssetModificationProcessor
 {
     //UI目录
     private static string UI_DIR = /*AppSetting.BundleResDir +*/ "UI/";
-    //UIAtlas目录
-    private static string UI_ATLAS_DIR = /*AppSetting.BundleResDir +*/ "UIAtlas/";
 
     [InitializeOnLoadMethod]
     static void StartInitializeOnLoadMethod()

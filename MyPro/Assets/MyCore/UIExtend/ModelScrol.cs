@@ -4,14 +4,10 @@ using UnityEngine;
 
 public class ModelScrol : MonoBehaviour
 {
-
     public float speed = 1;                 //旋转速度
-
     private bool inmod = false;
-
     public bool Horizontal;
     public bool Vertical;
-
 
     void OnMouseDown()
     {
@@ -25,13 +21,11 @@ public class ModelScrol : MonoBehaviour
 #if UNITY_EDITOR
         if (Input.GetMouseButton(0) && inmod)
         {
-
             if (Horizontal)
                 transform.Rotate(Vector3.down * Input.GetAxis("Mouse X") * speed, Space.World);
             if (Vertical)
                 transform.Rotate(Vector3.right * Input.GetAxis("Mouse Y") * speed, Space.World);
         }
-
         if (Input.GetMouseButtonUp(0))
         {
             inmod = false;

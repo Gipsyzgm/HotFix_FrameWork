@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -68,32 +69,32 @@ public class CanvasAdaptive : MonoBehaviour {
         adaptive();
     }
 #endif
+
+    void OnGUI()
+    {
+        var res = Screen.currentResolution;
+        var safeArea = Screen.safeArea;
+        var cutouts = Screen.cutouts;
+        StringBuilder safeAreaInfo = new StringBuilder($"\n\n\n\n\n\n\n\n\n\nResolution (Width × Height): {res.width}x{res.height}\n");
+        safeAreaInfo.Append($"safeArea (X x Y / Width × Height):\n");
+        safeAreaInfo.Append($"{safeArea.x} x {safeArea.y} / {safeArea.width} x {safeArea.height} \n");
+
+        if (cutouts.Length > 0)
+        {
+            foreach (var c in cutouts)
+            {
+                GUI.Box(c, "a");
+                safeAreaInfo.Append($"cutout (X x Y / Width × Height):\n");
+                safeAreaInfo.Append($"{c.x} x {c.y} / {c.width} x {c.height}\n");
+            }
+        }
+        else
+        {
+            safeAreaInfo.Append("No cutouts detected");
+        }
+        //GUIDrawRect(safeArea, Color.red, safeAreaInfo.ToString());
+        GUI.Box(safeArea, safeAreaInfo.ToString());
+    }
+
 }
 
-
-/*
-       void OnGUI()
-       {
-           var res = Screen.currentResolution;
-           var safeArea = Screen.safeArea;
-           var cutouts = Screen.cutouts;
-           StringBuilder safeAreaInfo = new StringBuilder($"\n\n\n\n\n\n\n\n\n\nResolution (Width × Height): {res.width}x{res.height}\n");
-           safeAreaInfo.Append($"safeArea (X x Y / Width × Height):\n");
-           safeAreaInfo.Append($"{safeArea.x} x {safeArea.y} / {safeArea.width} x {safeArea.height} \n");
-
-           if (cutouts.Length > 0)
-           {
-               foreach (var c in cutouts)
-               {
-                   GUI.Box(c, "a");
-                   safeAreaInfo.Append($"cutout (X x Y / Width × Height):\n");
-                   safeAreaInfo.Append($"{c.x} x {c.y} / {c.width} x {c.height}\n");
-               }
-           }
-           else
-           {
-               safeAreaInfo.Append("No cutouts detected");               
-           }
-           //GUIDrawRect(safeArea, Color.red, safeAreaInfo.ToString());
-           GUI.Box(safeArea, safeAreaInfo.ToString());
-       }*/

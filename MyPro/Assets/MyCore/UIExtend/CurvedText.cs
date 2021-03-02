@@ -8,7 +8,7 @@ namespace UnityEngine.UI.Extensions
     /// 说明： 对Text的操作就和 shadow 和 outline 组件类似。
     /// </summary>
     // [RequireComponent(typeof(Text), typeof(RectTransform))]
-    [AddComponentMenu("UI/Effects/Extensions/Curved Text")]
+    [AddComponentMenu("UI/Effects/Extensions/CurvedText")]
     public class CurvedText : BaseMeshEffect
     {
         // 曲线类型
@@ -54,12 +54,9 @@ namespace UnityEngine.UI.Extensions
         {
             if (!IsActive())
                 return;
-
             // 从mesh 得到 顶点集
             List<UIVertex> verts = new List<UIVertex>();
-
             vh.GetUIVertexStream(verts);
-
 
             // 顶点的 y值按曲线变换
             for (int index = 0; index < verts.Count; index++)
@@ -69,11 +66,8 @@ namespace UnityEngine.UI.Extensions
                 uiVertex.position.y += curveForText.Evaluate(rectTrans.rect.width * rectTrans.pivot.x + uiVertex.position.x) * curveMultiplier;
                 verts[index] = uiVertex;
             }
-
             // 在合成mesh
-
             vh.AddUIVertexTriangleStream(verts);
-
 
         }
         protected override void OnRectTransformDimensionsChange()

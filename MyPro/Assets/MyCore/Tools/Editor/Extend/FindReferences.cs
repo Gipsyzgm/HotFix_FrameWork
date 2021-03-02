@@ -1,4 +1,4 @@
-﻿
+﻿//查找引用
 using UnityEngine;
 using System.Collections;
 using UnityEditor;
@@ -11,7 +11,7 @@ using System.Collections.Generic;
 public class FindReferences
 {
 
-    [MenuItem("Assets/★工具★/Find References", false, 10)]
+    [MenuItem("Assets/★工具★/查找引用", false, 10)]
     static private void Find()
     {
         EditorSettings.serializationMode = SerializationMode.ForceText;
@@ -20,7 +20,6 @@ public class FindReferences
         {
             string guid = AssetDatabase.AssetPathToGUID(path);
             string[] withoutExtensions = new string[] { ".prefab", ".unity", ".mat", ".asset" };
-            //Path.Combine(Application.dataPath, "GameRes")
             string[] files = Directory.GetFiles(Application.dataPath, "*.*", SearchOption.AllDirectories)
                 .Where(s => withoutExtensions.Contains(Path.GetExtension(s).ToLower())).ToArray();
             int startIndex = 0;
@@ -44,12 +43,10 @@ public class FindReferences
                     startIndex = 0;
                     Debug.Log("匹配结束");
                 }
-
             };
         }
     }
-
-    [MenuItem("Assets/★工具★/Find References", true)]
+    [MenuItem("Assets/★工具★/查找引用", true)]
     static private bool VFind()
     {
         string path = AssetDatabase.GetAssetPath(Selection.activeObject);

@@ -30,7 +30,7 @@ public class Test : MonoBehaviour
             gameObjects.Add(gameObject);
         }
 
-        gameObject.SetVisible(true);
+        gameObject.SetActive(true);
         StartCoroutine(BoxAni());
       
 
