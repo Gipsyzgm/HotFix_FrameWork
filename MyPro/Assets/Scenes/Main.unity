@@ -248,6 +248,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6749833763747411778, guid: 1c8418937f6996745b0d08bf42ca63f6,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6749833763947525953, guid: 1c8418937f6996745b0d08bf42ca63f6,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6749833764090138594, guid: 1c8418937f6996745b0d08bf42ca63f6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6749833764090138617, guid: 1c8418937f6996745b0d08bf42ca63f6,
         type: 3}
       propertyPath: main
@@ -377,7 +392,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 786acb96e4083a645bb1860d5b6557c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  VerCheck: 1
+  VerCheck: 0
 --- !u!4 &808457578
 Transform:
   m_ObjectHideFlags: 0

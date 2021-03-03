@@ -146,13 +146,13 @@ public class UIOutletEditor : Editor
         EditorGUI.BeginChangeCheck();
         UIOutlet outlet = target as UIOutlet;
         #region 扩展功能
-        GUILayout.Space(10);
-
-        templayer = EditorGUILayout.Popup("选择Layer",templayer, layer);
-        outlet.Layer = templayer;
-
-        GUILayout.Space(10);
-
+        if (!target.name.EndsWith("Item") && !target.name.EndsWith("Icon"))
+        {
+            GUILayout.Space(10);
+            templayer = EditorGUILayout.Popup("选择Layer", templayer, layer);
+            outlet.Layer = templayer;
+            GUILayout.Space(10);
+        }
         GUILayout.BeginHorizontal();
         //拖拽添加
         var aEvent = Event.current;

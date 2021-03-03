@@ -11,6 +11,7 @@ public class Main : MonoBehaviour
     /// 是否进行资源更新
     /// </summary>
     public bool VerCheck = true;
+
     bool IsStart = false;
     void Awake()
     {

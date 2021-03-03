@@ -40,7 +40,7 @@ public class AppSetting
     /// <summary>
     /// 需要放进Addressable的文件位置
     /// </summary>
-    public static string AssetResDir = "Assets/GameRes/AdsRes/";
+    public static string AssetResDir = "Assets/GameRes/AddressableRes/";
 
     /// <summary>
     /// 存放热更工程dll的位置

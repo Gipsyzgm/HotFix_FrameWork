@@ -158,7 +158,7 @@ namespace HotFix
             }
         }
 
-        string selClick = "Item添加Button组件自动生成点击事件！";
+        string selClick = "             //当前对象点击事件需添加Button组件";
         if (ui.GetComponent<Button>() != null)
            selClick = "             gameObject.GetComponent<Button>().onClick.AddListener(self_Click);  //当前对象点击事件";
         string fieldStr = $@"using System;
@@ -174,7 +174,8 @@ namespace HotFix
         /// <summary>添加按钮事件</summary>
         public override void Init()
         {{
-{selClick}             {eventAddStrs}
+{selClick}
+{eventAddStrs}
         }}
 
         /// <summary>刷新Item</summary>
