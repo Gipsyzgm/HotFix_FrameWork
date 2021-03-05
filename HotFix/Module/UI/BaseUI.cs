@@ -64,7 +64,7 @@ namespace HotFix
         public UILoading IsLoading = UILoading.None;
 
         /// <summary>top栏</summary>
-        //public TopItem topItem;
+        public TopItem topItem;
 
         /// <summary>
         /// 关闭界面执行
@@ -73,7 +73,9 @@ namespace HotFix
 
 
         /// <summary>
-        /// 预制体路径
+        /// UI路径名,自动获取,跟据UI脚本名(如果不符合自己重写此方法)
+        /// 对应Addressables的简单命名
+        /// 获取结果为:BaseItem
         /// </summary>
         public virtual string CurViewPath
         {
@@ -89,9 +91,13 @@ namespace HotFix
             ShowLoading();       
             //加载物体
             GameObject TempObj = await Addressables.LoadAssetAsync<GameObject>(CurViewPath).Task;
-            CurObj = GameObject.Instantiate(TempObj);
-            if (CurObj == null)
+            if (TempObj == null) 
+            {
                 Debug.Log("UI Load Fail,UIPath= " + CurViewPath);
+                return;
+            }          
+            CurObj = GameObject.Instantiate(TempObj);
+         
             //初始化该物体
             InitGameObject(CurObj);    
             CloseLoading();
@@ -141,7 +147,7 @@ namespace HotFix
         {
             CloseAction?.Invoke();
             string name = this.GetType().ToString();
-            Mgr.UI.ClosePanel(name);
+            HotMgr.UI.ClosePanel(name);
         }
         /// <summary>
         /// 清除数据
@@ -172,11 +178,11 @@ namespace HotFix
         {
             if (IsLoading != UILoading.None)
             {
-                if (Mgr.UI.Loading!=null)
+                if (HotMgr.UI.Loading!=null)
                 {
-                    Mgr.UI.Loading.SetVisible(true);
+                    HotMgr.UI.Loading.SetActive(true);
                     float alpha = IsLoading == UILoading.Translucent ? 0.5f : 1f;
-                    Mgr.UI.LoadingMask.SetAlpha(alpha);
+                    HotMgr.UI.LoadingMask.SetAlpha(alpha);
                 }
             }
         }
@@ -185,13 +191,22 @@ namespace HotFix
         {
             if (IsLoading != UILoading.None) 
             {
-                if (Mgr.UI.Loading!=null)
+                if (HotMgr.UI.Loading!=null)
                 {
-                    Mgr.UI.Loading.SetVisible(false);
+                    HotMgr.UI.Loading.SetActive(false);
                 }
              
             }
 
+        }
+        /// <summary>
+        /// 创建公用Top
+        /// </summary>
+        protected async CTask CreatTopItem()
+        {
+            if (topItem != null) return;
+            topItem = new TopItem();
+            await topItem.Instantiate(this.transform);
         }
 
     }

@@ -75,11 +75,6 @@ namespace HotFix
                 CurObj.SetActive(value);
         }
 
-        public void SetVisible(bool value)
-        {
-            if (CurObj != null)
-                CurObj.SetVisible(value);
-        }
 
         /// <summary>
         /// 获取控件引用对象(在UIOutlet中定义的)

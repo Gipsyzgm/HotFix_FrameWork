@@ -19,16 +19,15 @@ namespace HotFix
 
         private static async CTask Initialize()
         {
-            await Mgr.Initialize();
+            await HotMgr.Initialize();
             Debug.Log("结束等待");
-            await Mgr.UI.Show<MainUI>(UIAnim.FadeIn,UILoading.Mask);
+            await HotMgr.UI.Show<MainUI>(UIAnim.FadeIn,UILoading.Mask);
 
         }
 
 
         public static void Update(float deltaTime)
         {
-            Debug.Log("模拟Update");
 
         }
     }

@@ -113,15 +113,14 @@
     <Compile Include="Module\UI\BaseItem.cs" />
     <Compile Include="Module\UI\BaseUI.cs" />
     <Compile Include="Module\UI\UIExtension.cs" />
+    <Compile Include="Module\UI\UIItem\Item\TopItem.cs" />
+    <Compile Include="Module\UI\UIItem\View\TopItemView.cs" />
     <Compile Include="Module\UI\UIMgr.cs" />
     <Compile Include="Module\UI\UIObject.cs" />
     <Compile Include="Module\UI\UIPanel\Panel\MainUI.cs" />
     <Compile Include="Module\UI\UIPanel\View\MainUIView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Module\UI\UIItem\Item\" />
-    <Folder Include="Module\UI\UIItem\View\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

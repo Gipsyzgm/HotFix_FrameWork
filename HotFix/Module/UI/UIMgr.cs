@@ -20,7 +20,7 @@ namespace HotFix
 {
     public class UIMgr
     {
-        public Transform _canvas;
+        public Transform _canvas =MainMgr.UI.canvas.transform;
         private Dictionary<string, BaseUI> Paneldict = new Dictionary<string, BaseUI>();
         private Dictionary<PanelLayer, Transform> layer_dict;
         /// <summary>
@@ -40,10 +40,13 @@ namespace HotFix
         /// </summary>
         private void InitLayer()
         {
-            Debug.Log("初始化layer");
-            _canvas = GameObject.Find("UICanvas").transform;
+            Debug.Log("初始化layer");        
             if (_canvas == null)
+            {
+                //_canvas = GameObject.Find("UICanvas").transform;
                 Debug.Log("UIMgr.InitLayerFail,Canvas is null");
+            }
+               
             Transform UIRoot = _canvas.Find("UIRoot");
             if (UIRoot==null)
                 Debug.Log("UICanvas下未找到UIRoot");

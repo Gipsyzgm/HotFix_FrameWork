@@ -7,7 +7,7 @@ using UnityEngine;
 using Random = System.Random;
 namespace HotFix
 {
-    public class Mgr
+    public class HotMgr
     {
         /// <summary>UI管理器</summary>
         public static UIMgr UI;
@@ -41,8 +41,6 @@ namespace HotFix
         {
 
             UI = new UIMgr();
-        
-
             Debug.Log("初始化完成");
   
         }

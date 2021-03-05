@@ -11,11 +11,12 @@ namespace HotFix
     {      
         /// <summary>添加按钮事件</summary>
         public override void Init(params object[] _args)
-        { 
+        {
+            CreatTopItem().Run();
             args = _args;
             StartBtn.onClick.AddListener(StartBtn_Click);   //
             Setting.onClick.AddListener(Setting_Click);   //
-
+        
         }
          /// <summary>刷新</summary>
         public override void Refresh()

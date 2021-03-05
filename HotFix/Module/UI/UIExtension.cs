@@ -21,19 +21,19 @@ namespace HotFix
         /// </summary>
         /// <param name="img">图片对象</param>
         /// <param name="uiAtlas">UIAtlas</param>
-        //public static async CTask SetSprite(this Image img, string spriteName, string uiAtlas = UIAtlas.ItemIcon, bool autoSetSize = false)
-        //{
-        //    if (img == null) return;
-        //    SpriteAtlas atlas = await CSF.Mgr.Assetbundle.LoadSpriteAtlas(uiAtlas);
-        //    if (img == null) return;
-        //    img.sprite = atlas.GetSprite(spriteName);
-        //    if (img.sprite == null && uiAtlas == UIAtlas.ItemIcon) //使用默认头像
-        //        img.sprite = atlas.GetSprite("Default");
-        //    if (autoSetSize)
-        //    {
-        //        img.SetNativeSize();
-        //    }
-        //}
+        public static async CTask SetSprite(this Image img, string spriteName, string uiAtlas, bool autoSetSize = false)
+        {
+            if (img == null) return;
+            SpriteAtlas atlas = await Addressables.LoadAssetAsync<SpriteAtlas>(uiAtlas).Task;
+            if (img == null) return;
+            img.sprite = atlas.GetSprite(spriteName);
+            if (img.sprite == null && uiAtlas == "ItemIcon") //使用默认头像
+                img.sprite = atlas.GetSprite("Default");
+            if (autoSetSize)
+            {
+                img.SetNativeSize();
+            }
+        }
         ///// <summary>
         ///// 加载贴图
         ///// </summary>

@@ -27,6 +27,18 @@ namespace HotFix
 
         }
 
+        /// <summary>
+        /// 获取语言
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public static string GetLang(string key, int type = -1)
+        {
+            //if (type == -1)
+            //    return Mgr.Lang.Get(key);
+            //return Mgr.Lang.Get(key, (ELangType)type);
+            return null;
+        }
 
 
     }
