@@ -23,6 +23,10 @@ public class AppSetting
         get { return Path.GetFullPath("../Product/ILR/").Replace("\\", "/"); }
     }
     /// <summary>
+    /// UI相关的Prefabs的储存位置
+    /// </summary>
+    public static string AllUIPrefabs = "Assets/GameRes/AddressableRes/MyUI/";
+    /// <summary>
     /// UIPrefabs的储存位置
     /// </summary>
     public static string UIPrefabsPath = "Assets/GameRes/AddressableRes/MyUI/View/";

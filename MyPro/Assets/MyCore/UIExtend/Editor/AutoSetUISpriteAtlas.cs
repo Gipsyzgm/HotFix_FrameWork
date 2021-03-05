@@ -1,20 +1,21 @@
-﻿
+﻿/// <summary>
+/// 文件名： AutoSetUISpriteAtlas用于创建和修改UI预制体时自动设置其引用的图集。
+/// </summary>
 using UnityEngine;
 using UnityEditor;
 using System.IO;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using UnityEngine.U2D;
-using CSF;
-
 /// <summary>
 /// 自动设置UI引用的SpriteAtlsas
 /// </summary>
 public class AutoSetUISpriteAtlas : UnityEditor.AssetModificationProcessor
 {
-    //UI目录
-    private static string UI_DIR = /*AppSetting.BundleResDir +*/ "UI/";
+    //UI目录等同于AppSetting.AllUIPrefabs
+    private static string UI_DIR = AppSetting.AllUIPrefabs;
 
+    #region Apply
     [InitializeOnLoadMethod]
     static void StartInitializeOnLoadMethod()
     {
@@ -30,7 +31,7 @@ public class AutoSetUISpriteAtlas : UnityEditor.AssetModificationProcessor
     /// 自动添加引用图集依赖
     /// </summary>
     /// <param name="instance"></param>
-    static void SaveUIPrefab(GameObject instance)
+    public static void SaveUIPrefab(GameObject instance)
     {
         string prefabPath = AssetDatabase.GetAssetPath(PrefabUtility.GetCorrespondingObjectFromSource(instance));
         if (!IsUIPrefab(prefabPath))
@@ -47,7 +48,7 @@ public class AutoSetUISpriteAtlas : UnityEditor.AssetModificationProcessor
             imgPath = AssetDatabase.GetAssetPath(img.sprite);
             if (imgPath.IndexOf("/UIAtlas/") == -1) continue;
             imgPath = imgPath.Substring(0,imgPath.LastIndexOf("/"));
-            spriteAtlasPath = imgPath.Replace("/ArtRes/UIAtlas/", "/BundleRes/UIAtlas/")+ ".spriteatlas";
+            spriteAtlasPath = imgPath.Replace("/ArtRes/UIAtlas/", "/AddressableRes/UIAtlas/") + ".spriteatlas";
             if (!saDict.TryGetValue(spriteAtlasPath, out sa))
             {
                 sa = AssetDatabase.LoadAssetAtPath<SpriteAtlas>(spriteAtlasPath);
@@ -61,7 +62,7 @@ public class AutoSetUISpriteAtlas : UnityEditor.AssetModificationProcessor
                     Debug.LogWarning("SpriteAtlas未找到:"+spriteAtlasPath);
                 }
             }
-        }        
+        }
         SpriteAtlasList compAtlas = go.GetComponent<SpriteAtlasList>();
         if (saList.Count > 0)
         {
@@ -72,10 +73,12 @@ public class AutoSetUISpriteAtlas : UnityEditor.AssetModificationProcessor
         else
         {
             if (compAtlas != null)
-                Component.DestroyImmediate(compAtlas,true);
+                Component.DestroyImmediate(compAtlas, true);
         }
         PrefabUtility.RevertObjectOverride(instance,InteractionMode.AutomatedAction);
     }
+    #endregion
+
     /// <summary>
     /// 是否为UI预制
     /// </summary>

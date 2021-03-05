@@ -179,15 +179,15 @@ public class ToolsHelper
         string dirObj = path + Prefab.name + ".prefab";
         if (!File.Exists(dirObj))
         {
-            PrefabUtility.SaveAsPrefabAsset(Prefab, dirObj);
+            //使用此功能从给定GameObject的给定路径（包括场景中的所有子项）创建一个Prefab Asset，同时使给定GameObject成为新Prefab的实例。
+            PrefabUtility.SaveAsPrefabAssetAndConnect(Prefab, dirObj,InteractionMode.UserAction);
+
             UnityEngine.Debug.Log("生成预制体成功：" + dirObj);
         }
         else 
         {
             UnityEngine.Debug.LogWarning("已存在预制体："+ dirObj+",不进行覆盖，可直接在预制体上编辑。");
-        }        
-        //PrefabUtility.UnloadPrefabContents(Prefab);
-
+        }             
     }
     /// <summary>
     /// 覆盖文件夹

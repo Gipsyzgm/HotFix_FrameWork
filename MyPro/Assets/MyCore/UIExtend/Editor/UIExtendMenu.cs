@@ -23,7 +23,7 @@ public class UIExtendMenu
         rect.anchorMax = Vector2.one;
         rect.offsetMin = Vector2.zero;
         rect.offsetMax = Vector2.zero;
-        //go.AddComponent<SpriteAtlasList>();
+        go.AddComponent<SpriteAtlasList>();
         go.AddComponent<UIOutlet>();
         Selection.activeObject = go;
     }

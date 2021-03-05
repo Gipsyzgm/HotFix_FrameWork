@@ -14,7 +14,7 @@ public class Main : MonoBehaviour
 
     bool IsStart = false;
     void Awake()
-    {
+    { 
         DontDestroyOnLoad(this);
     }
     // Start is called before the first frame update

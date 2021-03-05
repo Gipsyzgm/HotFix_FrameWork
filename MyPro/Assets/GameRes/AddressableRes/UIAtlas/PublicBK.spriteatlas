@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: PublicBK
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 4e7649df0cc4bf44d807ca13f788e99f, type: 3}
+    totalSpriteSurfaceArea: 1624961
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 6a622e10119775e4ea4cc9315dc99704, type: 3}
+  - {fileID: 21300000, guid: 7ae476426efc27d4c9af299c05af417d, type: 3}
+  - {fileID: 21300000, guid: bad36cc2c4d852f4e87c85d39a2d1467, type: 3}
+  - {fileID: 21300000, guid: 568dbc0532462134b9c4886af715014a, type: 3}
+  - {fileID: 21300000, guid: 1d23d6c5f27e4c741bf36f608b9d2a7e, type: 3}
+  - {fileID: 21300000, guid: f11f3cc5d288a4e47bde95b21459757b, type: 3}
+  - {fileID: 21300000, guid: 39fa5bf6d1a2a134bb7211b171d532c0, type: 3}
+  - {fileID: 21300000, guid: c9e64c48d48a0b442bec560a5d5c87a9, type: 3}
+  - {fileID: 21300000, guid: aa2802983d66ae545933b96dda978031, type: 3}
+  - {fileID: 21300000, guid: c7a49b5bc2fdba04e82163b94bf50cc6, type: 3}
+  - {fileID: 21300000, guid: 29a3d39ba102dd644974339deb86235f, type: 3}
+  - {fileID: 21300000, guid: cfc51ecc7b5d16e4b9ace0f678b38fad, type: 3}
+  - {fileID: 21300000, guid: f7c1a95d64114f04d8c388371da5b3a9, type: 3}
+  - {fileID: 21300000, guid: 103091cfe6846ed46b65aaf5d05a96f0, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - frame-Background
+  - frame-info-2
+  - BG-shadow
+  - frame-1-3
+  - frame-1-2
+  - banner-1
+  - frame-3
+  - frame-2-2
+  - frame-info-1
+  - Alpha
+  - frame-prop-1
+  - frame-1-4
+  - frame-1-1
+  - Mask
+  m_RenderDataMap: {}
+  m_Tag: PublicBK
+  m_IsVariant: 0
