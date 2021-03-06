@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: PublicButton
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 0
+      compressionQuality: 0
+      maxTextureSize: 0
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 1
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 43cfd347dd427cd4cab709d248eb17ad, type: 3}
+    totalSpriteSurfaceArea: 358870
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 4a9cfd62b17f63e478fd6d04af20a39e, type: 3}
+  - {fileID: 21300000, guid: 247c0aa518a1678409a2639fd33cb40e, type: 3}
+  - {fileID: 21300000, guid: 9692e2e536678a64d9e8abd85f7b630e, type: 3}
+  - {fileID: 21300000, guid: 34c1da187ee897845939021d04768b65, type: 3}
+  - {fileID: 21300000, guid: d44c08d86161b0241af04d10a88025e9, type: 3}
+  - {fileID: 21300000, guid: 7001f96970a7dc94fbc81fce9062004a, type: 3}
+  - {fileID: 21300000, guid: 85d7f6dc89685264d90df13344e88a81, type: 3}
+  - {fileID: 21300000, guid: 2865573d64c8f0a43ab2f54eff153a29, type: 3}
+  - {fileID: 21300000, guid: 8d69418d68ab6d24d93a6e6aab2e0a9b, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - button-next
+  - Progress1
+  - button-back
+  - button-1
+  - Bg_Progress
+  - Progress2
+  - button-3-2
+  - button-esc
+  - button-3-1
+  m_RenderDataMap: {}
+  m_Tag: PublicButton
+  m_IsVariant: 0

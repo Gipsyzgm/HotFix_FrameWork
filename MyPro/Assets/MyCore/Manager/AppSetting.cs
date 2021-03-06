@@ -26,6 +26,11 @@ public class AppSetting
     /// UI相关的Prefabs的储存位置
     /// </summary>
     public static string AllUIPrefabs = "Assets/GameRes/AddressableRes/MyUI/";
+
+    /// <summary>
+    /// 需要生成图集的图片文件的储存位置
+    /// </summary>
+    public static string UISpritePath = "Assets/GameRes/ArtRes/UIAtlas/";
     /// <summary>
     /// UIPrefabs的储存位置
     /// </summary>

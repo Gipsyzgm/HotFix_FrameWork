@@ -1,0 +1,160 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: PublicSymbol
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 0
+      compressionQuality: 0
+      maxTextureSize: 0
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 1
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 643fc9e9eb43adb4786039aed3b19757, type: 3}
+    totalSpriteSurfaceArea: 1464900
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 2fbb5810d79cf3945878ba129618e31d, type: 3}
+  - {fileID: 21300000, guid: d30df720812f6644393461fafd4e55c4, type: 3}
+  - {fileID: 21300000, guid: 3263c021649f0ed40a3a4790e1f7be71, type: 3}
+  - {fileID: 21300000, guid: d85b3931a0bf8894db5445dc50c789a9, type: 3}
+  - {fileID: 21300000, guid: 8c5e493141973e7498245e790a4f2ebd, type: 3}
+  - {fileID: 21300000, guid: cede68c13bcc5c043ad3588a53e602fe, type: 3}
+  - {fileID: 21300000, guid: d7464dc1d941a3a4e8e6011774602fd8, type: 3}
+  - {fileID: 21300000, guid: 0d6a29d178234f746b6bf8f519bf04ba, type: 3}
+  - {fileID: 21300000, guid: a4ec6062969f1454cb134096b695c918, type: 3}
+  - {fileID: 21300000, guid: e72ca3622306051429232968bfafc63c, type: 3}
+  - {fileID: 21300000, guid: 693e2f72b86b36d438d36b56545c0c03, type: 3}
+  - {fileID: 21300000, guid: 6c2d59825efbf2143be2a368a874d174, type: 3}
+  - {fileID: 21300000, guid: 3f9f8ea2d4c628d41a8b2cb879054482, type: 3}
+  - {fileID: 21300000, guid: 3ebd5dc2f0e6cbd4e87ff2df24c169d7, type: 3}
+  - {fileID: 21300000, guid: a8bc0fe25e32baf40ba2f0b75bbb382b, type: 3}
+  - {fileID: 21300000, guid: 179d99f354f809c40a821abb94f3d22c, type: 3}
+  - {fileID: 21300000, guid: e3750cf351cb1d84faa0d9469761e99e, type: 3}
+  - {fileID: 21300000, guid: 15dcb904f584119459ee8a92060e4dbc, type: 3}
+  - {fileID: 21300000, guid: 2f502c14846d08e4f9440230bd9cbcad, type: 3}
+  - {fileID: 21300000, guid: 599cf134d27c9234d89b833912f0c2ba, type: 3}
+  - {fileID: 21300000, guid: aea0d434dcd7c4b408585cc0d0225116, type: 3}
+  - {fileID: 21300000, guid: e247be440e662ec45b45935b6234b06c, type: 3}
+  - {fileID: 21300000, guid: 5f716715296baef468700c39ef76bace, type: 3}
+  - {fileID: 21300000, guid: 56d0a4a5dde0f614494e965d75ed18e5, type: 3}
+  - {fileID: 21300000, guid: a3acc7b5046d8de4f99f2e5f3c35984a, type: 3}
+  - {fileID: 21300000, guid: cab0aef5dd48f7e45b2a8f14c270e72d, type: 3}
+  - {fileID: 21300000, guid: 9b028a069c40e2f4b945d6cf19397234, type: 3}
+  - {fileID: 21300000, guid: 76c5ff26cce5a714d9070a4ef2d83150, type: 3}
+  - {fileID: 21300000, guid: 7944a8368823680459117f31e672aabe, type: 3}
+  - {fileID: 21300000, guid: 4a96d1f6aa2bf7143b2888770e241741, type: 3}
+  - {fileID: 21300000, guid: f5f91517c036dc548adf2fa6eb5a77c1, type: 3}
+  - {fileID: 21300000, guid: cc883e3762cbcc646acde22b3d1f7bd9, type: 3}
+  - {fileID: 21300000, guid: 41dd78f79a4a90643842932debad9c9a, type: 3}
+  - {fileID: 21300000, guid: 7642b7089df464445977a68702f01cb7, type: 3}
+  - {fileID: 21300000, guid: 42af25180fbd54a4c97232e060f8c053, type: 3}
+  - {fileID: 21300000, guid: e3bd3b380fb6bd64090877756c3200f2, type: 3}
+  - {fileID: 21300000, guid: 886cd3092dfe96347a13ee08948d87f3, type: 3}
+  - {fileID: 21300000, guid: 57ff1c0933aaf294ba782d182139c1db, type: 3}
+  - {fileID: 21300000, guid: 79896f79a63ce274fbd7224c307a5f16, type: 3}
+  - {fileID: 21300000, guid: 5fcc378a6c6b5954995881e5a19afaf2, type: 3}
+  - {fileID: 21300000, guid: 97970abaa2ee1f54ca750da5e0181d38, type: 3}
+  - {fileID: 21300000, guid: fbf1ab0bedd62e8429fd05e92fe29bd1, type: 3}
+  - {fileID: 21300000, guid: 2f72863b78da4334ea4d7644e200d4d2, type: 3}
+  - {fileID: 21300000, guid: 4067068bf3f639543848cb6e22c66951, type: 3}
+  - {fileID: 21300000, guid: cf9b7c5cc26e8b147af2e76ffe650e83, type: 3}
+  - {fileID: 21300000, guid: bd9f076cacbc8fc42a094cfe9111a237, type: 3}
+  - {fileID: 21300000, guid: 463ef67c86051604ebbb3c05101159e0, type: 3}
+  - {fileID: 21300000, guid: aef98a7ca9f81584ba8c6ddc1b74ac17, type: 3}
+  - {fileID: 21300000, guid: db6b3f8c386dbef4e90fbccda2b05325, type: 3}
+  - {fileID: 21300000, guid: 9ce25ffc2d1d1474aadaba21a7153298, type: 3}
+  - {fileID: 21300000, guid: cdc351edfd757924d827b25eb66ca73a, type: 3}
+  - {fileID: 21300000, guid: fae03eed17943c449af95b8ecaf6857b, type: 3}
+  - {fileID: 21300000, guid: 04a3606efa8f505489c58a3f9701ae89, type: 3}
+  - {fileID: 21300000, guid: 5de2876e4b3bd2e468157a72a4ce62b9, type: 3}
+  - {fileID: 21300000, guid: ac657b6effd069b409a0a4158d3bd234, type: 3}
+  - {fileID: 21300000, guid: 8c950aae1b5a2a44da10af8e6aae4ef2, type: 3}
+  - {fileID: 21300000, guid: 1677554fd7eae4a40b12804ea6039c00, type: 3}
+  - {fileID: 21300000, guid: 162a3c9f658a2a643bba038d0ea6fbf8, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - ProgressBar-1-1
+  - icon-addgreen
+  - icon-attr-0
+  - ProgressBar-box-panel
+  - line-1
+  - banner-3
+  - point-1-1
+  - icon-attr-9
+  - icon-attr-1
+  - icon-attr-2
+  - ProgressBar-1-panel
+  - icon-coin
+  - icon-coins
+  - icon-power
+  - icon-ranks
+  - schedule-2
+  - icon-attr-7
+  - banner-2
+  - icon-attr-4
+  - frame-4
+  - icon-HP
+  - icon-attr-12
+  - point-1-2
+  - "\u5B9D\u7BB1"
+  - icon-home
+  - icon-Not-upgrade
+  - icon-experience-1
+  - icon-attr-8
+  - schedule-1
+  - icon-gem
+  - icon-addyellow
+  - icon-star
+  - icon-music-off
+  - banner-1
+  - icon-contunie
+  - ornament-1-1
+  - icon-lock-1
+  - hint
+  - icon-Tv
+  - icon-upgrade
+  - icon-attr-3
+  - icon-attr-6
+  - ornament-2-1
+  - icon-gems
+  - icon-hero
+  - icon-addpurple
+  - icon-attr-11
+  - icon-Mosaic
+  - icon-music-on
+  - title-1
+  - frame-Tip
+  - icon-attr-10
+  - icon-attr-5
+  - ProgressBar-1-2
+  - icon-lock-2
+  - icon-attack
+  - schedule-1-1
+  - icon-honor
+  m_RenderDataMap: {}
+  m_Tag: PublicSymbol
+  m_IsVariant: 0
