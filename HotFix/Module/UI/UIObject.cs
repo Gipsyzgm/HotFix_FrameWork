@@ -35,7 +35,7 @@ namespace HotFix
         /// <summary>
         /// 是否初始化完成
         /// </summary>
-        protected bool IsInstance = false;
+        public bool IsInstance = false;
         /// <summary>
         /// 是否已经销毁掉了
         /// </summary>
@@ -50,9 +50,9 @@ namespace HotFix
             {
                 ObjectList.Add(uiInfo.OutletInfos[i].Name, uiInfo.OutletInfos[i].Object as GameObject);
             }
-            layer = (PanelLayer)uiInfo.Layer;
-            IsInstance = true;
+            layer = (PanelLayer)uiInfo.Layer; 
             InitComponent();
+            IsInstance = true;
             Init();
         }
         /// <summary>初始化组件(代码生成器生成)</summary>

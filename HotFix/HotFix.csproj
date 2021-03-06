@@ -109,7 +109,7 @@
   <ItemGroup>
     <Compile Include="ILRMainCall.cs" />
     <Compile Include="Main.cs" />
-    <Compile Include="Mgr.cs" />
+    <Compile Include="HotMgr.cs" />
     <Compile Include="Module\UI\BaseItem.cs" />
     <Compile Include="Module\UI\BaseUI.cs" />
     <Compile Include="Module\UI\UIExtension.cs" />
