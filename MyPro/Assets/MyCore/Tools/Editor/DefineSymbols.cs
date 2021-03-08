@@ -5,7 +5,11 @@ using CSF;
 
 public class DefineSymbolsTools
 {
-    //是否定义符号
+    /// <summary>
+    /// 是否包含该定义
+    /// </summary>
+    /// <param name="name"></param>
+    /// <returns></returns>
     public static bool IsDefineSymbols(string name)
     {
         string define;
@@ -16,7 +20,11 @@ public class DefineSymbolsTools
         string[] defineArr = define.Split(';');
         return defineArr.Contains(name);
     }
-    //是否不包含指定符号，可以指定多个，有一个则反回false
+    /// <summary>
+    /// 是否不包含指定符号，可以指定多个，有一个则反回false
+    /// </summary>
+    /// <param name="names"></param>
+    /// <returns></returns>
     public static bool IsUnDefineSymbols(params string[] names)
     {
         string define;
@@ -34,7 +42,11 @@ public class DefineSymbolsTools
         return true;
     }
 
-
+    /// <summary>
+    /// 添加或移除宏定义
+    /// </summary>
+    /// <param name="name"></param>
+    /// <param name="isAdd"></param>
     public static void SetDefineSymbols(string name, bool isAdd)
     {
         string define;
@@ -47,12 +59,32 @@ public class DefineSymbolsTools
             buildTargetGroup = BuildTargetGroup.iOS;
         }
         string newDefine = string.Empty;
-        if (isAdd)
-            newDefine = define + ";" + name;
+        string[] defineArr = define.Split(';');
+        bool IsExist = !defineArr.Contains(name);
+        if (!IsExist)
+        {
+            if (isAdd)
+            {
+                newDefine = define + ";" + name;
+            }
+            else 
+            {
+                ToolsHelper.Log($"不存在宏{name}，无法移除");
+                return;
+            }    
+        }
         else
         {
-            newDefine = define.Replace(name, string.Empty);
-            newDefine = newDefine.Replace(";;", ";");
+            if (!isAdd)
+            {
+                newDefine = define.Replace(name, string.Empty);
+                newDefine = newDefine.Replace(";;", ";");
+            }
+            else
+            {
+                ToolsHelper.Log($"已存在宏{name}，无需添加移除");
+                return;
+            }             
         }
         PlayerSettings.SetScriptingDefineSymbolsForGroup(buildTargetGroup, newDefine);
         ToolsHelper.Log($"已经{(isAdd ? "添加" : "移除")}宏{name}");
@@ -81,29 +113,5 @@ public class DefineSymbolsTools
         }
         PlayerSettings.SetScriptingDefineSymbolsForGroup(buildTargetGroup, newDefine);
         ToolsHelper.Log($"已经{(isAdd ? "添加" : "移除")}宏{name}");
-    }
-
-    //宏分组设置，一组只能指定一个宏
-    public static void SetDefineSymbolsGroup(string name, string[] groups)
-    {
-        string define;
-        BuildTargetGroup buildTargetGroup = BuildTargetGroup.Android;
-        if (EditorUserBuildSettings.activeBuildTarget == BuildTarget.Android)
-            define = PlayerSettings.GetScriptingDefineSymbolsForGroup(BuildTargetGroup.Android);
-        else
-        {
-            define = PlayerSettings.GetScriptingDefineSymbolsForGroup(BuildTargetGroup.iOS);
-            buildTargetGroup = BuildTargetGroup.iOS;
-        }
-        string newDefine = define;
-        for (int i = 0; i < groups.Length; i++)
-            newDefine = newDefine.Replace(groups[i], string.Empty);
-        newDefine = newDefine.Replace(";;", ";").TrimEnd(';');
-        if (name != string.Empty)
-            newDefine += ";" + name;
-
-
-        PlayerSettings.SetScriptingDefineSymbolsForGroup(buildTargetGroup, newDefine);
-        ToolsHelper.Log($"当前宏:{newDefine}");
     }
 }

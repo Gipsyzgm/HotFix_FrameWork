@@ -23,6 +23,8 @@ public class AddressableEditor
     [MenuItem("★工具★/Addressable/自动分组", false,2)]
     public static void AutoGroup()
     {
+        CopyHotFix();
+        Debug.Log("自动分组时先把热更文件替换至最新。");
         string targetPath = Path.Combine(AppSetting.HotFixDir, AppSetting.HotFixName);
         FileInfo file = new FileInfo(targetPath + ".bytes");
         if (!file.Exists)
@@ -112,11 +114,16 @@ public class AddressableEditor
         FileInfo file = new FileInfo(fileDll);
         if (file.Exists)
         {
-            string targetPath = Path.Combine(AppSetting.HotFixDir,AppSetting.HotFixName);
+            string targetPath = Path.Combine(AppSetting.HotFixDir, AppSetting.HotFixName);
             file.CopyTo(targetPath + ".bytes", true);
             new FileInfo(filePdb).CopyTo(targetPath + "_pdb.bytes", true);
         }
+        else 
+        {
+            Debug.LogError("CopyHotFix失败，dll文件不存在，请生成文件或检查文件路径！");
+        }
         AssetDatabase.Refresh();
+        Debug.Log("CopyHotFix成功");
     }
 
 

@@ -127,92 +127,7 @@ public partial class ToolsMenu
     }
     #endregion
 
-
     #region 一键打包
-    private static string[] platformGruop = new string[] { "OWN_GP", "OWN_IOS" };
-    [MenuItem("★工具★/一键打包/平台宏切换/AccountPwd(账号密码)")]
-    public static void ChangeAccountPwd()
-    {
-        //BuildAPKTools.ChagePlatformType(EPlatformType.AccountPwd);
-        DefineSymbolsTools.SetDefineSymbolsGroup("", platformGruop);
-    }
-
-    [MenuItem("★工具★/一键打包/平台宏切换/AccountPwd(账号密码)", true)]
-    public static bool ChangeAccountPwd_Valide()
-    {
-        Menu.SetChecked("★工具★/一键打包/平台宏切换/AccountPwd(账号密码)", DefineSymbolsTools.IsUnDefineSymbols("OWN_GP", "OWN_IOS"));
-        return true;
-    }
-
-#if UNITY_ANDROID
-    [MenuItem("★工具★/一键打包/平台宏切换/Own_GP")]
-    public static void ChangeHY_MC()
-    {
-        //BuildAPKTools.ChagePlatformType(EPlatformType.OWN_GP);
-        DefineSymbolsTools.SetDefineSymbolsGroup("OWN_GP", platformGruop);
-    }
-    [MenuItem("★工具★/一键打包/平台宏切换/Own_GP", true)]
-    public static bool ChangeHY_MC_Valide()
-    {
-        Menu.SetChecked("★工具★/一键打包/平台宏切换/Own_GP", DefineSymbolsTools.IsDefineSymbols("OWN_GP"));
-        return true;
-    }
-#endif
-
-#if UNITY_IOS
-        [MenuItem("★工具★/一键打包/平台宏切换/OWN_IOS")]
-        public static void ChangeHY_IOS()
-        {
-            //BuildAPKTools.ChagePlatformType(EPlatformType.OWN_IOS);
-            DefineSymbolsTools.SetDefineSymbolsGroup("OWN_IOS", platformGruop);
-        }
-        [MenuItem("★工具★/一键打包/平台宏切换/OWN_IOS", true)]
-        public static bool ChangeHY_IOS_Valide()
-        {
-            Menu.SetChecked("★工具★/一键打包/平台宏切换/OWN_IOS", DefineSymbolsTools.IsDefineSymbols("OWN_IOS"));
-            return true;
-        }
-#endif
-    /////////////////////////////////测试宏/////////////////////////////////////////
-    private static string[] testGruop = new string[] { "LTEST", "TEST" };
-    [MenuItem("★工具★/一键打包/平台宏切换/正式服", false, 1)]
-    public static void ChangeRelease()
-    {
-        DefineSymbolsTools.SetDefineSymbolsGroup("", testGruop);
-    }
-
-    [MenuItem("★工具★/一键打包/平台宏切换/正式服", true, 1)]
-    public static bool ChangeRelease_Valide()
-    {
-        Menu.SetChecked("★工具★/一键打包/平台宏切换/正式服", DefineSymbolsTools.IsUnDefineSymbols("LTEST", "TEST"));
-        return true;
-    }
-    [MenuItem("★工具★/一键打包/平台宏切换/外网测试服", false, 1)]
-    public static void ChangeOuternetTest()
-    {
-        DefineSymbolsTools.SetDefineSymbolsGroup("TEST", testGruop);
-    }
-
-    [MenuItem("★工具★/一键打包/平台宏切换/外网测试服", true, 1)]
-    public static bool ChangeOuternetTest_Valide()
-    {
-        Menu.SetChecked("★工具★/一键打包/平台宏切换/外网测试服", DefineSymbolsTools.IsDefineSymbols("TEST"));
-        return true;
-    }
-    [MenuItem("★工具★/一键打包/平台宏切换/内网测试服", false, 1)]
-    public static void ChangeInnetTest()
-    {
-        DefineSymbolsTools.SetDefineSymbolsGroup("LTEST", testGruop);
-    }
-    [MenuItem("★工具★/一键打包/平台宏切换/内网测试服", true, 1)]
-    public static bool ChangeInnetTest_Valide()
-    {
-        Menu.SetChecked("★工具★/一键打包/平台宏切换/内网测试服", DefineSymbolsTools.IsDefineSymbols("LTEST"));
-        return true;
-    }
-
-
-    ///////////////打包//////////////////////////
 #if UNITY_ANDROID
     [MenuItem("★工具★/一键打包/BuildAndRun")]
     public static void CreateApp_Run()
@@ -253,7 +168,6 @@ public partial class ToolsMenu
         Menu.SetChecked("★工具★/宏定义/DLL反射调用(不建议)", DefineSymbolsTools.IsDefineSymbols("REFLECT"));
         return true;
     }
-
     #endregion
 
 #if REFLECT
@@ -275,70 +189,64 @@ public partial class ToolsMenu
         Time.timeScale = Time.timeScale == 3 ? 1 : 3;
         Debug.LogError("切换速度" + Time.timeScale.ToString());
     }
-    [MenuItem("★工具★/批量修改预制体")]
-    public static void ChangePre()
-    {
-        string TargetPath = Application.dataPath + "/GameRes/BundleRes/Maps";
-        //获得指定路径下面的所有资源文件
-        if (Directory.Exists(TargetPath))
-        {
-            DirectoryInfo dirInfo = new DirectoryInfo(TargetPath);
-            FileInfo[] files = dirInfo.GetFiles("*", SearchOption.AllDirectories); //包括子目录
-            Debug.Log(files.Length);
-            for (int i = 0; i < files.Length; i++)
-            {
-                //所有预制体
-                if (files[i].Name.EndsWith(".prefab"))
-                {
+    //[MenuItem("★工具★/批量修改预制体")]
+    //public static void ChangePre()
+    //{
+    //    string TargetPath = Application.dataPath + "/GameRes/BundleRes/Maps";
+    //    //获得指定路径下面的所有资源文件
+    //    if (Directory.Exists(TargetPath))
+    //    {
+    //        DirectoryInfo dirInfo = new DirectoryInfo(TargetPath);
+    //        FileInfo[] files = dirInfo.GetFiles("*", SearchOption.AllDirectories); //包括子目录
+    //        Debug.Log(files.Length);
+    //        for (int i = 0; i < files.Length; i++)
+    //        {
+    //            //所有预制体
+    //            if (files[i].Name.EndsWith(".prefab"))
+    //            {
+    //                string tempPath = files[i].FullName.Replace(@"\", "/");
+    //                string[] ary = tempPath.Split('/');
+    //                int tempint = 0;
+    //                string path = "Assets";
+    //                //拼接资源路径
+    //                for (int n = 0; n < ary.Length; n++)
+    //                {
+    //                    if (ary[n] == "Assets")
+    //                    {
+    //                        tempint = n;
+    //                    }
+    //                }
+    //                for (int x = tempint + 1; x < ary.Length; x++)
+    //                {
+    //                    path += "/" + ary[x];
+    //                }
+    //                Debug.Log("路径：" + path);
+    //                GameObject obj = AssetDatabase.LoadAssetAtPath(path, typeof(GameObject)) as GameObject;
+    //                GameObject MainCamera = obj.transform.Find("@Path/Main Camera").gameObject;
+    //                if (MainCamera.transform.Find("PlayerHurt") == null)
+    //                {
 
-                    string tempPath = files[i].FullName.Replace(@"\", "/");
-                    string[] ary = tempPath.Split('/');
-                    int tempint = 0;
-                    string path = "Assets";
-                    //拼接资源路径
-                    for (int n = 0; n < ary.Length; n++)
-                    {
-                        if (ary[n] == "Assets")
-                        {
-                            tempint = n;
-                        }
-                    }
-                    for (int x = tempint + 1; x < ary.Length; x++)
-                    {
-                        path += "/" + ary[x];
-                    }
-                    Debug.Log("路径：" + path);
-                    GameObject obj = AssetDatabase.LoadAssetAtPath(path, typeof(GameObject)) as GameObject;
-                    GameObject MainCamera = obj.transform.Find("@Path/Main Camera").gameObject;
-                    if (MainCamera.transform.Find("PlayerHurt") == null)
-                    {
-
-                        GameObject parent = GameObject.Instantiate(obj);
-                        GameObject childPrefab = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/GameRes/BundleRes/Model/PlayerHurt.prefab");
-                        GameObject child = GameObject.Instantiate(childPrefab);
-                        child.name = "PlayerHurt";
-                        child.transform.parent = parent.transform.Find("@Path/Main Camera").transform;
-                        child.transform.localPosition = new Vector3(0, 0, 2);
-                        child.transform.localRotation = new Quaternion(0, 0, 0, 0);
-
-
-                        PrefabUtility.SaveAsPrefabAsset(parent, path);
-                        Editor.DestroyImmediate(parent);
-
-                    }
-                    else
-                    {
-                        Debug.Log("未找到需要添加的物体");
-                    }
-                }
-                else
-                {
-                    Debug.Log("已存在该物体");
-                }
-                AssetDatabase.Refresh();
-            }
-
-        }
-
-    }
+    //                    GameObject parent = GameObject.Instantiate(obj);
+    //                    GameObject childPrefab = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/GameRes/BundleRes/Model/PlayerHurt.prefab");
+    //                    GameObject child = GameObject.Instantiate(childPrefab);
+    //                    child.name = "PlayerHurt";
+    //                    child.transform.parent = parent.transform.Find("@Path/Main Camera").transform;
+    //                    child.transform.localPosition = new Vector3(0, 0, 2);
+    //                    child.transform.localRotation = new Quaternion(0, 0, 0, 0);
+    //                    PrefabUtility.SaveAsPrefabAsset(parent, path);
+    //                    Editor.DestroyImmediate(parent);
+    //                }
+    //                else
+    //                {
+    //                    Debug.Log("未找到需要添加的物体");
+    //                }
+    //            }
+    //            else
+    //            {
+    //                Debug.Log("已存在该物体");
+    //            }
+    //            AssetDatabase.Refresh();
+    //        }
+    //    }
+    //}
 }
