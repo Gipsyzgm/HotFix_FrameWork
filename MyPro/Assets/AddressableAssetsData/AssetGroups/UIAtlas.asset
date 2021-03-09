@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: UIAtlas
+  m_EditorClassIdentifier: 
+  m_GroupName: UIAtlas
+  m_Data:
+    m_SerializedData: []
+  m_GUID: ef64cd8d6d6e0a84ba11bdea217d3035
+  m_SerializeEntries:
+  - m_GUID: 17b32b3a1cde99f498f3dd3517ed7029
+    m_Address: PublicBK
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: e43c06d43a9dd494598affcf9f4f5b98
+    m_Address: PublicButton
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: b103f7ddb69e91c458539080bd9049cf
+    m_Address: PublicSymbol
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 63695dd1c51bf8545bf5f6acfbda6b05, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 4cd9d71a60b631047bf678f1ed53c75b, type: 2}
+    - {fileID: 11400000, guid: 492975576b066b147aeb729c71bb1a97, type: 2}

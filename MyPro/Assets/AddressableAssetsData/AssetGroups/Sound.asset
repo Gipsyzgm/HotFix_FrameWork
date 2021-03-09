@@ -1,0 +1,175 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Sound
+  m_EditorClassIdentifier: 
+  m_GroupName: Sound
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 89fd19b220bc80d4987cec59b5b5c5a3
+  m_SerializeEntries:
+  - m_GUID: 165ae07d692a8d941a83d52221ad3d89
+    m_Address: BGM_Area
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 8071df033ecadfe4491125116e1f288b
+    m_Address: BGM_EmptyPort
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: f5f41a82e62812444b9a464570457bed
+    m_Address: BGM_Home
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 125b475db09c3c1489d9a2074aa63d6b
+    m_Address: BGM_Homeland
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: e8fbf896eb16b1a4a91171cebcec1e2a
+    m_Address: BGM_Morning
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 9db3348cb788ffd4fa3041bc40cded51
+    m_Address: BGM_Quick
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: b6585ee3e246cba47b648ab78ab82990
+    m_Address: BGM_Scar
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 2e479e90ca6dbcf48bc55595b8d13d8e
+    m_Address: Buff_Addspeed
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: b5ca80f25004eb547be6b39df3e3c3e9
+    m_Address: Buff_GetBiger
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 93bf65ec6e9135e4e8e989bc6046d377
+    m_Address: Buff_GetInvincible
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 948362b357b10cf44ba3d723d7fd7467
+    m_Address: Click
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 9b3c838d44c8a444095931be583b9444
+    m_Address: Defeat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 07e6a7beef4d73240bfe9db1eed08a41
+    m_Address: Invincible
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 8278fd5133c4fd44e9580e7b1a7365f8
+    m_Address: LvUp
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: dfc34354a792ffd44817c38113de30c3
+    m_Address: Player_Hurt
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 7f6aa356ddc3d114bbe4371c469d3fb6
+    m_Address: sfx_Boss_FireBall
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 49c17a5fad326ab4e9d0929a3a8c274e
+    m_Address: sfx_Boss_FireDie
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 845f46df43ddbd34899f0472f89d134a
+    m_Address: sfx_Boss_FireSmash
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 28b248b1cd0b0ad45b39905a02c3f53b
+    m_Address: sfx_Boss_FireStart
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 9b34a6dd00bd2564d95a087d8cc7d289
+    m_Address: sfx_general_BladeCut02
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 884b1d8c8f9787146a1529e6e172f9ea
+    m_Address: sfx_general_BladeOpen01
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: e8f722f8fac074941b29f4a7ccf8bf5b
+    m_Address: sfx_Ice_BladeOpen01
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 2a07a3c9fe79ebf48aaeb96280413a0f
+    m_Address: sfx_Lightning_BladeOpen01
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 9cda32885619b0640b67965bb85462e1
+    m_Address: sfx_Poison_BladeOpen01
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 8b200a85e8401b440b336e31238ecc98
+    m_Address: Vectory
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 63695dd1c51bf8545bf5f6acfbda6b05, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: c355b2efd93d3934da83ccc5d536bbf0, type: 2}
+    - {fileID: 11400000, guid: 4ada66bf32fbcac42816eb6438b3fcb7, type: 2}

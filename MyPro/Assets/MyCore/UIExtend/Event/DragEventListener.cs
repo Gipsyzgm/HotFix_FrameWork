@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.EventSystems;
-using CSF;
 
 public class DragEventListener : UIBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler, IPointerClickHandler
 {

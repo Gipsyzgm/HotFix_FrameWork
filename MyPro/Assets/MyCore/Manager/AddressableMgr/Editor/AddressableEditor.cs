@@ -59,7 +59,6 @@ public class AddressableEditor
                 string  assetPath = "Assets" + files[i].FullName.Substring(Application.dataPath.Length);
                 var guid = AssetDatabase.AssetPathToGUID(assetPath);
                 var entry = settings.CreateOrMoveEntry(guid, Group);
-                Debug.Log(assetPath);
                 entry.address = assetPath;
                 if (simplied)
                 {

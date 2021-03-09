@@ -22,6 +22,12 @@ public class AppSetting
     {
         get { return Path.GetFullPath("../Product/ILR/").Replace("\\", "/"); }
     }
+
+    /// <summary>
+    /// 背景音乐和音效的储存位置
+    /// </summary>
+    public static string SoundPath = "Assets/GameRes/AddressableRes/Sound/";
+
     /// <summary>
     /// UI相关的Prefabs的储存位置
     /// </summary>
@@ -46,6 +52,15 @@ public class AppSetting
     {
         get { return Path.GetFullPath("../" + AppSetting.HotFixName + "/Module/UI/").Replace("\\", "/"); }
     }
+
+    /// <summary>
+    /// 音效文件生成位置
+    /// </summary>
+    public static string ExportSoundDir
+    {
+        get { return Path.GetFullPath("../" + AppSetting.HotFixName + "/Module/Sound/").Replace("\\", "/"); }
+    }
+
     /// <summary>
     /// 需要放进Addressable的文件位置
     /// </summary>
