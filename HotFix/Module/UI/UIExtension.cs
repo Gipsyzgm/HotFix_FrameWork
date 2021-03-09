@@ -15,6 +15,20 @@ namespace HotFix
 {
     public static class UIExtension
     {
+        /// <summary> Button点击事件</summary>
+        public static void AddClick(this Button btn, Action action)
+        {
+            btn.onClick.AddListener(() =>
+            {
+                if (btn.name != "btnStart" && btn.name != "btnLevelUp")
+                {
+                    HotMgr.Sound.PlaySound(SoundName.Click);
+                }
+                action();
+            }
+            );
+        }
+
         #region Image扩展
         /// <summary>
         /// 设置图片

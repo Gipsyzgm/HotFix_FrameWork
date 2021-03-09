@@ -14,9 +14,10 @@ namespace HotFix
         {
             CreatTopItem().Run();
             args = _args;
-            StartBtn.onClick.AddListener(StartBtn_Click);   //
+            //StartBtn.onClick.AddListener(StartBtn_Click);   //
             Setting.onClick.AddListener(Setting_Click);   //
-        
+            StartBtn.AddClick(StartBtn_Click);   //
+
         }
          /// <summary>刷新</summary>
         public override void Refresh()

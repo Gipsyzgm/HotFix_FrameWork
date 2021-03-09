@@ -23,8 +23,8 @@ namespace HotFix
         //public static TimerMgr Timer;
         ///// <summary>特效管理器</summary>
         //public static EffectMgr Effect;
-        ///// <summary>声音管理器</summary>
-        //public static SoundMgr Sound;
+        /// <summary>声音管理器</summary>
+        public static SoundMgr Sound;
         ///// <summary>声音管理器</summary>
         //public static UIItemEffectMgr UIItemEffect;
 
@@ -41,6 +41,7 @@ namespace HotFix
         {
 
             UI = new UIMgr();
+            Sound = new SoundMgr();
             Debug.Log("初始化完成");
   
         }
