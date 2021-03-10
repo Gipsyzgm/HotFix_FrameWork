@@ -112,6 +112,9 @@
     <Compile Include="HotMgr.cs" />
     <Compile Include="Module\Sound\SoundMgr.cs" />
     <Compile Include="Module\Sound\SoundName.cs" />
+    <Compile Include="Module\Time\TimeMgr.cs" />
+    <Compile Include="Module\Time\Timer.cs" />
+    <Compile Include="Module\Time\TimerMgr.cs" />
     <Compile Include="Module\UI\BaseItem.cs" />
     <Compile Include="Module\UI\BaseUI.cs" />
     <Compile Include="Module\UI\UIExtension.cs" />

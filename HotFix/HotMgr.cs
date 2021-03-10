@@ -19,8 +19,8 @@ namespace HotFix
         //public static ConfigMgr Config;
         ///// <summary>时间管理器</summary>
         //public static TimeMgr Time;
-        ///// <summary>定时器管理器</summary>
-        //public static TimerMgr Timer;
+        /// <summary>定时器管理器</summary>
+        public static TimerMgr Timer;
         ///// <summary>特效管理器</summary>
         //public static EffectMgr Effect;
         /// <summary>声音管理器</summary>
@@ -42,6 +42,7 @@ namespace HotFix
 
             UI = new UIMgr();
             Sound = new SoundMgr();
+            Timer = new TimerMgr();
             Debug.Log("初始化完成");
   
         }
