@@ -29,16 +29,19 @@ public class ExportAudio : MonoBehaviour {
         StringBuilder sbPath = new StringBuilder();
         string csName = "SoundName";
         sbPath.AppendLine("//每次都会重新生成的脚本，不要删，覆盖就行了");
-        sbPath.AppendLine("public class " + csName);
-        sbPath.AppendLine("{");           
+        sbPath.AppendLine("namespace HotFix");
+        sbPath.AppendLine("{");
+        sbPath.AppendLine("    public class " + csName);
+        sbPath.AppendLine("    {");           
         DirectoryInfo direction = new DirectoryInfo(clipPath);
         FileInfo[] files = direction.GetFiles("*", SearchOption.AllDirectories);
         for (int i = 0; i < files.Length; i++)
         {
             if (files[i].Name.EndsWith(".meta")) continue;
             string FileName = files[i].Name.Split('.')[0];
-            sbPath.AppendLine("     public const string " + FileName + " = " + '"' + FileName + '"' + ";");
+            sbPath.AppendLine("        public const string " + FileName + " = " + '"' + FileName + '"' + ";");
         }
+        sbPath.AppendLine("    }");
         sbPath.AppendLine("}");
         string scriptFilePath = scriptDir + csName + ".cs";
         //如果文件不存在，则创建；存在则覆盖
