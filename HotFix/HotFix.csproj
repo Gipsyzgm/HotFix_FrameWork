@@ -112,6 +112,8 @@
     <Compile Include="ILRMainCall.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="HotMgr.cs" />
+    <Compile Include="Module\Pool\GameObjectPool.cs" />
+    <Compile Include="Module\Pool\Pool.cs" />
     <Compile Include="Module\Sound\SoundMgr.cs" />
     <Compile Include="Module\Sound\SoundName.cs" />
     <Compile Include="Module\Time\TimeMgr.cs" />

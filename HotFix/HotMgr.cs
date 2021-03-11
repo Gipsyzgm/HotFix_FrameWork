@@ -29,8 +29,8 @@ namespace HotFix
         //public static UIItemEffectMgr UIItemEffect;
 
         //public static LayerMgr Layer;
-
-        //public static GameObjectPool GoPool;
+        /// <summary>预制体的对象池</summary>
+        public static GameObjectPool GoPool;
 
         /// <summary>是否使用HTTP传输消息</summary>   
         public static readonly bool IsHTTPNet = true;
@@ -39,8 +39,8 @@ namespace HotFix
         public static List<IDisposable> __dataMgrList = new List<IDisposable>();
         public static async CTask Initialize()
         {
-
-            UI = new UIMgr();
+            GoPool = new GameObjectPool();
+            UI = new UIMgr();   
             Sound = new SoundMgr();
             Timer = new TimerMgr();
             Debug.Log("初始化完成");

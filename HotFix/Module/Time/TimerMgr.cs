@@ -8,7 +8,7 @@ using UnityEngine;
 namespace HotFix
 {
     /// <summary>
-    /// 定时器管理器
+    /// 定时器管理器，独立在UpDate里计算，不受物体影响
     /// </summary>
     public class TimerMgr
     {

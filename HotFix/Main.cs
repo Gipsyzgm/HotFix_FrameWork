@@ -26,12 +26,6 @@ namespace HotFix
             await HotMgr.Initialize();
             Debug.Log("结束等待");
             await HotMgr.UI.Show<MainUI>(UIAnim.FadeIn,UILoading.Mask);
-
-            time1 = HotMgr.Timer.Loop(2f, () => { Debug.Log("Time1:" + time1); },true);
-            time2 = HotMgr.Timer.Loop(2f, () => { Debug.Log("Time2:" + time2); },true);
-            time3 = HotMgr.Timer.Loop(2f, () => { Debug.Log("Time3:" + time3); },true);
-            HotMgr.Timer.Stop(time1);
-            time4 = HotMgr.Timer.Loop(2f, () => { Debug.Log("Time4:" + time4); }, true);
         }
 
 
