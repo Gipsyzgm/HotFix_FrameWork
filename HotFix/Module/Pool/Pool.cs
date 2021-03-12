@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -42,14 +42,17 @@ namespace HotFix
     public class TypedPool<I>
     {
         private readonly Dictionary<Type, Stack<I>> pools = new Dictionary<Type, Stack<I>>();
-
+        //处于活动状态的实例总数
+        private int liveCount = 0;
         public T Get<T>() where T : class, I, new()
         {
+            ++liveCount;
             var pool = GetPool(typeof(T));
             return (pool.Count > 0) ? (pool.Pop() as T) : new T();
         }
         public void Release(I obj)
         {
+            --liveCount;
             var pool = GetPool(obj.GetType());
             pool.Push(obj);
         }
@@ -62,6 +65,16 @@ namespace HotFix
             }
             pools.Clear();
         }
+        public string Report()
+        {
+            var c = 0;
+            foreach (var t in pools.Values)
+            {
+                c += t.Count;
+            }
+            return string.Format("{0}/{1}", liveCount, c);
+        }
+
         private Stack<I> GetPool(Type type)
         {
             if (!pools.ContainsKey(type))
