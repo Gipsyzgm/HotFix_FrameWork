@@ -24,6 +24,16 @@ public class AppSetting
     }
 
     /// <summary>
+    /// 需要放进Addressable的文件位置
+    /// </summary>
+    public static string AssetResDir = "Assets/GameRes/AddressableRes/";
+
+    /// <summary>
+    /// 存放热更工程dll的位置
+    /// </summary>
+    public static string HotFixDir = AssetResDir + "HotFixDlls/";
+
+    /// <summary>
     /// 背景音乐和音效的储存位置
     /// </summary>
     public static string SoundPath = "Assets/GameRes/AddressableRes/Sound/";
@@ -37,6 +47,11 @@ public class AppSetting
     /// 需要生成图集的图片文件的储存位置
     /// </summary>
     public static string UISpritePath = "Assets/GameRes/ArtRes/UIAtlas/";
+
+    /// <summary>
+    /// 图集的储存位置
+    /// </summary>
+    public static string UIAtlasPath = "Assets/GameRes/AddressableRes/UIAtlas/";
     /// <summary>
     /// UIPrefabs的储存位置
     /// </summary>
@@ -60,16 +75,6 @@ public class AppSetting
     {
         get { return Path.GetFullPath("../" + AppSetting.HotFixName + "/Module/Sound/").Replace("\\", "/"); }
     }
-
-    /// <summary>
-    /// 需要放进Addressable的文件位置
-    /// </summary>
-    public static string AssetResDir = "Assets/GameRes/AddressableRes/";
-
-    /// <summary>
-    /// 存放热更工程dll的位置
-    /// </summary>
-    public static string HotFixDir = AssetResDir+ "HotFixDlls/";
 
 
 }

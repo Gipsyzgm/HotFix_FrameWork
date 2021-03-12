@@ -5,23 +5,23 @@ using System.Linq;
 
 public class MyFindMissingWindow : EditorWindow
 {
-    [MenuItem("¡ï¹¤¾ß¡ï/ËÑË÷¶ªÊ§ÒıÓÃµÄ×ÊÔ´")]
+    [MenuItem("â˜…å·¥å…·â˜…/æœç´¢ä¸¢å¤±å¼•ç”¨çš„èµ„æº")]
     static void ShowWindow()
     {
-        GetWindow<MyFindMissingWindow>("²éÕÒMissing×ÊÔ´").Show();
+        GetWindow<MyFindMissingWindow>("æŸ¥æ‰¾Missingèµ„æº").Show();
         Find();
     }
 
     static Dictionary<Object, List<Object>> prefabs = new Dictionary<Object, List<Object>>();
     static Dictionary<Object, List<string>> refPaths = new Dictionary<Object, List<string>>();
 
-    //Ñ°ÕÒmissingµÄ×ÊÔ´
+    //å¯»æ‰¾missingçš„èµ„æº
     static void Find()
     {
         prefabs.Clear();
         refPaths.Clear();
         string[] paths = AssetDatabase.GetAllAssetPaths();
-        //¼ÓÔØËùÓĞprefab×ÊÔ´
+        //åŠ è½½æ‰€æœ‰prefabèµ„æº
         var gos = paths.Where(path => path.EndsWith("prefab")).Select(path => AssetDatabase.LoadAssetAtPath<GameObject>(path));
 
         foreach (var item in gos)
@@ -34,21 +34,21 @@ public class MyFindMissingWindow : EditorWindow
             Component[] cps = go.GetComponentsInChildren<Component>(true);
             foreach (var cp in cps)
             {
-                if (cp == null)  //×é¼şÎª¿Õ
+                if (cp == null)  //ç»„ä»¶ä¸ºç©º
                 {
                     if (!prefabs.ContainsKey(go)) prefabs.Add(go, new List<Object>());
                     prefabs[go].Add(cp);
                 }
-                else   //×é¼ş²»Îª¿Õ
+                else   //ç»„ä»¶ä¸ä¸ºç©º
                 {
                     SerializedObject so = new SerializedObject(cp);
                     SerializedProperty iterator = so.GetIterator();
-                    //»ñÈ¡ËùÓĞÊôĞÔ
+                    //è·å–æ‰€æœ‰å±æ€§
                     while (iterator.NextVisible(true))
                     {
                         if (iterator.propertyType == SerializedPropertyType.ObjectReference)
                         {
-                            //ÒıÓÃ¶ÔÏóÊÇnull ²¢ÇÒ ÒıÓÃID²»ÊÇ0 ËµÃ÷¶ªÊ§ÁËÒıÓÃ
+                            //å¼•ç”¨å¯¹è±¡æ˜¯null å¹¶ä¸” å¼•ç”¨IDä¸æ˜¯0 è¯´æ˜ä¸¢å¤±äº†å¼•ç”¨
                             if (iterator.objectReferenceValue == null && iterator.objectReferenceInstanceIDValue != 0)
                             {
                                 if (!refPaths.ContainsKey(cp)) refPaths.Add(cp, new List<string>());
@@ -64,8 +64,7 @@ public class MyFindMissingWindow : EditorWindow
             }
         }
     }
-
-    //ÒÔÏÂÖ»ÊÇ½«²éÕÒ½á¹ûÏÔÊ¾
+    //ä»¥ä¸‹åªæ˜¯å°†æŸ¥æ‰¾ç»“æœæ˜¾ç¤º
     private Vector3 scroll = Vector3.zero;
     private void OnGUI()
     {
@@ -96,7 +95,7 @@ public class MyFindMissingWindow : EditorWindow
                 }
                 else
                 {
-                    GUILayout.Label("¶ªÊ§½Å±¾£¡");
+                    GUILayout.Label("ä¸¢å¤±è„šæœ¬ï¼");
                 }
                 EditorGUILayout.EndHorizontal();
             }

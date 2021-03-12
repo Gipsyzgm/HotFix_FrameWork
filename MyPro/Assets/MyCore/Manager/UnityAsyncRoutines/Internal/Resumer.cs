@@ -22,7 +22,6 @@
 
 using System;
 
-
 internal class Resumer : IResumer
 {
     public CTask routine = null;
@@ -45,7 +44,6 @@ internal class Resumer : IResumer
             WasResumed = true;
         }
     }
-
     public void Reset()
     {
         WasResumed = false;

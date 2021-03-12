@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using UnityEngine;
 
 //https://github.com/tomblind/unity-async-routines

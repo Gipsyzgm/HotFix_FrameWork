@@ -4,10 +4,10 @@ using System;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-//ÕâĞèÒªÎª±àÒëÆ÷ÏÔÊ½¶¨Òå
+//è¿™éœ€è¦ä¸ºç¼–è¯‘å™¨æ˜¾å¼å®šä¹‰
 namespace System.Runtime.CompilerServices
 {
-    //Òì²½·½·¨Éú³ÉÆ÷ÊôĞÔ
+    //å¼‚æ­¥æ–¹æ³•ç”Ÿæˆå™¨å±æ€§
     public sealed class AsyncMethodBuilderAttribute : Attribute
     {
         public Type BuilderType { get; }
@@ -18,24 +18,23 @@ namespace System.Runtime.CompilerServices
         }
     }
 }
-
-//Routine×÷ÎªÈÎÎñÀà¡¢ÈÎÎñ¹¹½¨Æ÷ºÍµÈ´ıÕßÖ´ĞĞÈıÖØÈÎÎñ£¬ÒÔ±£³ÖÄÚ²¿·ÃÎÊ/³ØµÄÈİÒ×
+//Routineä½œä¸ºä»»åŠ¡ç±»ã€ä»»åŠ¡æ„å»ºå™¨å’Œç­‰å¾…è€…æ‰§è¡Œä¸‰é‡ä»»åŠ¡ï¼Œä»¥ä¿æŒå†…éƒ¨è®¿é—®/æ± çš„å®¹æ˜“
 public abstract class RoutineBase : INotifyCompletion
 {
-    /// <summary> ÆôÓÃ¶ÑÕ»¸ú×ÙÒÔ½øĞĞµ÷ÊÔ¡£ÓÉÓÚĞÔÄÜÓ°Ïì¶øÄ¬ÈÏ¹Ø±Õ¡£ </summary>
+    /// <summary> å¯ç”¨å †æ ˆè·Ÿè¸ªä»¥è¿›è¡Œè°ƒè¯•ã€‚ç”±äºæ€§èƒ½å½±å“è€Œé»˜è®¤å…³é—­ã€‚ </summary>
     public static bool TracingEnabled { get; set; }
 
-    /// <summary> RoutineµÄÔËĞĞÊµÀıid¡£Èç¹ûÀı³ÌÍ£Ö¹£¬½«·µ»ØÁã¡£  </summary>
+    /// <summary> Routineçš„è¿è¡Œå®ä¾‹idã€‚å¦‚æœä¾‹ç¨‹åœæ­¢ï¼Œå°†è¿”å›é›¶ã€‚  </summary>
     public UInt64 Id { get { return id; } }
 
-    /// <summary> Ö¸Ê¾RoutineÊÇ·ñÍ£Ö¹¡£ </summary>
+    /// <summary> æŒ‡ç¤ºRoutineæ˜¯å¦åœæ­¢ã€‚ </summary>
     public bool IsDead { get { return id == 0; } }
 
-    /// <summary> ½ö¹©ÄÚ²¿Ê¹ÓÃ¡£awaiterĞèÒª¡£ </summary>
+    /// <summary> ä»…ä¾›å†…éƒ¨ä½¿ç”¨ã€‚awaiteréœ€è¦ã€‚ </summary>
     public bool IsCompleted { get { return state == State.Finished; } }
 
 #if DEBUG
-    /// <summary> ´ËRoutineµÄµ±Ç°Òì²½/µÈ´ı¶ÑÕ»¸ú×Ù </summary>
+    /// <summary> æ­¤Routineçš„å½“å‰å¼‚æ­¥/ç­‰å¾…å †æ ˆè·Ÿè¸ª </summary>
     public string StackTrace
     {
         get
@@ -85,27 +84,27 @@ public abstract class RoutineBase : INotifyCompletion
         public void MoveNext() { value.MoveNext(); }
     }
 
-    protected UInt64 id = 0; //ÓÃÓÚÑéÖ¤RoutineÊÇ·ñÈÔÈ»ÊÇÍ¬Ò»ÊµÀı£¬²¢ÇÒÉĞÎ´»ØÊÕ
+    protected UInt64 id = 0; //ç”¨äºéªŒè¯Routineæ˜¯å¦ä»ç„¶æ˜¯åŒä¸€å®ä¾‹ï¼Œå¹¶ä¸”å°šæœªå›æ”¶
     protected State state = State.NotStarted;
     protected bool stopChildrenOnStep = false; //Kill children when stepping. Used by WaitForAny
-    protected IStateMachineRef stateMachine = null; //ÎªÒì²½·½·¨Éú³ÉµÄ×´Ì¬»ú
+    protected IStateMachineRef stateMachine = null; //ä¸ºå¼‚æ­¥æ–¹æ³•ç”Ÿæˆçš„çŠ¶æ€æœº
     protected RoutineManager manager = null; //The manager to use for WaitForNextFrame
     protected RoutineBase parent = null; //Routine that spawned this one
     protected readonly List<RoutineBase> children = new List<RoutineBase>(); //Routines spawned by this one
-    protected Action onFinish = null; //ÔÚÒì²½·½·¨Íê³ÉÊ±¼ÌĞøµ÷ÓÃ
+    protected Action onFinish = null; //åœ¨å¼‚æ­¥æ–¹æ³•å®Œæˆæ—¶ç»§ç»­è°ƒç”¨
     protected Action<Exception> onStop = null;
 #if DEBUG
     protected System.Diagnostics.StackFrame stackFrame = null; //Track where the routine was created for debugging
 #endif
 
-    //Ä¿Ç°ÕıÔÚ½øĞĞµÄ×î¸ß¼¶Routine
+    //ç›®å‰æ­£åœ¨è¿›è¡Œçš„æœ€é«˜çº§Routine
     protected static RoutineBase Current { get { return (steppingStack.Count > 0) ? steppingStack.Peek() : null; } }
 
-    //×´Ì¬»úÊÇÍ¨¹ı±£ÁôÒ»¸ö°ü×°µÄÀà°æ±¾À´¾ÛºÏµÄ¡£ÕâÔÚµ÷ÊÔÖĞÊÇÃ»ÓĞÒâÒåµÄ
+    //çŠ¶æ€æœºæ˜¯é€šè¿‡ä¿ç•™ä¸€ä¸ªåŒ…è£…çš„ç±»ç‰ˆæœ¬æ¥èšåˆçš„ã€‚è¿™åœ¨è°ƒè¯•ä¸­æ˜¯æ²¡æœ‰æ„ä¹‰çš„
     //machines are generated as classes, but useful in release where they are structs.
     protected static readonly TypedPool<IStateMachineRef> stateMachinePool = new TypedPool<IStateMachineRef>();
 
-    private static UInt64 nextId = 1; //IdÉú³ÉÆ÷. 64bits should be enough, right?
+    private static UInt64 nextId = 1; //Idç”Ÿæˆå™¨. 64bits should be enough, right?
     //Tracks actively stepping routines
     private static readonly Stack<RoutineBase> steppingStack = new Stack<RoutineBase>();
 
@@ -119,7 +118,7 @@ public abstract class RoutineBase : INotifyCompletion
         Stop(null);
     }
 
-    /// <summary> ½ö¹©ÄÚ²¿Ê¹ÓÃ¡£Ö´ĞĞµ½Òì²½·½·¨µÄÏÂÒ»¸öµÈ´ı»ò½áÊø¡£ </summary>
+    /// <summary> ä»…ä¾›å†…éƒ¨ä½¿ç”¨ã€‚æ‰§è¡Œåˆ°å¼‚æ­¥æ–¹æ³•çš„ä¸‹ä¸€ä¸ªç­‰å¾…æˆ–ç»“æŸã€‚ </summary>
     public void Step()
     {
         if (IsDead)
@@ -131,10 +130,10 @@ public abstract class RoutineBase : INotifyCompletion
         {
             state = State.Running;
         }
-        //½«Òì²½·½·¨²½½øµ½ÏÂÒ»¸öµÈ´ı
+        //å°†å¼‚æ­¥æ–¹æ³•æ­¥è¿›åˆ°ä¸‹ä¸€ä¸ªç­‰å¾…
         if (stateMachine != null)
         {
-            //Stop children, µ«²»ÒªÊÍ·ÅËûÃÇ£¬ÒòÎªËûÃÇµÄ½á¹û¿ÉÄÜÊÇĞèÒªµÄ
+            //Stop children, ä½†ä¸è¦é‡Šæ”¾ä»–ä»¬ï¼Œå› ä¸ºä»–ä»¬çš„ç»“æœå¯èƒ½æ˜¯éœ€è¦çš„
             if (stopChildrenOnStep)
             {
                 foreach (var child in children)
@@ -167,7 +166,7 @@ public abstract class RoutineBase : INotifyCompletion
                 }
             }
         }
-        //Routine²»ÊÇÒì²½·½·¨
+        //Routineä¸æ˜¯å¼‚æ­¥æ–¹æ³•
         else
         {
             ReleaseChildren();
@@ -186,7 +185,7 @@ public abstract class RoutineBase : INotifyCompletion
         }
     }
 
-    /// <summary> ½ö¹©ÄÚ²¿Ê¹ÓÃ¡£ÔÚÒì²½·½·¨Íê³ÉÊ±½ÓÊÕ¼ÌĞøµ÷ÓÃ¡£ </summary>
+    /// <summary> ä»…ä¾›å†…éƒ¨ä½¿ç”¨ã€‚åœ¨å¼‚æ­¥æ–¹æ³•å®Œæˆæ—¶æ¥æ”¶ç»§ç»­è°ƒç”¨ã€‚ </summary>
     public void OnCompleted(Action continuation)
     {
         onFinish = continuation;
@@ -203,7 +202,7 @@ public abstract class RoutineBase : INotifyCompletion
 #endif
     }
 
-    /// <summary>×ª´¢³Ø¶ÔÏóÒÔÇå³ıÄÚ´æ. </summary>
+    /// <summary>è½¬å‚¨æ± å¯¹è±¡ä»¥æ¸…é™¤å†…å­˜. </summary>
     public static void ClearPools()
     {
         stateMachinePool.Clear();
@@ -219,7 +218,7 @@ public abstract class RoutineBase : INotifyCompletion
     }
 
     /// <summary> Get a routine from the pool. If yield is false routine will resume immediately from await. </summary>
-    /// <summary> Get a routine from the pool. If yield is false³ÌĞò½«Á¢¼´´ÓµÈ´ı»Ö¸´ </summary>
+    /// <summary> Get a routine from the pool. If yield is falseç¨‹åºå°†ç«‹å³ä»ç­‰å¾…æ¢å¤ </summary>
     public static T Get<T>(bool yield) where T : RoutineBase, new()
     {
         var current = Current;
@@ -232,7 +231,7 @@ public abstract class RoutineBase : INotifyCompletion
         return routine;
     }
 
-    /// <summary>½«RoutineÊÍ·Å»Ø³ØÖĞ.</summary>
+    /// <summary>å°†Routineé‡Šæ”¾å›æ± ä¸­.</summary>
     public static void Release(RoutineBase routine)
     {
         routine.Reset();
@@ -266,7 +265,7 @@ public abstract class RoutineBase : INotifyCompletion
     }
 
     /// <summary>
-    /// ²»Ö´ĞĞÁ¢¼´ÒÔÖ¸¶¨½á¹û»Ö¸´µÄRoutine. Good for quieting warning about async functions with no await
+    /// ä¸æ‰§è¡Œç«‹å³ä»¥æŒ‡å®šç»“æœæ¢å¤çš„Routine. Good for quieting warning about async functions with no await
     /// statement.
     /// </summary>
     public static CTask Continue()
@@ -277,7 +276,7 @@ public abstract class RoutineBase : INotifyCompletion
     }
 
     /// <summary>
-    ///²»Ö´ĞĞÁ¢¼´ÒÔÖ¸¶¨½á¹û»Ö¸´µÄRoutine. Good for quieting warning about async
+    ///ä¸æ‰§è¡Œç«‹å³ä»¥æŒ‡å®šç»“æœæ¢å¤çš„Routine. Good for quieting warning about async
     /// functions with no await statement.
     /// </summary>
     public static CTask<T> Continue<T>(T result)

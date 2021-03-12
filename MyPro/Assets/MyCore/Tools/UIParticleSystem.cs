@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// ����ʹ������UI����ʾ��������ò���Ļ��ɵ���ʹ�á����Ӳ㼶��Ҫ���õ�UI��
+/// 用于使粒子在UI上显示，如果不用插件的话可单独使用。粒子层级需要设置到UI层
 /// </summary>
 #if UNITY_5_3_OR_NEWER
     [ExecuteInEditMode]
