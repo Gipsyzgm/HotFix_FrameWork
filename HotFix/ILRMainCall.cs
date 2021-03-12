@@ -19,7 +19,6 @@ namespace HotFix
              
         }
 
-
         public static string Test1()
         {
             Debug.Log("Test1返回值");
@@ -38,8 +37,22 @@ namespace HotFix
             //    return Mgr.Lang.Get(key);
             //return Mgr.Lang.Get(key, (ELangType)type);
             return null;
+
         }
 
-
+        /// <summary>
+        /// 广告的回调
+        /// </summary>
+        public static void OnRewarded(string ID)
+        {        
+            int id = int.Parse(ID);
+            switch (id)
+            {
+                case 1:                  
+                    break;             
+                default:
+                    break;
+            }
+        }
     }
 }
