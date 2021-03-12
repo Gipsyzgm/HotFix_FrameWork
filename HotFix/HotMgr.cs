@@ -36,15 +36,15 @@ namespace HotFix
         public static readonly bool IsHTTPNet = true;
 
         /// <summary>缓存的数据管理器,用来统一清空缓存数据用</summary>
-        public static List<IDisposable> __dataMgrList = new List<IDisposable>();
+        public static List<IDisposable> DataMgrList = new List<IDisposable>();
         public static async CTask Initialize()
         {
             GoPool = new GameObjectPool();
-            UI = new UIMgr();   
+            UI = new UIMgr();
             Sound = new SoundMgr();
             Timer = new TimerMgr();
             Debug.Log("初始化完成");
-  
+
         }
 
 
@@ -53,19 +53,18 @@ namespace HotFix
         /// </summary>
         public static void Dispose()
         {
-        //    UI.CloseAll(); //关闭全部UI
-        //    Timer.StopAll();
-        //    for (int i = 0; i < __dataMgrList.Count; i++)
-        //        __dataMgrList[i].Dispose();
+            //    UI.CloseAll(); //关闭全部UI
+            //    Timer.StopAll();
+            //    if (Effect != null)
+            //        Effect.Dispose();
+            //if (Time != null)
+            //    Time.Dispose();
+            for (int i = 0; i < DataMgrList.Count; i++)
+                DataMgrList[i].Dispose();
 
-        //    if (Effect != null)
-        //        Effect.Dispose();
+            if (Sound != null)
+                Sound.Dispose();
 
-        //    if (Sound != null)
-        //        Sound.Dispose();
-
-        //    if (Time != null)
-        //        Time.Dispose();
         }
 
     }
