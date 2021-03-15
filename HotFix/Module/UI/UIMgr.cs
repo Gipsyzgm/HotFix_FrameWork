@@ -87,7 +87,7 @@ namespace HotFix
                 //如果物体是处于隐藏状态，刷新页面。
                 GetPanel(name).args = _args;
                 AddToList(name);
-                GetPanel(name).OnShow();
+                GetPanel(name).OnShow(uIAnim);
                 GetPanel(name).Refresh();
                 return;
             }
@@ -116,10 +116,8 @@ namespace HotFix
             //rect.anchorMax = Vector2.one;
             //rect.offsetMin = Vector2.zero;
             //rect.offsetMax = Vector2.zero;
-            AddToList(name);
-            //Show之前可以播显示动画
-            await ShowUIAnim(UIPanel.CurObj, uIAnim);
-            UIPanel.OnShow();
+            AddToList(name);          
+            UIPanel.OnShow(uIAnim);
         }
 
         /// <summary>
@@ -144,7 +142,7 @@ namespace HotFix
         /// 关闭页面
         /// </summary>
         /// <param name="name"></param>
-        public async void ClosePanel(string name,UIAnim uIAnim = UIAnim.None)
+        public void ClosePanel(string name,UIAnim uIAnim = UIAnim.None)
         {
             BaseUI panel;
             Paneldict.TryGetValue(name, out panel);
@@ -152,15 +150,14 @@ namespace HotFix
                 return;
             Paneldict.Remove(name);
             RomoveToList(name);
-            await ShowUIAnim(panel.CurObj, uIAnim);
-            panel.OnClose();
+            panel.OnClose(uIAnim);
         }
         /// <summary>
         /// 隐藏页面
         /// </summary>
         /// <param name="panelName"></param>
         public void HidePanel(string panelName)
-        {
+        {           
             BaseUI panel = GetPanel(panelName);
             if (panel != null)
             {
@@ -223,54 +220,7 @@ namespace HotFix
         {
             ExictPanel.Remove(item);
         }
-        /// <summary>
-        /// 渐现菜单
-        /// </summary>
-        /// <param name="targetGO">菜单游戏对象</param>
-        public async CTask ShowUIAnim(GameObject target, UIAnim anim)
-        {
-            float time = 0.5f;
-            switch (anim)
-            {
-                case UIAnim.FadeOut:
-                    time = 0.35f;
-                    break;
-                case UIAnim.ScaleOut:
-                    time = 0.2f;
-                    break;
-            }
-            await ObjectAnim(target, anim, time);
-        }
-        public async CTask ObjectAnim(GameObject target, UIAnim anim, float time = 0.5f)
-        {
-            if (anim == UIAnim.None || target == null) return;
-            //UI淡入淡出效果
-            if (anim == UIAnim.FadeIn || anim == UIAnim.FadeOut)
-            {
-                Graphic[] comps = target.GetComponentsInChildren<Graphic>();
-                for (int i = comps.Length; --i >= 0;)
-                {
-                    if (anim == UIAnim.FadeIn)
-                        comps[i].DOFade(0, time).SetUpdate(true).From();
-                    else
-                        comps[i].DOFade(0, time).SetUpdate(true);
-                }
-                await CTask.WaitForSeconds(time);
-            }
-            else if (anim == UIAnim.ScaleIn || anim == UIAnim.ScaleOut)
-            {
-                if (anim == UIAnim.ScaleIn)
-                {
-                    target.transform.DOScale(0, time).SetUpdate(true).SetEase(Ease.OutBack).From();
-                    await CTask.WaitForSeconds(time);
-                }
-                else
-                {
-                    target.transform.DOScale(0, time).SetUpdate(true).SetEase(Ease.InBack);
-                    await CTask.WaitForSeconds(time);
-                }
-            }
-        }
+       
 
     }
 

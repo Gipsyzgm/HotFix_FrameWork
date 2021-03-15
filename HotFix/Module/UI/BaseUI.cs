@@ -3,6 +3,9 @@ using System.Collections;
 using System;
 using System.Collections.Generic;
 using UnityEngine.AddressableAssets;
+using UnityEngine.UI;
+using DG.Tweening;
+using System.Threading.Tasks;
 
 namespace HotFix
 {
@@ -71,7 +74,6 @@ namespace HotFix
         /// </summary>
         public Action CloseAction;
 
-
         /// <summary>
         /// UI路径名,自动获取,跟据UI脚本名(如果不符合自己重写此方法)
         /// 对应Addressables的简单命名
@@ -96,8 +98,7 @@ namespace HotFix
                 Debug.Log("UI Load Fail,UIPath= " + CurViewPath);
                 return;
             }          
-            CurObj = GameObject.Instantiate(TempObj);
-         
+            CurObj = GameObject.Instantiate(TempObj);         
             //初始化该物体
             InitGameObject(CurObj);    
             CloseLoading();
@@ -110,9 +111,11 @@ namespace HotFix
         /// <summary>
         /// 显示页面
         /// </summary>
-        public virtual void OnShow()
+        public virtual void OnShow(UIAnim uIAnim = UIAnim.None)
         {
+            ShowUIAnim(CurObj, uIAnim);
             CurObj.SetActive(true);
+               
         }
 
         /// <summary>
@@ -121,7 +124,6 @@ namespace HotFix
         public virtual void OnHide()
         {
             SetActive(false);
-
         }
 
         /// <summary>
@@ -134,16 +136,28 @@ namespace HotFix
         /// <summary>
         /// 可重写，页面关闭的逻辑。动画等
         /// </summary>
-        public virtual void OnClose()
+        public virtual void OnClose(UIAnim uIAnim = UIAnim.None)
         {
-            Debug.LogError("关闭的页面：" + CurViewPath.ToLower());         
+            Debug.LogError("关闭的页面：" + CurViewPath.ToLower());
+            ShowUIAnim(CurObj, uIAnim);         
+            topItem?.Dispose();
             Dispose();
             GameObject.DestroyImmediate(CurObj);
         }
+
+        /// <summary>
+        /// 备用的自己隐藏自己的方法
+        /// </summary>
+        public virtual void HideSelf()
+        {      
+            string name = this.GetType().ToString();
+            HotMgr.UI.HidePanel(name);
+        }
+
         /// <summary>
         /// 备用的自己关闭自己的方法
         /// </summary>
-        protected virtual void CloseSelf()
+        public virtual void CloseSelf()
         {
             CloseAction?.Invoke();
             string name = this.GetType().ToString();
@@ -209,5 +223,49 @@ namespace HotFix
             await topItem.Instantiate(this.transform);
         }
 
+        /// <summary>
+        /// 渐现菜单
+        /// </summary>
+        /// <param name="targetGO">菜单游戏对象</param>
+        public void ShowUIAnim(GameObject target, UIAnim anim)
+        {
+            float time = 0.5f;
+            switch (anim)
+            {
+                case UIAnim.FadeOut:
+                    time = 0.35f;
+                    break;
+                case UIAnim.ScaleOut:
+                    time = 0.2f;
+                    break;
+            }
+            if (anim == UIAnim.None || target == null)
+            {
+                return;
+            }
+            //UI淡入淡出效果
+            if (anim == UIAnim.FadeIn || anim == UIAnim.FadeOut)
+            {
+                Graphic[] comps = target.GetComponentsInChildren<Graphic>();
+                for (int i = comps.Length; --i >= 0;)
+                {
+                    if (anim == UIAnim.FadeIn)
+                        comps[i].DOFade(0, time).SetUpdate(true).From();
+                    else
+                        comps[i].DOFade(0, time).SetUpdate(true);
+                }
+            }
+            else if (anim == UIAnim.ScaleIn || anim == UIAnim.ScaleOut)
+            {
+                if (anim == UIAnim.ScaleIn)
+                {
+                    target.transform.DOScale(0, time).SetUpdate(true).SetEase(Ease.OutBack).From();
+                }
+                else
+                {
+                    target.transform.DOScale(0, time).SetUpdate(true).SetEase(Ease.InBack);
+                }
+            }
+        }      
     }
 }

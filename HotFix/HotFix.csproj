@@ -121,13 +121,16 @@
     <Compile Include="Module\Time\TimerMgr.cs" />
     <Compile Include="Module\UI\BaseItem.cs" />
     <Compile Include="Module\UI\BaseUI.cs" />
+    <Compile Include="Module\UI\UIAtlas.cs" />
     <Compile Include="Module\UI\UIExtension.cs" />
     <Compile Include="Module\UI\UIItem\Item\TopItem.cs" />
     <Compile Include="Module\UI\UIItem\View\TopItemView.cs" />
     <Compile Include="Module\UI\UIMgr.cs" />
     <Compile Include="Module\UI\UIObject.cs" />
     <Compile Include="Module\UI\UIPanel\Panel\MainUI.cs" />
+    <Compile Include="Module\UI\UIPanel\Panel\SettingUI.cs" />
     <Compile Include="Module\UI\UIPanel\View\MainUIView.cs" />
+    <Compile Include="Module\UI\UIPanel\View\SettingUIView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

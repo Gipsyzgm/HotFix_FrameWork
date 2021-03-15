@@ -24,7 +24,9 @@ namespace HotFix
         private static async CTask Initialize()
         {
             await HotMgr.Initialize();
+
             Debug.Log("结束等待");
+            HotMgr.Sound.PlayMusic(SoundName.BGM_EmptyPort);
             await HotMgr.UI.Show<MainUI>(UIAnim.FadeIn,UILoading.Mask);
         }
 

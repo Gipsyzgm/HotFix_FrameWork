@@ -34,10 +34,8 @@ namespace HotFix
         void Setting_Click()
         {
             Debug.Log("Setting_Click");
+            HotMgr.UI.Show<SettingUI>(UIAnim.FadeIn).Run();
         }
-
-
-
         /// <summary>释放UI引用</summary>
         public override void Dispose()
         {

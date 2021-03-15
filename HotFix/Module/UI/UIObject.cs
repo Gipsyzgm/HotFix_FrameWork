@@ -126,6 +126,7 @@ namespace HotFix
         {
             IsDispose = true;
             ObjectList = null;
+            CurObj = null;
             transform = null;
         }
     }
