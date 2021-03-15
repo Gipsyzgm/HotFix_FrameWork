@@ -59,7 +59,7 @@ public class UIExtendMenu
     static void CreateUIScript(MenuCommand menuCommadn)
     {
         GameObject target = menuCommadn.context as GameObject;
-        if (target != null && target.transform.parent.name == "UICanvas")
+        if (target != null)
         {
             if (target.name.StartsWith("New UI"))
             {
