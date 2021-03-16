@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SDKMgr : BaseMgr<SDKMgr>{
+public class SDKMgr : BaseMgr<SDKMgr>
+{
 
     private void Awake()
     {
@@ -19,7 +20,7 @@ public class SDKMgr : BaseMgr<SDKMgr>{
 
     private static void CallJavaFunction(string funcName, params object[] parms)
     {
-#if UNITY_ANDROID&&!UNITY_EDITOR
+#if UNITY_ANDROID && !UNITY_EDITOR
         if (m_AndroidJavaClass == null)
         {
             m_AndroidJavaClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
@@ -40,7 +41,7 @@ public class SDKMgr : BaseMgr<SDKMgr>{
     /// <returns></returns>
     public static T CallJavaFunction<T>(string funcName, params object[] parms)
     {
-#if UNITY_ANDROID&&!UNITY_EDITOR
+#if UNITY_ANDROID && !UNITY_EDITOR
         if (m_AndroidJavaClass == null)
         {
             m_AndroidJavaClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
@@ -59,16 +60,16 @@ public class SDKMgr : BaseMgr<SDKMgr>{
     /// <summary>
     /// 统计事件
     /// </summary>
-    public static void SdkSendEvent(string name, string  arg1, string arg2)
+    public static void SdkSendEvent(string name, string arg1, string arg2)
     {
-        CallJavaFunction("SdkSendEvent", name,arg1,arg2);
+        CallJavaFunction("SdkSendEvent", name, arg1, arg2);
     }
     /// <summary>
     /// 请求显示开屏广告
     /// </summary>
     public static void loadSplash()
     {
-        CallJavaFunction("loadSplash","请求显示开屏广告" );
+        CallJavaFunction("loadSplash", "请求显示开屏广告");
     }
 
     /// <summary>
@@ -86,7 +87,7 @@ public class SDKMgr : BaseMgr<SDKMgr>{
     /// </summary>
     public static void ShowRewardAd(string ID)
     {
-        Debug.Log("UnitySdk" + "显示广告"+ID);
+        Debug.Log("UnitySdk" + "显示广告" + ID);
         CallJavaFunction("ShowRewardVideo", ID);
     }
 
@@ -96,7 +97,7 @@ public class SDKMgr : BaseMgr<SDKMgr>{
     /// <param name="Slotid"></param>
     public static bool IsRewardLoaded()
     {
-        return CallJavaFunction<bool>("VideoIsReady","广告加载完成");
+        return CallJavaFunction<bool>("VideoIsReady", "广告加载完成");
 
     }
 
@@ -104,9 +105,9 @@ public class SDKMgr : BaseMgr<SDKMgr>{
     /// 广告奖励的回调
     /// </summary>
     /// <param name="ID"></param>
-    public void OnVideoReward(string ID) 
+    public void OnVideoReward(string ID)
     {
-        Debug.Log("对应奖励的ID："+ID);
+        Debug.Log("对应奖励的ID：" + ID);
         MainMgr.ILR.CallHotFix("OnRewarded", ID);
     }
 

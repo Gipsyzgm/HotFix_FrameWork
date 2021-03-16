@@ -43,22 +43,6 @@ public static class ILRHelper
                 ((System.Action<BaseEventData>)action)(a);
             });
         });
-        appdomain.DelegateManager.RegisterMethodDelegate<PointerEventData>();
-        appdomain.DelegateManager.RegisterDelegateConvertor<EventListener.PointerDataDelegate>((act) =>
-        {
-            return new EventListener.PointerDataDelegate((eventData) =>
-            {
-                ((Action<UnityEngine.EventSystems.PointerEventData>)act)(eventData); 
-            });
-        });
-        appdomain.DelegateManager.RegisterMethodDelegate<AxisEventData>();
-        appdomain.DelegateManager.RegisterDelegateConvertor<EventListener.AxisDataDelegate>((act) =>
-        {
-            return new EventListener.AxisDataDelegate((eventData) => 
-            {
-                ((Action<UnityEngine.EventSystems.AxisEventData>)act)(eventData);
-            });
-        });
         //其他事件委托
         appdomain.DelegateManager.RegisterMethodDelegate<System.Object>();      
         appdomain.DelegateManager.RegisterMethodDelegate<System.Object, ILTypeInstance>();
