@@ -1,46 +1,165 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Runtime.Remoting;
 using System.Windows.Forms;
 
 namespace Tools
 {
     public partial class Main : Form
     {
+        private static Main _instance;
         public Main()
         {
             InitializeComponent();
             Form.CheckForIllegalCrossThreadCalls = false;
-  
+            ToolsCookieHelper.Load();
+            Glob.Initialize();
         }
 
-        private void CheckLogError_Click(object sender, EventArgs e)
+        private List<TabPage> tabPages = new List<TabPage>();
+        public delegate void UpdateLogTxt(string msg, Color color);
+        private UpdateLogTxt _updateLogTxt;
+        private void Main_Load(object sender, EventArgs e)
         {
 
+            Logger.mainForm = this;
+
+            Glob.SetProject(ToolsCookieHelper.Config.LastSelectProjectId);
+
+            tabControl.SelectedIndex = Math.Min(ToolsCookieHelper.Config.LastSelectTabIndex, tabControl.TabCount);
+
+            if (Glob.projectSetting == null || Glob.codeOutSetting == null)
+            {
+                Logger.LogError("项目配置错误!!!!");
+                tabControl.SelectedIndex = 0;
+            }
+
+            OpenProtoExport(tabControl.SelectedTab);
+            _instance = this;
+            _updateLogTxt = new UpdateLogTxt(UpdateLogTxtMethod);
+
+            for (int i = 0; i < tabControl.TabPages.Count; i++)
+            {
+                tabPages.Add(tabControl.TabPages[i]);
+            }
+            Logger.LogError("执行了吗？");
+            SetToolsTitle();
+            SetLogTypeCheck();
         }
 
-        private void CheckLogWarning_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void CheckLog_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void Main_Load(object sender, EventArgs e)
-        {
+            ELogType logType = ELogType.None;
+            CheckBox check = (CheckBox)sender;
+            if (CheckLog.Checked)
+                logType = logType | ELogType.Normal;
+            if (CheckLogWarning.Checked)
+                logType = logType | ELogType.Warning;
+            if (CheckLogError.Checked)
+                logType = logType | ELogType.Error;
+            Logger.SetLogType(logType);
+            ToolsCookieHelper.Config.LogType = (int)logType;
+            ToolsCookieHelper.Save();
 
         }
 
         private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (Glob.projectSetting == null || Glob.codeOutSetting == null)
+            {
+                Logger.LogError("项目配置错误!!!!,请修改配置或更换项目!!");
+                return;
+            }
+            OpenProtoExport(tabControl.SelectedTab);
+            ToolsCookieHelper.Config.LastSelectTabIndex = tabControl.SelectedIndex;
+            ToolsCookieHelper.Save();
+
+        }
+        public static void SetToolsTitle()
+        {
+            if (_instance != null)
+            {
+                string title = "::游戏工具 v3.0::  ";
+                if (Glob.projectSetting != null)
+                    title += Glob.projectSetting.Name;
+                title += $"         [{ToolsCookieHelper.GetDevName()}]开发导出";
+                _instance.Text = title;
+                bool isClient = ToolsCookieHelper.Config.IsClientDev;
+                bool isServer = ToolsCookieHelper.Config.IsServerDev;
+
+                Console.WriteLine("长度：" + _instance.tabPages.Count);
+                _instance.tabPages[1].Parent = isClient || isServer ? _instance.tabControl : null;  //Excel
+                _instance.tabPages[2].Parent = isClient || isServer ? _instance.tabControl : null; //Proto
+                _instance.tabPages[3].Parent = isServer ? _instance.tabControl : null; //数据库
+                _instance.tabPages[4].Parent = isClient || isServer ? _instance.tabControl : null; //CDKey
+                _instance.tabPages[5].Parent = isServer ? _instance.tabControl : null;     //GM
+                _instance.tabPages[6].Parent = isServer ? _instance.tabControl : null;  //服务器日志
+            }
+        }
+
+        public void UpdateLogTxtMethod(string str, Color color)
+        {
+            if (str == null)    //清空日志
+                txtLog.Text = string.Empty;
+            else
+            {
+                if (txtLog.Text != string.Empty)
+                    str = Environment.NewLine + str;
+                txtLog.SelectionStart = txtLog.TextLength;
+                txtLog.SelectionLength = 0;
+                txtLog.SelectionColor = color;
+                txtLog.AppendText(str);
+                txtLog.SelectionColor = txtLog.ForeColor;
+                txtLog.Focus();
+            }
+        }
+        //打开page对应的窗口
+        private void OpenProtoExport(TabPage pag)
+        {
+            if (pag.Controls.Count == 0)
+            {
+                ObjectHandle t = Activator.CreateInstance("Tools", "Tools." + pag.Name);
+                Form form = (Form)t.Unwrap();
+                form.TopLevel = false;
+                form.Parent = pag;
+                form.FormBorderStyle = FormBorderStyle.None;
+                form.ControlBox = false;
+                form.Dock = System.Windows.Forms.DockStyle.Fill;
+                form.Show();
+            }
+            else
+            {
+                pag.Controls[0].Refresh();
+            }
+        }
+        //设置log类型
+        private void SetLogTypeCheck()
+        {
+            ELogType logType = (ELogType)ToolsCookieHelper.Config.LogType;
+            Logger.SetLogType(logType);
+            CheckLog.Checked = (logType & ELogType.Normal) == ELogType.Normal;
+            CheckLogWarning.Checked = (logType & ELogType.Warning) == ELogType.Warning;
+            CheckLogError.Checked = (logType & ELogType.Error) == ELogType.Error;
+        }
+
+        public void Log(string str, Color color)
+        {
+            if (txtLog == null) return;
+            if (txtLog.InvokeRequired)
+            {
+                BeginInvoke(_updateLogTxt, str, color);
+            }
+            else
+            {
+                UpdateLogTxtMethod(str, color);
+            }
+        }
+
+        private void CleanAllBtn_Click(object sender, EventArgs e)
+        {
+            Logger.Clean();
 
         }
     }

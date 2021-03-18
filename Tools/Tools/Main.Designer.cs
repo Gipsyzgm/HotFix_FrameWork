@@ -36,12 +36,13 @@
             this.CDKeyForm = new System.Windows.Forms.TabPage();
             this.GMExportForm = new System.Windows.Forms.TabPage();
             this.LogExportForm = new System.Windows.Forms.TabPage();
-            this.richTextLog = new System.Windows.Forms.RichTextBox();
+            this.txtLog = new System.Windows.Forms.RichTextBox();
             this.CleanAllBtn = new System.Windows.Forms.Button();
             this.CheckLog = new System.Windows.Forms.CheckBox();
             this.CheckLogWarning = new System.Windows.Forms.CheckBox();
             this.CheckLogError = new System.Windows.Forms.CheckBox();
             this.tabControl.SuspendLayout();
+            this.ProjectSelectForm.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl
@@ -62,6 +63,7 @@
             // 
             // ProjectSelectForm
             // 
+
             this.ProjectSelectForm.Location = new System.Drawing.Point(4, 22);
             this.ProjectSelectForm.Name = "ProjectSelectForm";
             this.ProjectSelectForm.Padding = new System.Windows.Forms.Padding(3);
@@ -130,18 +132,18 @@
             this.LogExportForm.Text = "服务器日志结构";
             this.LogExportForm.UseVisualStyleBackColor = true;
             // 
-            // richTextLog
+            // txtLog
             // 
-            this.richTextLog.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.txtLog.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.richTextLog.BackColor = System.Drawing.SystemColors.MenuText;
-            this.richTextLog.ForeColor = System.Drawing.Color.White;
-            this.richTextLog.Location = new System.Drawing.Point(12, 423);
-            this.richTextLog.Name = "richTextLog";
-            this.richTextLog.Size = new System.Drawing.Size(760, 126);
-            this.richTextLog.TabIndex = 1;
-            this.richTextLog.Text = "";
+            this.txtLog.BackColor = System.Drawing.SystemColors.MenuText;
+            this.txtLog.ForeColor = System.Drawing.Color.White;
+            this.txtLog.Location = new System.Drawing.Point(12, 423);
+            this.txtLog.Name = "txtLog";
+            this.txtLog.Size = new System.Drawing.Size(760, 126);
+            this.txtLog.TabIndex = 1;
+            this.txtLog.Text = "";
             // 
             // CleanAllBtn
             // 
@@ -151,6 +153,7 @@
             this.CleanAllBtn.TabIndex = 2;
             this.CleanAllBtn.Text = "全部清除";
             this.CleanAllBtn.UseVisualStyleBackColor = true;
+            this.CleanAllBtn.Click += new System.EventHandler(this.CleanAllBtn_Click);
             // 
             // CheckLog
             // 
@@ -173,7 +176,7 @@
             this.CheckLogWarning.TabIndex = 4;
             this.CheckLogWarning.Text = "警告日志";
             this.CheckLogWarning.UseVisualStyleBackColor = true;
-            this.CheckLogWarning.Click += new System.EventHandler(this.CheckLogWarning_Click);
+            this.CheckLogWarning.Click += new System.EventHandler(this.CheckLog_Click);
             // 
             // CheckLogError
             // 
@@ -185,7 +188,8 @@
             this.CheckLogError.TabIndex = 5;
             this.CheckLogError.Text = "错误日志";
             this.CheckLogError.UseVisualStyleBackColor = true;
-            this.CheckLogError.Click += new System.EventHandler(this.CheckLogError_Click);
+            this.CheckLogError.Click += new System.EventHandler(this.CheckLog_Click);
+      
             // 
             // Main
             // 
@@ -196,12 +200,14 @@
             this.Controls.Add(this.CheckLogWarning);
             this.Controls.Add(this.CheckLog);
             this.Controls.Add(this.CleanAllBtn);
-            this.Controls.Add(this.richTextLog);
+            this.Controls.Add(this.txtLog);
             this.Controls.Add(this.tabControl);
             this.Name = "Main";
             this.Text = "游戏工具";
             this.Load += new System.EventHandler(this.Main_Load);
             this.tabControl.ResumeLayout(false);
+            this.ProjectSelectForm.ResumeLayout(false);
+            this.ProjectSelectForm.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -217,7 +223,7 @@
         private System.Windows.Forms.TabPage CDKeyForm;
         private System.Windows.Forms.TabPage GMExportForm;
         private System.Windows.Forms.TabPage LogExportForm;
-        private System.Windows.Forms.RichTextBox richTextLog;
+        private System.Windows.Forms.RichTextBox txtLog;
         private System.Windows.Forms.Button CleanAllBtn;
         private System.Windows.Forms.CheckBox CheckLog;
         private System.Windows.Forms.CheckBox CheckLogWarning;
