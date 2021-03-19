@@ -21,7 +21,6 @@ namespace Tools
     {
         //配置文件保存路径
         private static string ConfigSavePath => System.Environment.CurrentDirectory + "\\Cookie.txt";
-
         private static ToolsCookie _config = null;
         //保存配置
         public static void Save()

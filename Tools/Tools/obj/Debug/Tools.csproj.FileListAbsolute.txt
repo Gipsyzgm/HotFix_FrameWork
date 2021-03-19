@@ -1,0 +1,11 @@
+F:\anyelse\HotFix_FrameWork\Tools\Tools\bin\Debug\Tools.exe.config
+F:\anyelse\HotFix_FrameWork\Tools\Tools\bin\Debug\Tools.exe
+F:\anyelse\HotFix_FrameWork\Tools\Tools\bin\Debug\Tools.pdb
+F:\anyelse\HotFix_FrameWork\Tools\Tools\obj\Debug\Tools.Main.resources
+F:\anyelse\HotFix_FrameWork\Tools\Tools\obj\Debug\Tools.ProjectSelectForm.resources
+F:\anyelse\HotFix_FrameWork\Tools\Tools\obj\Debug\Tools.Properties.Resources.resources
+F:\anyelse\HotFix_FrameWork\Tools\Tools\obj\Debug\Tools.csproj.GenerateResource.cache
+F:\anyelse\HotFix_FrameWork\Tools\Tools\obj\Debug\Tools.csproj.CoreCompileInputs.cache
+F:\anyelse\HotFix_FrameWork\Tools\Tools\obj\Debug\Tools.exe
+F:\anyelse\HotFix_FrameWork\Tools\Tools\obj\Debug\Tools.pdb
+F:\anyelse\HotFix_FrameWork\Tools\Tools\obj\Debug\Tools.csprojAssemblyReference.cache

@@ -180,7 +180,7 @@
             this.EditProConfigBtn.TabIndex = 22;
             this.EditProConfigBtn.Text = "编辑项目配置文件";
             this.EditProConfigBtn.UseVisualStyleBackColor = true;
-            this.EditProConfigBtn.Click += new System.EventHandler(this.btnEditProjectConfig_Click);
+            this.EditProConfigBtn.Click += new System.EventHandler(this.EditProjectConfigBtn_Click);
             // 
             // label2
             // 
@@ -201,7 +201,7 @@
             this.CheckClient.TabIndex = 24;
             this.CheckClient.Text = "客户端开发，只导客户端相关文件";
             this.CheckClient.UseVisualStyleBackColor = true;
-            this.CheckClient.CheckedChanged += new System.EventHandler(this.checkClient_CheckedChanged);
+            this.CheckClient.CheckedChanged += new System.EventHandler(this.CheckClient_CheckedChanged);
             // 
             // CheckServer
             // 
@@ -212,7 +212,7 @@
             this.CheckServer.TabIndex = 25;
             this.CheckServer.Text = "服务端开发，只导服务端相关文件";
             this.CheckServer.UseVisualStyleBackColor = true;
-            this.CheckServer.CheckedChanged += new System.EventHandler(this.checkServer_CheckedChanged);
+            this.CheckServer.CheckedChanged += new System.EventHandler(this.CheckServer_CheckedChanged);
             // 
             // ProjectSelectForm
             // 

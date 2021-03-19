@@ -1,0 +1,16 @@
+﻿[
+	{
+		"Id":1,
+		"Name":"飞刀",
+		"HotName":"HotFix_Archer",
+		"ProjectDir":"F:/Archer",
+		"ClientDir":"$ProjectDir$/Client/Archer",
+		"ClientHotDir":"$ProjectDir$/Client/$HotName$",		
+		"ServerDir":"$ProjectDir$/Server",
+		"ConfigDir":"$ProjectDir$/ProtoConfig/Config",
+		"ProtoDir":"$ProjectDir$/ProtoConfig/Proto",
+		"GMServerDir":"$ProjectDir$/GM/GMServer",
+		"CodeOutId":1
+	}
+ 
+]

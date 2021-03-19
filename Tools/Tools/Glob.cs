@@ -21,7 +21,7 @@
             if (projectSetting != null)
             {
                 Main.SetToolsTitle();
-                codeOutSetting = Glob.settingMgr.Select<CodeOutSetting>(Glob.projectSetting.CodeOutId);
+                codeOutSetting = settingMgr.Select<CodeOutSetting>(projectSetting.CodeOutId);
                 if (codeOutSetting == null)
                     Logger.LogError("项目[" + projectId + "]代码导出配置不存在! Id:" + projectSetting.CodeOutId);
             }

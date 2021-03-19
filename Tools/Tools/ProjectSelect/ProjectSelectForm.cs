@@ -11,11 +11,12 @@ namespace Tools
         {
             InitializeComponent();
         }
-        private int defSelectId = 0;
+        //默认选择项目ID
+        private int DefSelectId = 0;
         private void ProjectSelectForm_Load(object sender, EventArgs e)
         {
-            defSelectId = ToolsCookieHelper.Config.LastSelectProjectId;
-            List <ProjectSetting> list = Glob.settingMgr.Select<ProjectSetting>();
+            DefSelectId = ToolsCookieHelper.Config.LastSelectProjectId;
+            List<ProjectSetting> list = Glob.settingMgr.Select<ProjectSetting>();
             ProjectSetting setting;
             for (int i = 0; i < list.Count; i++)
             {
@@ -25,13 +26,12 @@ namespace Tools
                 btn.Click += new EventHandler(this.SelectProject_ClickEvent);
                 btn.Name = "btn_" + setting.Id;
                 btn.Size = new System.Drawing.Size(115, 38);
-                btn.Location = new System.Drawing.Point(i % 6* 121, i / 6 * 41);
+                btn.Location = new System.Drawing.Point(i % 6 * 121, i / 6 * 41);
                 this.ProjecPaneltList.Controls.Add(btn);
-
-                if (defSelectId == 0)
-                    defSelectId = setting.Id;
             }
-            SetSelectProject(defSelectId);
+            if (DefSelectId == 0)
+                DefSelectId = 1;
+            SetSelectProject(DefSelectId);
             CheckClient.Checked = ToolsCookieHelper.Config.IsClientDev;
             CheckServer.Checked = ToolsCookieHelper.Config.IsServerDev;
         }
@@ -51,12 +51,11 @@ namespace Tools
                 {
                     cont.BackColor = System.Drawing.Color.FromArgb(255, 255, 0);
                     Glob.SetProject(id);
-                    setting = Glob.projectSetting;                  
+                    setting = Glob.projectSetting;
                 }
                 else
                     cont.BackColor = System.Drawing.Color.FromArgb(255, 255, 255);
             }
-
             if (setting != null)
             {
                 ToolsCookieHelper.Config.LastSelectProjectId = id;
@@ -78,7 +77,6 @@ namespace Tools
                 this.ProtoDirTxt.Text = string.Empty;
                 Main.SetToolsTitle();
             }
-            
         }
         private void SelctFolder_ClickEvent(object sender, EventArgs e)
         {
@@ -89,21 +87,21 @@ namespace Tools
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnEditProjectConfig_Click(object sender, EventArgs e)
+        private void EditProjectConfigBtn_Click(object sender, EventArgs e)
         {
-            string path =  Path.Combine(Environment.CurrentDirectory, "Setting/ProjectSetting.json");
+            string path = Path.Combine(Environment.CurrentDirectory, "Setting/ProjectSetting.json");  
             System.Diagnostics.Process.Start(path);
         }
 
-        private void checkClient_CheckedChanged(object sender, EventArgs e)
-        {         
+        private void CheckClient_CheckedChanged(object sender, EventArgs e)
+        {
             ToolsCookieHelper.Config.IsClientDev = CheckClient.Checked;
             ToolsCookieHelper.Save();
             Main.SetToolsTitle();
         }
 
-        private void checkServer_CheckedChanged(object sender, EventArgs e)
-        {    
+        private void CheckServer_CheckedChanged(object sender, EventArgs e)
+        {
             ToolsCookieHelper.Config.IsServerDev = CheckServer.Checked;
             ToolsCookieHelper.Save();
             Main.SetToolsTitle();

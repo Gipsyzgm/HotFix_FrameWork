@@ -12,12 +12,12 @@ namespace Tools
         public Main()
         {
             InitializeComponent();
-            Form.CheckForIllegalCrossThreadCalls = false;
+            CheckForIllegalCrossThreadCalls = false;
+            //加载的基础配置
             ToolsCookieHelper.Load();
             Glob.Initialize();
         }
-
-        private List<TabPage> tabPages = new List<TabPage>();
+        private List<TabPage> TabPages = new List<TabPage>();
         public delegate void UpdateLogTxt(string msg, Color color);
         private UpdateLogTxt _updateLogTxt;
         private void Main_Load(object sender, EventArgs e)
@@ -39,7 +39,7 @@ namespace Tools
 
             for (int i = 0; i < tabControl.TabPages.Count; i++)
             {
-                tabPages.Add(tabControl.TabPages[i]);
+                TabPages.Add(tabControl.TabPages[i]);
             }
             SetToolsTitle();
             SetLogTypeCheck();
@@ -71,12 +71,12 @@ namespace Tools
                 bool isClient = ToolsCookieHelper.Config.IsClientDev;
                 bool isServer = ToolsCookieHelper.Config.IsServerDev;
 
-                _instance.tabPages[1].Parent = isClient || isServer ? _instance.tabControl : null;  //Excel
-                _instance.tabPages[2].Parent = isClient || isServer ? _instance.tabControl : null; //Proto
-                _instance.tabPages[3].Parent = isServer ? _instance.tabControl : null; //数据库
-                _instance.tabPages[4].Parent = isClient || isServer ? _instance.tabControl : null; //CDKey
-                _instance.tabPages[5].Parent = isServer ? _instance.tabControl : null;     //GM
-                _instance.tabPages[6].Parent = isServer ? _instance.tabControl : null;  //服务器日志
+                _instance.TabPages[1].Parent = isClient || isServer ? _instance.tabControl : null;  //Excel
+                _instance.TabPages[2].Parent = isClient || isServer ? _instance.tabControl : null; //Proto
+                _instance.TabPages[3].Parent = isServer ? _instance.tabControl : null; //数据库
+                _instance.TabPages[4].Parent = isClient || isServer ? _instance.tabControl : null; //CDKey
+                _instance.TabPages[5].Parent = isServer ? _instance.tabControl : null;     //GM
+                _instance.TabPages[6].Parent = isServer ? _instance.tabControl : null;  //服务器日志
             }
         }
 
