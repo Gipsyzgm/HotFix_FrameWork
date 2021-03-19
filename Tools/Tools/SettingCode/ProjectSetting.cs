@@ -27,6 +27,7 @@
 
         public string GMServerDir;
 
+        //导出代码模板对应CodeOutSetting的配置
         public int CodeOutId;
 
 
@@ -37,7 +38,7 @@
             get
             {
                 if (_RealityClientDir == null)
-                    _RealityClientDir = ClientDir.Replace("$ProjectDir$", ProjectDir);
+                    _RealityClientDir = ClientDir.Replace("$ProjectDir$", ProjectDir).Replace("$Name$", Name);
                 return _RealityClientDir;
             }
         }

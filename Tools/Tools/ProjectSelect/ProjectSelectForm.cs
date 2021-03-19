@@ -80,6 +80,7 @@ namespace Tools
         }
         private void SelctFolder_ClickEvent(object sender, EventArgs e)
         {
+            Logger.Log("点击了吗？");
             Utils.ButtonOpenDir(sender);
         }
         /// <summary>
@@ -89,7 +90,7 @@ namespace Tools
         /// <param name="e"></param>
         private void EditProjectConfigBtn_Click(object sender, EventArgs e)
         {
-            string path = Path.Combine(Environment.CurrentDirectory, "Setting/ProjectSetting.json");  
+            string path = Path.Combine(Environment.CurrentDirectory, "DefSupport/Setting/ProjectSetting.json");  
             System.Diagnostics.Process.Start(path);
         }
 

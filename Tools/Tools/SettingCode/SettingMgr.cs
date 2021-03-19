@@ -6,6 +6,7 @@ using System.Text.RegularExpressions;
 
 namespace Tools
 {
+   
     public class SettingMgr
     {
         /// <summary>
@@ -17,9 +18,9 @@ namespace Tools
         {
             //目录
             string DirPath = Path.Combine(Environment.CurrentDirectory, "DefSupport");
-            if (!File.Exists(DirPath))
+            if (!Directory.Exists(DirPath))
             {
-                Logger.LogError("项目Setting目录不存在,请检查或Copy[DefSupport]默认目录至：" + Environment.CurrentDirectory+@"\");
+                Logger.LogError(DirPath+"目录不存在,请检查或Copy[DefSupport]默认目录至：" + Environment.CurrentDirectory+@"\");
                 return;
             }
             string path = Path.Combine(Environment.CurrentDirectory, "DefSupport/Setting/ProjectSetting.json");
@@ -68,9 +69,9 @@ namespace Tools
                 FileStream fs = new FileStream(path, FileMode.Open);
                 StreamReader sr = new StreamReader(fs);
                 string strconfig = sr.ReadToEnd();
+                //把//和/* */的注释都清空
                 var reg = new Regex(@"(/\*.*?\*/)|//.*", RegexOptions.IgnoreCase);
                 strconfig = reg.Replace(strconfig, "");
-
                 List<T> list = JsonConvert.DeserializeObject<List<T>>(strconfig);
                 Dictionary<int, object> dicList = new Dictionary<int, object>();
                 for (int i = 0; i < list.Count; i++)
@@ -86,6 +87,7 @@ namespace Tools
                 Logger.LogError("配置文件未找到:" + path);
             }
             return config;
+            
         }
     }
 }

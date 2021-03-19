@@ -6,8 +6,10 @@
         /// 唯一ID
         /// </summary>
         public override int UniqueID => Id;
+
         /// <summary>代码导出配置Id</summary>
         public int Id;
+
         /// <summary>代码导出配置名称</summary>
         public string Name;
 
@@ -69,7 +71,6 @@
         /// <summary>导出管理器文件</summary>
         public string ConfigMgrFile;
 
-
         private string _RealityConfigOutDir;
         public string RealityConfigOutDir
         {
@@ -91,7 +92,6 @@
                 return _RealityConfigMgrDir;
             }
         }
-
 
         private string _RealityConfigClassDir;
         public string RealityConfigClassDir

@@ -19,7 +19,7 @@ namespace Tools
         public static void ButtonOpenDir(object sender)
         {
             Control cont = sender as Control;
-            Control[] cons = cont.Parent.Controls.Find(cont.Name.Replace("btn", "txt"), false);
+            Control[] cons = cont.Parent.Controls.Find(cont.Name.Replace("Btn", "Txt"), false);
             if (cons.Length > 0)
             {
                 TextBox txt = cons[0] as TextBox;
