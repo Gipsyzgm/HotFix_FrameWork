@@ -36,7 +36,7 @@
             this.CDKeyForm = new System.Windows.Forms.TabPage();
             this.GMExportForm = new System.Windows.Forms.TabPage();
             this.LogExportForm = new System.Windows.Forms.TabPage();
-            this.txtLog = new System.Windows.Forms.RichTextBox();
+            this.LogTxt = new System.Windows.Forms.RichTextBox();
             this.CleanAllBtn = new System.Windows.Forms.Button();
             this.CheckLog = new System.Windows.Forms.CheckBox();
             this.CheckLogWarning = new System.Windows.Forms.CheckBox();
@@ -134,16 +134,16 @@
             // 
             // txtLog
             // 
-            this.txtLog.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.LogTxt.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtLog.BackColor = System.Drawing.SystemColors.MenuText;
-            this.txtLog.ForeColor = System.Drawing.Color.White;
-            this.txtLog.Location = new System.Drawing.Point(12, 423);
-            this.txtLog.Name = "txtLog";
-            this.txtLog.Size = new System.Drawing.Size(760, 126);
-            this.txtLog.TabIndex = 1;
-            this.txtLog.Text = "";
+            this.LogTxt.BackColor = System.Drawing.SystemColors.MenuText;
+            this.LogTxt.ForeColor = System.Drawing.Color.White;
+            this.LogTxt.Location = new System.Drawing.Point(12, 423);
+            this.LogTxt.Name = "txtLog";
+            this.LogTxt.Size = new System.Drawing.Size(760, 126);
+            this.LogTxt.TabIndex = 1;
+            this.LogTxt.Text = "";
             // 
             // CleanAllBtn
             // 
@@ -200,7 +200,7 @@
             this.Controls.Add(this.CheckLogWarning);
             this.Controls.Add(this.CheckLog);
             this.Controls.Add(this.CleanAllBtn);
-            this.Controls.Add(this.txtLog);
+            this.Controls.Add(this.LogTxt);
             this.Controls.Add(this.tabControl);
             this.Name = "Main";
             this.Text = "游戏工具";
@@ -223,7 +223,7 @@
         private System.Windows.Forms.TabPage CDKeyForm;
         private System.Windows.Forms.TabPage GMExportForm;
         private System.Windows.Forms.TabPage LogExportForm;
-        private System.Windows.Forms.RichTextBox txtLog;
+        private System.Windows.Forms.RichTextBox LogTxt;
         private System.Windows.Forms.Button CleanAllBtn;
         private System.Windows.Forms.CheckBox CheckLog;
         private System.Windows.Forms.CheckBox CheckLogWarning;

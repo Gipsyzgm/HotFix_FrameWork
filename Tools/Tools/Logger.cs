@@ -6,10 +6,12 @@ namespace Tools
     //打印等级
     public enum ELogType
     {
+        //<<二进制左移运算符。左操作数的值向左移动右操作数指定的位数。
+        //即2的二进制表示为10，向左移动1位即为100，十进制即为4
         None = 0,
-        Normal = 2 << 1,
-        Warning = 2 << 2,
-        Error = 2 << 3,
+        Normal = 2 << 1, //4
+        Warning = 2 << 2,//8
+        Error = 2 << 3,  //16
         All = Normal | Warning | Error
     }
 
@@ -17,18 +19,17 @@ namespace Tools
     {
         //日志输出类型
         private static ELogType logType = ELogType.All;
-
         private static Main _mainForm;
-        public static Main mainForm
+        public static Main MainForm
         {
             get { return _mainForm; }
             set
             {
                 _mainForm = value;
-                while (cacheLogs.Count > 0)
+                while (CacheLogs.Count > 0)
                 {
-                    object[] log = cacheLogs.Dequeue();
-                    mainForm.Log(log[0] as string, (Color)log[1]);
+                    object[] log = CacheLogs.Dequeue();
+                    MainForm.Log(log[0] as string, (Color)log[1]);
                 }
             }
         }
@@ -36,8 +37,10 @@ namespace Tools
         {
             logType = type;
         }
-
-        private static Queue<object[]> cacheLogs = new Queue<object[]>();
+        /// <summary>
+        /// 缓存消息的队列
+        /// </summary>
+        private static Queue<object[]> CacheLogs = new Queue<object[]>();
         /// <summary>
         /// 普通日志
         /// </summary>
@@ -45,7 +48,7 @@ namespace Tools
         public static void Log(params object[] args)
         {
             if ((logType & ELogType.Normal) == ELogType.Normal)
-                log(getParamsStr(args), Color.White);
+                Log(GetParamsStr(args), Color.White);
         }
         /// <summary>
         /// 警告
@@ -54,7 +57,7 @@ namespace Tools
         public static void LogWarning(params object[] args)
         {
             if ((logType & ELogType.Warning) == ELogType.Warning)
-                log(getParamsStr(args), Color.Yellow);
+                Log(GetParamsStr(args), Color.Yellow);
         }
         /// <summary>
         /// 错误日志
@@ -63,7 +66,7 @@ namespace Tools
         public static void LogError(params object[] args)
         {
             if ((logType & ELogType.Error) == ELogType.Error)
-                log(getParamsStr(args), Color.Red);
+                Log(GetParamsStr(args), Color.Red);
         }
         /// <summary>
         /// 操作行为日志
@@ -71,27 +74,26 @@ namespace Tools
         /// <param name="args"></param>
         public static void LogAction(params object[] args)
         {
-            log(getParamsStr(args), Color.LawnGreen);
+            Log(GetParamsStr(args), Color.LawnGreen);
         }
         /// <summary>
         /// 清除日志
         /// </summary>
         public static void Clean()
         {
-            if (mainForm == null)
-                cacheLogs.Enqueue(new object[] { null, Color.White });
+            if (MainForm == null)
+                CacheLogs.Enqueue(new object[] { null, Color.White });
             else
-                mainForm.Log(null, Color.White);
+                MainForm.Log(null, Color.White);
         }
-        private static void log(string str, Color color)
+        private static void Log(string str, Color color)
         {
-            if (mainForm == null)
-                cacheLogs.Enqueue(new object[] { str, color });
+            if (MainForm == null)
+                CacheLogs.Enqueue(new object[] { str, color });
             else
-                mainForm.Log(str, color);
+                MainForm.Log(str, color);
         }
-
-        private static string getParamsStr(params object[] args)
+        private static string GetParamsStr(params object[] args)
         {
             if (args == null)
             {
