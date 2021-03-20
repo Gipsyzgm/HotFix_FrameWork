@@ -1,0 +1,49 @@
+//GM对玩家操作
+syntax = "proto3";
+package PbGMPlayer;
+
+//请求玩家禁言
+message CS_GMPlayer_BanTalk
+{	
+	string PlayerId = 1;   	//  玩家ID
+	string ReqUID=2;     	//HTML 标识
+	bool ban=3;  			// 是否解禁言
+}
+
+//收到玩家禁言
+message SC_GMPlayer_BanTalk
+{
+	bool IsOK = 1;			// 是否成功
+	string ReqUID=2;		//GM HTML 标识
+}
+
+//请求收到禁止登录
+message CS_GMPlayer_BanLogin
+{
+	string PlayerId = 1;		//  玩家ID
+	string ReqUID=2;			//GM HTML 标识
+	bool ban=3;					// 是否封号 解封
+}
+
+
+//请求收到禁止登录
+message SC_GMPlayer_BanLogin
+{
+	bool IsOK = 1;				// 是成功
+	string ReqUID=2;			//GM HTML 标识
+}
+
+//请求玩家下线
+message CS_GMPlayer_Online	
+{
+	string PlayerId = 1;		// 玩家ID		
+	string ReqUID=2;			// GM HTML 标识
+}
+
+//收到玩家下线
+message SC_GMPlayer_Online		
+{
+	bool IsOK = 1;				// 是成功
+	string ReqUID=2;			//GM HTML 标识
+}
+

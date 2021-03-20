@@ -1,0 +1,139 @@
+//公用结构体
+syntax = "proto3";
+package PbCom;
+
+
+//一个奖励物品
+message One_AwardItem
+{
+	int32 ItemId = 1;		//物品模板id(负数表示英雄)
+	int32 Count = 2;		//数量
+}
+
+//一个其他玩家信息
+message One_PlayerInfo
+{
+	string PID = 1;								//玩家PID
+	string Name = 2;							//玩家名
+	int32 Level = 3;							//等级
+	repeated One_bag_equip Equips = 7;			//5个装备信息
+	repeated int32 Icon = 8;					//玩家头像[头像、背景、角标]
+	repeated int32 HeroIds = 16;				//5个英雄的sid及顺序
+	repeated int32 EquipsIds = 17;				//5个装备的sid及顺序
+	int32 LastTime = 19;						//最后活跃时间 0表示现在 其他是时间戳
+}
+
+//一件装备
+message One_bag_equip
+{
+	int32 SID = 1;          //装备sid（英雄和道具为0）
+	int32 TemplID =2;		//模板Id
+	int32 Level = 3;		//装备等级
+	int32 breaklv = 4;		//升阶等级
+	int32 Num = 5;          //装备数量
+	int32 Index = 6;        //装备位置
+	bool IsGetHero = 7;     //是否获得英雄
+	int32 HeroExp = 8;        //英雄经验
+	int32 VideoNum = 9;     //当前英雄广告条数
+}
+
+
+//获得新物品、英雄类型
+enum Enum_bag_itemsType
+{
+	BiNone = 0;					//无类型
+	BiFBDrop = 1;				//副本掉落
+	BiSummon = 2;				//召唤
+	BiStore = 3;				//商城购买
+	BiEventFBAward = 4;			//活动副本过关奖励
+	BiTask = 5;					//任务奖励
+	BiTaskBounty = 6;			//赏金任务奖励
+	BiFillRes = 7;				//补齐资源
+	BiHangAward = 8;			//挂机奖励
+	BiLevelAward = 9;			//等级奖励
+	BiFirstAward = 10;			//首充奖励
+	BiEventFBPassAward = 11;	//活动副本通关奖励
+	BiEventFBRankAward = 12;	//活动副本排名奖励
+	BiStoreIcon = 13;			//头像商店购买
+	BiSignInAward = 14;			//每日签到奖励
+	BiSignInTotal = 15;			//累计签到奖励
+	BiNewbieAward = 16;			//新手任务奖励
+	BiNewbieBoxAward = 17;		//新手任务宝箱奖励
+	BiPay = 18;					//充值奖励
+	BiMail = 19;				//邮件领奖
+	BiMonthCard = 20;			//月卡每日领奖
+	BiSevenAward = 21;			//7天奖励
+	BiGuide = 22;				//新手指引赠送
+	BiFBChest = 23;			    //章节宝箱奖励
+	BiAdsAward = 24;			//广告奖励
+	BiBagUse = 25;				//背包使用道具
+	BindAwardNum= 26;			//绑定平台获得
+}
+
+
+//一个英雄剩余血量
+message One_HeroHp
+{
+	int32 SID = 1;								//英雄SID
+	int32 Hp = 2;								//剩余血量
+}
+
+//充值下定单结果
+enum Enum_payOrder_result
+{
+	OrSucceed = 0;		//成功
+	OrNoOpen = 1;		//充值服务器未开启
+	OrSoldOut = 2;		//商品已下架
+}
+
+//活动副本类型结构枚举
+enum Enum_eventFB_type
+{
+	EtNormal = 0;	//普通活动
+	EtChallenge = 1;//挑战活动
+	EtFestival = 2;	//节日活动
+	EtTrial = 3;	//试炼活动
+}
+
+//排行类型
+enum Enum_Rank_type
+{
+	RkArena = 0;			//玩家竞技排名
+	RkClub = 1;				//联盟排名
+	RkLeague = 2;			//联赛排名
+}
+
+//一个排行数据
+message One_Rank_item
+{
+	string PID = 1;							//玩家或联盟ID
+	string Name = 2;						//玩家或联盟名
+	int32 Level = 3;						//玩家或联盟等级
+	repeated int32 Icon = 4;				//玩家或联盟头像[头像、背景、角标](玩家头像是3个，联盟头像只有前2个)
+	int64 Num = 5;							//数值(个人竞技积分、联赛积分、联盟积分)
+	int32 Rank = 6;							//排名
+	string ClubOrLeaderName = 7;			//联盟名或会长名
+	int32 Arena = 8;						//竞技积分（只用于个人排名显示段位）
+}
+
+//一条AIHelp推送消息
+message One_PushMsg
+{
+	string PId = 1;					//玩家Id
+	string Title = 2;				//推送消息标题
+	string Content = 3;				//推送消息内容
+}
+
+//一个聊天消息内容
+message One_chat_msg
+{
+	string PID = 1;			//发送者PID  
+	string Name = 2;			//发送者名字	(SID==自己 为接收者名字)	
+	repeated int32 Icon = 3;	//发送者头像[头像、背景、角标]
+	string Content = 4;		//发送消息内容	
+	int32 Arena = 5;			//竞技场积分
+	int32 Level = 6;			//玩家等级
+	int32 Time = 7;			//发送时间
+	string Club = 8;			//联盟名（公聊有，联盟聊天没有）
+	int32 Role = 9;			//联盟职位（公聊没有，联盟聊天有）
+}

@@ -1,0 +1,137 @@
+//登录模块
+syntax = "proto3";
+package PbLogin;
+
+//请求登录验证
+message CS_login_verify
+{
+	string PlatformId = 1;				//平台用户唯一Id
+	Enum_login_platform Platform =2;	//平台类型 0账密登录 1畅游sdk
+	string Token = 3;					//LoginServer生成的token
+	int32 ServerId = 4;					//服务器Id
+	int32 Timestamp = 5;				//LoginServer登录时间戳
+	string ChId = 6;					//渠道Id
+	int32 Lang = 7;						//登录选择的默认语言
+	Enum_login_type LoginType = 8;		//登录类型 0账密 1游客 2facebook 3Apple
+	string DeviceId = 9;				//设备id
+	string Channel = 10;				//sdk推广渠道号 10位（getMediaChannelId）
+	string Version = 11;				//客户端版本号
+	string SdkPayCh = 12;				//sdk充值渠道号 4位（getChannel）
+	bool IsReLogin = 13;				//是否为重登
+	int32 ServerStartTime = 14;			//重登时带到服务器验证
+}
+
+//收到登录验证
+message SC_login_verify
+{
+	Enum_verify_result Result = 1;		//验证结果
+	Enum_login_platform Platform =2;	//平台类型
+	string DefaultName = 3;				//验证成功，返回平台默认名字	
+	string PlatformId = 4;				//验证成功，返回平台用户的唯一Id		
+	int32 ServerTime = 5;				//服务器时间
+	bool IsReLogin = 6;					//是否为重登
+	int32 UTCOffset = 7;				//UTC时间偏移量，秒
+}
+
+//收到登录成功或创角成功返回角色信息
+message SC_login_playerInfo
+{
+	int32 SID = 1;			//角色SID
+	string Name = 2;			//角色名
+	int32 Level = 3;			//角色等级
+	int32 Exp = 4;			//当前经验
+	int64 Gold = 5;			//金币
+	int32 Ticket = 6;		//钻石
+	int32 KeepLoginNum = 7;	//连续登录次数
+	int32 RegDay = 8;		//注册天数(可做登录天数)
+	string Id = 9;			//玩家唯一Id
+	string PfUserId = 10;		//平台的用户Id
+	int32 Power = 11;	//体力
+	int32 NextAddAPTime = 12;			//下次恢复体力时间戳(没有为0)
+	int32 CreateTime = 13;				//创角时间
+	int32 PayMoney = 14;				//累计充值金额
+	int32 LoginDay = 15;				//累计登录天数
+	bool IsReLogin = 16;				//是否为重登数据
+	bool IsSeasonVip = 17;				//当前赛季是否购买令牌
+	int32 SeasonExp = 18;               //令牌经验
+	int32 Horner = 19;                  //副本荣誉点数
+	repeated int32 DowerLevel = 20;     //当前天赋等级(9个)
+	int32 TotalDowerNum = 21;           //累计升级天赋次数（用于+1 *系数计算金币消耗）
+	int32 LeftDowerPoint = 22;          //剩余可用天赋点数
+	int32 leftAdNum = 23;               //当日获取体力剩余广告次数
+	int32 BuyPowerNum = 24;             //当日购买体力次数
+	int32 CurFbType = 25;               //当前关卡类型
+	bool IsFinishGuide = 26;            //是否完成新手关卡
+}
+
+//收到服务器通知客户端进入游戏,进入游戏必要数据发送完成
+message SC_login_enter
+{
+	int32 ServerTime = 1;	//服务器当前时间截，秒
+	int32 ServerStartTime = 2;	//服务器启动时间
+	int32 UTCOffset = 3;		//UTC时间偏移量，秒
+}
+
+
+//重登后返回的数据
+message SC_login_reLogin
+{
+	int32 ServerTime = 1;	//服务器当前时间截，秒
+	int32 UTCOffset = 2;		//UTC时间偏移量，秒
+}
+
+//平台登录方式
+enum Enum_login_platform
+{
+	LpAccountPwd = 0;	//账号密码登录
+	LpCy = 1;			//畅游
+}
+
+//登录验证结构枚举
+enum Enum_verify_result
+{
+	VrUnknown = 0;	//未知错误
+	VrSucceed = 1;	//登录成功
+	VrFailure = 2;	//验证失败
+	VrServerIdError = 3;	//服务器Id错误
+	VrChError = 4;		//渠道未开放
+	VrBanned = 5;		//禁止登陆
+}
+
+//登录绑定类型
+enum Enum_login_type
+{
+	LtAccountPwd = 0;	//账号密码登录
+	LtMail = 1;			//邮箱登录
+	LtFacebook = 2;		//facebook登录
+	LtGoogle = 3;		//google登录
+	LtApple = 4;		//apple登录
+	LtGameCenter = 5;	//apple gamecenter
+}
+
+
+//请求游客绑定
+message CS_login_bind
+{
+	string PlatformId = 1;				//平台用户唯一Id	
+	string Account = 2;					//平台返回账号Id
+	Enum_login_type LoginType = 3;		//登录类型 1邮箱 2facebook 3google
+}
+
+//收到游客绑定
+message SC_login_bind
+{
+	Enum_bind_result Result = 1;		//验证结果
+	string PlatformId = 2;				//验证成功，返回平台用户的唯一Id		
+	Enum_login_type LoginType = 3;		//登录类型 1邮箱 2facebook 3google
+}
+
+//绑定验证结构枚举
+enum Enum_bind_result
+{
+	BrUnknown = 0;	//未知错误
+	BrSucceed = 1;	//绑定成功
+	BrFailure = 2;	//验证失败
+	BrIdUsed = 3;	//Id已用于其他账号
+	BrChError = 4;		//渠道未开放
+}

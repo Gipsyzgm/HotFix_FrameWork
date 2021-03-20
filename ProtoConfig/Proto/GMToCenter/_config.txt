@@ -1,0 +1,37 @@
+﻿#注释请使用'#'号开头
+#此配置导出工具使用，协议号不能定重复
+#请求消息使用CS_开头,客户端向服务器发送消息
+#返回消息使用SC_开头,服务器向客户端发送消息
+#格式为:工作线程ID,协议号,(返回消息号[客户端收到此消关闭等待界面]) = 对应的proto文件message名(包名.message名)  #注释内容
+#注意:消息中的属性全部大写开头,方便以后无缝转Json格式
+#工作线程ID(1-10)说明
+#协议号最大 65535  <100的协议日志会过滤掉，一般为心跳包
+# 1玩家相关
+
+#CS接收线程处理数,SC接收线程处理数
+@Thread 1,1
+
+#玩家操作
+1,101 = PbGMPlayer.CS_GMPlayer_BanTalk				#请求玩家禁言
+1,102 = PbGMPlayer.SC_GMPlayer_BanTalk				#收到玩家禁言
+
+1,103 = PbGMPlayer.CS_GMPlayer_BanLogin				#请求禁止登录
+1,104 = PbGMPlayer.SC_GMPlayer_BanLogin				#收到禁止登录
+
+1,105 = PbGMPlayer.CS_GMPlayer_Online				#请求下线
+1,106 = PbGMPlayer.SC_GMPlayer_Online				#收到下线
+
+
+1,107 = PbGMTool.CS_GMTool_Mail     				#请求发送邮件
+1,108 = PbGMTool.SC_GMTool_Mail						#收到发送邮件
+
+1,109 = PbGMTool.CS_GMTool_PaySucceed     			#请求补单 
+1,110 = PbGMTool.SC_GMTool_PaySucceed				#收到补单 状态
+
+1,111 = PbGMTool.CS_GMTool_PayPack    				#请求更新推送礼包 
+1,112 = PbGMTool.SC_GMTool_PayPack					#返回更新推送礼包
+
+1,113 = PbGMTool.CS_GMTool_Activity							#请求更新活动
+1,114 = PbGMTool.SC_GMTool_Activity							#返回更新活动
+
+

@@ -1,0 +1,19 @@
+//游戏服命令行
+syntax = "proto3";
+package PbGameSerCommand;
+
+//向游戏服发送命令行
+message SC_Command
+{	
+	string Command = 1;	//命令行
+}
+
+
+//游戏服返回命令行信息
+message CS_Command
+{
+	bool IsSucceed = 1;	//是否成功
+	int32 ServerId = 2;  //返回的ServerId
+	string Info = 3;		//信息
+	
+}

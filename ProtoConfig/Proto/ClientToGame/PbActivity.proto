@@ -1,0 +1,74 @@
+//活动相关
+syntax = "proto3";
+package PbActivity;
+
+//请求活动信息
+message CS_Activity_Info
+{
+
+}
+
+//收到活动信息
+message SC_Activity_Info
+{
+	repeated One_Activity ActivityList = 1;		//活动列表
+}
+
+//一个活动数据
+message One_Activity
+{
+	int32 AID = 1;								//活动编号
+	int32 MID = 2;								//模板编号	
+	int32 Start = 3;							//开始时间
+	int32 End = 4;								//结束时间		
+	repeated One_Activity_Task TaskList = 5;	//活动任务列表	
+	
+}
+
+//一个活动任务数据
+message One_Activity_Task
+{
+	int32 TackId = 1;							//对应活动编号
+	int32 MID = 2;								//活动任务编号
+	int32 Type = 3;							//任务类型	
+	repeated int32 Condition = 4;				//完成条件
+	int32 Progress = 5;							//任务进度
+	repeated One_Activity_Award Award = 6;		//任务奖励
+	bool IsGet = 7;								//是否已领取
+	int32 OrderId = 8;							//任务排序Id
+	
+}
+
+//一个奖励数据
+message One_Activity_Award
+{
+	int32 ItemId = 1;							//道具Id
+	int32 Count = 2;							//数量
+}
+
+//活动进度发生改变
+message SC_Activity_Change
+{
+	int32 TaskId = 1;							//活动任务Id
+	int32 Progress = 2;							//完成进度
+	int32 Mid=3;
+}
+
+//请求领取活动任务奖励
+message CS_Activity_Get
+{
+	int32 TaskId = 1;							//活动任务Id
+}
+
+//收到领取活动任务奖励
+message SC_Activity_Get
+{
+	int32 TaskId = 1;							//活动任务Id
+	int32 Progress = 2;							//完成进度
+	bool IsGet = 3;								//是否已领取
+	int32 Mid=4;
+}
+
+//通知活动礼包
+message SC_Activiyt_Updata
+{}

@@ -1,0 +1,185 @@
+//玩家数据
+syntax = "proto3";
+import "PbCom.proto";
+package PbPlayer;
+
+//收到每天0点重置数据
+message SC_player_resetData
+{
+	int32 KeepLoginNum = 1;				//连续登录次数
+	int32 RegDay = 2;					//注册天数(可做登录天数)
+	int32 MCDay = 3;					//剩余月卡天数
+	bool IsGetMC = 4;					//月卡今日是否已领取
+	int32 LoginDay = 5;					//累计登录天数
+	int32 LeftAdNum = 6;                //当日剩余广告次数
+	int32 BuyPowerNum = 7;              //当日累计购买体力次数
+}
+
+
+//收到玩家虚拟物品更新
+message SC_player_updateVirtual
+{
+	int32 VirtualType = 1;	//虚拟物品类型 EItemSubTypeVirtual
+	int64 Value = 2;		//值
+}
+
+//收到玩家经验发生改变
+message SC_player_exp
+{
+	int32 Level = 1;			//角色等级
+	int32 Exp=2;			//当前经验
+	int32 AddExp = 3;		//增加经验(提示用)	
+}
+//保存指引步骤
+message CS_save_guide
+{
+	int32 GuideId = 1;
+}
+//保存指引小步骤
+message CS_save_guideStep
+{
+	int32 GuideStepId = 1;
+}
+
+//红点用到的一些数据
+message SC_player_redDot
+{
+	int32 RankRachWarNum = 1;				//升班赛 今日剩余挑战次数		
+	int32 RankRachLastWarTime = 2;				//升班赛 上次挑战时间(有CD时:传上次挑战时间戳 其他时为0)
+	bool RankRachGetAward = 3;				//升班赛 是否可领奖
+
+	int32 MineLeftNum = 4;		//矿山剩余次数
+	int32 MineCurrEndTime = 5;		//当前矿山结束时间
+	int32 BusADLeftNum = 6;		//广告活动剩余次数
+	int32 BusADCurrEndTime = 7;	//当前广告活动结束时间
+
+	int32 ExploreLeftNum = 8;		//探索剩余次数		
+	int32 ExploreCurrEndTime = 9;	//探索结束时间
+	bool GuessAward = 10;		//竞猜是否有奖励未领取
+
+	int32 JocDiningEatNum = 11;	//骑师餐厅进餐次数
+}
+
+//请求玩家改名
+message CS_player_changeName
+{
+	string Name = 1;					//新的名字
+}
+
+//收到玩家改名
+message SC_player_changeName
+{
+	Enum_changeName_result Result = 1;	//改名结果
+	string Name = 2;					//新的名字
+	int32 ReNameNum = 3;				//已改名次数
+}
+
+//请求玩家修改头像
+message CS_player_changeIcon
+{
+	repeated int32 Icon = 1;			//头像[头像、背景、角标]
+}
+
+//收到玩家修改头像
+message SC_player_changeIcon
+{
+	repeated int32 Icon = 1;			//头像[头像、背景、角标]
+} 
+
+//请求购买金币
+message CS_player_buyGold
+{
+
+}
+
+//收到购买金币
+message SC_player_buyGold
+{
+	int32 gold = 1;						//金币增加的数量
+}
+
+//收到玩家体力变化
+message SC_player_point
+{
+	int32 PowerPoint = 1;				//当前体力点数
+	int32 NextAddPowerTime = 2;			//下次恢复体力时间戳
+}
+
+//请求钻石购买体力
+message CS_player_buyPower
+{
+}
+
+message SC_player_buyPower
+{
+	int32 BuyPowerNum = 1;              //当前购买体力次数
+}
+
+//请求天赋升级
+message CS_player_dowerLevelUp
+{	
+}
+
+//收到天赋升级
+message SC_player_dowerLevelUp
+{
+    Enum_dowerLevelUp_result result = 1;  //升级结果
+	repeated int32 DowerLevel = 2;	      //当前天赋等级（9个）
+    int32 LeftDowerPoint = 3;             //剩余天赋点数
+	int32 TotalTimes = 4;                 //总计升级天赋次数
+}
+
+//天赋升级结果
+enum Enum_dowerLevelUp_result
+{
+	DuUnknown = 0;		//未知错误
+	DuSucceed = 1;		//成功
+	DuLackGold = 2;		//金币不足
+	DuLackPoint = 3;	//天赋点不足
+	DuMaxDower = 4;	    //天赋已满
+}
+
+//收到天赋点增加
+message SC_player_dowerPoint
+{
+    int32 LeftDowerPoint = 1;             //剩余天赋点数
+}
+
+//角色改名结果
+enum Enum_changeName_result
+{
+	CnUnknown = 0;		//未知错误
+	CnSucceed = 1;		//成功
+	CnSameName = 2;		//角色名已存在
+	CnMaxLen = 3;		//角色名字符过长
+	CnIllegalChar = 4;	//角色名中有非法字符
+}
+
+
+//收到新客服推送消息(AIHelp)
+message SC_player_newPush
+{
+	repeated PbCom.One_PushMsg Info = 1;	//推送消息
+}
+
+
+//收到赛季更新
+message SC_player_SeasonUpdate
+{
+	int32 SeasonId = 1;	           //赛季id
+	int32 EndTime = 2;             //赛季过期时间戳
+	bool IsSeasonVip = 3;          //是否购买赛季令牌
+	int32 SeasonExp = 4;           //令牌经验
+}
+
+//请求领取玩家广告双倍奖励
+message CS_player_AdDouble
+{
+	int32 Type = 1;	               //奖励类型  1 升级奖励 2 章节奖励
+	bool IsDouble = 2;             //奖励是否翻倍（看完广告后为true）
+}
+
+//请求完成新手关卡
+message CS_player_FinishGuide
+{
+}

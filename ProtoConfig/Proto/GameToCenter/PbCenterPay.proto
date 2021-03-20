@@ -1,0 +1,44 @@
+//Center充值相关
+syntax = "proto3";
+import "PbCom.proto";
+package PbCenterPay;
+
+//向中央服请求充值下定单
+message CS_Center_payOrder
+{
+	string PlayerId = 1;					//玩家Id
+	int32 GoodsID = 2;						//商品ID
+	int32 PlatformType = 3;					//平台类型
+	string PlatParams = 4;					//平台参数
+}
+
+//收到中央服充值下单信息
+message SC_Center_payOrder
+{
+	PbCom.Enum_payOrder_result Result = 1;	//结果
+	int32 GoodsID = 2;						//商品ID
+	int32 PlatformType = 3;					//平台类型
+	string OrderId = 4;						//游戏定单号
+	string PlayerId = 5;					//玩家Id
+}
+
+//收到中央服支付成功通知GS发货
+message SC_Center_paySucceed
+{
+	string PlayerId = 1;					//玩家Id
+	string OrderId = 2;						//游戏定单号
+	int32 GoodsId = 3;						//商品Id
+	string PFOrderId = 4;					//平台订单号
+}
+
+//向中央服请求未发货订单（登录时）
+message CS_Center_payNoSend
+{
+	string PlayerId = 1;					//玩家Id
+}
+
+//请求更新礼包
+message SC_Center_PayPack
+{
+
+}

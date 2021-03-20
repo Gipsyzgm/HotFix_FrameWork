@@ -1,0 +1,20 @@
+//Login充值相关
+syntax = "proto3";
+package PbPay;
+
+//通知中央服充值付款成功
+message CS_Pay_Succeed
+{
+	string OrderId = 1;				//游戏订单号
+	int32 GoodsId = 2;				//游戏商品Id
+	string PFOrderId = 3;			//支付成功的平台订单号
+	string ChannelId = 4;			//sdk渠道号
+}
+
+//收到中央服充值付款成功处理返回
+message SC_Pay_Succeed
+{
+	int32 Status = 1;				//状态 1成功 0失败 -1订单已发货 -2订单不存在 -3找不到商品 -4商品id不一致 
+	string PFOrderId = 2;			//发货成功的平台订单号
+	string ChannelId = 3;			//sdk渠道号
+}

@@ -1,0 +1,88 @@
+//中央服玩家状态
+syntax = "proto3";
+import "PbCom.proto";
+package PbCenterPlayer;
+
+//请求 中央服务器玩家登录注册
+message CS_Center_PlayerLogin
+{
+	int32 SessionId = 1;	//客户端SessionID
+	string PlayerId = 2;	//玩家ObjectId 也是账号Id
+	int32 LoginType=3; //登录类型1 新玩家，2老玩家
+	bool IsReLogin = 4;	//是否为重登数据
+}
+//返回 中服务登录注册成功返回(成功T下线后才返回)
+message SC_Center_PlayerLogin
+{
+	int32 SessionId = 1;	//客户端SessionID
+	string PlayerId = 2;	//玩家ObjectId 也是账号Id	
+	bool IsReLogin = 3;	    //是否为重登数据
+	int32 SeasonId = 4;                //当前赛季id
+	int32 SeasonEndTime = 5;           //当前赛季过期时间戳 
+}
+
+
+//中央服务器通知GameServer 玩家下线
+message SC_Center_PlayerLogout
+{
+	string PlayerId = 1;	//玩家ObjectId 也是账号Id	
+}
+
+//GameServer通知中央务器通知GameServer 玩家下线
+message CS_Center_PlayerLogout
+{
+	string PlayerId = 1;	//玩家ObjectId 也是账号Id	
+}
+
+//中央服务器通知游戏服务器 玩家是否可以登录
+message SC_Center_PlayerBan 
+{
+	string PlayerId=1;//玩家ObjectId 
+	bool Ban=2;	 //帐号状态
+}
+
+
+
+//中央服务器通知游戏服务器玩家是否禁言
+message SC_Center_PlayerTalk  
+{
+	string PlayerId=1;//玩家ObjectId 	
+	bool Talk=2;	 //帐号状态	
+}
+
+
+//中央服务器通发游戏服务器玩家邮件
+message SC_Center_GMMail
+{
+	string Mid=1;			//邮件ID
+	repeated string PMIdList=2;        //玩家ID,邮件ID
+	string Title =3;		//邮件标题	
+	string cont = 4;			//邮件是否已打开 (0未读,1已读)
+	repeated PbCom.One_AwardItem ItemList=5;
+	int32	 type=6;  //全服/个人  
+}
+
+//通知游戏服玩家有客服推送消息
+message SC_Center_AIHelpPush
+{
+	string PlayerId = 1;					//玩家Id
+	repeated PbCom.One_PushMsg Info = 2;	//推送消息
+}
+//向中央服请求玩家未发送的推送消息（登录时）
+message CS_Center_AIHelpPush
+{
+	string PlayerId = 1; 					//玩家ObjectId
+}
+
+//通知游戏服赛季更新消息
+message SC_Center_SeasonUpdate
+{
+	int32 SeasonId = 1;					    //赛季ID
+	int32 EndTIme = 2;	                    //赛季过期时间戳
+}
+
+//请求更新活动
+message SC_Center_Activity
+{
+	
+}

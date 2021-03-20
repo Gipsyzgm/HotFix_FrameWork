@@ -1,0 +1,41 @@
+//排行榜相关
+syntax = "proto3";
+import "PbCom.proto";
+package PbRank;
+
+//请求排行榜数据
+message CS_Rank_List
+{
+	PbCom.Enum_Rank_type Type = 1;
+}
+
+//收到排行榜数据
+message SC_Rank_List
+{
+	int32 NextRefTime = 1;					//下次刷新排行榜时间戳
+	PbCom.Enum_Rank_type Type = 2;				//排行榜类型
+	repeated PbCom.One_Rank_item List = 3;		//排行榜数据
+}
+
+
+//请求查看其他玩家信息
+message CS_rank_lookPlayer
+{
+	string PID = 1;							//玩家ID
+	Enum_Look_type LookType = 2;			//查看类型
+}
+//收到查看其他玩家信息
+message SC_rank_lookPlayer
+{
+	PbCom.One_PlayerInfo PlayerInfo = 1;		//玩家信息
+	Enum_Look_type LookType = 2;			//查看类型
+}
+
+//查看类型枚举
+enum Enum_Look_type
+{
+	LkNormal = 0;			//默认
+	LkLeague = 1;			//联赛防守战队	
+	LkClubWar = 2;			//联盟战争防守战队	
+}
+

@@ -1,0 +1,25 @@
+//注册
+syntax = "proto3";
+package PbRegister;
+
+//请求注册GameServer
+message CS_Register_GameServer
+{
+	string ServerIP = 1;  //服务器对外连接IP
+	int32 ServerPort = 2; //服务器对外端口
+	int32 ServerId = 3;	//有服务器Id 带过去，没有0 会自动分配一个
+	repeated One_Player Players = 4; //在线玩家信息 中央服断掉重开时会带过来
+}
+
+
+//收到注册GameServer
+message SC_Register_GameServer
+{
+	int32 ServerId = 1;  //返回的ServerId
+}
+
+message One_Player
+{
+	int32 SessionId = 1;	//客户端SessionID
+	string PlayerId = 2;	//玩家ObjectId 也是账号Id 
+}

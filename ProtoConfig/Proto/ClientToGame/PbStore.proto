@@ -1,0 +1,98 @@
+//商城相关
+syntax = "proto3";
+import "PbCom.proto";
+package PbStore;
+
+//请求商城购买记录
+message SC_store_infos
+{
+	repeated One_store_info List = 1;	//已购买Id(有次数限制会发)
+}
+
+//一个商品次数信息
+message One_store_info
+{
+	int32 Id = 1;		//礼包Id
+	int32 Num = 2;		//已购买数量
+}
+
+//请求购买商城物品
+message CS_store_buyItem
+{
+	int32 Id = 1;		//购买的商品Id
+	int32 Num = 2;		//购买数量
+}
+//收到购买商城物品
+message SC_store_buyItem
+{
+	int32 Id = 1;		//购买的商品Id
+	int32 Num = 2;		//购买数量
+}
+
+//请求商城每日超级奖励内容
+message SC_store_DailyItems
+{
+	int32 Id = 1;                                //商城物品id
+	repeated PbCom.One_AwardItem Item = 2;       //一个奖励内容
+}
+
+//请求召唤
+message CS_summon_buy
+{
+	Enum_summon_type SummonType = 1;	//召唤类型
+	int32 SummonId = 2;					//召唤Id
+	int32 Type = 3;						//1单次 2十连抽
+}
+
+//收到召唤
+message SC_summon_buy
+{
+	Enum_summon_result Result = 1;		//召唤结果
+	Enum_summon_type SummonType = 2;	//召唤类型
+	int32 Type = 3;						//1单次 2十连抽
+	int32 FreeNextTime = 4;				//下次免费时间戳
+	repeated int32 EquipIds = 5;		//获得的装备模板Id
+	repeated int32 HeroIds = 6;			//获得的英雄模板Id
+	repeated int32 MonthHeroIds = 7;	//获得的月度英雄模板Id
+}
+
+//召唤类型
+enum Enum_summon_type
+{
+	StNormal = 0;		
+	StElement = 1;		//元素召唤
+	StEPICHero = 2;		//传奇英雄召唤
+	StEPICEquip = 3;	//传奇装备召唤
+	StDaliy = 4;		//每日召唤
+	StChallenge = 5;	//挑战活动召唤
+	StFestival = 6;		//节日活动召唤
+}
+
+//召唤结果
+enum Enum_summon_result
+{
+	SrSucceed = 0;		//成功
+	SrUnknown = 1;		//未知错误
+	SrNotMoney = 2;		//所需钻石不足
+	SrNotItem = 3;		//所需道具不足
+}
+
+//请求领取一次商城广告奖励
+message CS_store_ADTimes
+{
+    int32 Id = 1;                        //商城物品id
+}
+
+//收到商城广告获取物品剩余次数
+message SC_store_ADTimes
+{
+	repeated One_store_Ad Info = 1;      //一个商城物品详情
+}
+
+//一个广告物品次数信息
+message One_store_Ad
+{
+	int32 Id = 1;		//商城物品id
+	int32 Num = 2;		//剩余领取次数
+	int32 ADNum = 3;    //已观看广告次数
+}

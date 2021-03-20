@@ -1,0 +1,270 @@
+//福利相关
+syntax = "proto3";
+import "PbCom.proto";
+package PbBonus;
+
+//收到福利信息(登录发)
+message SC_bonus_info
+{
+	repeated int32 ThreeIds = 1;				//已领取3天奖励Id
+	repeated int32 LevelIds = 2;				//已领取等级奖励Id
+	int32 SigInDays = 3;				        //已签到的天数
+	int32 SignInGroup = 4;			            //签到当前组id
+	repeated int32 FbBoxGetIds = 5;             //章节宝箱已领取ids
+	int32 HangUpAwardTime = 6;                  //挂机奖励可领取时间戳（0 表示未开启挂机奖励功能）
+	int32 HeroFreeGetTime = 7;                  //免费抽取英雄时间戳
+	int32 EquipFreeGetTime = 8;                 //免费抽取装备时间戳
+	int32 ThreeAdNum = 9;                       //开启三日奖励剩余广告次数
+	int32 NextThreeTime = 10;                   //三日广告下次可领时间戳（0 表示不能领取）
+	bool IsSignDone = 11;                       //今日是否已签到
+}
+
+//收到新手任务列表(登录发、注册7天内0点推新)
+message SC_taskNewbie_list
+{
+	bool IsNewbieComplete = 1;					//新手7天任务是否已全部完成（所有任务、宝箱都领奖了）
+	repeated One_TaskNewbie TaskNewbies = 2;	//任务列表
+}
+
+//一个新手任务
+message One_TaskNewbie
+{
+	int32 TaskId = 1;		//任务Id
+	int32 Progress = 2;		//完成进度
+	bool IsGet = 3;			//奖励是否已领取
+}
+
+//请求新手活动任务奖励
+message CS_taskNewbie_get
+{
+	int32 TaskId = 1;		//任务Id
+}
+//收到新手活动任务奖励
+message SC_taskNewbie_get
+{
+	int32 TaskId = 1;		//任务Id
+}
+
+//收到单个新手活动任务进度发生改变
+message SC_taskNewbie_change
+{
+	int32 TaskId = 1;		//任务Id
+	int32 Progress = 2;		//完成进度
+}
+
+//请求新手活动宝箱进度奖励
+message CS_taskNewbie_box
+{
+	int32 NumId = 1;			//领取的宝箱id
+}
+//收到新手活动宝箱进度奖励
+message SC_taskNewbie_box
+{
+	int32 NumId = 1;			//领取的宝箱id
+	repeated PbCom.One_AwardItem Awards = 2;//获得的奖励列表
+}
+
+//请求每日签到领奖
+message CS_signIn_award
+{
+	int32 ID = 1;			//签到ID（第1天：组id*100+1)
+}
+//收到每日签到领奖
+message SC_signIn_award
+{
+	int32 ID = 1;			//签到ID
+}
+
+//请求领取在线奖励
+message CS_onlineAward_get
+{
+}
+
+//收到领取在线奖励
+message SC_onlineAward_get
+{
+	int32 OnlineAwardId = 1;		//当前已领取的在线奖励档位Id
+	int32 OnlineAwardTime = 2;		//在线奖励可领取时间戳
+}
+
+//请求领取开服基金
+message CS_openFund_get
+{
+	int32 ID = 1;		//等级档次ID
+}
+
+//收到领取开服基金
+message SC_openFund_get
+{
+	int32 ID = 1;		//等级档次ID
+}
+//请求兑换CDKey
+message CS_cdkey_get
+{
+	string Cdkey= 1;
+}
+//收到兑换CDKey结果
+message SC_cdkey_get
+{
+	Enum_cdkey_result Result = 1;
+}
+
+//请求领取7天奖励
+message CS_sevenAward_get
+{
+	int32 ID = 1;		//奖励ID
+}
+
+//收到领取7天奖励
+message SC_sevenAward_get
+{
+	int32 ID = 1;		//奖励ID
+	int32 NextTime = 2; //下次可领时间戳
+}
+
+//请求领取等级奖励
+message CS_levelAward_get
+{
+	int32 ID = 1;		//奖励(等级)ID
+}
+
+//收到领取等级奖励
+message SC_levelAward_get
+{
+	int32 ID = 1;		//奖励(等级)ID
+}
+
+//公用装备返回结果
+enum Enum_cdkey_result
+{
+	CrSucceed = 0;		//成功
+	CrUnknown = 1;		//未知错误
+	CrInvalid = 2;		//礼品码无效
+	CrPastDue = 3;		//礼品码已过期
+	CrUsed = 4;			//此礼品码已经被使用
+	CrTypeUsed = 5;		//你已使用过此类礼品码
+	CrTypeMaxUsed = 6;	//使用此类礼品码已达上限(同类CDKey使用次数>1的提示)
+}
+
+//请求宝藏抽奖
+message CS_treasure_spin
+{
+	int32 ID = 1;		//宝藏id
+}
+//收到宝藏抽奖
+message SC_treasure_spin
+{
+	int32 ID = 1;		//宝藏id
+	int32 Odds = 2;		//中奖倍数
+	int32 Ticket = 3;	//获得的钻石
+}
+
+//收到宝藏开启状态（开启关闭时在线推送）
+message SC_treasure_state
+{
+	bool IsTreasureOpen = 1;		//宝藏是否开启
+}
+
+//请求领取广告奖励
+message CS_ads_award
+{
+    int32 type = 1;                  //广告类型（1 加体力 2 累计英雄次数）
+	int32 HeroID = 2;                //英雄模板id
+}
+//收到领取广告奖励
+message SC_ads_award
+{
+	int32 HeroID = 1;                           //英雄模板id
+	int32 LeftTimes = 2;                        //当日获取体力剩余可观看广告次数
+	int32 CurHeroADNum = 3;                     //当前英雄广告次数
+	int32 type = 4;                             //广告类型
+}
+
+//请求打开挂机奖励页面
+message CS_hang_Open
+{
+}
+//收到打开挂机奖励页面
+message SC_hang_Open
+{
+    int32 gold = 1;                                  //奖励金币数
+	int32 ticket = 2;                                //奖励钻石数
+	int32 TotalSeconds = 4;                          //已探索时间（秒）
+	repeated PbCom.One_AwardItem one = 5;            //奖励道具列表
+	
+}
+
+//请求领取挂机奖励
+message CS_hang_Get
+{
+	bool IsADGet = 1;                         //是否广告双倍领取
+}
+//收到领取挂机奖励结果
+message SC_hang_Get
+{
+	int32 nextgetTime = 1;                    //下一次可领取奖励时间戳
+	bool IsADGet = 2;                         //是否广告双倍领取
+}
+
+//请求单抽英雄
+message CS_Box_GetHero
+{
+	int32 Type = 1;                           //1 广告免费获取 2 钻石获取
+}
+//收到单抽英雄结果
+message SC_Box_GetHero
+{
+	int32 Type = 1;                           //1 广告免费获取 2 钻石获取
+	int32 nextgetTime = 2;                    //广告类型下一次免费获取时间戳
+	int32 heroId = 3;                         //英雄id （为0表示获取失败）
+	bool IsGetHero = 4;                        //是否已获得该英雄（true 为已获得英雄）
+	repeated PbCom.One_AwardItem Awards = 5;  //获得的补偿列表
+}
+
+//请求五连抽英雄
+message CS_Box_GetHerofive
+{
+}
+//收到五连抽英雄结果
+message SC_Box_GetHerofive
+{
+	int32 heroId = 1;                         //英雄id （为0表示获取失败）
+	bool IsGetHero = 2;                        //是否已获得该英雄
+	repeated PbCom.One_AwardItem Awards = 3;  //获得的奖励列表
+}
+
+//请求单抽装备
+message CS_Box_GetEquip
+{
+	int32 Type = 1;                           //1 广告免费获取 2 钻石获取
+}
+//收到单抽装备结果
+message SC_Box_GetEquip
+{
+	int32 Type = 1;                           //1 广告免费获取 2 钻石获取
+	int32 nextgetTime = 2;                    //广告类型下一次免费获取时间戳
+	int32 EquipId = 3;                         //装备id （为0表示获取失败）
+	repeated PbCom.One_AwardItem Awards = 4;  //获得的补偿列表
+}
+
+//请求五连抽装备
+message CS_Box_GetEquipfive
+{
+}
+//收到五连抽装备结果
+message SC_Box_GetEquipfive
+{
+	int32 EquipId = 1;                         //装备id （为0表示获取失败）
+	repeated PbCom.One_AwardItem Awards = 2;   //获得的奖励列表
+}
+
+//请求三日奖励广告获取
+message CS_Threeads_award
+{
+
+}
+//收到三日奖励广告获取结果
+message SC_Threeads_award
+{
+	int32 LeftAdTimes = 1;                     //剩余开启广告次数
+}

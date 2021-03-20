@@ -1,0 +1,19 @@
+//测试
+syntax = "proto3";
+package PbGetServer;
+
+//请求获取人数最少的服务器信息
+message CS_Get_GameServer
+{
+	string ReqUID = 1; //请求的唯一标识
+	string IP = 2;  //客户端连接IP  
+	
+}
+//收到人数最少的服务器信息
+message SC_Get_GameServer
+{
+	string ReqUID = 1; //请求的唯一标识
+	int32 ServerId = 2;	//服务器Id   0没有获取到服务器Id
+	string IP = 3;		//连接IP
+	int32 Port = 4;		//连接端口	
+}

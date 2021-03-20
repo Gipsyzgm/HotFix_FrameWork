@@ -1,0 +1,192 @@
+//战斗信息
+syntax = "proto3";
+package PbWar;
+
+//收到章节挑战信息
+message SC_war_fbInfo
+{
+	int32 FBChapterMaxId = 1;	//普通副本最高章节id
+	int32 FBStageMax = 2;       //普通最高章节中最高过关关卡数
+	int32 FBKnChapterMaxId = 3; //困难副本最高章节id
+	int32 FBKnStageMax = 4;     //困难副本最高关卡数
+	bool IsReBuildFB = 5;       //是否需要还原副本（true 需要取数据还原副本）
+	ChapterInfo info = 6;       //待还原副本详情
+}
+
+//收到普通章节挑战信息更新
+message SC_war_fbUpdate
+{
+	int32 FBChapterMaxId = 1;	//副本最高章节id
+	int32 FBStageMax = 2;       //最高章节中最高过关关卡数
+}
+
+//收到困难章节挑战信息更新
+message SC_war_fbknUpdate
+{
+	int32 FBKnChapterMaxId = 1;	//困难副本最高章节id
+	int32 FBKnStageMax = 2;      //困难副本最高章节中最高过关关卡数
+}
+
+//一个章节数据
+message ChapterInfo
+{
+	int32 ID = 1;						//章节id
+	repeated int32 StageIds = 2;        //章节中随机关卡id
+	int32 CurStageId = 3;               //当前章节中最高关卡id（序号）
+	int32 CurHeroHP = 4;                //当前英雄血量
+	int32 MaxHeroHP = 5;                //当前英雄最大血量
+	int32 WarLevel = 6;                 //战斗等级
+	int32 WarExp = 7;                   //战斗经验
+	int32 KillNum = 8;	                //杀敌数
+	int32 KillBossNum = 9;              //击杀boss数量
+	int32 type = 10;                    //1简单 2困难
+	repeated One_ChapterSkill oneSkill = 11;      //当前已获得技能
+	repeated One_DropItem oneDrop = 12;          //当前掉落物品
+	bool IsTraderOpen = 13;              //商人是否已出现
+	bool IsUseRebornByAD = 14;           //是否已使用广告复活
+	int32 RebirthNum = 15;               //当前剩余复活次数
+}
+
+//一个技能数据
+message One_ChapterSkill
+{
+	int32 ID = 1;						//技能id
+	int32 level = 2;                    //技能等级
+}
+
+//请求进入章节副本挑战
+message CS_war_fb
+{
+	int32 ChapterId = 1;                //章节Id
+	repeated int32 StageIds = 2;        //章节中随机关卡id
+	int32 Type = 3;                     //1简单 2困难
+}
+
+//收到进入章节挑战
+message SC_war_fb
+{
+	int32 ChapterId = 1;                //章节Id
+	int32 Type = 2;                     //1简单 2困难
+}
+
+//请求章节关卡结束
+message CS_war_fbStageEnd
+{
+	int32 ChapterId = 1;                //章节Id
+	int32 CurStage = 2;                 //当前关卡id
+	repeated One_ChapterSkill oneSkill = 3;      //当前已获得技能
+	repeated One_DropItem  oneDrop = 4;          //当前掉落物品
+	int32 KillNum = 5;	       //杀敌数
+	int32 KillBossNum = 6;     //击杀boss数量
+	int32 WarLevel = 7;        //战斗等级
+	int32 WarExp = 8;          //战斗经验
+	int32 CurHeroHP = 9;                //当前英雄血量
+	int32 MaxHeroHP = 10;                //当前英雄最大血量
+	int32 type = 11;           //1简单 2困难 
+	int32 RebirthNum = 12;     //当前剩余复活次数
+}
+
+//收到章节关卡结束
+message SC_war_fbStageEnd
+{
+	int32 ChapterId = 1;                //章节Id
+	int32 CurStage = 2;                 //当前关卡id
+	bool IsUseTime = 3;                 //是否使用挂机时间
+	int32 HangUpGetTime = 4;            //第一章第一次通关通知客户端挂机奖励可领时间戳
+	int32 type = 5;           //1简单 2困难  
+}
+
+//请求退出章节
+message CS_war_fbExit
+{	
+	int32 ChapterId = 1;                //章节Id
+	int32 exitType = 2;                 //退出类型（1 战斗失败退出 2 玩家主动退出）
+	int32 type = 4;                     //1简单 2困难
+}
+
+
+//请求副本战斗重生
+message CS_war_fbRebirth
+{	
+}
+//收到副本战斗重生
+message SC_war_fbRebirth
+{
+	int32 RebirthNum = 1; //当前重生次数  (客户端HP加满,当前回合置0)
+}
+
+//请求领取章节宝箱
+message CS_war_GetBox
+{	
+	int32 BoxId = 1;      //领取宝箱id
+}
+
+//收到领取章节宝箱结果
+message SC_war_GetBox
+{	
+	int32 BoxId = 1;      //领取宝箱id
+}
+
+//收到章节宝箱可领取通知
+message SC_war_GetBoxUpdate
+{
+	repeated int32 Ids = 1; //进度达成，发送可领取宝箱id （只有一个可领）
+	repeated int32 WaitIds = 2;  //已激活待领取宝箱id
+}
+
+
+//一个掉落物品
+message One_DropItem
+{
+	int32 ItemId = 1;	//物品模板id(负数表示英雄)
+	int32 Count = 2;		//数量
+}
+
+//请求随机商人购买
+message CS_war_TraderBuy
+{	
+    int32 ShopId = 1;      //商品id
+	int32 ItemId = 2;      //道具id
+	int32 ItemNum = 3;     //道具数量
+	int32 CostId = 4;      //虚拟物品id
+	int32 CostNum = 5;     //消耗虚拟物品数量
+	int32 ChapterId = 6;   //章节Id
+	int32 fbType = 7;      //副本类型  1 简单 2 困难
+}
+
+//收到随机商人购买
+message SC_war_TraderBuy
+{	
+	int32 ShopId = 1;      //商品id
+	Enum_TraderBuy_result result = 2;  //购买结果
+}
+
+//商人购买结果
+enum Enum_TraderBuy_result
+{
+	BuSucceed = 0;		//成功
+	BuUnknown = 1;		//未知错误
+	BuNotMoney = 2;		//所需货币不足
+}
+
+//请求章节内看广告复活
+message CS_war_RebornByAD
+{	
+	int32 ChapterId = 1;   //章节Id
+	int32 fbType = 2;      //副本类型  1 简单 2 困难
+}
+
+
+//检测消息加密
+message CS_TestEncrypt
+{
+	int32 Value = 1;
+}
+message SC_TestEncrypt
+{
+	int32 ReturnValue = 1;
+	int32 ReturnValue1 = 2;
+	int32 ReturnValue2 = 3;
+	int32 ReturnValue3 = 4;
+	string ReturnValue4 = 5;
+}

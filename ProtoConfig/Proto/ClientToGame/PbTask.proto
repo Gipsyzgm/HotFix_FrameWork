@@ -1,0 +1,36 @@
+//任务相关
+syntax = "proto3";
+package PbTask;
+
+//收到任务列表信息
+message SC_taskLine_list
+{
+	repeated One_taskLine_item TaskList = 1;	//任务信息	
+}
+
+//单个任务信息
+message One_taskLine_item
+{
+	int32 TaskId = 1;			//任务ID
+	int32 MaxProgress = 2;		//任务完成所需总数
+	int32 Progress = 3;		    //完成进度
+	bool IsGet = 4;             //是否今日已领取
+}
+
+//请求领取任务线上的任务奖励
+message CS_taskLine_get
+{
+	int32 Taskid = 1;			//任务id
+	bool IsDouble = 2;          //是否双倍领取
+}
+
+//#收到领取完奖励
+message SC_taskLine_get
+{
+	int32 Taskid = 1;			//任务id
+}
+
+//请求增加广告进度（加一次广告次数）
+message CS_taskLine_Add
+{
+}

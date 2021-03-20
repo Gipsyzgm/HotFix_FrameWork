@@ -1,0 +1,39 @@
+﻿#注释请使用'#'号开头
+#此配置导出工具使用，协议号不能定重复
+#请求消息使用CS_开头,客户端向服务器发送消息
+#返回消息使用SC_开头,服务器向客户端发送消息
+#格式为:工作线程ID,协议号,(返回消息号[客户端收到此消关闭等待界面]) = 对应的proto文件message名(包名.message名)  #注释内容
+#注意:消息中的属性全部大写开头,方便以后无缝转Json格式
+#工作线程ID(1-10)说明
+#协议号最大 65535
+#1系统  2玩家  3支付
+#CS接收线程处理数(0单线程),SC接收线程处理数(0单线程)
+@Thread 3,3
+
+#系统模块相关
+1,101 = PbRegister.CS_Register_GameServer			#请求注册GameServer
+1,102 = PbRegister.SC_Register_GameServer			#收到注册GameServer
+
+#登录
+2,201 = PbCenterPlayer.CS_Center_PlayerLogin		#请求 中央服务器玩家登录注册
+2,202 = PbCenterPlayer.SC_Center_PlayerLogin		#返回 中服务登录注册成功返回(成功T下线后才返回)
+2,203 = PbCenterPlayer.SC_Center_PlayerLogout		#中央服务器通知GameServer 玩家下线
+2,204 = PbCenterPlayer.CS_Center_PlayerLogout		#GameServer通知中央务器通知GameServer 玩家下线
+2,205 = PbCenterPlayer.SC_Center_PlayerBan			#中央服务器通知GameServer 玩家是否登录
+2,206 = PbCenterPlayer.SC_Center_PlayerTalk			#中央服务器通知游戏服务器玩家是否禁言
+2,207 = PbCenterPlayer.SC_Center_GMMail				#中央服务器通知游戏服务器玩家发送邮件
+2,250 = PbCenterPlayer.SC_Center_AIHelpPush			#通知游戏服玩家有客服推送消息
+2,251 = PbCenterPlayer.CS_Center_AIHelpPush			#向中央服请求玩家未发送的推送消息（登录时）
+2,252 = PbCenterPlayer.SC_Center_Activity			#收到中央服更新活动
+2,253 = PbCenterPlayer.SC_Center_SeasonUpdate		#通知游戏服赛季更新消息
+
+#命令行
+1,301 = PbGameSerCommand.SC_Command					#向游戏服发送命令行
+1,302 = PbGameSerCommand.CS_Command					#游戏服返回命令行信息
+
+#支付
+3,501 = PbCenterPay.CS_Center_payOrder				#向中央服请求充值下定单
+3,502 = PbCenterPay.SC_Center_payOrder				#收到中央服充值下单信息
+3,503 = PbCenterPay.SC_Center_paySucceed			#收到中央服支付成功通知GS发货
+3,504 = PbCenterPay.CS_Center_payNoSend				#向中央服请求未发货订单（登录时）
+3,506 = PbCenterPay.SC_Center_PayPack				#收到中央服更新礼包

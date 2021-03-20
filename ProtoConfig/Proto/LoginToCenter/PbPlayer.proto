@@ -1,0 +1,11 @@
+//Login充值相关
+syntax = "proto3";
+package PbPlayer;
+
+//通知中央服AIHelp有推送消息
+message CS_AIHelp_Push
+{
+	string PId = 1;					//玩家Id
+	string Title = 2;				//推送消息标题
+	string Content = 3;				//推送消息内容
+}
