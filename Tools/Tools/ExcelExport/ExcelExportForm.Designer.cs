@@ -29,17 +29,17 @@
         private void InitializeComponent()
         {
             this.btnExport = new System.Windows.Forms.Button();
-            this.txtClientDir = new System.Windows.Forms.TextBox();
-            this.txtConfigDir = new System.Windows.Forms.TextBox();
-            this.txtServerDir = new System.Windows.Forms.TextBox();
+            this.ClientDirTxt = new System.Windows.Forms.TextBox();
+            this.ConfigDirTxt = new System.Windows.Forms.TextBox();
+            this.ServerDirTxt = new System.Windows.Forms.TextBox();
             this.listFiles = new System.Windows.Forms.ListBox();
-            this.btnConfigDir = new System.Windows.Forms.Button();
-            this.btnClientDir = new System.Windows.Forms.Button();
-            this.btnServerDir = new System.Windows.Forms.Button();
-            this.btnServerOutDir = new System.Windows.Forms.Button();
-            this.txtServerOutDir = new System.Windows.Forms.TextBox();
-            this.btnClientOutDir = new System.Windows.Forms.Button();
-            this.txtClientOutDir = new System.Windows.Forms.TextBox();
+            this.ConfigDirBtn = new System.Windows.Forms.Button();
+            this.ClientDirBtn = new System.Windows.Forms.Button();
+            this.ServerDirBtn = new System.Windows.Forms.Button();
+            this.ServerOutDirBtn = new System.Windows.Forms.Button();
+            this.ServerOutDirTxt = new System.Windows.Forms.TextBox();
+            this.ClientOutDirBtn = new System.Windows.Forms.Button();
+            this.ClientOutDirTxt = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -53,120 +53,121 @@
             // 
             // btnExport
             // 
-            this.btnExport.Location = new System.Drawing.Point(729, 348);
+            this.btnExport.Location = new System.Drawing.Point(561, 292);
             this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(179, 60);
+            this.btnExport.Size = new System.Drawing.Size(179, 50);
             this.btnExport.TabIndex = 1;
             this.btnExport.Text = "一键导出配置文件";
             this.btnExport.UseVisualStyleBackColor = true;
             this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
-            // txtClientDir
+            // ClientDirTxt
             // 
-            this.txtClientDir.Location = new System.Drawing.Point(498, 46);
-            this.txtClientDir.Name = "txtClientDir";
-            this.txtClientDir.ReadOnly = true;
-            this.txtClientDir.Size = new System.Drawing.Size(393, 21);
-            this.txtClientDir.TabIndex = 2;
+            this.ClientDirTxt.Location = new System.Drawing.Point(411, 39);
+            this.ClientDirTxt.Name = "ClientDirTxt";
+            this.ClientDirTxt.ReadOnly = true;
+            this.ClientDirTxt.Size = new System.Drawing.Size(329, 21);
+            this.ClientDirTxt.TabIndex = 2;
             // 
-            // txtConfigDir
+            // ConfigDirTxt
             // 
-            this.txtConfigDir.Location = new System.Drawing.Point(107, 10);
-            this.txtConfigDir.Name = "txtConfigDir";
-            this.txtConfigDir.ReadOnly = true;
-            this.txtConfigDir.Size = new System.Drawing.Size(247, 21);
-            this.txtConfigDir.TabIndex = 4;
+            this.ConfigDirTxt.Location = new System.Drawing.Point(12, 39);
+            this.ConfigDirTxt.Name = "ConfigDirTxt";
+            this.ConfigDirTxt.ReadOnly = true;
+            this.ConfigDirTxt.Size = new System.Drawing.Size(259, 21);
+            this.ConfigDirTxt.TabIndex = 4;
             // 
-            // txtServerDir
+            // ServerDirTxt
             // 
-            this.txtServerDir.Location = new System.Drawing.Point(498, 159);
-            this.txtServerDir.Name = "txtServerDir";
-            this.txtServerDir.ReadOnly = true;
-            this.txtServerDir.Size = new System.Drawing.Size(393, 21);
-            this.txtServerDir.TabIndex = 6;
+            this.ServerDirTxt.Location = new System.Drawing.Point(411, 138);
+            this.ServerDirTxt.Name = "ServerDirTxt";
+            this.ServerDirTxt.ReadOnly = true;
+            this.ServerDirTxt.Size = new System.Drawing.Size(329, 21);
+            this.ServerDirTxt.TabIndex = 6;
             // 
             // listFiles
             // 
             this.listFiles.FormattingEnabled = true;
             this.listFiles.ItemHeight = 12;
-            this.listFiles.Location = new System.Drawing.Point(12, 37);
+            this.listFiles.Location = new System.Drawing.Point(12, 62);
             this.listFiles.Name = "listFiles";
             this.listFiles.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.listFiles.Size = new System.Drawing.Size(342, 364);
+            this.listFiles.Size = new System.Drawing.Size(259, 280);
             this.listFiles.TabIndex = 8;
+            this.listFiles.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listFiles_MouseDoubleClick);
             // 
-            // btnConfigDir
+            // ConfigDirBtn
             // 
-            this.btnConfigDir.Location = new System.Drawing.Point(13, 10);
-            this.btnConfigDir.Name = "btnConfigDir";
-            this.btnConfigDir.Size = new System.Drawing.Size(88, 23);
-            this.btnConfigDir.TabIndex = 9;
-            this.btnConfigDir.Text = "配置文件目录";
-            this.btnConfigDir.UseVisualStyleBackColor = true;
-            this.btnConfigDir.Click += new System.EventHandler(this.SelctFolder_ClickEvent);
+            this.ConfigDirBtn.Location = new System.Drawing.Point(12, 10);
+            this.ConfigDirBtn.Name = "ConfigDirBtn";
+            this.ConfigDirBtn.Size = new System.Drawing.Size(88, 23);
+            this.ConfigDirBtn.TabIndex = 9;
+            this.ConfigDirBtn.Text = "配置文件目录";
+            this.ConfigDirBtn.UseVisualStyleBackColor = true;
+            this.ConfigDirBtn.Click += new System.EventHandler(this.SelctFolder_ClickEvent);
             // 
-            // btnClientDir
+            // ClientDirBtn
             // 
-            this.btnClientDir.Location = new System.Drawing.Point(379, 44);
-            this.btnClientDir.Name = "btnClientDir";
-            this.btnClientDir.Size = new System.Drawing.Size(113, 23);
-            this.btnClientDir.TabIndex = 10;
-            this.btnClientDir.Text = "客户端目录";
-            this.btnClientDir.UseVisualStyleBackColor = true;
-            this.btnClientDir.Click += new System.EventHandler(this.SelctFolder_ClickEvent);
+            this.ClientDirBtn.Location = new System.Drawing.Point(292, 39);
+            this.ClientDirBtn.Name = "ClientDirBtn";
+            this.ClientDirBtn.Size = new System.Drawing.Size(113, 23);
+            this.ClientDirBtn.TabIndex = 10;
+            this.ClientDirBtn.Text = "客户端目录";
+            this.ClientDirBtn.UseVisualStyleBackColor = true;
+            this.ClientDirBtn.Click += new System.EventHandler(this.SelctFolder_ClickEvent);
             // 
-            // btnServerDir
+            // ServerDirBtn
             // 
-            this.btnServerDir.Location = new System.Drawing.Point(379, 157);
-            this.btnServerDir.Name = "btnServerDir";
-            this.btnServerDir.Size = new System.Drawing.Size(113, 23);
-            this.btnServerDir.TabIndex = 11;
-            this.btnServerDir.Text = "服务端目录";
-            this.btnServerDir.UseVisualStyleBackColor = true;
-            this.btnServerDir.Click += new System.EventHandler(this.SelctFolder_ClickEvent);
+            this.ServerDirBtn.Location = new System.Drawing.Point(292, 136);
+            this.ServerDirBtn.Name = "ServerDirBtn";
+            this.ServerDirBtn.Size = new System.Drawing.Size(113, 23);
+            this.ServerDirBtn.TabIndex = 11;
+            this.ServerDirBtn.Text = "服务端目录";
+            this.ServerDirBtn.UseVisualStyleBackColor = true;
+            this.ServerDirBtn.Click += new System.EventHandler(this.SelctFolder_ClickEvent);
             // 
-            // btnServerOutDir
+            // ServerOutDirBtn
             // 
-            this.btnServerOutDir.Location = new System.Drawing.Point(379, 190);
-            this.btnServerOutDir.Name = "btnServerOutDir";
-            this.btnServerOutDir.Size = new System.Drawing.Size(113, 23);
-            this.btnServerOutDir.TabIndex = 32;
-            this.btnServerOutDir.Text = "服务端配置导出目录";
-            this.btnServerOutDir.UseVisualStyleBackColor = true;
-            this.btnServerOutDir.Click += new System.EventHandler(this.SelctFolder_ClickEvent);
+            this.ServerOutDirBtn.Location = new System.Drawing.Point(292, 165);
+            this.ServerOutDirBtn.Name = "ServerOutDirBtn";
+            this.ServerOutDirBtn.Size = new System.Drawing.Size(113, 23);
+            this.ServerOutDirBtn.TabIndex = 32;
+            this.ServerOutDirBtn.Text = "服务端配置导出目录";
+            this.ServerOutDirBtn.UseVisualStyleBackColor = true;
+            this.ServerOutDirBtn.Click += new System.EventHandler(this.SelctFolder_ClickEvent);
             // 
-            // txtServerOutDir
+            // ServerOutDirTxt
             // 
-            this.txtServerOutDir.Location = new System.Drawing.Point(498, 192);
-            this.txtServerOutDir.Name = "txtServerOutDir";
-            this.txtServerOutDir.ReadOnly = true;
-            this.txtServerOutDir.Size = new System.Drawing.Size(393, 21);
-            this.txtServerOutDir.TabIndex = 31;
+            this.ServerOutDirTxt.Location = new System.Drawing.Point(411, 167);
+            this.ServerOutDirTxt.Name = "ServerOutDirTxt";
+            this.ServerOutDirTxt.ReadOnly = true;
+            this.ServerOutDirTxt.Size = new System.Drawing.Size(329, 21);
+            this.ServerOutDirTxt.TabIndex = 31;
             // 
-            // btnClientOutDir
+            // ClientOutDirBtn
             // 
-            this.btnClientOutDir.Location = new System.Drawing.Point(379, 75);
-            this.btnClientOutDir.Name = "btnClientOutDir";
-            this.btnClientOutDir.Size = new System.Drawing.Size(113, 23);
-            this.btnClientOutDir.TabIndex = 34;
-            this.btnClientOutDir.Text = "客户端配置导出目录";
-            this.btnClientOutDir.UseVisualStyleBackColor = true;
-            this.btnClientOutDir.Click += new System.EventHandler(this.SelctFolder_ClickEvent);
+            this.ClientOutDirBtn.Location = new System.Drawing.Point(292, 68);
+            this.ClientOutDirBtn.Name = "ClientOutDirBtn";
+            this.ClientOutDirBtn.Size = new System.Drawing.Size(113, 23);
+            this.ClientOutDirBtn.TabIndex = 34;
+            this.ClientOutDirBtn.Text = "客户端配置导出目录";
+            this.ClientOutDirBtn.UseVisualStyleBackColor = true;
+            this.ClientOutDirBtn.Click += new System.EventHandler(this.SelctFolder_ClickEvent);
             // 
-            // txtClientOutDir
+            // ClientOutDirTxt
             // 
-            this.txtClientOutDir.Location = new System.Drawing.Point(498, 77);
-            this.txtClientOutDir.Name = "txtClientOutDir";
-            this.txtClientOutDir.ReadOnly = true;
-            this.txtClientOutDir.Size = new System.Drawing.Size(393, 21);
-            this.txtClientOutDir.TabIndex = 33;
+            this.ClientOutDirTxt.Location = new System.Drawing.Point(411, 70);
+            this.ClientOutDirTxt.Name = "ClientOutDirTxt";
+            this.ClientOutDirTxt.ReadOnly = true;
+            this.ClientOutDirTxt.Size = new System.Drawing.Size(329, 21);
+            this.ClientOutDirTxt.TabIndex = 33;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.DarkGray;
             this.label2.Font = new System.Drawing.Font("宋体", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label2.Location = new System.Drawing.Point(382, 12);
+            this.label2.Location = new System.Drawing.Point(288, 11);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(131, 22);
             this.label2.TabIndex = 37;
@@ -177,7 +178,7 @@
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.DarkGray;
             this.label3.Font = new System.Drawing.Font("宋体", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label3.Location = new System.Drawing.Point(382, 128);
+            this.label3.Location = new System.Drawing.Point(288, 104);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(131, 22);
             this.label3.TabIndex = 38;
@@ -188,7 +189,7 @@
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.DarkGray;
             this.label1.Font = new System.Drawing.Font("宋体", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(382, 231);
+            this.label1.Location = new System.Drawing.Point(288, 203);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(197, 22);
             this.label1.TabIndex = 41;
@@ -196,24 +197,24 @@
             // 
             // txtVerLangFile
             // 
-            this.txtVerLangFile.Location = new System.Drawing.Point(441, 262);
+            this.txtVerLangFile.Location = new System.Drawing.Point(349, 238);
             this.txtVerLangFile.Name = "txtVerLangFile";
             this.txtVerLangFile.ReadOnly = true;
-            this.txtVerLangFile.Size = new System.Drawing.Size(390, 21);
+            this.txtVerLangFile.Size = new System.Drawing.Size(310, 21);
             this.txtVerLangFile.TabIndex = 39;
             // 
             // txtVerLangOutFile
             // 
-            this.txtVerLangOutFile.Location = new System.Drawing.Point(438, 291);
+            this.txtVerLangOutFile.Location = new System.Drawing.Point(349, 265);
             this.txtVerLangOutFile.Name = "txtVerLangOutFile";
             this.txtVerLangOutFile.ReadOnly = true;
-            this.txtVerLangOutFile.Size = new System.Drawing.Size(393, 21);
+            this.txtVerLangOutFile.Size = new System.Drawing.Size(310, 21);
             this.txtVerLangOutFile.TabIndex = 42;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(384, 265);
+            this.label4.Location = new System.Drawing.Point(290, 242);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(53, 12);
             this.label4.TabIndex = 44;
@@ -222,7 +223,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(384, 294);
+            this.label5.Location = new System.Drawing.Point(290, 265);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(53, 12);
             this.label5.TabIndex = 45;
@@ -232,7 +233,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.ForeColor = System.Drawing.Color.Red;
-            this.label6.Location = new System.Drawing.Point(589, 236);
+            this.label6.Location = new System.Drawing.Point(505, 211);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(89, 12);
             this.label6.TabIndex = 46;
@@ -240,7 +241,7 @@
             // 
             // btnExportVerLang
             // 
-            this.btnExportVerLang.Location = new System.Drawing.Point(836, 260);
+            this.btnExportVerLang.Location = new System.Drawing.Point(665, 226);
             this.btnExportVerLang.Name = "btnExportVerLang";
             this.btnExportVerLang.Size = new System.Drawing.Size(75, 60);
             this.btnExportVerLang.TabIndex = 47;
@@ -252,7 +253,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(920, 420);
+            this.ClientSize = new System.Drawing.Size(752, 354);
             this.Controls.Add(this.btnExportVerLang);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -262,17 +263,17 @@
             this.Controls.Add(this.txtVerLangFile);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.btnClientOutDir);
-            this.Controls.Add(this.txtClientOutDir);
-            this.Controls.Add(this.btnServerOutDir);
-            this.Controls.Add(this.txtServerOutDir);
-            this.Controls.Add(this.btnServerDir);
-            this.Controls.Add(this.btnClientDir);
-            this.Controls.Add(this.btnConfigDir);
+            this.Controls.Add(this.ClientOutDirBtn);
+            this.Controls.Add(this.ClientOutDirTxt);
+            this.Controls.Add(this.ServerOutDirBtn);
+            this.Controls.Add(this.ServerOutDirTxt);
+            this.Controls.Add(this.ServerDirBtn);
+            this.Controls.Add(this.ClientDirBtn);
+            this.Controls.Add(this.ConfigDirBtn);
             this.Controls.Add(this.listFiles);
-            this.Controls.Add(this.txtServerDir);
-            this.Controls.Add(this.txtConfigDir);
-            this.Controls.Add(this.txtClientDir);
+            this.Controls.Add(this.ServerDirTxt);
+            this.Controls.Add(this.ConfigDirTxt);
+            this.Controls.Add(this.ClientDirTxt);
             this.Controls.Add(this.btnExport);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "ExcelExportForm";
@@ -286,17 +287,17 @@
 
         #endregion
         private System.Windows.Forms.Button btnExport;
-        private System.Windows.Forms.TextBox txtClientDir;
-        private System.Windows.Forms.TextBox txtConfigDir;
-        private System.Windows.Forms.TextBox txtServerDir;
+        private System.Windows.Forms.TextBox ClientDirTxt;
+        private System.Windows.Forms.TextBox ConfigDirTxt;
+        private System.Windows.Forms.TextBox ServerDirTxt;
         private System.Windows.Forms.ListBox listFiles;
-        private System.Windows.Forms.Button btnConfigDir;
-        private System.Windows.Forms.Button btnClientDir;
-        private System.Windows.Forms.Button btnServerDir;
-        private System.Windows.Forms.Button btnServerOutDir;
-        private System.Windows.Forms.TextBox txtServerOutDir;
-        private System.Windows.Forms.Button btnClientOutDir;
-        private System.Windows.Forms.TextBox txtClientOutDir;
+        private System.Windows.Forms.Button ConfigDirBtn;
+        private System.Windows.Forms.Button ClientDirBtn;
+        private System.Windows.Forms.Button ServerDirBtn;
+        private System.Windows.Forms.Button ServerOutDirBtn;
+        private System.Windows.Forms.TextBox ServerOutDirTxt;
+        private System.Windows.Forms.Button ClientOutDirBtn;
+        private System.Windows.Forms.TextBox ClientOutDirTxt;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;

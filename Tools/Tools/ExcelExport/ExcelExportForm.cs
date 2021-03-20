@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SQLite;
 using System.Diagnostics;
 using System.IO;
 using System.Threading;
@@ -18,41 +17,39 @@ namespace Tools
         {
             InitializeComponent();
         }
-
         private void ExcelExportForm_Load(object sender, EventArgs e)
-        {
-            this.listFiles.MouseDoubleClick += new MouseEventHandler(listFiles_MouseDoubleClick);
+        {  
             this.Refresh();
         }
 
+        /// <summary>
+        /// 刷新页面
+        /// </summary>
         public override void Refresh()
         {
-            this.txtConfigDir.Text = Glob.projectSetting.RealityConfigDir;
-            this.txtClientDir.Text = Glob.projectSetting.RealityClientDir;
-            this.txtServerDir.Text = Glob.projectSetting.RealityServerDir;
+            this.ConfigDirTxt.Text = Glob.projectSetting.RealityConfigDir;
+            this.ClientDirTxt.Text = Glob.projectSetting.RealityClientDir;
+            this.ServerDirTxt.Text = Glob.projectSetting.RealityServerDir;
 
-
-            this.txtClientOutDir.Text = Glob.codeOutSetting.ClientConfigs[0].ConfigMgrDir.ToReality();
-            this.txtServerOutDir.Text = Glob.codeOutSetting.ServerConfig.ConfigMgrDir.ToReality();
-
+            this.ClientOutDirTxt.Text = Glob.codeOutSetting.ClientConfigs[0].ConfigMgrDir.ToReality();
+            this.ServerOutDirTxt.Text = Glob.codeOutSetting.ServerConfig.ConfigMgrDir.ToReality();
             this.txtVerLangFile.Text = Glob.codeOutSetting.ClientConfigs[0].VerLangFile.ToReality().Replace("$ConfigDir$", Glob.projectSetting.RealityConfigDir);
-            this.txtVerLangOutFile.Text = Glob.codeOutSetting.ClientConfigs[0].VerLangOutFile.ToReality();
 
+            this.txtVerLangOutFile.Text = Glob.codeOutSetting.ClientConfigs[0].VerLangOutFile.ToReality();
             GetExcelFolderFiles();
         }
-        
 
         /// <summary>
         /// 双击打开文件
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void listFiles_MouseDoubleClick(object sender, MouseEventArgs e)
+        private void listFiles_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             int index = this.listFiles.IndexFromPoint(e.Location);
             if (index != ListBox.NoMatches)
             {
-                string path = Path.Combine(this.txtConfigDir.Text, this.listFiles.Items[index].ToString());
+                string path = Path.Combine(this.ConfigDirTxt.Text, this.listFiles.Items[index].ToString());
                 System.Diagnostics.Process.Start(path); 
                 this.listFiles.ClearSelected();
                 this.listFiles.SelectedIndex = index;
@@ -152,7 +149,7 @@ namespace Tools
         {
             this.listFiles.Items.Clear();
 
-            string path = this.txtConfigDir.Text;
+            string path = this.ConfigDirTxt.Text;
             if (path == "")
                 return;            
             if (!Directory.Exists(path))
@@ -186,6 +183,9 @@ namespace Tools
             }
             Logger.LogAction("导出版本检测文字完成!!!!");
         }
+
+
+
         #endregion
 
 

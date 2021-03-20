@@ -8,10 +8,11 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>Tools</RootNamespace>
     <AssemblyName>Tools</AssemblyName>
-    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -50,6 +51,18 @@
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.SQLite">
+      <HintPath>DefSupport\Libs\System.Data.SQLite.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Data.SQLite.EF6">
+      <HintPath>DefSupport\Libs\System.Data.SQLite.EF6.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Data.SQLite.Linq">
+      <HintPath>DefSupport\Libs\System.Data.SQLite.Linq.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -67,6 +80,23 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExcelExport\Base\ExcelExportBase.cs" />
+    <Compile Include="ExcelExport\Base\ExcelExportParse.cs" />
+    <Compile Include="ExcelExport\CSVUtils.cs" />
+    <Compile Include="ExcelExport\ExcelCSharp\ExcelExportClient.cs" />
+    <Compile Include="ExcelExport\ExcelCSharp\ExcelExportGMServer.cs" />
+    <Compile Include="ExcelExport\ExcelCSharp\ExcelExportServer.cs" />
+    <Compile Include="ExcelExport\ExcelExportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExcelExport\ExcelExportForm.Designer.cs">
+      <DependentUpon>ExcelExportForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExcelExport\ExcelExportHelper.cs" />
+    <Compile Include="ExcelExport\ExcelTools.cs" />
+    <Compile Include="ExcelExport\ExcelUtil.cs" />
+    <Compile Include="ExcelExport\SQLiteHelper - 复制.cs" />
+    <Compile Include="ExcelExport\SQLiteServer.cs" />
     <Compile Include="Glob.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="Main.cs">
@@ -97,6 +127,9 @@
     <Compile Include="SettingCode\SettingMgr.cs" />
     <Compile Include="ToolsCookie.cs" />
     <Compile Include="Utils.cs" />
+    <EmbeddedResource Include="ExcelExport\ExcelExportForm.resx">
+      <DependentUpon>ExcelExportForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
@@ -111,6 +144,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
