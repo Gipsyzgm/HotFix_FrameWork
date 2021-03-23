@@ -11,14 +11,14 @@ namespace HotFix
         /// </summary>
         public Dictionary<int, Dictionary<int, List<int>>> dicSlotZonePayTabList = new Dictionary<int, Dictionary<int, List<int>>>();
 
-        /// <summary>
-        /// 随机名字[语种，[姓/名，内容]](男)
-        /// </summary>
-        public Dictionary<ELangType, Dictionary<int, List<string>>> dicRandomNameList_man = new Dictionary<ELangType, Dictionary<int, List<string>>>();
-        /// <summary>
-        /// 随机名字[语种，[姓/名，内容]](女)
-        /// </summary>
-        public Dictionary<ELangType, Dictionary<int, List<string>>> dicRandomNameList_women = new Dictionary<ELangType, Dictionary<int, List<string>>>();
+        ///// <summary>
+        ///// 随机名字[语种，[姓/名，内容]](男)
+        ///// </summary>
+        //public Dictionary<ELangType, Dictionary<int, List<string>>> dicRandomNameList_man = new Dictionary<ELangType, Dictionary<int, List<string>>>();
+        ///// <summary>
+        ///// 随机名字[语种，[姓/名，内容]](女)
+        ///// </summary>
+        //public Dictionary<ELangType, Dictionary<int, List<string>>> dicRandomNameList_women = new Dictionary<ELangType, Dictionary<int, List<string>>>();
 
         //public Dictionary<string, EffectConfig> dicEffectByName = new Dictionary<string, EffectConfig>();
 

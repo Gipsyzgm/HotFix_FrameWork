@@ -1,5 +1,4 @@
-﻿using CSF.Tasks;
-using LitJson;
+﻿using LitJson;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -7,6 +6,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 namespace HotFix
 {
@@ -16,10 +16,7 @@ namespace HotFix
         private int loadedCount = 0; //已经加载资源数
 
         private char splitFieldChar = '∴';
-        /// <summary>
-        /// 配置表资源文件
-        /// </summary>
-        private string configAssetbundle = CSF.AppSetting.ConfigBundleDir.TrimEnd('/');
+      
         /// <summary>
         /// 读取配置表
         /// </summary>
@@ -29,7 +26,7 @@ namespace HotFix
         {
             loadCount += 1;
             string fileName = typeof(T).Name;
-            UnityEngine.Object configObj = await CSF.Mgr.Assetbundle.LoadAsset<UnityEngine.Object>(configAssetbundle, fileName);
+            UnityEngine.Object configObj = await Addressables.LoadAssetAsync<UnityEngine.Object>(fileName).Task;
             if (configObj != null)
             {
                 string strconfig = configObj.ToString();
@@ -42,9 +39,9 @@ namespace HotFix
                         string line;
                         while ((line = sr.ReadLine()) != null)
                         {
-                            T config = CSF.ConfigUtils.ToObject<T>(line.Split(splitFieldChar));
+                            T config = ConfigUtils.ToObject<T>(line.Split(splitFieldChar));
                             if (source.ContainsKey(config.UniqueID))
-                                CLog.Error($"表[{fileName}]中有相同键({config.UniqueID})");
+                                Debug.LogError($"表[{fileName}]中有相同键({config.UniqueID})");
                             else
                                 source.Add(config.UniqueID, config);
                         }
@@ -56,7 +53,7 @@ namespace HotFix
                     for (int i = 0; i < list.Count; i++)
                     {
                         if (source.ContainsKey(list[i].UniqueID))
-                            CLog.Error($"表[{fileName}]中有相同键({list[i].UniqueID})");
+                            Debug.LogError($"表[{fileName}]中有相同键({list[i].UniqueID})");
                         else
                             source.Add(list[i].UniqueID, list[i]);
                     }
@@ -64,7 +61,7 @@ namespace HotFix
             }
             else
             {
-                CLog.Error($"配置文件不存在{fileName}");
+                Debug.LogError($"配置文件不存在{fileName}");
             }
             loadedCount += 1;
         }
@@ -109,7 +106,7 @@ namespace HotFix
         {
             string fileName = typeof(T).Name;
             source.Clear();
-            UnityEngine.Object configObj = await CSF.Mgr.Assetbundle.LoadAsset<UnityEngine.Object>(configAssetbundle, fileName);
+            UnityEngine.Object configObj = await Addressables.LoadAssetAsync<UnityEngine.Object>( fileName).Task;
             if (configObj != null)
             {
                 string strconfig = configObj.ToString();
@@ -120,9 +117,9 @@ namespace HotFix
                         string line;
                         while ((line = sr.ReadLine()) != null)
                         {
-                            T config = CSF.ConfigUtils.ToObject<T>(line.Split(splitFieldChar));
+                            T config = ConfigUtils.ToObject<T>(line.Split(splitFieldChar));
                             if (source.ContainsKey(config.UniqueID))
-                                CLog.Error($"表[{fileName}]中有相同键({config.UniqueID})");
+                                Debug.LogError($"表[{fileName}]中有相同键({config.UniqueID})");
                             else
                                 source.Add(config.UniqueID, config);
                         }
@@ -134,7 +131,7 @@ namespace HotFix
                     for (int i = 0; i < list.Count; i++)
                     {
                         if (source.ContainsKey(list[i].UniqueID))
-                            CLog.Error($"表[{fileName}]中有相同键({list[i].UniqueID})");
+                            Debug.LogError($"表[{fileName}]中有相同键({list[i].UniqueID})");
                         else
                             source.Add(list[i].UniqueID, list[i]);
                     }
@@ -142,7 +139,7 @@ namespace HotFix
             }
             else
             {
-                CLog.Error($"配置文件不存在{fileName}");
+                Debug.LogError($"配置文件不存在{fileName}");
             }
         }
 
@@ -156,7 +153,7 @@ namespace HotFix
         private async CTask<T> readConfigV<T>(bool isEncrypt = false) where T : BaseConfig, new()
         {
             string fileName = typeof(T).Name;
-            UnityEngine.Object configObj = await CSF.Mgr.Assetbundle.LoadAsset<UnityEngine.Object>(configAssetbundle, fileName);
+            UnityEngine.Object configObj = await Addressables.LoadAssetAsync<UnityEngine.Object>(fileName).Task;
             if (configObj != null)
             {
                 string strconfig = configObj.ToString();
@@ -169,7 +166,7 @@ namespace HotFix
                         string line;
                         while ((line = sr.ReadLine()) != null)
                         {
-                            T config = CSF.ConfigUtils.ToObject<T>(line.Split(splitFieldChar));
+                            T config = ConfigUtils.ToObject<T>(line.Split(splitFieldChar));
                             return config;
                         }
                     }
@@ -183,7 +180,7 @@ namespace HotFix
             }
             else
             {
-                CLog.Error($"配置文件不存在{fileName}");
+                Debug.LogError($"配置文件不存在{fileName}");
             }
             return default(T);
         }
