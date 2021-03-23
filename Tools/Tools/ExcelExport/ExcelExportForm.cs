@@ -56,6 +56,57 @@ namespace Tools
             }
         }
         
+     
+        #region 打开文件夹     
+        private void SelctFolder_ClickEvent(object sender, EventArgs e)
+        {
+            Utils.ButtonOpenDir(sender);
+        }
+        #endregion
+
+        #region 获取目录下所有Excel文件
+        /// <summary>
+        /// 获取目录下所有excel文件
+        /// </summary>
+        private void GetExcelFolderFiles()
+        {
+            this.listFiles.Items.Clear();
+
+            string path = this.ConfigDirTxt.Text;
+            if (path == "")
+                return;            
+            if (!Directory.Exists(path))
+                return;
+            DirectoryInfo di = new DirectoryInfo(path);
+            FileInfo[] files = di.GetFiles("*.xls*");           
+            foreach (FileInfo fil in files)
+            {
+                if (fil.Name.StartsWith("~$"))
+                    continue;
+                if (fil.Name.StartsWith("_"))
+                    continue;
+                if (fil.Extension.ToLower() == ".xls" || fil.Extension.ToLower() == ".xlsx")
+                    this.listFiles.Items.Add(fil.Name);
+            }
+
+        }
+        /// <summary>
+        /// 导出版本检测的文字
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnExportVerLang_Click(object sender, EventArgs e)
+        {
+            //导出客户端配置
+            if (Glob.codeOutSetting.ClientConfigs[0].CodeType == CodeType.CShap)
+            {
+                ExcelExport.ConfigCSharp.ExcelExportClient exportClient = new ExcelExport.ConfigCSharp.ExcelExportClient(Glob.codeOutSetting.ClientConfigs[0]);
+                exportClient.ExportVerLang(this.txtVerLangFile.Text, this.txtVerLangOutFile.Text);
+            }
+            Logger.LogAction("导出版本检测文字完成!!!!");
+        }
+        #endregion
+
         /// <summary>
         /// 一键生成所有相关文件
         /// </summary>
@@ -64,12 +115,11 @@ namespace Tools
             this.btnExport.Enabled = false;
             Logger.Clean();
             Logger.LogAction("开始导出[" + ToolsCookieHelper.GetDevName() + "]相关配置文件");
-
             Dictionary<string, ExcelSheet> dicSheet = ExcelExportParse.GetExcleSheet();
             if (dicSheet == null) return;
             //List<ExcelSheet> serverSheet = ExcelExportParse.ExcleSheetFilter(dicSheet, 'S'); //获取服务器配置表
 
-            List<Task> list = new List<Task>();         
+            List<Task> list = new List<Task>();
 
             //服务端
             if (Glob.codeOutSetting.ServerConfig.CodeType == CodeType.CShap && ToolsCookieHelper.Config.IsServerDev)
@@ -106,8 +156,8 @@ namespace Tools
                 this.btnExport.Enabled = true;
                 Logger.LogAction("Excel导出完成");
             }));
-        }        
-        
+        }
+
 
         private void exportMapConfig()
         {
@@ -117,7 +167,7 @@ namespace Tools
             FileInfo info = new FileInfo(mapSourceDir + "/MapConfig.txt");
             if (info.Exists)
             {
-                if(ToolsCookieHelper.Config.IsServerDev)
+                if (ToolsCookieHelper.Config.IsServerDev)
                     info.CopyTo(Glob.codeOutSetting.ServerConfig.OutDataDir.ToReality() + "/MapConfig.txt", true);
 
                 if (ToolsCookieHelper.Config.IsClientDev)
@@ -129,64 +179,11 @@ namespace Tools
                             info.CopyTo(config.OutDataDir.ToReality() + "/MapConfig.txt", true);
                     }
                 }
-                if(ToolsCookieHelper.Config.IsServerDev || ToolsCookieHelper.Config.IsClientDev)
-                Logger.LogAction("导出 MapConfig.txt!!!!");
+                if (ToolsCookieHelper.Config.IsServerDev || ToolsCookieHelper.Config.IsClientDev)
+                    Logger.LogAction("导出 MapConfig.txt!!!!");
             }
         }
 
-        #region 打开文件夹     
-        private void SelctFolder_ClickEvent(object sender, EventArgs e)
-        {
-            Utils.ButtonOpenDir(sender);
-        }
-        #endregion
-
-        #region 获取目录下所有Excel文件
-        /// <summary>
-        /// 获取目录下所有excel文件
-        /// </summary>
-        private void GetExcelFolderFiles()
-        {
-            this.listFiles.Items.Clear();
-
-            string path = this.ConfigDirTxt.Text;
-            if (path == "")
-                return;            
-            if (!Directory.Exists(path))
-                return;
-            DirectoryInfo di = new DirectoryInfo(path);
-            FileInfo[] files = di.GetFiles("*.xls*");           
-            foreach (FileInfo fil in files)
-            {
-                if (fil.Name.StartsWith("~$"))
-                    continue;
-                if (fil.Name.StartsWith("_"))
-                    continue;
-                if (fil.Extension.ToLower() == ".xls" || fil.Extension.ToLower() == ".xlsx")
-                    this.listFiles.Items.Add(fil.Name);
-            }
-
-        }
-
-        /// <summary>
-        /// 导出版本检测的文字
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnExportVerLang_Click(object sender, EventArgs e)
-        {
-            //导出客户端配置
-            if (Glob.codeOutSetting.ClientConfigs[0].CodeType == CodeType.CShap)
-            {
-                ExcelExport.ConfigCSharp.ExcelExportClient exportClient = new ExcelExport.ConfigCSharp.ExcelExportClient(Glob.codeOutSetting.ClientConfigs[0]);
-                exportClient.ExportVerLang(this.txtVerLangFile.Text, this.txtVerLangOutFile.Text);
-            }
-            Logger.LogAction("导出版本检测文字完成!!!!");
-        }
-
-
-
-        #endregion
 
 
         ///// <summary>

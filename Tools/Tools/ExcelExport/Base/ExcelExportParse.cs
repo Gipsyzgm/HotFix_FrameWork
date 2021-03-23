@@ -17,6 +17,7 @@ namespace Tools.ExcelExport
         public bool IsVert = false;                 //是否为竖表
         public string Export = string.Empty;    //导出配置 CSG
         public bool IsEncrypt = false;          //是否加密,只对客户端有效
+        //数据的属性总数量
         public List<ExcelSheetTableField> Fields = new List<ExcelSheetTableField>();
         public DataTable Table;
         public string FileName;
@@ -36,7 +37,6 @@ namespace Tools.ExcelExport
         public string Export;   //导出配置 
         public string Value;    //字段值(竖表用)
         public int FieldCount;  //分列数量 (>1 分列)
-        public bool IsInterface; //是否接口字段
     }
 
     public class ExcelExportParse
@@ -52,6 +52,11 @@ namespace Tools.ExcelExport
             DirectoryInfo folder = new DirectoryInfo(Glob.projectSetting.RealityConfigDir);
             return GetExcleSheetForFileInfos(folder.GetFiles("*.xls*"));
         }
+        /// <summary>
+        /// 把excel表格数据全读一遍，存成对应数据
+        /// </summary>
+        /// <param name="fils"></param>
+        /// <returns></returns>
         public static Dictionary<string, ExcelSheet> GetExcleSheetForFileInfos(FileInfo[] fils)
         {
             Dictionary<string, ExcelSheet> dicSheet = new Dictionary<string, ExcelSheet>();
@@ -59,28 +64,30 @@ namespace Tools.ExcelExport
             {
                 if (file.Name.StartsWith("~$") || file.Name.StartsWith("_"))
                     continue;
-
-                //获取配置表中所有表
+                //获取单配置表中所有表
                 DataSet ds = ExcelUtil.ReadExcelSheetData(file.FullName);
                 ExcelSheet sheet;
                 string[] sheeltInfo;
                 string[] sheeltTypeInfo;
                 string tableName;
+                //是否为竖表
                 bool isVert = false;
                 foreach (DataTable dt in ds.Tables)
                 {
+                    #region 设置所有表格结构
                     sheeltInfo = dt.TableName.Split('#');
+                    //表格名不包含'#'直接跳过
                     if (sheeltInfo.Length < 2)
                         continue;
                     sheeltTypeInfo = sheeltInfo[0].Split('_');
                     tableName = Utils.ToFirstUpper(sheeltTypeInfo[0]); //表名
                     isVert = false;
+                    //表名以_v结尾的表为竖表
                     if (sheeltTypeInfo.Length > 1)
                     {
                         if (sheeltTypeInfo[1].ToLower() == "v")
                             isVert = true;    //竖表                      
                     }
-
                     if (!dicSheet.TryGetValue(tableName, out sheet))
                     {
                         sheet = new ExcelSheet();
@@ -93,7 +100,7 @@ namespace Tools.ExcelExport
                         sheet.FileName = file.Name;
                         sheet.Table = new DataTable();
                         //设置sheet字段列
-                        if (!setSheetTable(sheet, dt))
+                        if (!SetSheetTable(sheet, dt))
                             return null;
                         dicSheet.Add(tableName, sheet);
                     }
@@ -104,29 +111,27 @@ namespace Tools.ExcelExport
                             Logger.LogError($"表{sheet.FullName}是竖表结构,不能做分表");
                             return null;
                         }
-
-
                         ExcelSheet nSheet = new ExcelSheet();
                         nSheet.Table = new DataTable();
                         nSheet.Name = dt.TableName;
                         //设置sheet字段列
-                        if (!setSheetTable(nSheet, dt))
+                        if (!SetSheetTable(nSheet, dt))
                             return null;
 
                         //检测相同的表是否表结构相同
-                        if (sheet.IsVert != isVert || !checkSheetColumns(sheet, nSheet))
+                        if (sheet.IsVert != isVert || !CheckSheetColumns(sheet, nSheet))
                         {
                             Logger.LogError($"表{sheet.FullName}定义的表结构不一至,请检查!!!!,目标表:{dt.TableName}");
                             return null;
                         }
                     }
+                    #endregion
                     //增加表记录行
-                    addSheetTableRow(sheet, dt);
+                    AddSheetTableRow(sheet, dt);
                 }
             }
             return dicSheet;
         }
-
 
         /// <summary>
         /// 判断分表的字段列是否对得上
@@ -134,29 +139,15 @@ namespace Tools.ExcelExport
         /// <param name="sheet"></param>
         /// <param name="dtSource"></param>
         /// <returns></returns>
-        private static bool checkSheetColumns(ExcelSheet sheet, ExcelSheet nSheet)
+        private static bool CheckSheetColumns(ExcelSheet sheet, ExcelSheet nSheet)
         {
-            //ExcelSheetTableField field;           
-            //for (int i = 0; i < dtSource.Columns.Count; i++)
-            //{
-            //    if (i >= sheet.Fields.Count)
-            //        break;
-            //    field = sheet.Fields[i];
-            //    if (field.Type != dtSource.Rows[2][i].ToString())
-            //    {
-            //        Logger.LogError($"表{sheet.FullName}{dtSource.Rows[2][i].ToString()}字段类型不一至,目标表:{dtSource.TableName}");
-            //        return false;
-            //    }
-
-            //    if (field.Name != dtSource.Rows[3][i].ToString())
-            //    {
-            //        Logger.LogError($"表{sheet.FullName}主:{field.Name} 分:{dtSource.Rows[3][i].ToString()}字段名不一至");
-            //        return false;
-            //    }
-            //}
+            if (sheet.Fields.Count!= nSheet.Fields.Count)
+            {
+                Logger.LogError($"表{sheet.FullName}和表{nSheet.Name}属性数量不匹配，不影响使用，请核对是否需要调整。");            
+            }
             for (int i = 0; i < sheet.Fields.Count; i++)
             {
-               if(sheet.Fields[i].Type != nSheet.Fields[i].Type)
+                if(sheet.Fields[i].Type != nSheet.Fields[i].Type)
                 {
                     Logger.LogError($"表{sheet.FullName}{sheet.Fields[i].ToString()}字段类型不一至,目标表:{nSheet.Name}");
                     return false;
@@ -171,12 +162,12 @@ namespace Tools.ExcelExport
             return true;
         }
         /// <summary>
-        /// 设置表初始数据
+        /// 设置表初始数据结构
         /// </summary>
         /// <param name="sheet"></param>
         /// <param name="dtSource"></param>
         /// <returns></returns>
-        private static bool setSheetTable(ExcelSheet sheet, DataTable dtSource)
+        private static bool SetSheetTable(ExcelSheet sheet, DataTable dtSource)
         {
             if (dtSource.Columns.Count > 100)
             {
@@ -187,7 +178,7 @@ namespace Tools.ExcelExport
             {
                 if (dtSource.Rows.Count < 1 && dtSource.Columns.Count < 5)
                 {
-                    Logger.LogError(sheet.FullName + "表列数不对");
+                    Logger.LogError(sheet.FullName + "：表格格式不对");
                     return false;
                 }
                 //增加字段列
@@ -208,8 +199,7 @@ namespace Tools.ExcelExport
                         field.Export = dtSource.Rows[i][1].ToString();  //导出配置
                         field.Type = dtSource.Rows[i][2].ToString().ToLower();    //字段类型
                         field.Value = dtSource.Rows[i][3].ToString();    //字段值
-                        field.Des = dtSource.Rows[i][4].ToString();     //字段描述
-                        field.IsInterface = field.Export.IndexOf('I') != -1;
+                        field.Des = dtSource.Rows[i][4].ToString();     //字段描述        
                         sheet.Table.Columns.Add(field.Name, ExcelUtil.GetStringType(field.Type));
                         sheet.Fields.Add(field);
                     }
@@ -222,11 +212,12 @@ namespace Tools.ExcelExport
             {
                 if (dtSource.Rows.Count < 4 && dtSource.Columns.Count < 2)
                 {
-                    Logger.LogError(sheet.FullName + "表列数不对");
+                    Logger.LogError(sheet.FullName + "：表格格式不对");
                     return false;
                 }
                 //增加字段列
                 ExcelSheetTableField field = null;
+                //组属性
                 string[] arrInfo;
                 string fieldName;
                 for (int i = 0; i < dtSource.Columns.Count; i++)
@@ -241,14 +232,13 @@ namespace Tools.ExcelExport
                         field.Des = dtSource.Rows[0][i].ToString();     //字段描述
                         field.Export = dtSource.Rows[1][i].ToString();  //导出配置
                         field.Type = dtSource.Rows[2][i].ToString().ToLower();    //字段类型
-                        field.Name = fieldName;   //字段名                          
-                        field.IsInterface = field.Export.IndexOf('I') != -1;
+                        field.Name = fieldName;   //字段名                                              
                         field.FieldCount = 1;
                         sheet.Fields.Add(field);
                         sheet.Table.Columns.Add(field.Name, ExcelUtil.GetStringType(field.Type));
                     }
                     else
-                    {
+                    {                       
                         field.Des += "\n"+dtSource.Rows[0][i].ToString();     //字段描述相加
                         field.FieldCount++;
                     }
@@ -259,11 +249,11 @@ namespace Tools.ExcelExport
             }
         }
         /// <summary>
-        /// 增加表行数据
+        /// 增加表格行数据
         /// </summary>
         /// <param name="sheet"></param>
         /// <param name="dtSource"></param>
-        private static void addSheetTableRow(ExcelSheet sheet, DataTable dtSource)
+        private static void AddSheetTableRow(ExcelSheet sheet, DataTable dtSource)
         {
             if (sheet.IsVert)
             {
@@ -295,21 +285,23 @@ namespace Tools.ExcelExport
                 for (int i = 4; i < dtSource.Rows.Count; i++)
                 {
                     expRow = sheet.Table.NewRow();
+                    //表内改行开头为空则跳过
                     if (string.IsNullOrEmpty(dtSource.Rows[i][0].ToString()))
                         continue;
-
+                    //用于区分导出数据的位置，计算分表数据位置。
                     cellIndex = 0;
                     for (int f = 0; f < sheet.Fields.Count; f++) //遍历数据列
                     {                       
                         field = sheet.Fields[f];
+                        //如果导出配置为空则跳过
                         if (field.Export == string.Empty)
                         {
                             cellIndex++;
                             continue;
                         }
+                        //否则读取表格数据
                         cellVal = dtSource.Rows[i][cellIndex].ToString();
                         cellIndex++;
-                                          
                         val = ExcelUtil.GetObjectValue(field.Type, cellVal, field.FieldCount);
                         if (val == null)
                         {
@@ -317,8 +309,7 @@ namespace Tools.ExcelExport
                             val = string.Empty;
                         }
                         if (field.FieldCount > 1)
-                        {
-                            //object[] valList = new object[field.FieldCount];                          
+                        {                                     
                             for (int k = 1; k < field.FieldCount; k++)
                             {
                                 ExcelUtil.AddListValue(field.Type, dtSource.Rows[i][cellIndex].ToString(), ref val);
@@ -335,13 +326,12 @@ namespace Tools.ExcelExport
 
         #region 配置表过滤
         /// <summary>
-        /// 配置表过滤
+        /// 配置表过滤/相当于重新生成需要的表格属性。
         /// </summary>
         /// <param name="list"></param>
         public static List<ExcelSheet> ExcleSheetFilter(Dictionary<string, ExcelSheet> dicSheet,char filter)
         {
             List<ExcelSheet> list = new List<ExcelSheet>();
-
             ExcelSheet filterSheet;
             DataTable filterTable;
             List<string> colNames = new List<string>();  //不过滤的列名
@@ -360,6 +350,9 @@ namespace Tools.ExcelExport
                             filelds.Add(field);
                         }
                     }
+                    //一个新 DataTable 实例，其中包含请求的行和列。
+                    //如果为 true，则返回的 DataTable 包含具有与其所有列不同的值的行。 默认值是 false。
+                    //一个字符串数组，其中的一个列名称列表将包括在返回的 DataTable 中。 DataTable 包含指定的列，这些列按其在该数组中显示的顺序排列。
                     filterTable = sheet.Table.DefaultView.ToTable(false, colNames.ToArray());
                     filterSheet = new ExcelSheet();
                     filterSheet.Name = sheet.Name;

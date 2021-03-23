@@ -13,16 +13,16 @@
 		"ClientConfigs":/*客户端配置表*/
 		[
 			{
-				"CodeType":"C#", /*客户端*/
-				"NameSpace":"$HotName$",
-				"OutDataDir":"$ClientDir$/Assets/GameRes/BundleRes/Data/Config",
-				"OutClassDir":"$ClientHotDir$/Manager/Config/Configs",
-				"ConfigMgrDir":"$ClientHotDir$/Manager/Config",
-				"ConfigMgrFile":"$ClientHotDir$/Manager/Config/ConfigMgr.cs",
-				"VerLangFile":"$ConfigDir$/语言_版本检测.xlsx",
-				"VerLangOutFile":"$ClientDir$/Assets/GameRes/Resources/VersionCheck/VerCheckLang.txt",
-				"IsCSV":false,
-				"IsTaskLoad":true
+				"CodeType": "C#", /*客户端*/
+				"NameSpace": "$HotName$",
+				"OutDataDir": "$ClientDir$/Assets/GameRes/AddressableRes/Config",
+				"OutClassDir": "$ClientHotDir$/Module/Config/Configs",
+				"ConfigMgrDir": "$ClientHotDir$/Module/Config",
+				"ConfigMgrFile": "$ClientHotDir$/Module/Config/ConfigMgr.cs",
+				"VerLangFile": "$ConfigDir$/语言_版本检测.xlsx",
+				"VerLangOutFile": "$ClientDir$/Assets/GameRes/Resources/VersionCheck/VerCheckLang.txt",
+				"IsCSV": false,
+				"IsTaskLoad": true
 			},
 			{
 				"CodeType":"C#", /*机器人*/

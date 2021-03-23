@@ -21,13 +21,13 @@ namespace Tools
         public static DataSet ReadExcelSheetData(string filePath)
         {
             Dictionary<string, List<List<string>>> listTabs = new Dictionary<string, List<List<string>>>();
-
             FileStream stream = File.Open(filePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
-            IExcelDataReader excelReader = ExcelReaderFactory.CreateOpenXmlReader(stream);            
-            return  excelReader.AsDataSet();
+            //1. Reading from a binary Excel file ('97-2003 format; *.xls)
+            //IExcelDataReader excelReader = ExcelReaderFactory.CreateBinaryReader(stream);
+            //2. Reading from a OpenXml Excel file (2007 format; *.xlsx)
+            IExcelDataReader excelReader = ExcelReaderFactory.CreateOpenXmlReader(stream);       
+            return excelReader.AsDataSet();
         }
-        
-
         /// <summary>
         /// 判断是否导出 true导出   false不导出
         /// </summary>
@@ -45,11 +45,9 @@ namespace Tools
                 return false;
             return true;
         }
-
-
         #region 字符串分离到数组
         /// <summary>
-        /// 字符串分离到数组
+        /// 字符串分离到对应类型数组以";"切分
         /// </summary>
         /// <typeparam name="T">数组类型</typeparam>
         /// <param name="str">源字符串</param>
@@ -75,7 +73,7 @@ namespace Tools
                     if (typeof(T) == typeof(int))
                     {
                         double floatV;
-                        double.TryParse(objarr[i], out floatV);
+                        double.TryParse(objarr[i], out floatV);                       
                         tArr.Add((T)Convert.ChangeType(floatV, typeof(T)));
                     }
                     else
@@ -91,7 +89,7 @@ namespace Tools
         }
 
         /// <summary>
-        /// 物品数组分离到数组中
+        /// 物品数组分离到数组中以'_'切分
         /// </summary>
         /// <param name="itemsStr">[itemid1_num1,itemid2_num2]</param>
         /// <returns>[[itemid1,num1],[itemid2,num2]]</returns>
@@ -106,8 +104,6 @@ namespace Tools
             return items;
         }
         #endregion
-
-
         /// <summary>
         /// 字符串类型转成Object值
         /// </summary>
@@ -118,6 +114,7 @@ namespace Tools
         public static object GetObjectValue(string type, string value,int fieldCount=1)
         {
             double floatV = 0;
+            //是否存在分列数据
             bool isSetDef = fieldCount > 1;
             switch (type)
             {
@@ -176,11 +173,11 @@ namespace Tools
                     return SplitToArr<bool>(value, isSetDef);
                 case "string[]":
                     return SplitToArr<string>(value, isSetDef);
-                case "list<int[]>":
+                case "list<int[]>":                    
                     return SplitToItems(SplitToArr<string>(value,isSetDef));
                 case "list<list<int[]>>":
                     List<List<int[]>> list = new List<List<int[]>>();
-                    list.Add(SplitToItems(SplitToArr<string>(value)));
+                    list.Add(SplitToItems(SplitToArr<string>(value)));              
                     return list;
                 case "lang":
                     return new Lang() { key = value };
@@ -189,7 +186,7 @@ namespace Tools
             }
         }
         /// <summary>
-        /// 追加值
+        /// 追加分列数据
         /// </summary>
         /// <param name="type"></param>
         /// <param name="value"></param>
@@ -300,11 +297,7 @@ namespace Tools
                 default:
                     return typeof(string);
             }
-        }
-       
-
-
-
+        }    
         /// <summary>
         /// 跟据字符串类型获取C#中的类型字符串
         /// </summary>

@@ -17,6 +17,7 @@ namespace Tools.ExcelExport.ConfigCSharp
         protected bool IsSqlite => Config.IsSqlite;
         public ExcelExportClient(ConfigCodeOut config):base(config)
         {
+
         }
 
         /// <summary>
@@ -49,7 +50,6 @@ namespace Tools.ExcelExport.ConfigCSharp
 
             string json = File.ReadAllText(info.FullName);
             List<JObject> obj = JsonConvert.DeserializeObject<List<JObject>>(json);
-            int a = 1;
 
             DataTable table = new DataTable();
             table.TableName = "MapConfig";
@@ -73,13 +73,12 @@ namespace Tools.ExcelExport.ConfigCSharp
 
 
         /// <summary>
-        /// 生成配置表Data文件
+        /// 生成配置表Data文件例如txt的json文件
         /// </summary>
         /// <param name="sheet"></param>
         protected override void CreateConfigData(ExcelSheet sheet)
         {
             string savePath = Path.Combine(SaveConfigData, sheet.ConfigName + ".txt");
-
             if (IsCSV)
             {
                 string csvdata = CSVUtils.SerializeCSV(sheet);
@@ -95,6 +94,7 @@ namespace Tools.ExcelExport.ConfigCSharp
                 }
                 else
                 {
+                    //表格转json
                     string jsondata = JsonConvert.SerializeObject(sheet.Table);
                     if (sheet.IsEncrypt)
                         jsondata = Utils.EncryptDES(jsondata);
@@ -104,7 +104,7 @@ namespace Tools.ExcelExport.ConfigCSharp
         }
 
         /// <summary>
-        /// 生成配置表Calss类
+        /// 生成配置表Class类
         /// </summary>
         /// <param name="sheet"></param>
         protected override void CreateConfigClass(ExcelSheet sheet)
@@ -117,15 +117,15 @@ namespace Tools.ExcelExport.ConfigCSharp
             string savePath = Path.Combine(SaveConfigClass, sheet.ConfigName + ".cs");
             StringBuilder fieldStrs = new StringBuilder();
             string firstField = null; //第一个字段做为Key
+            //是否继承接口
             string inter = string.IsNullOrEmpty(sheet.Interface) ? "" : ("," + sheet.Interface);
-
-            //StringBuilder setValueFiled = new StringBuilder();
 
             string filedProp;
             //int index = 0;
             foreach (ExcelSheetTableField filed in sheet.Fields)
             {
-                if (!IsCSV && filed.IsInterface)
+                //生成属性还是字段（是否添加get,set）
+                if (!IsCSV)
                     filedProp = "{ get; set; }";
                 else
                     filedProp = ";";
@@ -139,7 +139,8 @@ namespace Tools.ExcelExport.ConfigCSharp
         public {ExcelUtil.GetCSStringType(filed.Type, false)} {filed.Name}{filedProp}";
                 fieldStrs.AppendLine(field);
             }
-            string str = $@"using System;
+            string str = $@"
+using System;
 using System.Collections.Generic;
 /// <summary>
 /// 工具生成，不要修改
@@ -182,7 +183,6 @@ namespace {Config.RealityNameSpace}
                 fieldName = sheet.Name;
                 if (sheet.IsVert)
                 {
-                    //fieldName = Utils.ToFirstLower(sheet.ConfigName);
                     sbFieldV.AppendLine($"        /// <summary> {sheet.NameDes}</summary>");
                     sbFieldV.AppendLine($"        public {sheet.ConfigName} {fieldName};");
                     if(Config.IsTaskLoad)
@@ -192,7 +192,6 @@ namespace {Config.RealityNameSpace}
                 }
                 else
                 {
-                    //fieldName = "dic" + sheet.Name;
                     sbField.AppendLine($"        /// <summary> {sheet.NameDes}</summary>");
                     sbField.AppendLine($"        public readonly Dictionary<object, {sheet.ConfigName}> {fieldName} = new Dictionary<object, {sheet.ConfigName}>();");
                     if (Config.IsTaskLoad)
@@ -210,7 +209,6 @@ namespace {Config.RealityNameSpace}
 /// 工具生成，不要修改
 /// </summary>
 using System.Collections.Generic;
-{(Config.IsTaskLoad?"using CSF.Tasks;":"")}
 namespace {Config.RealityNameSpace}
 {{
     public partial class ConfigMgr

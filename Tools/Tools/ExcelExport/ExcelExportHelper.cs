@@ -60,7 +60,7 @@ namespace Tools
                 if (SelectFiles != null && !SelectFiles.Contains(file.Name))
                     continue;
 
-                //获取配置表中所有表
+                //获取单表中所有表
                 DataSet ds = ExcelUtil.ReadExcelSheetData(file.FullName);
                 foreach (DataTable dt in ds.Tables)
                 {

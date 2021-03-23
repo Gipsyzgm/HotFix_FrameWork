@@ -11,10 +11,8 @@
         //命名空间
         public string NameSpace = string.Empty;
 
-
         /// <summary>配置文件管理器目录</summary>
         public string ConfigMgrDir = string.Empty;
-
 
         /// <summary>导出初始化文件</summary>
         public string ConfigInitFile = string.Empty;
@@ -36,6 +34,7 @@
 
         /// <summary>是否使用Sqlite</summary>
         public bool IsSqlite = false;
+
         /// <summary>Sqlite导出目录</summary>
         public string OutSqlitePath = string.Empty;
 

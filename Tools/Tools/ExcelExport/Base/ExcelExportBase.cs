@@ -17,7 +17,6 @@ namespace Tools.ExcelExport
         ////保存ConfigData文件目录
         protected virtual string SaveConfigData => Config.OutDataDir.ToReality();
 
-
         protected ConfigCodeOut Config;
         protected SQLiteServer sqlit;
         public ExcelExportBase(ConfigCodeOut config)
@@ -65,8 +64,8 @@ namespace Tools.ExcelExport
         protected virtual void CreateMapConfig()
         {
 
-        }
 
+        }
         /// <summary>
         /// 生成配置表Calss类
         /// </summary>
@@ -96,6 +95,7 @@ namespace Tools.ExcelExport
         /// <param name="configList"></param>
         protected virtual void CreateConfigInit(List<ExcelSheet> configList)
         {
+
         }
         /// <summary>
         /// 生成ConfigMgr.cs文件
@@ -103,6 +103,7 @@ namespace Tools.ExcelExport
         /// <param name="configList">NetAction</param>
         protected virtual void CreateConfigMgr(List<ExcelSheet> configList)
         {
+
         }
     }
 }
