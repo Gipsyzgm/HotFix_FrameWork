@@ -13,21 +13,21 @@ namespace HotFix
     {
         public static void Start()
         {
-            Debug.Log("=====进入热更主程序,启动游戏!!!!=====");         
+            Debug.Log("=====进入热更主程序,启动游戏!!!!=====");
+            //Application.targetFrameRate = 60;
+            //QualitySettings.vSyncCount = 0;
+            Application.runInBackground = true;//用于后台挂起
+            Screen.sleepTimeout = SleepTimeout.NeverSleep;//用于禁止屏幕休眠   
             Initialize().Run();
+            
         }
-
-        static int time1 = 0;
-        static int time2 = 0;
-        static int time3 = 0;
-        static int time4 = 0;
         private static async CTask Initialize()
         {
             await HotMgr.Initialize();
-
-            Debug.Log("结束等待");
+            Debug.Log("结束等待");                  
             HotMgr.Sound.PlayMusic(SoundName.BGM_EmptyPort);
             await HotMgr.UI.Show<MainUI>(UIAnim.FadeIn,UILoading.Mask);
+            Debug.LogError("什么鬼：" + HotMgr.Config.Activity[101].des);
         }
 
 

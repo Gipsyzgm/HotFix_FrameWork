@@ -13,10 +13,10 @@ namespace HotFix
         public static UIMgr UI;
         ///// <summary>网络消息管理器</summary>
         //public static NetMgr Net;
-        ///// <summary>多语言管理器</summary>
-        //public static LangMgr Lang;
+        /// <summary>多语言管理器</summary>
+        public static LangMgr Lang;
         /// <summary>配置表管理器</summary>
-        //public static ConfigMgr Config;
+        public static ConfigMgr Config;
         ///// <summary>时间管理器</summary>
         //public static TimeMgr Time;
         /// <summary>定时器管理器</summary>
@@ -43,6 +43,9 @@ namespace HotFix
             UI = new UIMgr();
             Sound = new SoundMgr();
             Timer = new TimerMgr();
+            Lang = new LangMgr();
+            Config = new ConfigMgr();
+            await Config.Initialize();
             Debug.Log("初始化完成");
 
         }
