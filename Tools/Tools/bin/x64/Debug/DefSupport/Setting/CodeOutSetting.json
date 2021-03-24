@@ -8,7 +8,7 @@
 			"OutDBTableClassDir":"$ServerDir$/GameLib/CommMgr/DBMgr/Table",
 			"OutDBWriteTableFile":"$ServerDir$/GameLib/CommMgr/DBMgr/DBWriteTable.cs",
 			"OutDBTableNameFile":"$ServerDir$/GameLib/CommMgr/DBMgr/TableName.cs",
-			"OutDBTableDBIndexFile":"$ServerDir$/GameLib/CommMgr/DBMgr/TableDBIndex.cs",
+			"OutDBTableDBIndexFile":"$ServerDir$/GameLib/CommMgr/DBMgr/TableDBIndex.cs"
 		},
 		"ClientConfigs":/*客户端配置表*/
 		[
@@ -25,12 +25,13 @@
 				"IsTaskLoad": true
 			},
 			{
-				"CodeType":"C#", /*机器人*/
-				"NameSpace":"ClientRobot",
-				"OutDataDir":"$ProjectDir$/Client/ClientRobot/bin/DataConfig",
-				"OutClassDir":"$ProjectDir$/Client/ClientRobot/ConfigMgr/Configs",
-				"ConfigMgrDir":"$ProjectDir$/Client/ClientRobot/ConfigMgr",
-				"ConfigMgrFile":"$ProjectDir$/Client/ClientRobot/ConfigMgr/ConfigMgr.cs",
+				"Disable": true,
+				"CodeType": "C#", /*机器人*/
+				"NameSpace": "ClientRobot",
+				"OutDataDir": "$ProjectDir$/Client/ClientRobot/bin/DataConfig",
+				"OutClassDir": "$ProjectDir$/Client/ClientRobot/ConfigMgr/Configs",
+				"ConfigMgrDir": "$ProjectDir$/Client/ClientRobot/ConfigMgr",
+				"ConfigMgrFile": "$ProjectDir$/Client/ClientRobot/ConfigMgr/ConfigMgr.cs"
 			}
 		],
 		"ServerConfig":/*服务器配置表*/

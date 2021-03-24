@@ -25,12 +25,13 @@
 				"IsTaskLoad": true
 			},
 			{
-				"CodeType":"C#", /*机器人*/
-				"NameSpace":"ClientRobot",
-				"OutDataDir":"$ProjectDir$/Client/ClientRobot/bin/DataConfig",
-				"OutClassDir":"$ProjectDir$/Client/ClientRobot/ConfigMgr/Configs",
-				"ConfigMgrDir":"$ProjectDir$/Client/ClientRobot/ConfigMgr",
-				"ConfigMgrFile":"$ProjectDir$/Client/ClientRobot/ConfigMgr/ConfigMgr.cs",
+				"Disable": true,
+				"CodeType": "C#", /*机器人*/
+				"NameSpace": "ClientRobot",
+				"OutDataDir": "$ProjectDir$/Client/ClientRobot/bin/DataConfig",
+				"OutClassDir": "$ProjectDir$/Client/ClientRobot/ConfigMgr/Configs",
+				"ConfigMgrDir": "$ProjectDir$/Client/ClientRobot/ConfigMgr",
+				"ConfigMgrFile": "$ProjectDir$/Client/ClientRobot/ConfigMgr/ConfigMgr.cs"
 			}
 		],
 		"ServerConfig":/*服务器配置表*/
