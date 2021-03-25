@@ -66,10 +66,18 @@ namespace Tools
         public static string GetDevName()
         {
             string str = string.Empty;
-            if (Config.IsClientDev)
+            if (Config.IsClientDev) 
+            {
                 str += "客户端";
-            if (Config.IsServerDev)
+            }
+            if (Config.IsServerDev) 
+            {
+                if (str!= string.Empty)
+                {
+                    str += "、";
+                }
                 str += "服务端";
+            }          
             if (str == string.Empty)
             {
                 str += "未选择对应目标";

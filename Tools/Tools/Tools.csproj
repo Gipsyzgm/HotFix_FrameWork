@@ -134,6 +134,19 @@
       <DependentUpon>ProjectSelectForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ProtoExport\Base\ProtoBase.cs" />
+    <Compile Include="ProtoExport\Base\ProtoExportBase.cs" />
+    <Compile Include="ProtoExport\ProtoCSharp\ProtoExportClient.cs" />
+    <Compile Include="ProtoExport\ProtoCSharp\ProtoExportServer.cs" />
+    <Compile Include="ProtoExport\ProtoCSharp\ProtoExportTransit.cs" />
+    <Compile Include="ProtoExport\ProtoExportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProtoExport\ProtoExportForm.Designer.cs">
+      <DependentUpon>ProtoExportForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProtoExport\ProtoParseClientHelper.cs" />
+    <Compile Include="ProtoExport\ProtoUtils.cs" />
     <Compile Include="SettingCode\BaseSetting.cs" />
     <Compile Include="SettingCode\CodeOutSetting.cs" />
     <Compile Include="SettingCode\CodeOut\APIOut.cs" />
@@ -167,6 +180,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="ProtoExport\ProtoExportForm.resx">
+      <DependentUpon>ProtoExportForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

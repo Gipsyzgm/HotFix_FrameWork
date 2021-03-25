@@ -17,21 +17,19 @@ namespace Tools
         }
 
         private void ProtoExportForm_Load(object sender, EventArgs e)
-        {
-            treeFiles.MouseDoubleClick += new MouseEventHandler(listFiles_MouseDoubleClick);
+        {           
             this.Refresh();
             setEditConfigBtnList();
         }
 
         public override void Refresh()
         {
-            this.txtProtoPath.Text = Glob.projectSetting.RealityProtoDir;
-            this.txtServerPath.Text = Glob.projectSetting.RealityServerDir;
-            this.txtClientPath.Text = Glob.projectSetting.RealityClientDir;
-            this.txtClientHoxPath.Text = Glob.projectSetting.RealityClientHotDir;
+            this.ProtoPathTxt.Text = Glob.projectSetting.RealityProtoDir;
+            this.ServerPathTxt.Text = Glob.projectSetting.RealityServerDir;
+            this.ClientPathTxt.Text = Glob.projectSetting.RealityClientDir;
+            this.ClientHoxPathTxt.Text = Glob.projectSetting.RealityClientHotDir;
             GetProtoFolderFiles();
         }
-        
 
         #region 打开文件和文件夹
         /// <summary>
@@ -39,14 +37,14 @@ namespace Tools
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void listFiles_MouseDoubleClick(object sender, MouseEventArgs e)
+
+        private void treeFiles_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            //int index = this.listFiles.IndexFromPoint(e.Location);
             TreeNode node = this.treeFiles.GetNodeAt(e.Location);
-            if (node.Parent==null)
-                Utils.OpenDir(Path.Combine(this.txtProtoPath.Text, node.Text));
+            if (node.Parent == null)
+                Utils.OpenDir(Path.Combine(this.ProtoPathTxt.Text, node.Text));
             else
-                Utils.OpenFile(Path.Combine(this.txtProtoPath.Text,node.Parent.Text, node.Text));
+                Utils.OpenFile(Path.Combine(this.ProtoPathTxt.Text, node.Parent.Text, node.Text));
 
         }
 
@@ -58,20 +56,20 @@ namespace Tools
         private void SelctFolder_ClickEvent(object sender, EventArgs e)
         {
             Utils.ButtonOpenDir(sender);
-        }       
+        }
         #endregion
 
         #region 获取目录下所有Proto文件
         /// <summary>
-        /// 获取目录下所有excel文件
+        /// 获取目录下所有Proto文件，都加入节点（TreeNode）
         /// </summary>
         private void GetProtoFolderFiles()
         {
-            string path = this.txtProtoPath.Text;
+            string path = this.ProtoPathTxt.Text;
             treeFiles.Nodes.Clear();
             if (path == "")
                 return;
-           
+            //获取所有子文件夹
             DirectoryInfo[] dirs = new DirectoryInfo(path).GetDirectories();
             foreach (var dir in dirs)
             {
@@ -87,9 +85,7 @@ namespace Tools
 
         }
         #endregion
-        
-        
-        
+         
         #region 全部导出
         /// <summary>
         /// 一键生成所有相关文件
@@ -162,10 +158,11 @@ namespace Tools
 
 
         #endregion
+
         #region 编辑_config.txt文件
         private void setEditConfigBtnList()
         {
-            string path = this.txtProtoPath.Text;
+            string path = this.ProtoPathTxt.Text;
             if (path == "")
                 return;
             DirectoryInfo[] dirs = new DirectoryInfo(path).GetDirectories();
@@ -177,17 +174,18 @@ namespace Tools
                 btn.Text = dirs[i].Name;
                 btn.Click += new EventHandler(this.openConfigFile_ClickEvent);
                 btn.Size = new System.Drawing.Size(125, 30);
-                btn.Location = new System.Drawing.Point(index % 3 * 148, index / 3 * 40);
+                btn.Location = new System.Drawing.Point(index % 3 * 153, index / 3 * 38);
                 this.panelBtnList.Controls.Add(btn);
                 index++;
             }
         }
         private void openConfigFile_ClickEvent(object sender, EventArgs e)
         {
-            Utils.OpenFile(Path.Combine(this.txtProtoPath.Text,((Button)sender).Text, "_config.txt"));
+            Utils.OpenFile(Path.Combine(this.ProtoPathTxt.Text,((Button)sender).Text, "_config.txt"));
 
         }
-        #endregion        
+        #endregion
+
     }
 }
 
