@@ -23,6 +23,9 @@ namespace ILRuntime.Runtime.Generated
             FieldInfo field;
             Type[] args;
             Type type = typeof(UnityEngine.Color);
+            args = new Type[]{};
+            method = type.GetMethod("get_white", flag, null, args, null);
+            app.RegisterCLRMethodRedirection(method, get_white_0);
 
             field = type.GetField("r", flag);
             app.RegisterCLRFieldGetter(field, get_r_0);
@@ -89,6 +92,17 @@ namespace ILRuntime.Runtime.Generated
                     }
                     break;
             }
+        }
+
+        static StackObject* get_white_0(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        {
+            ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
+            StackObject* __ret = ILIntepreter.Minus(__esp, 0);
+
+
+            var result_of_this_method = UnityEngine.Color.white;
+
+            return ILIntepreter.PushObject(__ret, __mStack, result_of_this_method);
         }
 
 

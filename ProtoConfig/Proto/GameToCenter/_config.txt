@@ -25,7 +25,8 @@
 2,250 = PbCenterPlayer.SC_Center_AIHelpPush			#通知游戏服玩家有客服推送消息
 2,251 = PbCenterPlayer.CS_Center_AIHelpPush			#向中央服请求玩家未发送的推送消息（登录时）
 2,252 = PbCenterPlayer.SC_Center_Activity			#收到中央服更新活动
-2,253 = PbCenterPlayer.SC_Center_SeasonUpdate		#通知游戏服赛季更新消息
+2,253 = PbCenterPlayer.CS_Center_ArenaFindPlayer	#向中央服请求玩家不在线对手
+2,254 = PbCenterPlayer.SC_Center_ArenaFindPlayer	#向中央服请求玩家不在线对手
 
 #命令行
 1,301 = PbGameSerCommand.SC_Command					#向游戏服发送命令行

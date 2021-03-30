@@ -84,7 +84,7 @@ namespace Tools.ProtoExport
 
         protected void generateProto(ProtoCodeOut config,string ProtoType,bool isResetDir = true)
         {
-            string protogen = ProtoUtils.GetProtoCFile(config.IsProtobuffForILR);
+            string protogen = GetProtoCFile(config.IsProtobuffForILR);
             string protoDir = Path.Combine(Glob.projectSetting.RealityProtoDir, ProtoType);
             string protoComm = Path.Combine(Glob.projectSetting.RealityProtoDir, "Common");
             List<string> cmds = new List<string>();
@@ -102,6 +102,18 @@ namespace Tools.ProtoExport
                 cmds.Add(cmd);
             }
             Utils.Cmd(cmds);
+        }
+        /// <summary>
+        /// 获取生成Protobuf工具的路径
+        /// </summary>
+        /// <param name="isILRProtobuff"></param>
+        /// <returns></returns>
+        public static string GetProtoCFile(bool isILRProtobuff = false)
+        {
+            string protoc = "DefSupport/Libs/protoc.exe";
+            //if (isILRProtobuff)
+            //    protoc = "DefSupport/Libs/protoc_ilr.exe";
+            return Path.Combine(Environment.CurrentDirectory, protoc);
         }
     }
 }

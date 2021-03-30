@@ -1,110 +1,21 @@
 //战斗信息
 syntax = "proto3";
+import "PbCom.proto";
 package PbWar;
 
-//收到章节挑战信息
-message SC_war_fbInfo
-{
-	int32 FBChapterMaxId = 1;	//普通副本最高章节id
-	int32 FBStageMax = 2;       //普通最高章节中最高过关关卡数
-	int32 FBKnChapterMaxId = 3; //困难副本最高章节id
-	int32 FBKnStageMax = 4;     //困难副本最高关卡数
-	bool IsReBuildFB = 5;       //是否需要还原副本（true 需要取数据还原副本）
-	ChapterInfo info = 6;       //待还原副本详情
-}
 
-//收到普通章节挑战信息更新
-message SC_war_fbUpdate
-{
-	int32 FBChapterMaxId = 1;	//副本最高章节id
-	int32 FBStageMax = 2;       //最高章节中最高过关关卡数
-}
-
-//收到困难章节挑战信息更新
-message SC_war_fbknUpdate
-{
-	int32 FBKnChapterMaxId = 1;	//困难副本最高章节id
-	int32 FBKnStageMax = 2;      //困难副本最高章节中最高过关关卡数
-}
-
-//一个章节数据
-message ChapterInfo
-{
-	int32 ID = 1;						//章节id
-	repeated int32 StageIds = 2;        //章节中随机关卡id
-	int32 CurStageId = 3;               //当前章节中最高关卡id（序号）
-	int32 CurHeroHP = 4;                //当前英雄血量
-	int32 MaxHeroHP = 5;                //当前英雄最大血量
-	int32 WarLevel = 6;                 //战斗等级
-	int32 WarExp = 7;                   //战斗经验
-	int32 KillNum = 8;	                //杀敌数
-	int32 KillBossNum = 9;              //击杀boss数量
-	int32 type = 10;                    //1简单 2困难
-	repeated One_ChapterSkill oneSkill = 11;      //当前已获得技能
-	repeated One_DropItem oneDrop = 12;          //当前掉落物品
-	bool IsTraderOpen = 13;              //商人是否已出现
-	bool IsUseRebornByAD = 14;           //是否已使用广告复活
-	int32 RebirthNum = 15;               //当前剩余复活次数
-}
-
-//一个技能数据
-message One_ChapterSkill
-{
-	int32 ID = 1;						//技能id
-	int32 level = 2;                    //技能等级
-}
-
-//请求进入章节副本挑战
+//请求副本挑战
 message CS_war_fb
 {
-	int32 ChapterId = 1;                //章节Id
-	repeated int32 StageIds = 2;        //章节中随机关卡id
-	int32 Type = 3;                     //1简单 2困难
+	int32 LevelStageId = 1;
+	int32 TeamId = 2; //使用的队伍Id
 }
 
-//收到进入章节挑战
+//收到副本挑战
 message SC_war_fb
 {
-	int32 ChapterId = 1;                //章节Id
-	int32 Type = 2;                     //1简单 2困难
+	int32 ActionPoint = 1;  		//副本行动点数
 }
-
-//请求章节关卡结束
-message CS_war_fbStageEnd
-{
-	int32 ChapterId = 1;                //章节Id
-	int32 CurStage = 2;                 //当前关卡id
-	repeated One_ChapterSkill oneSkill = 3;      //当前已获得技能
-	repeated One_DropItem  oneDrop = 4;          //当前掉落物品
-	int32 KillNum = 5;	       //杀敌数
-	int32 KillBossNum = 6;     //击杀boss数量
-	int32 WarLevel = 7;        //战斗等级
-	int32 WarExp = 8;          //战斗经验
-	int32 CurHeroHP = 9;                //当前英雄血量
-	int32 MaxHeroHP = 10;                //当前英雄最大血量
-	int32 type = 11;           //1简单 2困难 
-	int32 RebirthNum = 12;     //当前剩余复活次数
-}
-
-//收到章节关卡结束
-message SC_war_fbStageEnd
-{
-	int32 ChapterId = 1;                //章节Id
-	int32 CurStage = 2;                 //当前关卡id
-	bool IsUseTime = 3;                 //是否使用挂机时间
-	int32 HangUpGetTime = 4;            //第一章第一次通关通知客户端挂机奖励可领时间戳
-	int32 type = 5;           //1简单 2困难  
-}
-
-//请求退出章节
-message CS_war_fbExit
-{	
-	int32 ChapterId = 1;                //章节Id
-	int32 exitType = 2;                 //退出类型（1 战斗失败退出 2 玩家主动退出）
-	int32 type = 4;                     //1简单 2困难
-}
-
-
 //请求副本战斗重生
 message CS_war_fbRebirth
 {	
@@ -114,24 +25,104 @@ message SC_war_fbRebirth
 {
 	int32 RebirthNum = 1; //当前重生次数  (客户端HP加满,当前回合置0)
 }
-
-//请求领取章节宝箱
-message CS_war_GetBox
-{	
-	int32 BoxId = 1;      //领取宝箱id
-}
-
-//收到领取章节宝箱结果
-message SC_war_GetBox
-{	
-	int32 BoxId = 1;      //领取宝箱id
-}
-
-//收到章节宝箱可领取通知
-message SC_war_GetBoxUpdate
+//请求退出
+message CS_war_exit
 {
-	repeated int32 Ids = 1; //进度达成，发送可领取宝箱id （只有一个可领）
-	repeated int32 WaitIds = 2;  //已激活待领取宝箱id
+	int32 KillNum = 1;	//杀敌数
+	repeated int32 ItemIds = 2;		//使用道具
+	repeated int32 ItemNums = 3;
+	repeated int32 KillTemplIds = 4;	//怪物模板Id
+	repeated int32 KillTemplNums = 5;//怪物数量
+	int32 Damage = 10;
+	repeated int32 ClubWarEnemyHPs = 11; //联盟战敌人剩余血量[0-4]对应英雄位置血量
+}
+//请求副本扫荡
+message CS_war_fbQuick
+{
+	int32 LevelStageId = 1;			//关卡Id
+	int32 Num = 2;					//扫荡次数
+	int32 KillNum = 3;			//杀敌数	
+	repeated int32 KillTemplIds = 4;	//怪物模板Id
+	repeated int32 KillTemplNums = 5;//怪物数量
+}
+
+//收到战斗信息
+message SC_war_info
+{
+	int32 WarType = 1;				//战斗类型 EWarType
+	int32 WarMapId = 2;				//战斗地图ID  FB为FBLevelStage Id		
+	repeated PbCom.One_war_entity EnemyList = 3;//当前敌人数据(pvp发送)
+	int32 TeamId = 4;				//出战队伍ID
+	repeated One_DropItem Boxs = 5;//箱子掉落
+	repeated int32 HeroIds = 6;			//出战的英雄Ids（活动副本）
+	repeated int32 EquipIds = 7;		//使用的装备Ids
+	repeated int32 ItemIds = 8;			//携带的道具Ids
+	string Name = 9;							//玩家名
+	repeated int32 Icon = 10;					//玩家头像[头像、背景、角标]
+}
+
+
+//敌方攻击
+message One_war_enemyAttack
+{
+	int32 Cast = 1;						//施法者
+	int32 SkillId = 2;						//技能Id  普通攻击0	
+	repeated One_war_damage Damages = 3;	//攻击目标伤害 (普通攻击只有一个条数据)
+}
+message One_war_damage
+{
+	int32 Target = 1;				//目标位置 (0-4) (10-24)敌人
+	int32 DamageType = 2;		//0普通伤害 1闪避 2爆击	3恢复生命 4恢复能量 5无伤害(只加BUFF) 6免疫 7无敌  EDamageType
+	int32 Value = 3;				//伤害值	
+	int32 TargetAddMP = 4;		//目标获得能量(普通攻击有)
+	int32 CastAddMP = 5;			//攻击方获得能量(普通攻击有)
+	bool IsAvgDamage = 6;		//是否平分伤害(true 所有友方单位扣除同等血量)
+	int32 CastSuckHP = 7;			//攻击吸血(负数为返伤值)
+	int32 AttachDowerId = 8;		//附加天赋值	
+	int32 AttachDowerValue = 9;	//附加天赋值		
+	int32 TargetAttachDowerId = 10;	//目标附加天赋值	
+	int32 TargetAttachDowerValue = 11;	//目标附加天赋值	
+	
+}
+
+
+message CS_war_result
+{
+	bool IsWin = 1;				//是否胜利   //通关客户端自己维护关卡信息
+	int32 WarType = 2;			//战斗类型 EWarType
+	int32 WarMapId = 3;			//战斗地图ID  FB为FBLevelStage Id	
+	int32 KillNum = 4;			//杀敌数
+	repeated int32 ItemIds = 5;		//使用道具
+	repeated int32 ItemNums = 6;
+	int32 BoxNum = 7;			//箱子数
+	repeated int32 KillTemplIds = 8;	//怪物模板Id
+	repeated int32 KillTemplNums = 9;//怪物数量
+	int32 Damage = 10;			//总伤害
+	int32 ComboMax = 11;			//最高连击
+	repeated int32 ClubWarEnemyHPs = 12; //联盟战、联赛敌人剩余血量[0-4]对应英雄位置血量
+	repeated int32 HeroLastHPs = 13; //自己英雄剩余血量[0-4]
+	repeated int32 Power = 14;  //pvp双方战力 【0自己、1对手】
+	bool PlayerAtion = 15; 		//操作方式 true 自动false 手动
+}
+
+
+//收到战斗结果
+message SC_war_result
+{
+	bool IsWin = 1;				//是否胜利   //通关客户端自己维护关卡信息
+	repeated One_DropItem DropItems = 2;	//掉落信息 (失败只做显示用)
+	int32 KillsNum = 3;		//杀敌数 (副本用来显示箱子数)
+	int32 ArenaScore = 4;	//获得竞技场积分
+	PbCom.One_Titan_Info TitanInfo = 5; //泰坦战斗信息,其它战斗没有
+	int32 ClubWarScore = 6; //获得的联盟战积分
+	repeated int32 LeagueScore = 7;//获得的分数(英雄击杀得分、难度得分)
+	repeated int32 EventFBScore = 8;//挑战活动分数(敌人战败分、稀有敌人分、时间奖励分、比赛奖励分、生命加成分、继续惩罚分)
+}
+
+//数据异常
+message SC_war_error
+{
+	int32 errorCode = 1;
 }
 
 
@@ -142,40 +133,13 @@ message One_DropItem
 	int32 Count = 2;		//数量
 }
 
-//请求随机商人购买
-message CS_war_TraderBuy
+//一个特殊格子信息
+message One_SpecialGrid
 {	
-    int32 ShopId = 1;      //商品id
-	int32 ItemId = 2;      //道具id
-	int32 ItemNum = 3;     //道具数量
-	int32 CostId = 4;      //虚拟物品id
-	int32 CostNum = 5;     //消耗虚拟物品数量
-	int32 ChapterId = 6;   //章节Id
-	int32 fbType = 7;      //副本类型  1 简单 2 困难
+	int32 Index = 1;		//格子位置
+	int32 Num = 2;		//层叠数量
+	int32 Symbol = 3;	//符号类型(锁连没有类型) (更新时不发送)
 }
-
-//收到随机商人购买
-message SC_war_TraderBuy
-{	
-	int32 ShopId = 1;      //商品id
-	Enum_TraderBuy_result result = 2;  //购买结果
-}
-
-//商人购买结果
-enum Enum_TraderBuy_result
-{
-	BuSucceed = 0;		//成功
-	BuUnknown = 1;		//未知错误
-	BuNotMoney = 2;		//所需货币不足
-}
-
-//请求章节内看广告复活
-message CS_war_RebornByAD
-{	
-	int32 ChapterId = 1;   //章节Id
-	int32 fbType = 2;      //副本类型  1 简单 2 困难
-}
-
 
 //检测消息加密
 message CS_TestEncrypt

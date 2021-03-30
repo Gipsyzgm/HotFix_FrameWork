@@ -83,7 +83,7 @@ namespace Tools.ProtoExport
         protected virtual void CreateCommonProto()
         {
             if (Config.CommonProtoDir == string.Empty) return;
-            string protogen = ProtoUtils.GetProtoCFile(Config.IsProtobuffForILR);
+            string protogen = GetProtoCFile(Config.IsProtobuffForILR);
             string protoDir = Path.Combine(Glob.projectSetting.RealityProtoDir, "Common");
             List<string> cmds = new List<string>();
             DirectoryInfo folder = new DirectoryInfo(protoDir);

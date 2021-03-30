@@ -16,9 +16,7 @@ message SC_Center_PlayerLogin
 {
 	int32 SessionId = 1;	//客户端SessionID
 	string PlayerId = 2;	//玩家ObjectId 也是账号Id	
-	bool IsReLogin = 3;	    //是否为重登数据
-	int32 SeasonId = 4;                //当前赛季id
-	int32 SeasonEndTime = 5;           //当前赛季过期时间戳 
+	bool IsReLogin = 3;	//是否为重登数据
 }
 
 
@@ -74,15 +72,30 @@ message CS_Center_AIHelpPush
 	string PlayerId = 1; 					//玩家ObjectId
 }
 
-//通知游戏服赛季更新消息
-message SC_Center_SeasonUpdate
-{
-	int32 SeasonId = 1;					    //赛季ID
-	int32 EndTIme = 2;	                    //赛季过期时间戳
-}
-
 //请求更新活动
 message SC_Center_Activity
 {
 	
+}
+
+//请求竞技场查找 不在线对手
+message CS_Center_ArenaFindPlayer
+{
+	string PlayerId= 1;	 			// 玩家ID	
+	repeated string OpponentIds=2;	// 需要判断玩家是否在线
+	bool ReRoll =3;					// 是否扣资源
+	bool IsRevenge = 4;				// 是否为反击战
+	bool IsBack=5;					// 是否为指定对手
+	int32 OpponentNum=6;				// 反击次数
+}
+
+//请求竞技场查找 不在线对手
+message SC_Center_ArenaFindPlayer
+{
+	string PlayerId = 1;				//玩家ID
+	string OpponentId = 2;				//对手ID	
+	bool ReRoll =3;						// 是否扣资源
+	bool IsRevenge = 4;					// 是否为反击战
+	bool IsBack=5;						// 是否为指定对手
+	int32 OpponentNum=6;					// 反击次数
 }

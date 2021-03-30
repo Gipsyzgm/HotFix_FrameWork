@@ -25,9 +25,12 @@ namespace ILRuntime.Runtime.Generated
             args = new Type[]{};
             method = type.GetMethod("get_IsCompleted", flag, null, args, null);
             app.RegisterCLRMethodRedirection(method, get_IsCompleted_0);
+            args = new Type[]{};
+            method = type.GetMethod("WaitForNextFrame", flag, null, args, null);
+            app.RegisterCLRMethodRedirection(method, WaitForNextFrame_1);
             args = new Type[]{typeof(System.Single)};
             method = type.GetMethod("WaitForSeconds", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, WaitForSeconds_1);
+            app.RegisterCLRMethodRedirection(method, WaitForSeconds_2);
 
 
         }
@@ -50,7 +53,18 @@ namespace ILRuntime.Runtime.Generated
             return __ret + 1;
         }
 
-        static StackObject* WaitForSeconds_1(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        static StackObject* WaitForNextFrame_1(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        {
+            ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
+            StackObject* __ret = ILIntepreter.Minus(__esp, 0);
+
+
+            var result_of_this_method = global::RoutineBase.WaitForNextFrame();
+
+            return ILIntepreter.PushObject(__ret, __mStack, result_of_this_method);
+        }
+
+        static StackObject* WaitForSeconds_2(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
         {
             ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
             StackObject* ptr_of_this_method;

@@ -54,6 +54,7 @@ message CS_monthCard_get
 //收到领取月卡奖励结果
 message SC_monthCard_get
 {
+	repeated PbCom.One_AwardItem Awards = 1;	//奖励道具
 }
 
 //请求充值下定单

@@ -11,8 +11,7 @@ message SC_player_resetData
 	int32 MCDay = 3;					//剩余月卡天数
 	bool IsGetMC = 4;					//月卡今日是否已领取
 	int32 LoginDay = 5;					//累计登录天数
-	int32 LeftAdNum = 6;                //当日剩余广告次数
-	int32 BuyPowerNum = 7;              //当日累计购买体力次数
+	int32 ElementSummonId=6;			//元素召唤ID
 }
 
 
@@ -40,24 +39,17 @@ message CS_save_guideStep
 {
 	int32 GuideStepId = 1;
 }
+//请求红点数据
+message CS_player_redDot
+{
+	
+}
 
-//红点用到的一些数据
+//收到红点数据
 message SC_player_redDot
 {
-	int32 RankRachWarNum = 1;				//升班赛 今日剩余挑战次数		
-	int32 RankRachLastWarTime = 2;				//升班赛 上次挑战时间(有CD时:传上次挑战时间戳 其他时为0)
-	bool RankRachGetAward = 3;				//升班赛 是否可领奖
-
-	int32 MineLeftNum = 4;		//矿山剩余次数
-	int32 MineCurrEndTime = 5;		//当前矿山结束时间
-	int32 BusADLeftNum = 6;		//广告活动剩余次数
-	int32 BusADCurrEndTime = 7;	//当前广告活动结束时间
-
-	int32 ExploreLeftNum = 8;		//探索剩余次数		
-	int32 ExploreCurrEndTime = 9;	//探索结束时间
-	bool GuessAward = 10;		//竞猜是否有奖励未领取
-
-	int32 JocDiningEatNum = 11;	//骑师餐厅进餐次数
+	bool JoinLeague =1; 		//是否显示加入联赛	
+	int32 LeagueWarNum =2;		//联赛可攻击次数
 }
 
 //请求玩家改名
@@ -98,51 +90,42 @@ message SC_player_buyGold
 	int32 gold = 1;						//金币增加的数量
 }
 
-//收到玩家体力变化
+//收到玩家行动点发生改变
 message SC_player_point
 {
-	int32 PowerPoint = 1;				//当前体力点数
-	int32 NextAddPowerTime = 2;			//下次恢复体力时间戳
+	int32 ActionPoint = 1;				//副本行动点数
+	int32 ArenaPoint = 2;				//竞技行动点数
+	int32 BossPoint = 3;				//公会Boss行动点
+	int32 NextAddAPTime = 4;			//下次恢复副本行动点时间戳
+	int32 NextAddARPTime = 5;			//下次恢复竞技行动点时间戳
+	int32 NextAddBPTime = 6;			//下次恢复公会行动点时间戳
 }
 
-//请求钻石购买体力
-message CS_player_buyPower
-{
-}
 
-message SC_player_buyPower
-{
-	int32 BuyPowerNum = 1;              //当前购买体力次数
-}
 
-//请求天赋升级
-message CS_player_dowerLevelUp
+//请求钻石补齐资源
+message CS_player_buyRes
 {	
+	repeated  PbCom.One_AwardItem Less = 1;					//补齐的资源
+}
+//收到钻石补齐资源
+message SC_player_buyRes
+{	
+	repeated  PbCom.One_AwardItem Less = 1;					//补齐的资源
 }
 
-//收到天赋升级
-message SC_player_dowerLevelUp
+//请求补满体力
+message CS_player_buyEnergy
 {
-    Enum_dowerLevelUp_result result = 1;  //升级结果
-	repeated int32 DowerLevel = 2;	      //当前天赋等级（9个）
-    int32 LeftDowerPoint = 3;             //剩余天赋点数
-	int32 TotalTimes = 4;                 //总计升级天赋次数
+	int32 EnergyType = 1;				//体力类型 0副本 1竞技 2泰坦
+	int32 CostType = 2;					//花费类型 0钻石 1道具
 }
-
-//天赋升级结果
-enum Enum_dowerLevelUp_result
+//收到补满体力
+message SC_player_buyEnergy
 {
-	DuUnknown = 0;		//未知错误
-	DuSucceed = 1;		//成功
-	DuLackGold = 2;		//金币不足
-	DuLackPoint = 3;	//天赋点不足
-	DuMaxDower = 4;	    //天赋已满
-}
-
-//收到天赋点增加
-message SC_player_dowerPoint
-{
-    int32 LeftDowerPoint = 1;             //剩余天赋点数
+	int32 EnergyType = 1;				//体力类型 0副本 1竞技 2泰坦
+	int32 CostType = 2;					//花费类型 0钻石 1道具
+	int32 Num = 3;						//被补满的体力值
 }
 
 //角色改名结果
@@ -155,6 +138,11 @@ enum Enum_changeName_result
 	CnIllegalChar = 4;	//角色名中有非法字符
 }
 
+//保存评分状态
+message CS_player_estimate
+{
+
+}
 
 //收到新客服推送消息(AIHelp)
 message SC_player_newPush
@@ -163,23 +151,40 @@ message SC_player_newPush
 }
 
 
-//收到赛季更新
-message SC_player_SeasonUpdate
+//请求推送礼包
+message CS_player_payPackList
 {
-	int32 SeasonId = 1;	           //赛季id
-	int32 EndTime = 2;             //赛季过期时间戳
-	bool IsSeasonVip = 3;          //是否购买赛季令牌
-	int32 SeasonExp = 4;           //令牌经验
+
 }
 
-//请求领取玩家广告双倍奖励
-message CS_player_AdDouble
+//收到推送礼包
+message SC_player_payPackList
 {
-	int32 Type = 1;	               //奖励类型  1 升级奖励 2 章节奖励
-	bool IsDouble = 2;             //奖励是否翻倍（看完广告后为true）
+	repeated One_pack_info Info = 1;	//
 }
 
-//请求完成新手关卡
-message CS_player_FinishGuide
+//一个礼包信息
+message One_pack_info
 {
+	int32 packId = 1;			//礼包Id
+	int32 time = 2;		//剩余时间
+	int32 num=3;		//次数
+}
+
+
+//收到推送礼包
+message SC_player_payOkPack
+{
+	repeated One_pack_info Info = 1;	//
+}
+
+
+message CS_player_pkAward
+{
+	repeated int32 pkType=1;			//索引0titan 1联盟战 2联赛	0不发奖励	 1发奖励	
+}
+
+message SC_player_pkAward
+{
+	repeated int32 pkType=1;			//索引0titan 1联盟战 2联赛	  2表示有奖励3表示无奖励
 }

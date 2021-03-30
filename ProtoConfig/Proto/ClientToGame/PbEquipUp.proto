@@ -3,69 +3,18 @@ syntax = "proto3";
 package PbEquipUp;
 
 
-//请求装备升级
+//请求装备强化
 message CS_equip_streng
 {
 	int32 SID = 1;					//装备SID
+	repeated int32 EquipIds = 2;	//被吃的装备SID
 }
 
-//收到装备升级结果
+//收到装备强化结果
 message SC_equip_streng
 {
 	int32 SID = 1;					//装备SID
 	int32 Level = 2;				//强化后的等级 (修改装备数据)
-	int32 BreakLv = 3;              //突破等级
-}
-
-//请求装备升阶
-message CS_equip_break
-{
-	int32 SID = 1;					//装备SID
-}
-
-//收到装备升阶结果
-message SC_equip_break
-{
-	int32 SID = 1;					//装备SID
-	int32 Level = 2;				//强化后的等级 (修改装备数据)
-	int32 BreakLv = 3;              //突破等级
-	int32 num = 4;                  //剩余升级道具数量
-}
-
-//请求更换装备
-message CS_equip_Change
-{
-	int32 SID = 1;					//装备SID
-	int32 Type = 2;                 //操作类型（1 穿戴  2 卸下）穿戴时位置已有装备默认替换掉
-	int32 Index = 3;                //位置id
-}
-
-//收到更换装备
-message SC_equip_Change
-{
-	int32 SID = 1;					//装备SID
-	int32 Type = 2;                 //操作类型（1 穿戴  2 卸下）穿戴时位置已有装备默认替换掉
-	int32 Index = 3;                //位置id
-	int32 CSid = 4;                 //被替换装备模板id（没有为0）
-}
-
-//请求分解装备
-message CS_equip_Resolve
-{
-	int32 SID = 1;					//装备SID
-}
-
-//收到分解装备
-message SC_equip_Resolve
-{
-	int32 SID = 1;					//装备SID
-	Enum_Resolve_result result = 2; //分解装备结果
-}
-
-//分解装备结果
-enum Enum_Resolve_result
-{
-	ReSucceed = 0;		//成功
-	ReDressed = 1;		//已穿戴装备不能分解
-	ReOnly = 2;		//唯一类型装备不能分解
+	int32 Exp = 3;					//当前经验
+	repeated int32 EquipIds = 4;	//被吃的装备SID
 }
