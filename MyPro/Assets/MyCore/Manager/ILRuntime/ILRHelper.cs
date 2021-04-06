@@ -126,7 +126,7 @@ public static class ILRHelper
             });
         });
 
-
+        appdomain.DelegateManager.RegisterMethodDelegate<System.ArraySegment<System.Byte>>();
 
         //注册重定向函数
         appdomain.RegisterCLRMethodRedirection(typeof(Debug).GetMethod("Log", new System.Type[] {typeof(object) }), HotFixLog);
