@@ -14,31 +14,26 @@ namespace Telepathy
 {
     public class MagnificentSendPipe
     {
-        // message queue
-        // ConcurrentQueue allocates. lock{} instead.
-        // -> byte arrays are always of MaxMessageSize
-        // -> ArraySegment indicates the actual message content
-        //
+        // 消息队列
+        // 并发队列分配. lock{} instead.
+        // -> 字节数组始终为MaxMessageSize
+        // -> ArraySegment指示实际的消息内容
         // IMPORTANT: lock{} all usages!
         readonly Queue<ArraySegment<byte>> queue = new Queue<ArraySegment<byte>>();
 
-        // byte[] pool to avoid allocations
-        // Take & Return is beautifully encapsulated in the pipe.
-        // the outside does not need to worry about anything.
-        // and it can be tested easily.
-        //
+        // byte []池以避免分配
+        // Take＆Return精美地封装在管道中。 外部无需担心任何事情，并且可以轻松进行测试。
         // IMPORTANT: lock{} all usages!
         Pool<byte[]> pool;
 
         // constructor
         public MagnificentSendPipe(int MaxMessageSize)
         {
-            // initialize pool to create max message sized byte[]s each time
+            // 初始化池以每次创建最大消息大小字节
             pool = new Pool<byte[]>(() => new byte[MaxMessageSize]);
         }
 
-        // for statistics. don't call Count and assume that it's the same after
-        // the call.
+        // 用于统计。 不要调用Count并假设在调用后它是相同的。
         public int Count
         {
             get { lock (this) { return queue.Count; } }
@@ -50,18 +45,16 @@ namespace Telepathy
             get { lock (this) { return pool.Count(); } }
         }
 
-        // enqueue a message
-        // arraysegment for allocation free sends later.
+        // 入队消息
+        // 用于免费分配的arraysegment稍后发送。
         // -> the segment's array is only used until Enqueue() returns!
         public void Enqueue(ArraySegment<byte> message)
         {
             // pool & queue usage always needs to be locked
             lock (this)
             {
-                // ArraySegment array is only valid until returning, so copy
-                // it into a byte[] that we can queue safely.
-
-                // get one from the pool first to avoid allocations
+                // ArraySegment数组仅在返回之前才有效，因此将其复制到byte []中，我们可以安全地将其排队。
+                // 首先从池中获取一个以避免分配
                 byte[] bytes = pool.Take();
 
                 // copy into it
@@ -75,29 +68,20 @@ namespace Telepathy
             }
         }
 
-        // send threads need to dequeue each byte[] and write it into the socket
-        // -> dequeueing one byte[] after another works, but it's WAY slower
-        //    than dequeueing all immediately (locks only once)
-        //    lock{} & DequeueAll is WAY faster than ConcurrentQueue & dequeue
-        //    one after another:
+        // 发送线程需要使每个byte []出队并将其写入 socket
+        // -> 使一个字节[]另一个队列出队列工作，但是比立即使所有字节出队列慢（仅锁定一次）
+        //    lock {}和DequeueAll比ConcurrentQueue快得多，并且一个接一个地出队：
         //
         //      uMMORPG 450 CCU
         //        SafeQueue:       900-1440ms latency
         //        ConcurrentQueue:     2000ms latency
         //
-        // -> the most obvious solution is to just return a list with all byte[]
-        //    (which allocates) and then write each one into the socket
-        // -> a faster solution is to serialize each one into one payload buffer
-        //    and pass that to the socket only once. fewer socket calls always
-        //    give WAY better CPU performance(!)
-        // -> to avoid allocating a new list of entries each time, we simply
-        //    serialize all entries into the payload here already
-        // => having all this complexity built into the pipe makes testing and
-        //    modifying the algorithm super easy!
+        // -> 最明显的解决方案是只返回一个包含所有byte []（分配）的列表，然后将每个列表写入套接字
+        // -> 一种更快的解决方案是将每个序列化到一个有效负载缓冲区中，并将其仅传递给套接字一次。 更少的套接字调用总能带来更好的CPU性能（！）
+        // -> 为了避免每次分配新的条目列表，我们已经在这里简单地将所有条目序列化到有效负载中
+        // => 将所有这些复杂性内置到管道中使测试和修改算法超级容易！
         //
-        // IMPORTANT: serializing in here will allow us to return the byte[]
-        //            entries back to a pool later to completely avoid
-        //            allocations!
+        // IMPORTANT: 在这里进行序列化将使我们稍后可以将byte []条目返回到池中，以完全避免分配！
         public bool DequeueAndSerializeAll(ref byte[] payload, out int packetSize)
         {
             // pool & queue usage always needs to be locked
@@ -108,8 +92,7 @@ namespace Telepathy
                 if (queue.Count == 0)
                     return false;
 
-                // we might have multiple pending messages. merge into one
-                // packet to avoid TCP overheads and improve performance.
+                // 我们可能有多个待处理邮件。 合并为一个数据包，以避免TCP开销并提高性能。
                 //
                 // IMPORTANT: Mirror & DOTSNET already batch into MaxMessageSize
                 //            chunks, but we STILL pack all pending messages
@@ -119,8 +102,7 @@ namespace Telepathy
                 foreach (ArraySegment<byte> message in queue)
                     packetSize += 4 + message.Count; // header + content
 
-                // create payload buffer if not created yet or previous one is
-                // too small
+                // 如果尚未创建有效负载缓冲区，或者前一个缓冲区太小，则创建它
                 // IMPORTANT: payload.Length might be > packetSize! don't use it!
                 if (payload == null || payload.Length < packetSize)
                     payload = new byte[packetSize];
@@ -132,7 +114,7 @@ namespace Telepathy
                     // dequeue
                     ArraySegment<byte> message = queue.Dequeue();
 
-                    // write header (size) into buffer at position
+                    // 将标头（大小）写入缓冲区中的位置（增加Size）
                     Utils.IntToBytesBigEndianNonAlloc(message.Count, payload, position);
                     position += 4;
 

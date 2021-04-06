@@ -84,16 +84,14 @@ namespace Telepathy
         }
 
         // enqueue a message
-        // -> ArraySegment to avoid allocations later
-        // -> parameters passed directly so it's more obvious that we don't just
-        //    queue a passed 'Message', instead we copy the ArraySegment into
-        //    a byte[] and store it internally, etc.)
+        // -> ArraySegment避免以后分配
+        // -> 参数直接传递，因此很明显我们不只是将传递的“消息”排队，而是将ArraySegment复制到byte []并在内部存储，等等。）
         public void Enqueue(int connectionId, EventType eventType, ArraySegment<byte> message)
         {
             // pool & queue usage always needs to be locked
             lock (this)
             {
-                // does this message have a data array content?
+                // 此消息是否具有数据数组内容？
                 ArraySegment<byte> segment = default;
                 if (message != default)
                 {
@@ -113,8 +111,7 @@ namespace Telepathy
                 }
 
                 // enqueue it
-                // IMPORTANT: pass the segment around pool byte[],
-                //            NOT the 'message' that is only valid until returning!
+                // IMPORTANT: 将段传递到池字节[]周围，而不是仅在返回之前才有效的“消息”！
                 Entry entry = new Entry(connectionId, eventType, segment);
                 queue.Enqueue(entry);
 
