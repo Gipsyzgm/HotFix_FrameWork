@@ -12,7 +12,7 @@ namespace HotFix
         /// <summary>UI管理器</summary>
         public static UIMgr UI;
         ///// <summary>网络消息管理器</summary>
-        //public static NetMgr Net;
+        public static NetMgr Net;
         /// <summary>多语言管理器</summary>
         public static LangMgr Lang;
         /// <summary>配置表管理器</summary>
@@ -41,6 +41,7 @@ namespace HotFix
         {
             GoPool = new GameObjectPool();
             UI = new UIMgr();
+            Net = new NetMgr();
             Sound = new SoundMgr();
             Timer = new TimerMgr();
             Lang = new LangMgr();
