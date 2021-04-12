@@ -11,6 +11,7 @@ namespace Tools.ProtoExport.ProtoCSharp
     {
         public ProtoExportClient(ProtoCodeOut config) : base(config)
         {
+
         }
 
         /// <summary>
@@ -20,12 +21,15 @@ namespace Tools.ProtoExport.ProtoCSharp
         protected override void CreateProtocolType(List<ProtoConifg> configList, int addIndex = -1)
         {
             string savePath = Config.RealityProtocolTypeFile;
+            //请求协议,客户端——>服务器
             StringBuilder reqProtocol = new StringBuilder();
+            //收到消息,服务器——>客户端
             StringBuilder rspProtocol = new StringBuilder();
-
+            //请求消息/收到消息对应关系
             StringBuilder csListProtocol = new StringBuilder();
+            //收到消息/请求消息对应关系
             StringBuilder scListProtocol = new StringBuilder();
-
+            //需要加密的消息
             StringBuilder sbEncrypt = new StringBuilder();
             string msgName = string.Empty;
             Dictionary<int, string> sameSCProto = new Dictionary<int, string>();
@@ -33,6 +37,7 @@ namespace Tools.ProtoExport.ProtoCSharp
             {
 
                 msgName = configList[i].MsgName.Split('.')[1].ToLower();
+                //请求的消息ID加入字典
                 if (msgName.StartsWith("cs_"))
                     reqProtocol.AppendLine($"            typeToProtocolDic.Add(typeof({configList[i].MsgName}), {configList[i].MsgId}); //{ configList[i].Comment}");
                 else if (msgName.StartsWith("sc_"))
@@ -41,10 +46,13 @@ namespace Tools.ProtoExport.ProtoCSharp
                     if (sameSCProto.TryGetValue(configList[i].MsgId,out var msgname))
                     {
                         if (msgname == configList[i].MsgName) //已经有相相的，不再加
+                        {
                             isHaveSameSCMsg = true;
+                        }          
                     }
                     if (!isHaveSameSCMsg)
                     {
+                        //收到的消息ID加入字典Switch语句
                         rspProtocol.AppendLine($"                case {configList[i].MsgId}:msg = new {configList[i].MsgName}(); break;//{ configList[i].Comment}");
                         if (!sameSCProto.ContainsKey(configList[i].MsgId))
                             sameSCProto.Add(configList[i].MsgId, configList[i].MsgName);
@@ -54,14 +62,16 @@ namespace Tools.ProtoExport.ProtoCSharp
                 }
                 if (configList[i].RtnMsgId != 0)
                 {
+                    //请求消息/收到消息对应关系
                     csListProtocol.AppendLine($"            {{{configList[i].MsgId},{configList[i].RtnMsgId}}},//{ configList[i].Comment}");
+                    //收到消息/请求消息对应关系
                     scListProtocol.AppendLine($"            {{{configList[i].RtnMsgId},{configList[i].MsgId}}},");
                 }
 
                 if (addIndex == i)
                 {
                     reqProtocol.AppendLine($"            //======中转消息======");
-                    rspProtocol.AppendLine($"                //======中转消息======");
+                    rspProtocol.AppendLine($"            //======中转消息======");
                     csListProtocol.AppendLine($"            //======中转消息======");
                     scListProtocol.AppendLine($"            //======中转消息======");
                 }
@@ -80,6 +90,7 @@ namespace Tools.ProtoExport.ProtoCSharp
         public Dictionary<ushort, ushort> SCList = new Dictionary<ushort, ushort>()
         {{
 {scListProtocol.ToString().TrimEnd(',')}        }};";
+
             }
 
             string str = $@"using System;
@@ -130,8 +141,6 @@ namespace {Config.RealityNameSpace}.Net
         }}
     }}
 }}";
-
-
             Utils.SaveFile(savePath, str);
         }
         /// <summary>
@@ -141,14 +150,16 @@ namespace {Config.RealityNameSpace}.Net
         protected override void CreateNetActionFile(List<ProtoConifg> configList, int addIndex = -1)
         {
             string savePath = Config.RealityNetActionFile;
+            //协议
             StringBuilder sbProtocol = new StringBuilder();
+            //线程ID
             StringBuilder sbThread = new StringBuilder();
            
             Dictionary<int, string> sameSCProto = new Dictionary<int, string>();
             for (int i = 0; i < configList.Count; i++)
             {
                 string[] info = configList[i].MsgName.Split('.');
-                if (info[1].ToLower().StartsWith("sc_")) //客户端发的请求消息
+                if (info[1].ToLower().StartsWith("sc_")) //服务器发的消息
                 {
                     bool isHaveSameSCMsg = false;
                     if (sameSCProto.TryGetValue(configList[i].MsgId, out var msgname))
@@ -160,6 +171,7 @@ namespace {Config.RealityNameSpace}.Net
                     {
                         string fileName = info[1].Substring(3);
                         fileName = Utils.ToFirstUpper(fileName);
+                        //comment描述信息是否为空
                         string comment = configList[i].Comment != string.Empty ? ("      //" + configList[i].Comment) : string.Empty;
                         sbProtocol.AppendLine($"            _actionList.Add({configList[i].MsgId}, {fileName});{comment}");
                         if (configList[i].ThreadId > 0 && SCThreadNum > 0)
@@ -247,13 +259,12 @@ namespace {Config.RealityNameSpace}.Net
             Utils.SaveFile(savePath, str);
         }
         /// <summary>
-        /// 收到消息NetMessage
+        /// 收到消息NetMessage，拆解成单个脚本
         /// </summary>
         /// <param name="configList">NetAction</param>
         protected override void CreateNetMessage(List<ProtoConifg> configList, int addIndex = -1)
         {
             string savePath = Config.RealityNetReceiveDir;
-            StringBuilder sbProtocol = new StringBuilder();
             string saveFilePath = string.Empty;
             for (int i = 0; i < configList.Count; i++)
             {
@@ -280,7 +291,6 @@ namespace  {Config.RealityNameSpace}.Net
                 }
             }
         }
-
         //=====
     }
 }

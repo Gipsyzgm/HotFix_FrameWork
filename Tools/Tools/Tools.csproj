@@ -146,7 +146,6 @@
       <DependentUpon>ProtoExportForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ProtoExport\ProtoParseClientHelper.cs" />
-    <Compile Include="ProtoExport\ProtoUtils.cs" />
     <Compile Include="SettingCode\BaseSetting.cs" />
     <Compile Include="SettingCode\CodeOutSetting.cs" />
     <Compile Include="SettingCode\CodeOut\APIOut.cs" />

@@ -11,7 +11,7 @@ namespace Tools.ProtoExport
     public class ProtoConifg
     {
         public ushort MsgId;      //消息协议号
-        public string MsgName;  //消息名
+        public string MsgName;  //消息名 格式：PbPlayer.SC_player_resetData
         public string Comment;  //消息描述
         public int ThreadId;       //工作线程ID
         public ushort RtnMsgId; //需要返回的消息协议
@@ -26,10 +26,11 @@ namespace Tools.ProtoExport
         protected int SCThreadNum = 0; //是SC消息处理线程数
         public ProtoBase()
         {
+
         }
 
         /// <summary>
-        /// 获取Proto配置列表
+        /// 根据Config_FilePath文件获取Proto配置列表
         /// </summary>
         /// <param name="protoDir">proto目录</param>
         /// <param name="callback">执行完回调</param>
@@ -81,7 +82,12 @@ namespace Tools.ProtoExport
             sr.Close();
             return configList;
         }
-
+        /// <summary>
+        /// Proto生成.CS文件
+        /// </summary>
+        /// <param name="config"></param>
+        /// <param name="ProtoType"></param>
+        /// <param name="isResetDir"></param>
         protected void generateProto(ProtoCodeOut config,string ProtoType,bool isResetDir = true)
         {
             string protogen = GetProtoCFile(config.IsProtobuffForILR);
@@ -98,6 +104,7 @@ namespace Tools.ProtoExport
             }
             foreach (FileInfo file in folder.GetFiles("*.proto"))
             {
+                //其中-I表示源文件所在文件夹地址，--cssharp_out表示生成平台为CSharp以及生成的文件存放目标地址，最后.proto为源文件的文件名
                 string cmd = $"{protogen} --csharp_out={config.RealityOutClassDir} -I {protoDir} -I {protoComm} {file.FullName}";
                 cmds.Add(cmd);
             }
@@ -111,8 +118,8 @@ namespace Tools.ProtoExport
         public static string GetProtoCFile(bool isILRProtobuff = false)
         {
             string protoc = "DefSupport/Libs/protoc.exe";
-            //if (isILRProtobuff)
-            //    protoc = "DefSupport/Libs/protoc_ilr.exe";
+            if (isILRProtobuff)
+                protoc = "DefSupport/Libs/protoc_ilr.exe";
             return Path.Combine(Environment.CurrentDirectory, protoc);
         }
     }

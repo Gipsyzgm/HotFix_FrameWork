@@ -59,18 +59,20 @@ namespace Tools.ProtoExport
             CreateNetMessage(configList, transitIndex);
         }
         /// <summary>
-        /// 创建ProtocolType
+        /// 生成ClientToGameClientProtocol
         /// </summary>
         /// <param name="configList"></param>
         protected virtual void CreateProtocolType(List<ProtoConifg> configList,int addIndex = -1)
         {
+
         }
         /// <summary>
-        /// 创建ProtocolType
+        /// 生成ClientToGameClientAction
         /// </summary>
         /// <param name="configList">NetAction</param>
         protected virtual void CreateNetActionFile(List<ProtoConifg> configList, int addIndex = -1)
         {
+
         }
         /// <summary>
         /// NetMessage
