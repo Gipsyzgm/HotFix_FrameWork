@@ -26,28 +26,27 @@
 1,3002 = PbPlayer.SC_player_updateVirtual	#收到玩家虚拟物品更新
 1,3003 = PbPlayer.SC_player_exp				#收到玩家经验发生改变
 1,3004 = PbPlayer.CS_save_guide				#保存指引步骤
-1,3005 = PbPlayer.CS_player_redDot			#玩家红点用到的数据
-1,3006 = PbPlayer.SC_player_redDot			#玩家红点用到的数据
-1,3007,3008 = PbPlayer.CS_player_changeName		#请求玩家改名
-1,3008 = PbPlayer.SC_player_changeName		#收到玩家改名
-1,3009 = PbPlayer.CS_player_buyGold			#请求购买金币
-1,3010 = PbPlayer.SC_player_buyGold			#收到购买金币
-1,3011 = PbPlayer.CS_save_guideStep			#保存指引步骤
-1,3012,3013 = PbPlayer.CS_player_changeIcon		#请求玩家修改头像
-1,3013 = PbPlayer.SC_player_changeIcon		#收到玩家修改头像
-1,3014 = PbPlayer.SC_player_point			#收到玩家行动点改变
-1,3015,3016 = PbPlayer.CS_player_buyRes			#请求钻石补齐资源
-1,3016 = PbPlayer.SC_player_buyRes			#收到钻石补齐资源
-1,3017,3018 = PbPlayer.CS_player_buyEnergy		#请求补满体力
-1,3018 = PbPlayer.SC_player_buyEnergy		#收到补满体力
-1,3019 = PbPlayer.CS_player_estimate		#保存评分状态
-1,3020 = PbPlayer.SC_player_newPush			#收到新客服推送消息
-1,3021 = PbPlayer.CS_player_payPackList		#请求推送礼包
-1,3022 = PbPlayer.SC_player_payPackList		#收到推送礼包
-1,3023 = PbPlayer.SC_player_payOkPack 		#收到购买成功推送礼包
-1,3024 = PbPlayer.CS_player_pkAward 		#请求是否有奖励
-1,3025 = PbPlayer.SC_player_pkAward 		#收到是否有奖励
-
+1,3005 = PbPlayer.SC_player_redDot			#玩家红点用到的数据
+1,3006,3007 = PbPlayer.CS_player_changeName		#请求玩家改名
+1,3007 = PbPlayer.SC_player_changeName		#收到玩家改名
+1,3008 = PbPlayer.CS_player_buyGold			#请求购买金币
+1,3009 = PbPlayer.SC_player_buyGold			#收到购买金币
+1,3010 = PbPlayer.CS_save_guideStep			#保存指引步骤
+1,3011,3012 = PbPlayer.CS_player_changeIcon		#请求玩家修改头像
+1,3012 = PbPlayer.SC_player_changeIcon		#收到玩家修改头像
+1,3013 = PbPlayer.SC_player_point			#收到玩家体力改变
+1,3016 = PbPlayer.SC_player_buyPower	#收到钻石补满体力
+1,3017 = PbPlayer.CS_player_buyPower	#请求钻石补满体力
+1,3019 = PbPlayer.SC_player_newPush			#收到新客服推送消息
+1,3025 = PbPlayer.SC_player_SeasonUpdate 	#收到赛季更新
+1,3026 = PbPlayer.CS_player_dowerLevelUp 	#请求天赋升级
+1,3027 = PbPlayer.SC_player_dowerLevelUp 	#收到天赋升级
+1,3028 = PbPlayer.SC_player_dowerPoint 	    #收到天赋点增加
+1,3029 = PbPlayer.CS_player_AdDouble 	    #请求领取玩家广告双倍奖励
+1,3030 = PbPlayer.CS_player_FinishGuide 	#请求完成新手关卡
+1,3031 = PbPlayer.SC_player_SeasonVIPOpen 	#收到赛季令牌开启通知
+1,3032,3033 = PbPlayer.CS_player_SeasonGet	#请求领取赛季令牌奖励
+1,3033 = PbPlayer.SC_player_SeasonGet		#收到已领取赛季令牌奖励详情
 
 #登录创建角色相关
 
@@ -57,7 +56,7 @@
 2,21005 = PbLogin.SC_login_enter			#收到服务器通知客户端进入游戏,进入游戏必要数据发送完成
 2,21006 = PbLogin.CS_login_bind				#请求游客绑定
 2,21007 = PbLogin.SC_login_bind  			#收到游客绑定
-2,21008 = PbLogin.SC_login_reLogin  			#收到断线重连数据
+2,21008 = PbLogin.SC_login_reLogin  		#收到断线重连数据
 
 
 #玩家其它数据
@@ -71,78 +70,37 @@
 3,31007 = PbBag.SC_bag_sellEquip			#收到出售装备
 
 #玩家英雄数据
-3,32000 = PbHero.SC_hero_list				#收到英雄列表(登录发)
-3,32001,32002 = PbHero.CS_teamInfo_edit		#请求修改队伍信息
-3,32002 = PbHero.SC_teamInfo_edit			#收到修改修改成功
-3,32003 = PbHero.SC_hero_new				#获得一个新英雄
 3,32004,32005 = PbHero.CS_hero_levelUp		#请求英雄升级
 3,32005 = PbHero.SC_hero_levelUp			#收到英雄升级
-3,32006 = PbHero.CS_hero_break				#请求英雄突破
+3,32006,32007 = PbHero.CS_hero_break		#请求英雄突破
 3,32007 = PbHero.SC_hero_break				#收到英雄突破
-3,32008,32009 = PbHero.CS_hero_skillLvUp	#请求技能升级
-3,32009 = PbHero.SC_hero_skillLvUp			#收到技能升级
-3,32010,32011 = PbHero.CS_hero_starLvUp		#请求英雄升星
-3,32011 = PbHero.SC_hero_starLvUp			#收到英雄升星
-3,32012 = PbHero.SC_teamInfo_change			#收到队伍英雄改变
-3,32021,32022 = PbHero.CS_hero_dowerLevelUp	#请求英雄天赋升级
-3,32022 = PbHero.SC_hero_dowerLevelUp		#收到英雄天赋升级
-3,32023,32024 = PbHero.CS_hero_dowerReset	#请求重置英雄天赋
-3,32024 = PbHero.SC_hero_dowerReset			#收到重置英雄天赋
-3,32051,32052 = PbHero.CS_hero_lock			#请求英雄锁定
-3,32052 = PbHero.SC_hero_lock				#收到英雄锁定
-
-
-#玩家建筑
-3,33000 = PbBuild.SC_build_list					#收到建筑列表(登录发)
-3,33001,33002 = PbBuild.CS_build_new			#请求新增建筑
-3,33002 = PbBuild.SC_build_new					#收到新增建筑
-3,33003,33004 = PbBuild.CS_build_upgrade		#请求建筑升级
-3,33004 = PbBuild.SC_build_upgrade				#收到建筑升级
-3,33005,33006 = PbBuild.CS_build_upgradeEnd		#请求建筑升级完成
-3,33006 = PbBuild.SC_build_upgradeEnd			#收到建筑升级完成
-3,33008,33009 = PbBuild.CS_build_getRes			#请求获取建筑资源
-3,33009 = PbBuild.SC_build_getRes				#收到获取建筑资源
-3,33010,33011 = PbBuild.CS_build_change			#请求建筑换位
-3,33011 = PbBuild.SC_build_change				#收到建筑换位
-3,33012,33013 = PbBuild.CS_build_skipWait		#请求建筑建造加速
-3,33013 = PbBuild.SC_build_skipWait				#收到建筑建造加速
-3,33014,33015 = PbBuild.CS_build_research		#请求建筑研究（工坊、训练营生产之前需先开启）
-3,33015 = PbBuild.SC_build_research				#收到建筑研究
-3,33016,33017 = PbBuild.CS_build_work			#请求建筑开始生产（制作、训练）
-3,33017 = PbBuild.SC_build_work					#收到建筑开始生产
-3,33018,33019 = PbBuild.CS_build_workNum		#请求建筑增减生产数量（制作、训练）
-3,33019 = PbBuild.SC_build_workNum				#收到建筑增减生产数量（制作、训练）
-3,33020,33021 = PbBuild.CS_build_workQuickly	#请求建筑生产、研究（制作、训练）加速
-3,33021 = PbBuild.SC_build_workQuickly			#收到建筑生产、研究（制作、训练）加速
-3,33022,33023 = PbBuild.CS_build_remould		#请求建筑改造
-3,33023 = PbBuild.SC_build_remould				#收到建筑改造
-3,33024,33025 = PbBuild.CS_build_transform		#请求建筑切换
-3,33025 = PbBuild.SC_build_transform			#收到建筑切换
-3,33026,33027 = PbBuild.CS_build_transEnd		#请求建筑切换完成
-3,33027 = PbBuild.SC_build_transEnd				#收到建筑切换完成
-
+3,32008,32009 = PbHero.CS_hero_Get		    #请求英雄获取
+3,32009 = PbHero.SC_hero_Get			    #收到英雄获取
+3,32010,32011 = PbHero.CS_hero_Change		#请求更换出战英雄
+3,32011 = PbHero.SC_hero_Change			    #收到更换出战英雄
 
 #装备研究
-3,34000,34001 = PbEquipUp.CS_equip_streng		#请求装备强化
-3,34001 = PbEquipUp.SC_equip_streng				#收到装备强化
-
+3,34000,34001 = PbEquipUp.CS_equip_streng		#请求装备升级
+3,34001 = PbEquipUp.SC_equip_streng				#收到装备升级
+3,34002,34003 = PbEquipUp.CS_equip_break		#请求装备升阶
+3,34003 = PbEquipUp.SC_equip_break				#收到装备升阶
+3,34004,34005 = PbEquipUp.CS_equip_Change		#请求更换装备
+3,34005 = PbEquipUp.SC_equip_Change				#收到更换装备
+3,34006,34007 = PbEquipUp.CS_equip_Resolve		#请求分解装备
+3,34007 = PbEquipUp.SC_equip_Resolve			#收到分解装备
+3,34008,34009 = PbEquipUp.CS_equip_merge		#请求装备融合
+3,34009 = PbEquipUp.SC_equip_merge			    #收到装备融合
 
 #玩家福利相关
 3,35000 = PbBonus.SC_bonus_info					#收到福利信息
 3,35001,35002 = PbBonus.CS_signIn_award			#请求每日签到领奖
 3,35002 = PbBonus.SC_signIn_award				#收到每日签到领奖
-3,35003,35004 = PbBonus.CS_signIn_totalAward	#请求每日签到累计奖励
-3,35004 = PbBonus.SC_signIn_totalAward			#收到每日签到累计奖励
-3,35005,35006 = PbBonus.CS_signIn_cost			#请求每日签到补签
-3,35006 = PbBonus.SC_signIn_cost				#收到每日签到补签
 3,35011 = PbBonus.CS_onlineAward_get			#请求领取在线奖励
 3,35012 = PbBonus.SC_onlineAward_get			#收到领取在线奖励
 3,35021 = PbBonus.CS_openFund_get				#请求领取开服基金
 3,35022 = PbBonus.SC_openFund_get				#收到领取开服基金
 3,35031 = PbBonus.CS_cdkey_get					#请求兑换CDKey
 3,35032 = PbBonus.SC_cdkey_get					#收到兑换CDKey结果
-3,35041,35042 = PbBonus.CS_sevenAward_get		#请求领取7天奖励
-3,35042 = PbBonus.SC_sevenAward_get				#收到领取7天奖励
 3,35051 = PbBonus.CS_levelAward_get				#请求领取等级奖励
 3,35052 = PbBonus.SC_levelAward_get				#收到领取等级奖励
 3,35060 = PbBonus.SC_taskNewbie_list			#收到新手活动任务列表
@@ -156,7 +114,22 @@
 3,35072 = PbBonus.SC_treasure_state				#收到宝藏开启状态
 3,35080,35081 = PbBonus.CS_ads_award			#请求领取广告奖励
 3,35081 = PbBonus.SC_ads_award					#收到领取广告奖励
-
+3,35082,35083 = PbBonus.CS_hang_Open			#请求打开挂机奖励页面
+3,35083 = PbBonus.SC_hang_Open					#收到打开挂机奖励页面
+3,35084,35085 = PbBonus.CS_hang_Get			    #请求领取挂机奖励
+3,35085 = PbBonus.SC_hang_Get					#收到领取挂机奖励结果
+3,35086,35087 = PbBonus.CS_Box_GetHero			#请求单抽英雄
+3,35087 = PbBonus.SC_Box_GetHero				#收到单抽英雄结果
+3,35088,35089 = PbBonus.CS_Box_GetHerofive	    #请求五连抽英雄
+3,35089 = PbBonus.SC_Box_GetHerofive		    #收到五连抽英雄结果
+3,35092,35093 = PbBonus.CS_Box_GetEquip			#请求单抽装备
+3,35093 = PbBonus.SC_Box_GetEquip				#收到单抽装备结果
+3,35094,35095 = PbBonus.CS_Box_GetEquipfive	    #请求五连抽装备
+3,35095 = PbBonus.SC_Box_GetEquipfive		    #收到五连抽装备结果
+3,35096,35097 = PbBonus.CS_Circle_Get	        #请求转盘奖励
+3,35097 = PbBonus.SC_Circle_Get		            #收到转盘奖励
+3,35098,35099 = PbBonus.CS_Circle_GetBox	    #请求开启转盘宝箱
+3,35099 = PbBonus.SC_Circle_GetBox		        #收到开启转盘宝箱
 
 #Vip,充值,月卡相关
 3,36001 = PbPay.SC_vip_info				#收到VIP信息月卡信息充值信息(登录发)
@@ -182,44 +155,13 @@
 3,36901 = PbStore.SC_store_infos				#收到商城购买记录
 3,36902,36903 = PbStore.CS_store_buyItem		#请求购买商城物品
 3,36903 = PbStore.SC_store_buyItem				#收到购买商城物品
-
-3,36931 = PbStore.SC_store_icons				#收到头像商店数据
-3,36932,36933 = PbStore.CS_store_buyIcon		#请求购买商城头像
-3,36933 = PbStore.SC_store_buyIcon				#收到购买商城头像
-
-3,36934,36935 = PbStore.CS_store_res			#请求资源商店数据
-3,36935 = PbStore.SC_store_res					#收到资源商店数据
-3,36936,36937 = PbStore.CS_store_buyRes			#请求购买商城资源
-3,36937 = PbStore.SC_store_buyRes				#收到购买商城资源
-
+3,36904 = PbStore.CS_store_ADTimes				#请求领取一次商城广告奖励
+3,36905 = PbStore.SC_store_ADTimes			    #收到商城广告获取物品剩余次数
+3,36906 = PbStore.SC_store_DailyItems			#请求商城每日超级奖励内容
 3,36951,36952 = PbStore.CS_summon_buy			#请求召唤
 3,36952 = PbStore.SC_summon_buy					#收到召唤
-
-
-#聊天相关
-4,41001,41002 = PbChat.CS_chat_joinRoom			#请求加入聊天房间(展开聊天符号时加入房间,房间ID填0自动分配一个房间)
-4,41002 = PbChat.SC_chat_joinRoom			#收到加入房间返回
-4,41011 = PbChat.CS_chat_list				#请求历史聊天列表
-4,41012 = PbChat.SC_chat_list				#收到历史聊天列表
-4,41021 = PbChat.CS_chat_send				#请求发送聊天消息
-4,41022 = PbChat.SC_chat_newMsg				#收到一条新的聊天消息
-4,41031,41032 = PbChat.CS_chat_shieldList		#请求聊天屏蔽列表
-4,41032 = PbChat.SC_chat_shieldList			#收到聊天屏蔽列表
-4,41033,41034 = PbChat.CS_chat_shield			#请求添加移除聊天屏蔽列表
-4,41034 = PbChat.SC_chat_shield				#收到添加移除聊天屏蔽列表
-
-
-#好友相关
-4,42011 = PbFriend.CS_friend_list			#请求好友列表
-4,42012 = PbFriend.SC_friend_list			#收到好友列表
-4,42021 = PbFriend.CS_friend_add			#请求添加好友
-4,42022 = PbFriend.SC_friend_add			#收到添加好友
-4,42031 = PbFriend.CS_friend_remove			#请求删除好友
-4,42032 = PbFriend.SC_friend_remove			#收到删除好友
-4,42041 = PbFriend.CS_friend_sendAC			#请求给好友赠送体力
-4,42042 = PbFriend.SC_friend_sendAC			#收到给好友赠送体力
-4,42051 = PbFriend.CS_friend_getAC			#请求领取好友赠送的体力
-4,42052 = PbFriend.SC_friend_getAC			#收到领取好友赠送的体力
+3,36953,36954 = PbStore.CS_store_exchange		#请求商城兑换金币
+3,36954 = PbStore.SC_store_exchange				#收到商城兑换金币
 
 #邮件相关
 5,50001 = PbMail.SC_mail_list				#收到邮件列表
@@ -232,39 +174,13 @@
 5,50024 = PbMail.SC_mail_delete				#收到删除一个邮件
 5,50025,50026 = PbMail.CS_mail_getAward		#请求领取邮件附件奖励
 5,50026 = PbMail.SC_mail_getAward			#收到领取邮件附件奖励
+5,50027 = PbMail.CS_mail_openAll			#请求一键领取所有未读邮件
 
 #任务,成就相关
 5,51001 = PbTask.SC_taskLine_list			#收到任务列表信息
-5,51002 = PbTask.SC_taskLine_change			#任务线发进度发生改变
 5,51003,51004 = PbTask.CS_taskLine_get			#请求领取任务线上的任务奖励
 5,51004 = PbTask.SC_taskLine_get			#收到领取完奖励重发任务线信息
-
-5,51012,51013 = PbTask.CS_taskBounty_get		#请求领取赏金任务奖励
-5,51013 = PbTask.SC_taskBounty_get				#收到领取赏金任务奖励
-5,51014,51015 = PbTask.CS_taskBounty_clearCD	#请求赏金任务加速刷新
-5,51015 = PbTask.SC_taskBounty_clearCD			#收到赏金任务加速刷新
-5,51016,51017 = PbTask.CS_taskBounty_timeEnd	#请求赏金任务时间完成
-5,51017 = PbTask.SC_taskBounty_timeEnd			#收到赏金任务时间完成
-5,51011 = PbTask.SC_taskBounty_change			#收到单个赏金任务进度发生改变
-
-5,53001 = PbTaskHeroic.CS_taskHeroic_info			#请求英勇任务信息
-5,53002 = PbTaskHeroic.SC_taskHeroic_info			#收到英勇任务信息
-5,53003,53004 = PbTaskHeroic.CS_taskHeroic_get		#请求领取任务奖励
-5,53004 = PbTaskHeroic.SC_taskHeroic_get			#收到领取任务奖励
-5,53005,53006 = PbTaskHeroic.CS_taskHeroic_award	#请求领取英勇奖励
-5,53006 = PbTaskHeroic.SC_taskHeroic_award			#收到领取英勇奖励
-5,53007,53008 = PbTaskHeroic.CS_taskHeroic_expired	#请求领取已过期的任务奖励
-5,53008 = PbTaskHeroic.SC_taskHeroic_expired		#收到领取已过期的任务奖励
-5,53011 = PbTaskHeroic.SC_taskHeroic_change			#收到单个英勇任务进度发生改变
-5,53012 = PbTaskHeroic.SC_taskHeroic_update			#收到英勇任务有更新的通知
-
-5,54001 = PbTaskChap.CS_taskChap_info				#请求章节任务信息
-5,54002 = PbTaskChap.SC_taskChap_info				#收到章节任务信息
-5,54003,54004 = PbTaskChap.CS_taskChap_get 			#请求领取章节任务奖励
-5,54004 = PbTaskChap.SC_taskChap_get 				#收到领取章节任务奖励
-5,54005 = PbTaskChap.SC_taskChap_change				#收到一个章节任务进度更新
-5,54006,54007 = PbTaskChap.CS_taskChapId_get			#请求领取章节奖励
-5,54007 = PbTaskChap.SC_taskChapId_get				#收到领取章节奖励
+5,51005 = PbTask.CS_taskLine_Add			#请求增加广告进度（加一次广告次数）
 
 #活动相关
 5,52001 = PbActivity.CS_Activity_Info		#请求活动列表信息
@@ -274,98 +190,30 @@
 5,52005 = PbActivity.SC_Activity_Get		#收到领取活动任务奖励
 5,52006 = PbActivity.SC_Activiyt_Updata		#通知客户端更新活动
 
-#活动副本相关
-5,52101 = PbEventFB.CS_eventFB_info			#请求活动副本信息
-5,52102 = PbEventFB.SC_eventFB_info			#收到活动副本信息
-5,52103 = PbEventFB.SC_eventFB_update		#收到活动任务进度
-5,52104,52105 = PbEventFB.CS_eventFB_war	#请求活动副本挑战
-5,52105 = PbEventFB.SC_eventFB_war			#收到活动副本挑战
-5,52106,52107 = PbEventFB.CS_eventFB_rank	#请求活动副本挑战活动排名
-5,52107 = PbEventFB.SC_eventFB_rank			#收到活动副本挑战活动排名
-5,52108,52109 = PbEventFB.CS_eventFB_passAward	#请求挑战活动通关奖励
-5,52109 = PbEventFB.SC_eventFB_passAward		#收到挑战活动通关奖励
-5,52110,52111 = PbEventFB.CS_eventFB_rankAward	#请求挑战活动排名奖励
-5,52111 = PbEventFB.SC_eventFB_rankAward		#收到挑战活动排名奖励
 
 #战斗相关
 5,60101,60102 = PbWar.CS_war_fb				#请求副本挑战
 5,60102 = PbWar.SC_war_fb					#收到副本挑战
-5,60103,60104 = PbWar.CS_war_fbRebirth			#请求副本战斗重生
+5,60103,60104 = PbWar.CS_war_fbRebirth		#请求副本战斗重生
 5,60104 = PbWar.SC_war_fbRebirth			#收到副本战斗重生
-5,60105 = PbWar.CS_war_exit					#请求逃跑
-5,60106 = PbWar.CS_war_fbQuick				#请求副本扫荡
-
-5,61001 = PbWar.SC_war_info					#收到战斗信息
-5,61010,61008 = PbWar.CS_war_result				#请求战斗结果
-5,61008 = PbWar.SC_war_result				#收到战斗结果
-5,61011 = PbWar.SC_war_error				#收到数据异常信息
-
-#竞技场
-7,7001 = PbArena.CS_arena_info				#请求竞技场数据
-7,7002 = PbArena.SC_arena_info				#收到竞技场数据
-7,7003,7004 = PbArena.CS_arena_find			#请求竞技场查找对手
-7,7004 = PbArena.SC_arena_find				#收到竞技场查找对手
-7,7005 = PbArena.CS_arena_fight				#请求挑战对手
-7,7006 = PbArena.SC_arena_fight				#收到挑战对手
-
-7,7009 = PbArena.SC_arena_recordChange		#收到玩家竞技战报更新
-7,7010,7011 = PbArena.CS_arena_breakShield	#请求破坏护盾
-7,7011 = PbArena.SC_arena_breakShield		#收到破坏护盾
-7,7012,7013 = PbArena.CS_arena_findBack		#请求查找反击
-7,7013 = PbArena.SC_arena_findBack			#收到查找反击
-
-#联赛
-7,7101,7102 = PbLeague.CS_league_info		#请求联赛数据
-7,7102 = PbLeague.SC_league_info			#收到联赛数据
-7,7103,7104 = PbLeague.CS_league_apply		#请求联赛报名
-7,7104 = PbLeague.SC_league_apply			#收到联赛报名
-7,7105,7106 = PbLeague.CS_league_find		#请求联赛匹配对手
-7,7106 = PbLeague.SC_league_find			#收到联赛匹配对手
-7,7107,7108 = PbLeague.CS_league_fight		#请求联赛挑战对手
-7,7108 = PbLeague.SC_league_fight			#收到联赛挑战对手
-7,7109 = PbLeague.CS_league_award			#请求联赛奖励
-7,7110 = PbLeague.SC_league_award			#收到联赛奖励
-7,7111,7112 = PbLeague.CS_league_editTeam	#请求联赛更改防御队伍
-7,7112 = PbLeague.SC_league_editTeam		#收到联赛更改防御队伍
-7,7113,7114 = PbLeague.CS_league_resetNum	#请求联赛重置次数
-7,7114 = PbLeague.SC_league_resetNum		#收到联赛重置次数
-7,7115,7116 = PbLeague.CS_league_logs		#请求联赛日志
-7,7116 = PbLeague.SC_league_logs			#收到联赛日志
-7,7121 = PbLeague.SC_league_state			#收到联赛状态改变
-
+5,60107,60108 = PbWar.CS_war_fbStageEnd		#请求章节关卡结束
+5,60108 = PbWar.SC_war_fbStageEnd			#收到章节关卡结束
+5,60109 = PbWar.SC_war_fbInfo			    #收到章节详情
+5,60110 = PbWar.CS_war_fbExit			    #请求退出章节
+5,60111 = PbWar.SC_war_fbUpdate			    #收到普通章节挑战信息更新
+5,60112,60113 = PbWar.CS_war_GetBox			#请求领取章节宝箱
+5,60113 = PbWar.SC_war_GetBox			    #收到领取章节宝箱
+5,60114 = PbWar.SC_war_GetBoxUpdate			#收到章节宝箱可领取通知
+5,60115 = PbWar.SC_war_fbknUpdate			#收到困难章节挑战信息更新
+5,60116,60117 = PbWar.CS_war_TraderBuy		#请求随机商人购买
+5,60117 = PbWar.SC_war_TraderBuy			#收到随机商人购买
+5,60118 = PbWar.CS_war_RebornByAD			#请求章节内看广告复活
 
 #排行榜
 8,8001 = PbRank.CS_Rank_List				#请求排行榜数据
 8,8002 = PbRank.SC_Rank_List				#收到排行榜数据
 8,8003,8004 = PbRank.CS_rank_lookPlayer		#请求查看其他玩家信息
 8,8004 = PbRank.SC_rank_lookPlayer			#收到查看其他玩家信息
-
-
-#俱乐部
-9,9031,9032 = PbGameClub.CS_club_create			#请求创建俱乐部
-9,9032 = PbGameClub.SC_club_create				#收到创建俱乐部结果(创建成功，先返回SC_club_info)
-9,9103,9104 = PbGameClub.CS_titan_war			#请求进入泰坦战
-9,9104 = PbGameClub.SC_titan_war				#收到进入泰坦战
-9,9105 = PbGameClub.CS_titan_award				#请求泰坦奖励
-9,9106 = PbGameClub.SC_titan_award				#收到泰坦奖励
-9,9056,9057 = PbGameClub.CS_club_memberPlayer	#请求一个联盟成员详细信息
-9,9057 = PbGameClub.SC_club_memberPlayer		#收到一个联盟成员详细信息
-9,9058,9059 = PbGameClub.CS_club_applyPlayer	#请求一个申请玩家详细信息
-9,9059 = PbGameClub.SC_club_applyPlayer			#收到一个申请玩家详细信息
-
-9,9203,9204 = PbGameClubWar.CS_clubWar_group		#请求联盟战小组信息
-9,9204 = PbGameClubWar.SC_clubWar_group				#收到联盟战小组信息
-9,9213,9214 = PbGameClubWar.CS_clubWar_fight		#请求联盟战挑战对手
-9,9214 = PbGameClubWar.SC_clubWar_fight				#收到联盟战挑战对手
-9,9217 = PbGameClubWar.CS_clubWar_award				#请求联盟战奖励
-9,9218 = PbGameClubWar.SC_clubWar_award				#收到联盟战奖励
-9,9221,9222 = PbGameClubWar.CS_clubWar_editTeam		#请求修改防御队伍
-9,9222 = PbGameClubWar.SC_clubWar_editTeam			#收到修改防御队伍
-9,9223,9224 = PbGameClubWar.CS_clubWar_teamInfo		#请求防御队伍信息
-9,9224 = PbGameClubWar.SC_clubWar_teamInfo			#收到防御队伍信息
-9,9225,9226 = PbGameClubWar.CS_clubWar_getBox		#请求战争宝箱奖励
-9,9226 = PbGameClubWar.SC_clubWar_getBox			#收到战争宝箱奖励
-
 
 9,9990,9991 @= PbWar.CS_TestEncrypt			#测试消息加密
 9,9991 @= PbWar.SC_TestEncrypt				#返回加密消息
