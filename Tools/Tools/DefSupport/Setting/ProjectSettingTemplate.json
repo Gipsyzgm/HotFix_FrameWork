@@ -1,16 +1,15 @@
 ﻿[
 	{
-		"Id":1,
-		"Name":"飞刀",
-		"HotName":"HotFix_Archer",
-		"ProjectDir":"F:/Archer",
-		"ClientDir":"$ProjectDir$/Client/Archer",
-		"ClientHotDir":"$ProjectDir$/Client/$HotName$",		
-		"ServerDir":"$ProjectDir$/Server",
-		"ConfigDir":"$ProjectDir$/ProtoConfig/Config",
-		"ProtoDir":"$ProjectDir$/ProtoConfig/Proto",
-		"GMServerDir":"$ProjectDir$/GM/GMServer",
-		"CodeOutId":1
+		"Id": 1,
+		"Name": "MyPro",
+		"HotName": "HotFix",
+		"ProjectDir": "F:/anyelse/HotFix_FrameWork",
+		"ClientDir": "$ProjectDir$/$Name$",
+		"ClientHotDir": "$ProjectDir$/$HotName$",
+		"ServerDir": "$ProjectDir$/Server/GameServer",
+		"ConfigDir": "$ProjectDir$/ProtoConfig/Config",
+		"ProtoDir": "$ProjectDir$/ProtoConfig/Proto",
+		"GMServerDir": "$ProjectDir$/GM/GMServer",
+		"CodeOutId": 1
 	}
- 
 ]
