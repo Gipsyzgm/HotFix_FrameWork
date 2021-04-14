@@ -28,7 +28,6 @@ namespace GameServer.Module
             int serverFrequency = 60;
             Log.Info("started server");
             Stopwatch stopwatch = Stopwatch.StartNew();
-
             while (true)
             {
                 // tick and process as many as we can. will auto reply.
