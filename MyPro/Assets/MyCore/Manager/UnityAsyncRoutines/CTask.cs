@@ -478,6 +478,16 @@ public abstract class RoutineBase : INotifyCompletion
         }
     }
 
+    /// <summary> 新增扩展方法,不受TimeScale影响 </summary>
+    public static async CTask WaitForRealSeconds(float seconds)
+    {
+        var endTime = Time.realtimeSinceStartup + seconds;
+        while (Time.realtimeSinceStartup < endTime)
+        {
+            await WaitForNextFrame();
+        }
+    }
+
     /// <summary> Routine that yields until a condition has been met. </summary>
     public static async CTask WaitUntil(Func<bool> condition)
     {
