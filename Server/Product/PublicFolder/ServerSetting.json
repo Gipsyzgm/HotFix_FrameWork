@@ -1,0 +1,31 @@
+﻿{
+  "Id": 1, /*当前选中的配置*/
+  "Configs": /*全部配置*/
+  [
+    {
+      "Id": 1,
+      "Name": "DSJ Servers",
+      "Lang": "EN",
+      "MongoDBs": /*数据库 0主库,1日志库*/
+      [
+        "mongodb://dsj:123456@192.168.0.108:17017/blade_game?connectTimeout=5",
+        "mongodb://dsj:123456@192.168.0.108:17017/blade_log?connectTimeout=5"
+      ],
+      "GMDB": "mongodb://dsj:123456@192.168.0.108:17017/blade_gm?connectTimeout=5", /*GM数据库连接地址，不配置或空字符串使用MongoDBs[0]路径*/
+      "Redis": [
+        {
+          "Name": "PlayerInfo", /*玩家信息*/
+          "DBNo": 10,
+          "ReadConnection": "192.168.0.108:6379,password=keen!~game#123",
+          "WriteConnection": "192.168.0.108:6379,password=keen!~game#123"
+        },
+        {
+          "Name": "ArenaRank", /*竞技排行*/
+          "DBNo": 11,
+          "ConnectionAS": "PlayerInfo" /*连接字符串和PlayerInfo设为一样*/
+        }
+      ]
+    },
+
+  ]
+}
