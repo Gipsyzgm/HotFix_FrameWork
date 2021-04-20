@@ -28,69 +28,69 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnExport = new System.Windows.Forms.Button();
-            this.btnSelectDBPath = new System.Windows.Forms.Button();
-            this.txtServerPath = new System.Windows.Forms.TextBox();
-            this.btnServerPath = new System.Windows.Forms.Button();
-            this.txtDBPath = new System.Windows.Forms.TextBox();
+            this.ExportBtn = new System.Windows.Forms.Button();
+            this.SelectDBPathBtn = new System.Windows.Forms.Button();
+            this.ServerPathTxt = new System.Windows.Forms.TextBox();
+            this.ServerPathBtn = new System.Windows.Forms.Button();
+            this.DBPathTxt = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // btnExport
+            // ExportBtn
             // 
-            this.btnExport.Location = new System.Drawing.Point(12, 131);
-            this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(162, 67);
-            this.btnExport.TabIndex = 1;
-            this.btnExport.Text = "生成数据库结构类";
-            this.btnExport.UseVisualStyleBackColor = true;
-            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
+            this.ExportBtn.Location = new System.Drawing.Point(12, 142);
+            this.ExportBtn.Name = "ExportBtn";
+            this.ExportBtn.Size = new System.Drawing.Size(162, 67);
+            this.ExportBtn.TabIndex = 1;
+            this.ExportBtn.Text = "生成数据库结构类";
+            this.ExportBtn.UseVisualStyleBackColor = true;
+            this.ExportBtn.Click += new System.EventHandler(this.btnExport_Click);
             // 
-            // btnSelectDBPath
+            // SelectDBPathBtn
             // 
-            this.btnSelectDBPath.Location = new System.Drawing.Point(12, 33);
-            this.btnSelectDBPath.Name = "btnSelectDBPath";
-            this.btnSelectDBPath.Size = new System.Drawing.Size(128, 23);
-            this.btnSelectDBPath.TabIndex = 9;
-            this.btnSelectDBPath.Text = "数据库设计Excel文件";
-            this.btnSelectDBPath.UseVisualStyleBackColor = true;
-            this.btnSelectDBPath.Click += new System.EventHandler(this.btnOpenFile_Click);
+            this.SelectDBPathBtn.Location = new System.Drawing.Point(12, 33);
+            this.SelectDBPathBtn.Name = "SelectDBPathBtn";
+            this.SelectDBPathBtn.Size = new System.Drawing.Size(128, 23);
+            this.SelectDBPathBtn.TabIndex = 9;
+            this.SelectDBPathBtn.Text = "数据库设计Excel文件";
+            this.SelectDBPathBtn.UseVisualStyleBackColor = true;
+            this.SelectDBPathBtn.Click += new System.EventHandler(this.btnOpenFile_Click);
             // 
-            // txtServerPath
+            // ServerPathTxt
             // 
-            this.txtServerPath.Location = new System.Drawing.Point(146, 78);
-            this.txtServerPath.Name = "txtServerPath";
-            this.txtServerPath.ReadOnly = true;
-            this.txtServerPath.Size = new System.Drawing.Size(479, 21);
-            this.txtServerPath.TabIndex = 55;
+            this.ServerPathTxt.Location = new System.Drawing.Point(146, 78);
+            this.ServerPathTxt.Name = "ServerPathTxt";
+            this.ServerPathTxt.ReadOnly = true;
+            this.ServerPathTxt.Size = new System.Drawing.Size(555, 21);
+            this.ServerPathTxt.TabIndex = 55;
             // 
-            // btnServerPath
+            // ServerPathBtn
             // 
-            this.btnServerPath.Location = new System.Drawing.Point(12, 78);
-            this.btnServerPath.Name = "btnServerPath";
-            this.btnServerPath.Size = new System.Drawing.Size(128, 23);
-            this.btnServerPath.TabIndex = 54;
-            this.btnServerPath.Text = "服务端目录";
-            this.btnServerPath.UseVisualStyleBackColor = true;
-            this.btnServerPath.Click += new System.EventHandler(this.SelctFolder_ClickEvent);
+            this.ServerPathBtn.Location = new System.Drawing.Point(12, 76);
+            this.ServerPathBtn.Name = "ServerPathBtn";
+            this.ServerPathBtn.Size = new System.Drawing.Size(128, 23);
+            this.ServerPathBtn.TabIndex = 54;
+            this.ServerPathBtn.Text = "服务端目录";
+            this.ServerPathBtn.UseVisualStyleBackColor = true;
+            this.ServerPathBtn.Click += new System.EventHandler(this.SelctFolder_ClickEvent);
             // 
-            // txtDBPath
+            // DBPathTxt
             // 
-            this.txtDBPath.Location = new System.Drawing.Point(146, 35);
-            this.txtDBPath.Name = "txtDBPath";
-            this.txtDBPath.ReadOnly = true;
-            this.txtDBPath.Size = new System.Drawing.Size(479, 21);
-            this.txtDBPath.TabIndex = 55;
+            this.DBPathTxt.Location = new System.Drawing.Point(146, 35);
+            this.DBPathTxt.Name = "DBPathTxt";
+            this.DBPathTxt.ReadOnly = true;
+            this.DBPathTxt.Size = new System.Drawing.Size(555, 21);
+            this.DBPathTxt.TabIndex = 55;
             // 
             // DBExportForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(920, 420);
-            this.Controls.Add(this.txtDBPath);
-            this.Controls.Add(this.txtServerPath);
-            this.Controls.Add(this.btnServerPath);
-            this.Controls.Add(this.btnSelectDBPath);
-            this.Controls.Add(this.btnExport);
+            this.ClientSize = new System.Drawing.Size(752, 354);
+            this.Controls.Add(this.DBPathTxt);
+            this.Controls.Add(this.ServerPathTxt);
+            this.Controls.Add(this.ServerPathBtn);
+            this.Controls.Add(this.SelectDBPathBtn);
+            this.Controls.Add(this.ExportBtn);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "DBExportForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.WindowsDefaultBounds;
@@ -102,10 +102,10 @@
         }
 
         #endregion
-        private System.Windows.Forms.Button btnExport;
-        private System.Windows.Forms.Button btnSelectDBPath;
-        private System.Windows.Forms.TextBox txtServerPath;
-        private System.Windows.Forms.Button btnServerPath;
-        private System.Windows.Forms.TextBox txtDBPath;
+        private System.Windows.Forms.Button ExportBtn;
+        private System.Windows.Forms.Button SelectDBPathBtn;
+        private System.Windows.Forms.TextBox ServerPathTxt;
+        private System.Windows.Forms.Button ServerPathBtn;
+        private System.Windows.Forms.TextBox DBPathTxt;
     }
 }

@@ -14,8 +14,8 @@ namespace Tools
 
         private void DBExportForm_Load(object sender, EventArgs e)
         {
-            this.txtDBPath.Text = Glob.codeOutSetting.ServerDB.DBFile.ToReality();
-            this.txtServerPath.Text = Glob.projectSetting.RealityServerDir;
+            this.DBPathTxt.Text = Glob.codeOutSetting.ServerDB.DBFile.ToReality();
+            this.ServerPathTxt.Text = Glob.projectSetting.RealityServerDir;
         }
              
 
@@ -24,15 +24,15 @@ namespace Tools
         /// </summary>
         private void btnExport_Click(object sender, EventArgs e)
         {
-            this.btnExport.Enabled = false;
+            this.ExportBtn.Enabled = false;
             Logger.Clean();
-            ThreadPool.QueueUserWorkItem(callBack => DBExportHelper.CreateServerDBClassFile(this.txtDBPath.Text, this.txtServerPath.Text, generateDBAllCallback));
+            ThreadPool.QueueUserWorkItem(callBack => DBExportHelper.CreateServerDBClassFile(this.DBPathTxt.Text, this.ServerPathTxt.Text, GenerateDBAllCallback));
         
         }
-        private void generateDBAllCallback()
+        private void GenerateDBAllCallback()
         {
             Logger.LogAction("数据库表结构文件生成完成!!!!");
-            this.btnExport.Enabled = true;
+            this.ExportBtn.Enabled = true;
         }
 
         private void SelctFolder_ClickEvent(object sender, EventArgs e)
@@ -42,7 +42,7 @@ namespace Tools
 
         private void btnOpenFile_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start(this.txtDBPath.Text);
+            System.Diagnostics.Process.Start(this.DBPathTxt.Text);
         }
     }
 }

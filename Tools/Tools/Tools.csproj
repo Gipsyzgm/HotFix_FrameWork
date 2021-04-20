@@ -102,6 +102,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DBExport\DBExportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DBExport\DBExportForm.Designer.cs">
+      <DependentUpon>DBExportForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DBExport\DBExportHelper.cs" />
     <Compile Include="ExcelExport\Base\ExcelExportBase.cs" />
     <Compile Include="ExcelExport\Base\ExcelExportParse.cs" />
     <Compile Include="ExcelExport\CSVUtils.cs" />
@@ -160,6 +167,9 @@
     <Compile Include="SettingCode\SettingMgr.cs" />
     <Compile Include="ToolsCookie.cs" />
     <Compile Include="Utils.cs" />
+    <EmbeddedResource Include="DBExport\DBExportForm.resx">
+      <DependentUpon>DBExportForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ExcelExport\ExcelExportForm.resx">
       <DependentUpon>ExcelExportForm.cs</DependentUpon>
     </EmbeddedResource>
