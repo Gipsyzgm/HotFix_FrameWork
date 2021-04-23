@@ -6,7 +6,7 @@
 		"ProjectDir": "F:/anyelse/HotFix_FrameWork",
 		"ClientDir": "$ProjectDir$/$Name$",
 		"ClientHotDir": "$ProjectDir$/$HotName$",
-		"ServerDir": "$ProjectDir$/Server/GameServer",
+		"ServerDir": "$ProjectDir$/Server/MyServer",
 		"ConfigDir": "$ProjectDir$/ProtoConfig/Config",
 		"ProtoDir": "$ProjectDir$/ProtoConfig/Proto",
 		"GMServerDir": "$ProjectDir$/GM/GMServer",
