@@ -12,30 +12,36 @@ namespace Tools
     public partial class CDKeyForm : Form
     {
         CDKeyFactory cdKeyFact;
+        //我们在使用多线程的时候，需要取消线程的执行，可以使用CancellationTokenSource来取消
         CancellationTokenSource cts;
         public CDKeyForm()
         {
             InitializeComponent();
-            cdKeyFact  = new CDKeyFactory();
+            cdKeyFact = new CDKeyFactory();
             cts = new CancellationTokenSource();
             this.progressBar.Value = 0;
         }
-
+        //当前选择的Cdkey的list的数据Index
         int selectIndex = -1;
+        //是否正在生成Cdkey
         bool isCreating = false;
-        private void DBExportForm_Load(object sender, EventArgs e)
+
+        private void CDKeyForm_Load(object sender, EventArgs e)
         {
-            this.txtCDKeyExcelPath.Text = Glob.codeOutSetting.CDKey.CDKeyFile.ToReality();
-            this.txtSavePath.Text = Glob.codeOutSetting.CDKey.OutFileDir.ToReality();
+            this.CDKeyExcelPathTxt.Text = Glob.codeOutSetting.CDKey.CDKeyFile.ToReality();
+            this.SavePathTxt.Text = Glob.codeOutSetting.CDKey.OutFileDir.ToReality();
             SetCDKeyList();
-             
+
         }
+        /// <summary>
+        /// 显示Cdkey的list
+        /// </summary>
         private void SetCDKeyList()
         {
             NoneInfo();
             selectIndex = -1;
-            if (this.txtCDKeyExcelPath.Text == string.Empty) return;
-            List<string> list = CDKeyHelper.SetCDKeyExcel(this.txtCDKeyExcelPath.Text);
+            if (this.CDKeyExcelPathTxt.Text == string.Empty) return;
+            List<string> list = CDKeyHelper.SetCDKeyExcel(this.CDKeyExcelPathTxt.Text);
             this.listCDKey.Items.Clear();
             for (int i = 0; i < list.Count; i++)
             {
@@ -44,9 +50,6 @@ namespace Tools
             if (list.Count > 0)
                 this.listCDKey.SelectedIndex = 0;
         }
-
-        
-
         /// <summary>
         /// 一键生成所有相关文件
         /// </summary>
@@ -70,7 +73,6 @@ namespace Tools
                 return;
             }
 
-            
             if (!isCreating)
             {
                 isCreating = true;
@@ -79,7 +81,6 @@ namespace Tools
                 this.btnExport.Text = "CDKey生成中...\n点击停止生成";
 
                 ConcurrentBag<string> list = new ConcurrentBag<string>();
-
                 try
                 {
                     Task tk = new Task(() =>
@@ -105,7 +106,7 @@ namespace Tools
                         this.listCDKey.Enabled = true;
 
                         string name = CDKeyHelper.GetRowFieldValue(selectIndex, CDKeyFieldName.Name);
-                        CDKeyHelper.SaveCDKeyFile(this.txtSavePath.Text, name, list);
+                        CDKeyHelper.SaveCDKeyFile(this.SavePathTxt.Text, name, list);
                         Logger.LogAction("CDKey导出完成!");
                         isCreating = false;
                     }, cts.Token);
@@ -116,7 +117,7 @@ namespace Tools
 
             }
             else
-            {                
+            {
                 this.progressBar.Value = 100;
                 this.btnExport.Text = "生成CDKey";
                 this.listCDKey.Enabled = true;
@@ -124,17 +125,21 @@ namespace Tools
             }
             //Task.WaitAll(tk);
         }
-        
+
         private void SelctFolder_ClickEvent(object sender, EventArgs e)
         {
             Utils.ButtonOpenDir(sender);
         }
         private void btnOpenFile_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start(this.txtCDKeyExcelPath.Text);
+            System.Diagnostics.Process.Start(this.CDKeyExcelPathTxt.Text);
         }
+        /// <summary>
+        /// Cdkey的list选择发生改变
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
 
-        //选择发生改变
         private void listCDKey_SelectedIndexChanged(object sender, EventArgs e)
         {
             selectIndex = listCDKey.SelectedIndex;
@@ -171,14 +176,14 @@ namespace Tools
         /// <param name="e"></param>
         private void btnCheckCDKey_Click(object sender, EventArgs e)
         {
-           long num = cdKeyFact.DecodeCDKey(this.txtCDKey.Text);
+            long num = cdKeyFact.DecodeCDKey(this.CDKeyTxt.Text);
             if (num == 0)
             {
-                this.txtCDKeyResult.Text = "此CDKey无效";
+                this.CDKeyResultTxt.Text = "此CDKey无效";
             }
             else
-            {
-                this.txtCDKeyResult.Text = num.ToString();
+            {             
+                this.CDKeyResultTxt.Text = num.ToString();
             }
         }
     }

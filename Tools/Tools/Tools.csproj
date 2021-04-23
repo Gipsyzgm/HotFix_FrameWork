@@ -102,6 +102,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CDKey\CDKeyFactory.cs" />
+    <Compile Include="CDKey\CDKeyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CDKey\CDKeyForm.Designer.cs">
+      <DependentUpon>CDKeyForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CDKey\CDKeyHelper.cs" />
+    <Compile Include="GMExport\ClassField.cs" />
     <Compile Include="DBExport\DBExportForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -175,6 +184,9 @@
     <Compile Include="SettingCode\SettingMgr.cs" />
     <Compile Include="ToolsCookie.cs" />
     <Compile Include="Utils.cs" />
+    <EmbeddedResource Include="CDKey\CDKeyForm.resx">
+      <DependentUpon>CDKeyForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DBExport\DBExportForm.resx">
       <DependentUpon>DBExportForm.cs</DependentUpon>
     </EmbeddedResource>

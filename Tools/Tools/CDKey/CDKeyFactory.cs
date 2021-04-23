@@ -33,8 +33,6 @@ namespace Tools
                 byteKey.Add(Encoding.UTF8.GetBytes(key[i]));
         }
 
-
-
         /// <summary>
         /// 生成CDKey
         /// </summary>
@@ -76,8 +74,6 @@ namespace Tools
             catch { }
             return num;
         }
-
-
 
 
         //10进制转换成36进制

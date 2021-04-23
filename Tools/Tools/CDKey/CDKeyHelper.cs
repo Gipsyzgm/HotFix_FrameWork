@@ -16,6 +16,7 @@ namespace Tools
         Id,
         UseCount,
         Name,
+        //平台ID
         PFId,
         Num,
         EndTime,
@@ -35,7 +36,7 @@ namespace Tools
         public static List<string> SetCDKeyExcel(string path)
         {
             List<string> cdkList = new List<string>();
-            DataSet ds = ExcelUtil.ReadExcelSheetData(path);            
+            DataSet ds = ExcelUtil.ReadExcelSheetData(path);
             DataTable dtData = ds.Tables[0];
             if (dtData.TableName.IndexOf("CDKey") == -1)
                 return cdkList;
@@ -46,7 +47,7 @@ namespace Tools
                     continue;
                 cdKeyRows.Add(dtData.Rows[r]);
             }
-          
+
             for (int i = 0; i < cdKeyRows.Count; i++)
             {
                 string str = $"[{cdKeyRows[i][(int)CDKeyFieldName.Id].ToString()}] {cdKeyRows[i][(int)CDKeyFieldName.Name].ToString()}";
@@ -68,8 +69,11 @@ namespace Tools
                 try
                 {
                     rtn = cdKeyRows[row][(int)name].ToString();
-                } catch
-                { }
+                }
+                catch
+                {
+
+                }
             }
             return rtn;
         }
@@ -80,10 +84,10 @@ namespace Tools
         /// <param name="name"></param>
         /// <param name="list"></param>
 
-        public static void SaveCDKeyFile(string path,string name, ConcurrentBag<string> list)
+        public static void SaveCDKeyFile(string path, string name, ConcurrentBag<string> list)
         {
             StringBuilder sb = new StringBuilder();
-            foreach(string str in list)
+            foreach (string str in list)
                 sb.AppendLine(str);
             name = name + ".txt";
             string savePath = Path.Combine(path, name);
