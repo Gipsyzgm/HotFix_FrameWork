@@ -13,7 +13,6 @@ namespace Tools
         {
             InitializeComponent();
         }
-
         private void GMExportForm_Load(object sender, EventArgs e)
         {
             this.DBPathTxt.Text = Glob.codeOutSetting.GMServerDB.DBFile.ToReality();

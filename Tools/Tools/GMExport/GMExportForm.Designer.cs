@@ -44,9 +44,9 @@
             // 
             // ExportBtn
             // 
-            this.ExportBtn.Location = new System.Drawing.Point(12, 95);
+            this.ExportBtn.Location = new System.Drawing.Point(12, 108);
             this.ExportBtn.Name = "ExportBtn";
-            this.ExportBtn.Size = new System.Drawing.Size(162, 67);
+            this.ExportBtn.Size = new System.Drawing.Size(165, 70);
             this.ExportBtn.TabIndex = 1;
             this.ExportBtn.Text = "生成GM数据库结构类";
             this.ExportBtn.UseVisualStyleBackColor = true;
@@ -54,7 +54,7 @@
             // 
             // SelectDBPathBtn
             // 
-            this.SelectDBPathBtn.Location = new System.Drawing.Point(12, 59);
+            this.SelectDBPathBtn.Location = new System.Drawing.Point(12, 61);
             this.SelectDBPathBtn.Name = "SelectDBPathBtn";
             this.SelectDBPathBtn.Size = new System.Drawing.Size(144, 23);
             this.SelectDBPathBtn.TabIndex = 9;
@@ -74,7 +74,7 @@
             // 
             // SelectAPIPathBtn
             // 
-            this.SelectAPIPathBtn.Location = new System.Drawing.Point(12, 184);
+            this.SelectAPIPathBtn.Location = new System.Drawing.Point(12, 198);
             this.SelectAPIPathBtn.Name = "SelectAPIPathBtn";
             this.SelectAPIPathBtn.Size = new System.Drawing.Size(144, 23);
             this.SelectAPIPathBtn.TabIndex = 15;
@@ -84,9 +84,9 @@
             // 
             // ExportAPIBtn
             // 
-            this.ExportAPIBtn.Location = new System.Drawing.Point(12, 222);
+            this.ExportAPIBtn.Location = new System.Drawing.Point(12, 248);
             this.ExportAPIBtn.Name = "ExportAPIBtn";
-            this.ExportAPIBtn.Size = new System.Drawing.Size(162, 67);
+            this.ExportAPIBtn.Size = new System.Drawing.Size(165, 70);
             this.ExportAPIBtn.TabIndex = 13;
             this.ExportAPIBtn.Text = "生成GM接口结构类";
             this.ExportAPIBtn.UseVisualStyleBackColor = true;
@@ -94,9 +94,9 @@
             // 
             // ExportConfigBtn
             // 
-            this.ExportConfigBtn.Location = new System.Drawing.Point(210, 222);
+            this.ExportConfigBtn.Location = new System.Drawing.Point(276, 248);
             this.ExportConfigBtn.Name = "ExportConfigBtn";
-            this.ExportConfigBtn.Size = new System.Drawing.Size(162, 67);
+            this.ExportConfigBtn.Size = new System.Drawing.Size(165, 70);
             this.ExportConfigBtn.TabIndex = 17;
             this.ExportConfigBtn.Text = "生成配置表配置数据";
             this.ExportConfigBtn.UseVisualStyleBackColor = true;
@@ -105,18 +105,17 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(420, 240);
+            this.label4.Location = new System.Drawing.Point(533, 277);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(173, 12);
             this.label4.TabIndex = 40;
             this.label4.Text = "游戏配置文件导出，GM后台使用";
-
             // 
             // GameDBExportBtn
             // 
-            this.GameDBExportBtn.Location = new System.Drawing.Point(210, 95);
+            this.GameDBExportBtn.Location = new System.Drawing.Point(276, 108);
             this.GameDBExportBtn.Name = "GameDBExportBtn";
-            this.GameDBExportBtn.Size = new System.Drawing.Size(162, 67);
+            this.GameDBExportBtn.Size = new System.Drawing.Size(165, 70);
             this.GameDBExportBtn.TabIndex = 41;
             this.GameDBExportBtn.Text = "生成游戏数据库结构类";
             this.GameDBExportBtn.UseVisualStyleBackColor = true;
@@ -125,7 +124,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(420, 122);
+            this.label1.Location = new System.Drawing.Point(533, 137);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(179, 12);
             this.label1.TabIndex = 42;
@@ -136,23 +135,23 @@
             this.GameServerPathTxt.Location = new System.Drawing.Point(162, 22);
             this.GameServerPathTxt.Name = "GameServerPathTxt";
             this.GameServerPathTxt.ReadOnly = true;
-            this.GameServerPathTxt.Size = new System.Drawing.Size(479, 21);
+            this.GameServerPathTxt.Size = new System.Drawing.Size(550, 21);
             this.GameServerPathTxt.TabIndex = 56;
             // 
             // DBPathTxt
             // 
-            this.DBPathTxt.Location = new System.Drawing.Point(162, 61);
+            this.DBPathTxt.Location = new System.Drawing.Point(162, 63);
             this.DBPathTxt.Name = "DBPathTxt";
             this.DBPathTxt.ReadOnly = true;
-            this.DBPathTxt.Size = new System.Drawing.Size(479, 21);
+            this.DBPathTxt.Size = new System.Drawing.Size(550, 21);
             this.DBPathTxt.TabIndex = 57;
             // 
             // APIPathTxt
             // 
-            this.APIPathTxt.Location = new System.Drawing.Point(162, 186);
+            this.APIPathTxt.Location = new System.Drawing.Point(162, 200);
             this.APIPathTxt.Name = "APIPathTxt";
             this.APIPathTxt.ReadOnly = true;
-            this.APIPathTxt.Size = new System.Drawing.Size(479, 21);
+            this.APIPathTxt.Size = new System.Drawing.Size(550, 21);
             this.APIPathTxt.TabIndex = 58;
             // 
             // GMExportForm

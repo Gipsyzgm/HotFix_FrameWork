@@ -9,12 +9,6 @@ namespace Tools
 {
     public class GMExportHelper
     {
-
-        //private const string Server_DBTableClass_FilePath = @"GMServer\XGame\DBMgr\Table";                    //生成表存放目录
-        //private const string Server_DBGameTableClass_FilePath = @"GMServer\XGame\DBMgr\GameTable";                    //生成游戏表存放目录
-        //private const string Server_DBWriteTable_FilePath = @"GMServer\XGame\DBMgr\DBWriteTable.cs";     //数据写入table转换文件目录
-        //private const string Server_TableName_FilePath = @"GMServer\XGame\DBMgr\TableName.cs";
-
         /// <summary>
         /// 创建GM服务端Net相关文件
         /// </summary>
@@ -22,8 +16,7 @@ namespace Tools
         /// <param name="serverPath">服务器根目录</param>
         /// <param name="callback">执行完回调</param>
         public static void CreateServerDBClassFile(string DBPath, string serverPath, Action callback = null)
-        {
-            //Utils.DeleteDirectory(Path.Combine(serverPath, Server_DBTableClass_FilePath));
+        {        
             Utils.DeleteDirectory(Glob.codeOutSetting.GMServerDB.OutDBTableClassDir.ToReality());
             DataSet ds = ExcelUtil.ReadExcelSheetData(DBPath);
             List<string[]> tabNames = new List<string[]>();
@@ -85,9 +78,7 @@ namespace Tools
         /// <param name="serverPath">服务器根目录</param>
         /// <param name="callback">执行完回调</param>
         public static void CreateGameDBClassFile(string DBPath, string serverPath, Action callback = null)
-        {
-            //Utils.DeleteDirectory(Path.Combine(serverPath, Server_DBGameTableClass_FilePath));
-
+        {     
             Utils.DeleteDirectory(Glob.codeOutSetting.GMServerDB.OutDBGameTableClassDir.ToReality());
 
             DataSet ds = ExcelUtil.ReadExcelSheetData(DBPath);
@@ -344,8 +335,7 @@ namespace GMServer.XGame.DBMgr
         /// <param name="serverPath"></param>
         /// <param name="tabNames"></param>
         private static void createTableNameFile(string serverPath, List<string[]> tabNames)
-        {
-            //string saveFilePath = Path.Combine(serverPath, Server_TableName_FilePath);
+        {         
             string saveFilePath = Glob.codeOutSetting.GMServerDB.OutDBTableNameFile.ToReality();
             StringBuilder sbTable = new StringBuilder();
             string strtab = string.Empty;
