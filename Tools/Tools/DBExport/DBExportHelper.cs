@@ -9,11 +9,6 @@ namespace Tools
 {
     public class DBExportHelper
     {
-
-        //private const string Server_DBTableClass_FilePath = @"GameServer\XGame\DBMgr\Table";                    //生成表存放目录
-        //private const string Server_DBWriteTable_FilePath = @"GameServer\XGame\DBMgr\DBWriteTable.cs";     //数据写入table转换文件目录
-        //private const string Server_TableName_FilePath = @"GameServer\XGame\DBMgr\TableName.cs";
-
         /// <summary>
         /// 创建服务端Net相关文件
         /// </summary>
@@ -22,7 +17,6 @@ namespace Tools
         /// <param name="callback">执行完回调</param>
         public static void CreateServerDBClassFile(string DBPath, string serverPath, Action callback = null)
         {
-            //Utils.DeleteDirectory(Path.Combine(serverPath, Server_DBTableClass_FilePath));
             Utils.DeleteDirectory(Glob.codeOutSetting.ServerDB.OutDBTableClassDir.ToReality());
 
             DataSet ds = ExcelUtil.ReadExcelSheetData(DBPath);
@@ -232,9 +226,7 @@ namespace GameLib.Comm.DBMgr
         /// <param name="tabNames"></param>
         private static void createDBWriteTableFile(string serverPath, List<string[]> tabNames)
         {
-            //string saveFilePath = Path.Combine(serverPath, Server_DBWriteTable_FilePath);
             string saveFilePath = Glob.codeOutSetting.ServerDB.OutDBWriteTableFile.ToReality();
-
             StringBuilder sbTable = new StringBuilder();
             string strtab = string.Empty;
             for (int i = 0; i < tabNames.Count; i++)
