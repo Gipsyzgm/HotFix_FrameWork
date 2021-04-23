@@ -5,10 +5,10 @@
 		"ServerDB":{
 			"CodeType":"C#",
 			"DBFile":"$ProjectDir$/ProtoConfig/数据库设计.xlsx",			
-			"OutDBTableClassDir":"$ServerDir$/GameLib/CommMgr/DBMgr/Table",
-			"OutDBWriteTableFile":"$ServerDir$/GameLib/CommMgr/DBMgr/DBWriteTable.cs",
-			"OutDBTableNameFile":"$ServerDir$/GameLib/CommMgr/DBMgr/TableName.cs",
-			"OutDBTableDBIndexFile":"$ServerDir$/GameLib/CommMgr/DBMgr/TableDBIndex.cs"
+			"OutDBTableClassDir":"$ServerDir$/CommonLib/CommMgr/DBMgr/Table",
+			"OutDBWriteTableFile":"$ServerDir$/CommonLib/CommMgr/DBMgr/DBWriteTable.cs",
+			"OutDBTableNameFile":"$ServerDir$/CommonLib/CommMgr/DBMgr/TableName.cs",
+			"OutDBTableDBIndexFile":"$ServerDir$/CommonLib/CommMgr/DBMgr/TableDBIndex.cs"
 		},
 		"ClientConfigs":/*客户端配置表*/
 		[
@@ -37,22 +37,22 @@
 		"ServerConfig":/*服务器配置表*/
 		{
 			"CodeType":"C#",
-			"NameSpace":"GameLib.Comm",
+			"NameSpace":"CommonLib.Comm",
 			"OutDataDir":"$ProjectDir$/Product/PublicFolder/DataConfig",
-			"OutClassDir":"$ServerDir$/GameLib/CommMgr/ConfigMgr/Config",
-			"ConfigMgrDir":"$ServerDir$/GameLib/CommMgr/ConfigMgr",			
-			"ConfigInitFile":"$ServerDir$/GameLib/CommMgr/ConfigMgr/ConfigInit.cs",
-			"ConfigMgrFile":"$ServerDir$/GameLib/CommMgr/ConfigMgr/ConfigMgr.cs",
+			"OutClassDir":"$ServerDir$/CommonLib/CommMgr/ConfigMgr/Config",
+			"ConfigMgrDir":"$ServerDir$/CommonLib/CommMgr/ConfigMgr",			
+			"ConfigInitFile":"$ServerDir$/CommonLib/CommMgr/ConfigMgr/ConfigInit.cs",
+			"ConfigMgrFile":"$ServerDir$/CommonLib/CommMgr/ConfigMgr/ConfigMgr.cs"
 		},		
 		"GMServerConfig":/*GM配置表*/
 		{
 			"CodeType":"C#",
-			"NameSpace":"GameLib.Comm",
+			"NameSpace":"CommonLib.Comm",
 			"OutDataDir":"$ProjectDir$/Product/PublicFolder/GMDataConfig",
-			"OutClassDir":"$GMServerDir$/GameLib/CommMgr/ConfigMgr/Config",
-			"ConfigMgrDir":"$GMServerDir$/GameLib/CommMgr/ConfigMgr",			
-			"ConfigInitFile":"$GMServerDir$/GameLib/CommMgr/ConfigMgr/ConfigInit.cs",
-			"ConfigMgrFile":"$GMServerDir$/GameLib/CommMgr/ConfigMgr/ConfigMgr.cs",
+			"OutClassDir":"$GMServerDir$/CommonLib/CommMgr/ConfigMgr/Config",
+			"ConfigMgrDir":"$GMServerDir$/CommonLib/CommMgr/ConfigMgr",			
+			"ConfigInitFile":"$GMServerDir$/CommonLib/CommMgr/ConfigMgr/ConfigInit.cs",
+			"ConfigMgrFile":"$GMServerDir$/CommonLib/CommMgr/ConfigMgr/ConfigMgr.cs",
 		},		
 		"GMServerDB":{
 			"CodeType":"C#",
@@ -80,136 +80,154 @@
 			"LogFile":"$ProjectDir$/ProtoConfig/服务器日志结构.xlsx",			
 			"OutLogClassDir":"$ServerDir$/GameServer/XGame/FLogMgr/Logs"
 		},
-		"ClientProtos":/*===客户端Protos===*/
+		"ClientProtos": /*===客户端Protos===*/
 		[
 			{
-				"CodeType":"C#",/*序号Client 0*/
-				"NameSpace":"$HotName$",
-				"ProtoType":"ClientToGame",/*客户端->游戏服 Client*/
-				"OutClassDir":"$ClientHotDir$/Net/Proto",
-				"ProtocolTypeFile":"$ClientHotDir$/Net/$ProtoType$ClientProtocol.cs",
-				"NetReceiveDir":"$ClientHotDir$/Net/Receive",
-				"NetActionFile":"$ClientHotDir$/Net/$ProtoType$ClientAction.cs",
-				"CommonProtoDir":"$ClientHotDir$/Net/Common",  /*共用Proto导出目录，没有指定就会不导出*/
-				"IsProtobuffForILR":true,
-				"IsClientDev":true,
+				"CodeType": "C#", /*序号Client 0*/
+				"NameSpace": "$HotName$",
+				"ProtoType": "ClientToGame", /*客户端->游戏服 Client*/
+				"OutClassDir": "$ClientHotDir$/Net/Proto",
+				"ProtocolTypeFile": "$ClientHotDir$/Net/$ProtoType$ClientProtocol.cs",
+				"NetReceiveDir": "$ClientHotDir$/Net/Receive",
+				"NetActionFile": "$ClientHotDir$/Net/$ProtoType$ClientAction.cs",
+				"CommonProtoDir": "$ClientHotDir$/Net/Common", /*共用Proto导出目录，没有指定就会不导出*/
+				"IsProtobuffForILR": true,
+				"IsClientDev": true
 			},
 			{
-				"CodeType":"C#",/*序号Client 1*/
-				"NameSpace":"GameServer",
-				"ProtoType":"GameToCenter",/*游戏服->中央服 Client*/
-				"OutClassDir":"$ServerDir$/$NameSpace$/Net/$ProtoType$Client/Proto",
-				"ProtocolTypeFile":"$ServerDir$/$NameSpace$/Net/$ProtoType$Client/$ProtoType$ClientProtocol.cs",
-				"NetReceiveDir":"$ServerDir$/$NameSpace$/Net/$ProtoType$Client/Receive",
-				"NetActionFile":"$ServerDir$/$NameSpace$/Net/$ProtoType$Client/$ProtoType$ClientAction.cs"
+				"CodeType": "C#", /*序号Client 1*/
+				"NameSpace": "GameServer",
+				"ProtoType": "GameToCenter", /*游戏服->中央服 Client*/
+				"OutClassDir": "$ServerDir$/$NameSpace$/Net/$ProtoType$Client/Proto",
+				"ProtocolTypeFile": "$ServerDir$/$NameSpace$/Net/$ProtoType$Client/$ProtoType$ClientProtocol.cs",
+				"NetReceiveDir": "$ServerDir$/$NameSpace$/Net/$ProtoType$Client/Receive",
+				"NetActionFile": "$ServerDir$/$NameSpace$/Net/$ProtoType$Client/$ProtoType$ClientAction.cs"
 			},
 			{
-				"CodeType":"C#",/*序号Client 2*/
-				"NameSpace":"GameServer",
-				"ProtoType":"GameToChat",/*游戏服->聊天服 Client*/
-				"OutClassDir":"$ServerDir$/$NameSpace$/Net/$ProtoType$Client/Proto",
-				"ProtocolTypeFile":"$ServerDir$/$NameSpace$/Net/$ProtoType$Client/$ProtoType$ClientProtocol.cs",
-				"NetReceiveDir":"$ServerDir$/$NameSpace$/Net/$ProtoType$Client/Receive",
-				"NetActionFile":"$ServerDir$/$NameSpace$/Net/$ProtoType$Client/$ProtoType$ClientAction.cs"
+				"CodeType": "C#", /*序号Client 2*/
+				"NameSpace": "GameServer",
+				"ProtoType": "GameToChat", /*游戏服->聊天服 Client*/
+				"OutClassDir": "$ServerDir$/$NameSpace$/Net/$ProtoType$Client/Proto",
+				"ProtocolTypeFile": "$ServerDir$/$NameSpace$/Net/$ProtoType$Client/$ProtoType$ClientProtocol.cs",
+				"NetReceiveDir": "$ServerDir$/$NameSpace$/Net/$ProtoType$Client/Receive",
+				"NetActionFile": "$ServerDir$/$NameSpace$/Net/$ProtoType$Client/$ProtoType$ClientAction.cs"
 			},
 			{
-				"CodeType":"C#",/*序号Client 3*/
-				"NameSpace":"GameServer",
-				"ProtoType":"GameToCross",/*游戏服->交叉 Client*/
-				"OutClassDir":"$ServerDir$/$NameSpace$/Net/$ProtoType$Client/Proto",
-				"ProtocolTypeFile":"$ServerDir$/$NameSpace$/Net/$ProtoType$Client/$ProtoType$ClientProtocol.cs",
-				"NetReceiveDir":"$ServerDir$/$NameSpace$/Net/$ProtoType$Client/Receive",
-				"NetActionFile":"$ServerDir$/$NameSpace$/Net/$ProtoType$Client/$ProtoType$ClientAction.cs"
+				"CodeType": "C#", /*序号Client 3*/
+				"NameSpace": "GameServer",
+				"ProtoType": "GameToCross", /*游戏服->交叉 Client*/
+				"OutClassDir": "$ServerDir$/$NameSpace$/Net/$ProtoType$Client/Proto",
+				"ProtocolTypeFile": "$ServerDir$/$NameSpace$/Net/$ProtoType$Client/$ProtoType$ClientProtocol.cs",
+				"NetReceiveDir": "$ServerDir$/$NameSpace$/Net/$ProtoType$Client/Receive",
+				"NetActionFile": "$ServerDir$/$NameSpace$/Net/$ProtoType$Client/$ProtoType$ClientAction.cs"
 			},
 			{
-				"CodeType":"C#",/*序号Client 4*/
-				"NameSpace":"LoginServer",
-				"ProtoType":"LoginToCenter",/*登录服->中央服 Client*/
-				"OutClassDir":"$ServerDir$/$NameSpace$/Net/$ProtoType$Client/Proto",
-				"ProtocolTypeFile":"$ServerDir$/$NameSpace$/Net/$ProtoType$Client/$ProtoType$ClientProtocol.cs",
-				"NetReceiveDir":"$ServerDir$/$NameSpace$/Net/$ProtoType$Client/Receive",
-				"NetActionFile":"$ServerDir$/$NameSpace$/Net/$ProtoType$Client/$ProtoType$ClientAction.cs"
+				"CodeType": "C#", /*序号Client 4*/
+				"NameSpace": "LoginServer",
+				"ProtoType": "LoginToCenter", /*登录服->中央服 Client*/
+				"OutClassDir": "$ServerDir$/$NameSpace$/Net/$ProtoType$Client/Proto",
+				"ProtocolTypeFile": "$ServerDir$/$NameSpace$/Net/$ProtoType$Client/$ProtoType$ClientProtocol.cs",
+				"NetReceiveDir": "$ServerDir$/$NameSpace$/Net/$ProtoType$Client/Receive",
+				"NetActionFile": "$ServerDir$/$NameSpace$/Net/$ProtoType$Client/$ProtoType$ClientAction.cs"
 			},
-      {
-        "CodeType": "C#", /*序号Client 5  机器人*/
-        "NameSpace": "ClientRobot",
-        "ProtoType": "ClientToGame", /*客户端->游戏服 Client*/
-        "OutClassDir": "$ProjectDir$/Client/ClientRobot/Net/Proto",
-        "ProtocolTypeFile": "$ProjectDir$/Client/ClientRobot/Net/$ProtoType$ClientProtocol.cs",
-        "NetReceiveDir": "$ProjectDir$/Client/ClientRobot/Net/Receive",
-        "NetActionFile": "$ProjectDir$/Client/ClientRobot/Net/$ProtoType$ClientAction.cs",
-        "CommonProtoDir": "$ProjectDir$/Client/ClientRobot/Net/Common", /*共用Proto导出目录，没有指定就会不导出*/
-        "IsMultClinet": true, /*一个进程里是否同时存在多个客户端*/
-        "IsProtobuffForILR": false,
-        "IsClientDev": true,
-      },
-      {
-				"CodeType":"C#",/*序号Client 6 GM*/
-				"NameSpace":"GMServer",
-				"ProtoType":"GMToCenter",/*GM服->中央服 Client*/
-				"OutClassDir":"$GMServerDir$/GMServer/Net/$ProtoType$Client/Proto",
-				"ProtocolTypeFile":"$GMServerDir$/GMServer/Net/$ProtoType$Client/$ProtoType$ClientProtocol.cs",
-				"NetReceiveDir":"$GMServerDir$/GMServer/Net/$ProtoType$Client/Receive",
-				"NetActionFile":"$GMServerDir$/GMServer/Net/$ProtoType$Client/$ProtoType$ClientAction.cs"
+			{
+				"CodeType": "C#", /*序号Client 5  机器人*/
+				"NameSpace": "ClientRobot",
+				"ProtoType": "ClientToGame", /*客户端->游戏服 Client*/
+				"OutClassDir": "$ProjectDir$/Client/ClientRobot/Net/Proto",
+				"ProtocolTypeFile": "$ProjectDir$/Client/ClientRobot/Net/$ProtoType$ClientProtocol.cs",
+				"NetReceiveDir": "$ProjectDir$/Client/ClientRobot/Net/Receive",
+				"NetActionFile": "$ProjectDir$/Client/ClientRobot/Net/$ProtoType$ClientAction.cs",
+				"CommonProtoDir": "$ProjectDir$/Client/ClientRobot/Net/Common", /*共用Proto导出目录，没有指定就会不导出*/
+				"IsMultClinet": true, /*一个进程里是否同时存在多个客户端*/
+				"IsProtobuffForILR": false,
+				"IsClientDev": true
 			},
+			{
+				"CodeType": "C#", /*序号Client 6 GM*/
+				"NameSpace": "GMServer",
+				"ProtoType": "GMToCenter", /*GM服->中央服 Client*/
+				"OutClassDir": "$GMServerDir$/GMServer/Net/$ProtoType$Client/Proto",
+				"ProtocolTypeFile": "$GMServerDir$/GMServer/Net/$ProtoType$Client/$ProtoType$ClientProtocol.cs",
+				"NetReceiveDir": "$GMServerDir$/GMServer/Net/$ProtoType$Client/Receive",
+				"NetActionFile": "$GMServerDir$/GMServer/Net/$ProtoType$Client/$ProtoType$ClientAction.cs"
+			},
+			{
+				"CodeType": "C#", /*序号Client 7*/
+				"NameSpace": "PayServer",
+				"ProtoType": "PayToCenter", /*支付服->中央服 Client*/
+				"OutClassDir": "$ServerDir$/$NameSpace$/Net/$ProtoType$Client/Proto",
+				"ProtocolTypeFile": "$ServerDir$/$NameSpace$/Net/$ProtoType$Client/$ProtoType$ClientProtocol.cs",
+				"NetReceiveDir": "$ServerDir$/$NameSpace$/Net/$ProtoType$Client/Receive",
+				"NetActionFile": "$ServerDir$/$NameSpace$/Net/$ProtoType$Client/$ProtoType$ClientAction.cs"
+			}
 		],
-		"ServerProtos":/*===服务端Protos===*/
+		"ServerProtos": /*===服务端Protos===*/
 		[
 			{
-				"CodeType":"C#",/*序号Server 0*/
-				"NameSpace":"GameServer",
-				"ProtoType":"ClientToGame",/*客户端->游戏服 Server*/
-				"OutClassDir":"$ServerDir$/$NameSpace$/Net/$ProtoType$Server/Proto",
-				"ProtocolTypeFile":"$ServerDir$/$NameSpace$/Net/$ProtoType$Server/$ProtoType$ServerProtocol.cs",
-				"NetReceiveDir":"$ServerDir$/$NameSpace$/Net/$ProtoType$Server/Receive",
-				"NetActionFile":"$ServerDir$/$NameSpace$/Net/$ProtoType$Server/$ProtoType$ServerAction.cs",
-				"CommonProtoDir":"$ServerDir$/$NameSpace$/Net/Common"  /*共用Proto导出目录，没有指定就会不导出*/
+				"CodeType": "C#", /*序号Server 0*/
+				"NameSpace": "GameServer",
+				"ProtoType": "ClientToGame", /*客户端->游戏服 Server*/
+				"OutClassDir": "$ServerDir$/$NameSpace$/Net/$ProtoType$Server/Proto",
+				"ProtocolTypeFile": "$ServerDir$/$NameSpace$/Net/$ProtoType$Server/$ProtoType$ServerProtocol.cs",
+				"NetReceiveDir": "$ServerDir$/$NameSpace$/Net/$ProtoType$Server/Receive",
+				"NetActionFile": "$ServerDir$/$NameSpace$/Net/$ProtoType$Server/$ProtoType$ServerAction.cs",
+				"CommonProtoDir": "$ServerDir$/$NameSpace$/Net/Common" /*共用Proto导出目录，没有指定就会不导出*/
 			},
 			{
-				"CodeType":"C#",/*序号Server 1*/
-				"NameSpace":"CenterServer",
-				"ProtoType":"GameToCenter",/*游戏服->中央服 Server*/
-				"OutClassDir":"$ServerDir$/$NameSpace$/Net/$ProtoType$Server/Proto",
-				"ProtocolTypeFile":"$ServerDir$/$NameSpace$/Net/$ProtoType$Server/$ProtoType$ServerProtocol.cs",
-				"NetReceiveDir":"$ServerDir$/$NameSpace$/Net/$ProtoType$Server/Receive",
-				"NetActionFile":"$ServerDir$/$NameSpace$/Net/$ProtoType$Server/$ProtoType$ServerAction.cs",
+				"CodeType": "C#", /*序号Server 1*/
+				"NameSpace": "CenterServer",
+				"ProtoType": "GameToCenter", /*游戏服->中央服 Server*/
+				"OutClassDir": "$ServerDir$/$NameSpace$/Net/$ProtoType$Server/Proto",
+				"ProtocolTypeFile": "$ServerDir$/$NameSpace$/Net/$ProtoType$Server/$ProtoType$ServerProtocol.cs",
+				"NetReceiveDir": "$ServerDir$/$NameSpace$/Net/$ProtoType$Server/Receive",
+				"NetActionFile": "$ServerDir$/$NameSpace$/Net/$ProtoType$Server/$ProtoType$ServerAction.cs"
 			},
 			{
-				"CodeType":"C#",/*序号Server 2*/
-				"NameSpace":"ChatServer",
-				"ProtoType":"GameToChat",/*游戏服->聊天服 Client*/
-				"OutClassDir":"$ServerDir$/$NameSpace$/Net/$ProtoType$Server/Proto",
-				"ProtocolTypeFile":"$ServerDir$/$NameSpace$/Net/$ProtoType$Server/$ProtoType$ServerProtocol.cs",
-				"NetReceiveDir":"$ServerDir$/$NameSpace$/Net/$ProtoType$Server/Receive",
-				"NetActionFile":"$ServerDir$/$NameSpace$/Net/$ProtoType$Server/$ProtoType$ServerAction.cs",
+				"CodeType": "C#", /*序号Server 2*/
+				"NameSpace": "ChatServer",
+				"ProtoType": "GameToChat", /*游戏服->聊天服 Client*/
+				"OutClassDir": "$ServerDir$/$NameSpace$/Net/$ProtoType$Server/Proto",
+				"ProtocolTypeFile": "$ServerDir$/$NameSpace$/Net/$ProtoType$Server/$ProtoType$ServerProtocol.cs",
+				"NetReceiveDir": "$ServerDir$/$NameSpace$/Net/$ProtoType$Server/Receive",
+				"NetActionFile": "$ServerDir$/$NameSpace$/Net/$ProtoType$Server/$ProtoType$ServerAction.cs"
 			},
 			{
-				"CodeType":"C#",/*序号Server 3*/
-				"NameSpace":"CrossServer",
-				"ProtoType":"GameToCross",/*游戏服->交叉服 Server*/
-				"OutClassDir":"$ServerDir$/$NameSpace$/Net/$ProtoType$Server/Proto",
-				"ProtocolTypeFile":"$ServerDir$/$NameSpace$/Net/$ProtoType$Server/$ProtoType$ServerProtocol.cs",
-				"NetReceiveDir":"$ServerDir$/$NameSpace$/Net/$ProtoType$Server/Receive",
-				"NetActionFile":"$ServerDir$/$NameSpace$/Net/$ProtoType$Server/$ProtoType$ServerAction.cs",
-				"CommonProtoDir":"$ServerDir$/$NameSpace$/Net/Common"  /*共用Proto导出目录，没有指定就会不导出*/
+				"CodeType": "C#", /*序号Server 3*/
+				"NameSpace": "CrossServer",
+				"ProtoType": "GameToCross", /*游戏服->交叉服 Server*/
+				"OutClassDir": "$ServerDir$/$NameSpace$/Net/$ProtoType$Server/Proto",
+				"ProtocolTypeFile": "$ServerDir$/$NameSpace$/Net/$ProtoType$Server/$ProtoType$ServerProtocol.cs",
+				"NetReceiveDir": "$ServerDir$/$NameSpace$/Net/$ProtoType$Server/Receive",
+				"NetActionFile": "$ServerDir$/$NameSpace$/Net/$ProtoType$Server/$ProtoType$ServerAction.cs",
+				"CommonProtoDir": "$ServerDir$/$NameSpace$/Net/Common" /*共用Proto导出目录，没有指定就会不导出*/
 			},
-      {
-        "CodeType": "C#", /*序号Server 4*/
-        "NameSpace": "CenterServer",
-        "ProtoType": "LoginToCenter", /*登录服->中央服 Server*/
-        "OutClassDir": "$ServerDir$/$NameSpace$/Net/$ProtoType$Server/Proto",
-        "ProtocolTypeFile": "$ServerDir$/$NameSpace$/Net/$ProtoType$Server/$ProtoType$ServerProtocol.cs",
-        "NetReceiveDir": "$ServerDir$/$NameSpace$/Net/$ProtoType$Server/Receive",
-        "NetActionFile": "$ServerDir$/$NameSpace$/Net/$ProtoType$Server/$ProtoType$ServerAction.cs",
-      },
-      {
-				"CodeType":"C#",/*序号Server 5*/
-				"NameSpace":"CenterServer",
-				"ProtoType":"GMToCenter",/*GM服->中央服 Server*/
-				"OutClassDir":"$ServerDir$/$NameSpace$/Net/$ProtoType$Server/Proto",
-				"ProtocolTypeFile":"$ServerDir$/$NameSpace$/Net/$ProtoType$Server/$ProtoType$ServerProtocol.cs",
-				"NetReceiveDir":"$ServerDir$/$NameSpace$/Net/$ProtoType$Server/Receive",
-				"NetActionFile":"$ServerDir$/$NameSpace$/Net/$ProtoType$Server/$ProtoType$ServerAction.cs",
+			{
+				"CodeType": "C#", /*序号Server 4*/
+				"NameSpace": "CenterServer",
+				"ProtoType": "LoginToCenter", /*登录服->中央服 Server*/
+				"OutClassDir": "$ServerDir$/$NameSpace$/Net/$ProtoType$Server/Proto",
+				"ProtocolTypeFile": "$ServerDir$/$NameSpace$/Net/$ProtoType$Server/$ProtoType$ServerProtocol.cs",
+				"NetReceiveDir": "$ServerDir$/$NameSpace$/Net/$ProtoType$Server/Receive",
+				"NetActionFile": "$ServerDir$/$NameSpace$/Net/$ProtoType$Server/$ProtoType$ServerAction.cs"
+			},
+			{
+				"CodeType": "C#", /*序号Server 5*/
+				"NameSpace": "CenterServer",
+				"ProtoType": "GMToCenter", /*GM服->中央服 Server*/
+				"OutClassDir": "$ServerDir$/$NameSpace$/Net/$ProtoType$Server/Proto",
+				"ProtocolTypeFile": "$ServerDir$/$NameSpace$/Net/$ProtoType$Server/$ProtoType$ServerProtocol.cs",
+				"NetReceiveDir": "$ServerDir$/$NameSpace$/Net/$ProtoType$Server/Receive",
+				"NetActionFile": "$ServerDir$/$NameSpace$/Net/$ProtoType$Server/$ProtoType$ServerAction.cs"
+			},
+			{
+				"CodeType": "C#", /*序号Server 6*/
+				"NameSpace": "CenterServer",
+				"ProtoType": "PayToCenter", /*支付服->中央服 Server*/
+				"OutClassDir": "$ServerDir$/$NameSpace$/Net/$ProtoType$Server/Proto",
+				"ProtocolTypeFile": "$ServerDir$/$NameSpace$/Net/$ProtoType$Server/$ProtoType$ServerProtocol.cs",
+				"NetReceiveDir": "$ServerDir$/$NameSpace$/Net/$ProtoType$Server/Receive",
+				"NetActionFile": "$ServerDir$/$NameSpace$/Net/$ProtoType$Server/$ProtoType$ServerAction.cs"
 			}
 		],
 		"TransitProtos":		
