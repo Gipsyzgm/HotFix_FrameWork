@@ -5,10 +5,10 @@
 		"ServerDB":{
 			"CodeType":"C#",
 			"DBFile":"$ProjectDir$/ProtoConfig/数据库设计.xlsx",			
-			"OutDBTableClassDir":"$ServerDir$/GameLib/CommMgr/DBMgr/Table",
-			"OutDBWriteTableFile":"$ServerDir$/GameLib/CommMgr/DBMgr/DBWriteTable.cs",
-			"OutDBTableNameFile":"$ServerDir$/GameLib/CommMgr/DBMgr/TableName.cs",
-			"OutDBTableDBIndexFile":"$ServerDir$/GameLib/CommMgr/DBMgr/TableDBIndex.cs"
+			"OutDBTableClassDir":"$ServerDir$/CommonLib/CommMgr/DBMgr/Table",
+			"OutDBWriteTableFile":"$ServerDir$/CommonLib/CommMgr/DBMgr/DBWriteTable.cs",
+			"OutDBTableNameFile":"$ServerDir$/CommonLib/CommMgr/DBMgr/TableName.cs",
+			"OutDBTableDBIndexFile":"$ServerDir$/CommonLib/CommMgr/DBMgr/TableDBIndex.cs"
 		},
 		"ClientConfigs":/*客户端配置表*/
 		[
@@ -37,22 +37,22 @@
 		"ServerConfig":/*服务器配置表*/
 		{
 			"CodeType":"C#",
-			"NameSpace":"GameLib.Comm",
+			"NameSpace":"CommonLib.Comm",
 			"OutDataDir":"$ProjectDir$/Product/PublicFolder/DataConfig",
-			"OutClassDir":"$ServerDir$/GameLib/CommMgr/ConfigMgr/Config",
-			"ConfigMgrDir":"$ServerDir$/GameLib/CommMgr/ConfigMgr",			
-			"ConfigInitFile":"$ServerDir$/GameLib/CommMgr/ConfigMgr/ConfigInit.cs",
-			"ConfigMgrFile":"$ServerDir$/GameLib/CommMgr/ConfigMgr/ConfigMgr.cs"
+			"OutClassDir":"$ServerDir$/CommonLib/CommMgr/ConfigMgr/Config",
+			"ConfigMgrDir":"$ServerDir$/CommonLib/CommMgr/ConfigMgr",			
+			"ConfigInitFile":"$ServerDir$/CommonLib/CommMgr/ConfigMgr/ConfigInit.cs",
+			"ConfigMgrFile":"$ServerDir$/CommonLib/CommMgr/ConfigMgr/ConfigMgr.cs"
 		},		
 		"GMServerConfig":/*GM配置表*/
 		{
 			"CodeType":"C#",
-			"NameSpace":"GameLib.Comm",
+			"NameSpace":"CommonLib.Comm",
 			"OutDataDir":"$ProjectDir$/Product/PublicFolder/GMDataConfig",
-			"OutClassDir":"$GMServerDir$/GameLib/CommMgr/ConfigMgr/Config",
-			"ConfigMgrDir":"$GMServerDir$/GameLib/CommMgr/ConfigMgr",			
-			"ConfigInitFile":"$GMServerDir$/GameLib/CommMgr/ConfigMgr/ConfigInit.cs",
-			"ConfigMgrFile":"$GMServerDir$/GameLib/CommMgr/ConfigMgr/ConfigMgr.cs",
+			"OutClassDir":"$GMServerDir$/CommonLib/CommMgr/ConfigMgr/Config",
+			"ConfigMgrDir":"$GMServerDir$/CommonLib/CommMgr/ConfigMgr",			
+			"ConfigInitFile":"$GMServerDir$/CommonLib/CommMgr/ConfigMgr/ConfigInit.cs",
+			"ConfigMgrFile":"$GMServerDir$/CommonLib/CommMgr/ConfigMgr/ConfigMgr.cs",
 		},		
 		"GMServerDB":{
 			"CodeType":"C#",
