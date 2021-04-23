@@ -126,6 +126,14 @@
     <Compile Include="ExcelExport\SQLiteHelper - 复制.cs" />
     <Compile Include="ExcelExport\SQLiteServer.cs" />
     <Compile Include="Glob.cs" />
+    <Compile Include="GMExport\APIExportHelper.cs" />
+    <Compile Include="GMExport\GMExportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GMExport\GMExportForm.Designer.cs">
+      <DependentUpon>GMExportForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GMExport\GMExportHelper.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
@@ -172,6 +180,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ExcelExport\ExcelExportForm.resx">
       <DependentUpon>ExcelExportForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GMExport\GMExportForm.resx">
+      <DependentUpon>GMExportForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>

@@ -28,98 +28,99 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnExport = new System.Windows.Forms.Button();
-            this.btnSelectDBPath = new System.Windows.Forms.Button();
-            this.btnSelectGameServerPath = new System.Windows.Forms.Button();
-            this.btnSelectAPIPath = new System.Windows.Forms.Button();
-            this.btnExportAPI = new System.Windows.Forms.Button();
-            this.btnExportConfig = new System.Windows.Forms.Button();
+            this.ExportBtn = new System.Windows.Forms.Button();
+            this.SelectDBPathBtn = new System.Windows.Forms.Button();
+            this.SelectGameServerPathBtn = new System.Windows.Forms.Button();
+            this.SelectAPIPathBtn = new System.Windows.Forms.Button();
+            this.ExportAPIBtn = new System.Windows.Forms.Button();
+            this.ExportConfigBtn = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
-            this.btnGameDBExport = new System.Windows.Forms.Button();
+            this.GameDBExportBtn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtGameServerPath = new System.Windows.Forms.TextBox();
-            this.txtDBPath = new System.Windows.Forms.TextBox();
-            this.txtAPIPath = new System.Windows.Forms.TextBox();
+            this.GameServerPathTxt = new System.Windows.Forms.TextBox();
+            this.DBPathTxt = new System.Windows.Forms.TextBox();
+            this.APIPathTxt = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // btnExport
+            // ExportBtn
             // 
-            this.btnExport.Location = new System.Drawing.Point(12, 95);
-            this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(162, 67);
-            this.btnExport.TabIndex = 1;
-            this.btnExport.Text = "生成GM数据库结构类";
-            this.btnExport.UseVisualStyleBackColor = true;
-            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
+            this.ExportBtn.Location = new System.Drawing.Point(12, 95);
+            this.ExportBtn.Name = "ExportBtn";
+            this.ExportBtn.Size = new System.Drawing.Size(162, 67);
+            this.ExportBtn.TabIndex = 1;
+            this.ExportBtn.Text = "生成GM数据库结构类";
+            this.ExportBtn.UseVisualStyleBackColor = true;
+            this.ExportBtn.Click += new System.EventHandler(this.btnExport_Click);
             // 
-            // btnSelectDBPath
+            // SelectDBPathBtn
             // 
-            this.btnSelectDBPath.Location = new System.Drawing.Point(12, 61);
-            this.btnSelectDBPath.Name = "btnSelectDBPath";
-            this.btnSelectDBPath.Size = new System.Drawing.Size(144, 23);
-            this.btnSelectDBPath.TabIndex = 9;
-            this.btnSelectDBPath.Text = "GM数据库设计Excel文件";
-            this.btnSelectDBPath.UseVisualStyleBackColor = true;
-            this.btnSelectDBPath.Click += new System.EventHandler(this.SelctFile_ClickEvent);
+            this.SelectDBPathBtn.Location = new System.Drawing.Point(12, 59);
+            this.SelectDBPathBtn.Name = "SelectDBPathBtn";
+            this.SelectDBPathBtn.Size = new System.Drawing.Size(144, 23);
+            this.SelectDBPathBtn.TabIndex = 9;
+            this.SelectDBPathBtn.Text = "GM数据库设计Excel文件";
+            this.SelectDBPathBtn.UseVisualStyleBackColor = true;
+            this.SelectDBPathBtn.Click += new System.EventHandler(this.SelctFile_ClickEvent);
             // 
-            // btnSelectGameServerPath
+            // SelectGameServerPathBtn
             // 
-            this.btnSelectGameServerPath.Location = new System.Drawing.Point(12, 22);
-            this.btnSelectGameServerPath.Name = "btnSelectGameServerPath";
-            this.btnSelectGameServerPath.Size = new System.Drawing.Size(144, 23);
-            this.btnSelectGameServerPath.TabIndex = 11;
-            this.btnSelectGameServerPath.Text = "GM服务端目录";
-            this.btnSelectGameServerPath.UseVisualStyleBackColor = true;
-            this.btnSelectGameServerPath.Click += new System.EventHandler(this.SelctFolder_ClickEvent);
+            this.SelectGameServerPathBtn.Location = new System.Drawing.Point(12, 20);
+            this.SelectGameServerPathBtn.Name = "SelectGameServerPathBtn";
+            this.SelectGameServerPathBtn.Size = new System.Drawing.Size(144, 23);
+            this.SelectGameServerPathBtn.TabIndex = 11;
+            this.SelectGameServerPathBtn.Text = "GM服务端目录";
+            this.SelectGameServerPathBtn.UseVisualStyleBackColor = true;
+            this.SelectGameServerPathBtn.Click += new System.EventHandler(this.SelctFolder_ClickEvent);
             // 
-            // btnSelectAPIPath
+            // SelectAPIPathBtn
             // 
-            this.btnSelectAPIPath.Location = new System.Drawing.Point(12, 200);
-            this.btnSelectAPIPath.Name = "btnSelectAPIPath";
-            this.btnSelectAPIPath.Size = new System.Drawing.Size(144, 23);
-            this.btnSelectAPIPath.TabIndex = 15;
-            this.btnSelectAPIPath.Text = "GM接口Excel文件";
-            this.btnSelectAPIPath.UseVisualStyleBackColor = true;
-            this.btnSelectAPIPath.Click += new System.EventHandler(this.SelctFile_ClickEvent);
+            this.SelectAPIPathBtn.Location = new System.Drawing.Point(12, 184);
+            this.SelectAPIPathBtn.Name = "SelectAPIPathBtn";
+            this.SelectAPIPathBtn.Size = new System.Drawing.Size(144, 23);
+            this.SelectAPIPathBtn.TabIndex = 15;
+            this.SelectAPIPathBtn.Text = "GM接口Excel文件";
+            this.SelectAPIPathBtn.UseVisualStyleBackColor = true;
+            this.SelectAPIPathBtn.Click += new System.EventHandler(this.SelctFile_ClickEvent);
             // 
-            // btnExportAPI
+            // ExportAPIBtn
             // 
-            this.btnExportAPI.Location = new System.Drawing.Point(12, 238);
-            this.btnExportAPI.Name = "btnExportAPI";
-            this.btnExportAPI.Size = new System.Drawing.Size(162, 67);
-            this.btnExportAPI.TabIndex = 13;
-            this.btnExportAPI.Text = "生成GM接口结构类";
-            this.btnExportAPI.UseVisualStyleBackColor = true;
-            this.btnExportAPI.Click += new System.EventHandler(this.btnExportAPI_Click);
+            this.ExportAPIBtn.Location = new System.Drawing.Point(12, 222);
+            this.ExportAPIBtn.Name = "ExportAPIBtn";
+            this.ExportAPIBtn.Size = new System.Drawing.Size(162, 67);
+            this.ExportAPIBtn.TabIndex = 13;
+            this.ExportAPIBtn.Text = "生成GM接口结构类";
+            this.ExportAPIBtn.UseVisualStyleBackColor = true;
+            this.ExportAPIBtn.Click += new System.EventHandler(this.btnExportAPI_Click);
             // 
-            // btnExportConfig
+            // ExportConfigBtn
             // 
-            this.btnExportConfig.Location = new System.Drawing.Point(12, 341);
-            this.btnExportConfig.Name = "btnExportConfig";
-            this.btnExportConfig.Size = new System.Drawing.Size(162, 67);
-            this.btnExportConfig.TabIndex = 17;
-            this.btnExportConfig.Text = "生成配置表配置数据";
-            this.btnExportConfig.UseVisualStyleBackColor = true;
-            this.btnExportConfig.Click += new System.EventHandler(this.btnExportConfig_Click);
+            this.ExportConfigBtn.Location = new System.Drawing.Point(210, 222);
+            this.ExportConfigBtn.Name = "ExportConfigBtn";
+            this.ExportConfigBtn.Size = new System.Drawing.Size(162, 67);
+            this.ExportConfigBtn.TabIndex = 17;
+            this.ExportConfigBtn.Text = "生成配置表配置数据";
+            this.ExportConfigBtn.UseVisualStyleBackColor = true;
+            this.ExportConfigBtn.Click += new System.EventHandler(this.btnExportConfig_Click);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(190, 368);
+            this.label4.Location = new System.Drawing.Point(420, 240);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(173, 12);
             this.label4.TabIndex = 40;
             this.label4.Text = "游戏配置文件导出，GM后台使用";
+
             // 
-            // btnGameDBExport
+            // GameDBExportBtn
             // 
-            this.btnGameDBExport.Location = new System.Drawing.Point(233, 95);
-            this.btnGameDBExport.Name = "btnGameDBExport";
-            this.btnGameDBExport.Size = new System.Drawing.Size(162, 67);
-            this.btnGameDBExport.TabIndex = 41;
-            this.btnGameDBExport.Text = "生成游戏数据库结构类";
-            this.btnGameDBExport.UseVisualStyleBackColor = true;
-            this.btnGameDBExport.Click += new System.EventHandler(this.btnGameDBExport_Click);
+            this.GameDBExportBtn.Location = new System.Drawing.Point(210, 95);
+            this.GameDBExportBtn.Name = "GameDBExportBtn";
+            this.GameDBExportBtn.Size = new System.Drawing.Size(162, 67);
+            this.GameDBExportBtn.TabIndex = 41;
+            this.GameDBExportBtn.Text = "生成游戏数据库结构类";
+            this.GameDBExportBtn.UseVisualStyleBackColor = true;
+            this.GameDBExportBtn.Click += new System.EventHandler(this.btnGameDBExport_Click);
             // 
             // label1
             // 
@@ -130,47 +131,47 @@
             this.label1.TabIndex = 42;
             this.label1.Text = "导出游戏数据库结构,GM后台使用";
             // 
-            // txtGameServerPath
+            // GameServerPathTxt
             // 
-            this.txtGameServerPath.Location = new System.Drawing.Point(162, 22);
-            this.txtGameServerPath.Name = "txtGameServerPath";
-            this.txtGameServerPath.ReadOnly = true;
-            this.txtGameServerPath.Size = new System.Drawing.Size(479, 21);
-            this.txtGameServerPath.TabIndex = 56;
+            this.GameServerPathTxt.Location = new System.Drawing.Point(162, 22);
+            this.GameServerPathTxt.Name = "GameServerPathTxt";
+            this.GameServerPathTxt.ReadOnly = true;
+            this.GameServerPathTxt.Size = new System.Drawing.Size(479, 21);
+            this.GameServerPathTxt.TabIndex = 56;
             // 
-            // txtDBPath
+            // DBPathTxt
             // 
-            this.txtDBPath.Location = new System.Drawing.Point(162, 61);
-            this.txtDBPath.Name = "txtDBPath";
-            this.txtDBPath.ReadOnly = true;
-            this.txtDBPath.Size = new System.Drawing.Size(479, 21);
-            this.txtDBPath.TabIndex = 57;
+            this.DBPathTxt.Location = new System.Drawing.Point(162, 61);
+            this.DBPathTxt.Name = "DBPathTxt";
+            this.DBPathTxt.ReadOnly = true;
+            this.DBPathTxt.Size = new System.Drawing.Size(479, 21);
+            this.DBPathTxt.TabIndex = 57;
             // 
-            // txtAPIPath
+            // APIPathTxt
             // 
-            this.txtAPIPath.Location = new System.Drawing.Point(162, 200);
-            this.txtAPIPath.Name = "txtAPIPath";
-            this.txtAPIPath.ReadOnly = true;
-            this.txtAPIPath.Size = new System.Drawing.Size(479, 21);
-            this.txtAPIPath.TabIndex = 58;
+            this.APIPathTxt.Location = new System.Drawing.Point(162, 186);
+            this.APIPathTxt.Name = "APIPathTxt";
+            this.APIPathTxt.ReadOnly = true;
+            this.APIPathTxt.Size = new System.Drawing.Size(479, 21);
+            this.APIPathTxt.TabIndex = 58;
             // 
             // GMExportForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(920, 420);
-            this.Controls.Add(this.txtAPIPath);
-            this.Controls.Add(this.txtDBPath);
-            this.Controls.Add(this.txtGameServerPath);
+            this.ClientSize = new System.Drawing.Size(752, 354);
+            this.Controls.Add(this.APIPathTxt);
+            this.Controls.Add(this.DBPathTxt);
+            this.Controls.Add(this.GameServerPathTxt);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.btnGameDBExport);
+            this.Controls.Add(this.GameDBExportBtn);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.btnExportConfig);
-            this.Controls.Add(this.btnSelectAPIPath);
-            this.Controls.Add(this.btnExportAPI);
-            this.Controls.Add(this.btnSelectGameServerPath);
-            this.Controls.Add(this.btnSelectDBPath);
-            this.Controls.Add(this.btnExport);
+            this.Controls.Add(this.ExportConfigBtn);
+            this.Controls.Add(this.SelectAPIPathBtn);
+            this.Controls.Add(this.ExportAPIBtn);
+            this.Controls.Add(this.SelectGameServerPathBtn);
+            this.Controls.Add(this.SelectDBPathBtn);
+            this.Controls.Add(this.ExportBtn);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "GMExportForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.WindowsDefaultBounds;
@@ -183,17 +184,17 @@
         }
 
         #endregion
-        private System.Windows.Forms.Button btnSelectDBPath;
-        private System.Windows.Forms.Button btnSelectGameServerPath;
-        private System.Windows.Forms.Button btnSelectAPIPath;
-        private System.Windows.Forms.Button btnExportAPI;
-        private System.Windows.Forms.Button btnExportConfig;
+        private System.Windows.Forms.Button SelectDBPathBtn;
+        private System.Windows.Forms.Button SelectGameServerPathBtn;
+        private System.Windows.Forms.Button SelectAPIPathBtn;
+        private System.Windows.Forms.Button ExportAPIBtn;
+        private System.Windows.Forms.Button ExportConfigBtn;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button btnExport;
-        private System.Windows.Forms.Button btnGameDBExport;
+        private System.Windows.Forms.Button ExportBtn;
+        private System.Windows.Forms.Button GameDBExportBtn;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtGameServerPath;
-        private System.Windows.Forms.TextBox txtDBPath;
-        private System.Windows.Forms.TextBox txtAPIPath;
+        private System.Windows.Forms.TextBox GameServerPathTxt;
+        private System.Windows.Forms.TextBox DBPathTxt;
+        private System.Windows.Forms.TextBox APIPathTxt;
     }
 }

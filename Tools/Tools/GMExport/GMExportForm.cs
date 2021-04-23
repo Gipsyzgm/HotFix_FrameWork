@@ -16,9 +16,9 @@ namespace Tools
 
         private void GMExportForm_Load(object sender, EventArgs e)
         {
-            this.txtDBPath.Text = Glob.codeOutSetting.GMServerDB.DBFile.ToReality();
-            this.txtAPIPath.Text = Glob.codeOutSetting.GMServerAPI.APIFile.ToReality();
-            this.txtGameServerPath.Text = Glob.projectSetting.RealityGMServerDir;
+            this.DBPathTxt.Text = Glob.codeOutSetting.GMServerDB.DBFile.ToReality();
+            this.APIPathTxt.Text = Glob.codeOutSetting.GMServerAPI.APIFile.ToReality();
+            this.GameServerPathTxt.Text = Glob.projectSetting.RealityGMServerDir;
         }
 
         /// <summary>
@@ -26,14 +26,14 @@ namespace Tools
         /// </summary>
         private void btnExport_Click(object sender, EventArgs e)
         {
-            this.btnExport.Enabled = false;
+            this.ExportBtn.Enabled = false;
             Logger.Clean();
-            ThreadPool.QueueUserWorkItem(callBack => GMExportHelper.CreateServerDBClassFile(this.txtDBPath.Text, this.txtGameServerPath.Text, generateDBAllCallback));            
+            ThreadPool.QueueUserWorkItem(callBack => GMExportHelper.CreateServerDBClassFile(this.DBPathTxt.Text, this.GameServerPathTxt.Text, generateDBAllCallback));            
         }
         private void generateDBAllCallback()
         {
             Logger.LogAction("GM数据库表结构文件生成完成!!!!");
-            this.btnExport.Enabled = true;
+            this.ExportBtn.Enabled = true;
         }
 
 
@@ -42,14 +42,14 @@ namespace Tools
         /// </summary>
         private void btnExportAPI_Click(object sender, EventArgs e)
         {
-            this.btnExport.Enabled = false;
+            this.ExportBtn.Enabled = false;
             Logger.Clean();
-            ThreadPool.QueueUserWorkItem(callBack => APIExportHelper.CreateAPIClassFile(this.txtAPIPath.Text, this.txtGameServerPath.Text, generateAPICallback));            
+            ThreadPool.QueueUserWorkItem(callBack => APIExportHelper.CreateAPIClassFile(this.APIPathTxt.Text, this.GameServerPathTxt.Text, generateAPICallback));            
         }
         private void generateAPICallback()
         {
             Logger.LogAction("生成GM接口文件生成完成!!!!");
-            this.btnExport.Enabled = true;
+            this.ExportBtn.Enabled = true;
         }
         
 
@@ -73,21 +73,21 @@ namespace Tools
         /// <param name="e"></param>
         private void SelctFile_ClickEvent(object sender, EventArgs e)
         {
-            if (sender == this.btnSelectDBPath)
-                System.Diagnostics.Process.Start(this.txtDBPath.Text);
-            if (sender == this.btnSelectAPIPath)
-                System.Diagnostics.Process.Start(this.txtAPIPath.Text);
+            if (sender == this.SelectDBPathBtn)
+                System.Diagnostics.Process.Start(this.DBPathTxt.Text);
+            if (sender == this.SelectAPIPathBtn)
+                System.Diagnostics.Process.Start(this.APIPathTxt.Text);
         }
         #endregion
 
         private void btnOpenFile_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start(this.txtDBPath.Text);
+            System.Diagnostics.Process.Start(this.DBPathTxt.Text);
         }
 
         private void btnOpenAPIFile_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start(this.txtAPIPath.Text);
+            System.Diagnostics.Process.Start(this.APIPathTxt.Text);
         }
 
 
@@ -105,7 +105,7 @@ namespace Tools
             //Logger.Clean();
             //Logger.LogAction("开始导出GM配置表文件");
             //ThreadPool.QueueUserWorkItem(callBack => ExcelExportHelper.GenerateGMServerExcel(ToolsConfigHelper.Config.ExcelPath, csClientPath, configPath, generateCSClientExcelCallback));
-            this.btnExportConfig.Enabled = false;
+            this.ExportConfigBtn.Enabled = false;
             Logger.Clean();
             Logger.LogAction("开始导出GM配置表文件");
 
@@ -120,23 +120,24 @@ namespace Tools
             ThreadPool.QueueUserWorkItem(cb => exportServer.Generate(serverSheet, () =>
             {
                 Logger.LogAction("全部相关文件生成完成!!!!");
-                this.btnExportConfig.Enabled = true;
+                this.ExportConfigBtn.Enabled = true;
             }));
         }
         #endregion
 
         private void btnGameDBExport_Click(object sender, EventArgs e)
         {
-            this.btnGameDBExport.Enabled = false;
+            this.GameDBExportBtn.Enabled = false;
             Logger.Clean();
-            ThreadPool.QueueUserWorkItem(callBack => GMExportHelper.CreateGameDBClassFile(Glob.codeOutSetting.ServerDB.DBFile.ToReality(), this.txtGameServerPath.Text, generateGameDBAllCallback));
+            ThreadPool.QueueUserWorkItem(callBack => GMExportHelper.CreateGameDBClassFile(Glob.codeOutSetting.ServerDB.DBFile.ToReality(), this.GameServerPathTxt.Text, generateGameDBAllCallback));
             
         }
         private void generateGameDBAllCallback()
         {
             Logger.LogAction("游戏数据库表结构文件生成完成!!!!");
-            this.btnGameDBExport.Enabled = true;
+            this.GameDBExportBtn.Enabled = true;
         }
+
     }
 }
 
