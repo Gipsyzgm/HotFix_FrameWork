@@ -63,17 +63,18 @@
 			"OutDBTableDBIndexFile":"$GMServerDir$/GMServer/XGame/DBMgr/TableDBIndex.cs",
 			"OutDBGameTableClassDir":"$GMServerDir$/GMServer/XGame/DBMgr/GameTable",
 		},
-		"GMServerAPI":{
-			"CodeType":"C#",
-			"APIFile":"$ProjectDir$/ProtoConfig/GM/GM接口.xlsx",
-			"OutAPIActionFileDir":"$GMServerDir$/GMServer/HTTP",
-			"OutAPIClassFileDir":"$GMServerDir$/GMServer/HTTP/_APIMsg",
-			"OutAPIHttpActionFile":"$GMServerDir$/GMServer/HTTP/HttpAction.cs",
+		"GMServerAPI": {
+			"CodeType": "C#",
+			"APIFile": "$ProjectDir$/ProtoConfig/GM/GM接口.xlsx",
+			"OutAPIActionFileDir": "$GMServerDir$/GMServer/HTTP",
+			"OutAPIClassFileDir": "$GMServerDir$/GMServer/HTTP/_APIMsg",
+			"OutAPIHttpActionFile": "$GMServerDir$/GMServer/HTTP/HttpAction.cs",
 		},
-		"CDKey":{
-			"CodeType":"C#",
-			"CDKeyFile":"$ProjectDir$/ProtoConfig/Config/CDKey.xlsx",
-			"OutFileDir":"$ProjectDir$/ProtoConfig/CDKey",
+		"CDKey": {
+			/*===用于配置CDKey的配置文件及输出文件的路径===*/
+			"CodeType": "C#",
+			"CDKeyFile": "$ProjectDir$/ProtoConfig/Config/CDKey.xlsx",
+			"OutFileDir": "$ProjectDir$/ProtoConfig/CDKey"
 		},
 		"ServerLog":{
 			"CodeType":"C#",
