@@ -33,6 +33,7 @@ namespace HotFix
         public override void Dispose()
         {
 
+
         }
 
         private float InitContentY = 0;
@@ -48,7 +49,7 @@ namespace HotFix
             sequenc.Append(Bg.transform.DOLocalMoveY(InitContentY + 250, 0.8f).SetEase(Ease.Linear)).SetUpdate(true).OnComplete(() => {
                 TipsText.text = string.Empty;
                 CurObj.SetActive(false);
-                Tips.cacheTipsList.Enqueue(this);
+                Tips.CacheTipsList.Enqueue(this);
             });
         }
     }

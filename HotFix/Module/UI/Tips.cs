@@ -9,15 +9,18 @@ namespace HotFix.Module.UI
 {
     public class Tips
     {
-        private static Queue<string> tipsQueueList = new Queue<string>();
         /// <summary>
-        /// 缓存Tips，留着下次使用
+        /// 需要显示的Tips
         /// </summary>
-        public static Queue<TipItem> cacheTipsList = new Queue<TipItem>();
+        private static Queue<string> TipsQueueList = new Queue<string>();
+        /// <summary>
+        /// 缓存Tips实例，留着下次使用
+        /// </summary>
+        public static Queue<TipItem> CacheTipsList = new Queue<TipItem>();
 
-        private static CTaskHandle taskRun;
-
-        private static string currTips;
+        private static CTaskHandle TaskRun;
+        //当前显示的Tips
+        private static string CurrTips;
         /// <summary>
         /// 弹出Tips提示
         /// </summary>
@@ -26,33 +29,31 @@ namespace HotFix.Module.UI
         public static void Show(string content, bool canLastSame = false)
         {
             //不充许与队队中最后一个元素的Tips相同
-            if (!canLastSame && tipsQueueList.Count > 0 && content == tipsQueueList.Last())
+            if (!canLastSame && TipsQueueList.Count > 0 && content == TipsQueueList.Last())
             {
-                Debug.Log("元素相同");
                 return;
             }            
-            tipsQueueList.Enqueue(content);
-            if (taskRun.IsDead)
-                taskRun = RunShow().Run();        
+            TipsQueueList.Enqueue(content);
+            if (TaskRun.IsDead)
+                TaskRun = RunShow().Run();        
         }
 
         private static async CTask RunShow()
         {
-            while (tipsQueueList.Count > 0)
+            while (TipsQueueList.Count > 0)
             {
-                Debug.Log("出列");
-                currTips = tipsQueueList.Dequeue();
+                CurrTips = TipsQueueList.Dequeue();
                 TipItem item;
-                if (cacheTipsList.Count > 0)
+                if (CacheTipsList.Count > 0)
                 {
-                    item = cacheTipsList.Dequeue();
-                    item.TipsAnim(currTips);         
+                    item = CacheTipsList.Dequeue();
+                    item.TipsAnim(CurrTips);         
                 }
                 else
                 {
                     item = new TipItem();
                     await item.Instantiate(HotMgr.UI.layer_dict[PanelLayer.UITips]);
-                    item.TipsAnim(currTips);
+                    item.TipsAnim(CurrTips);
                 }
                 if (Time.timeScale != 0)
                 {
@@ -64,8 +65,8 @@ namespace HotFix.Module.UI
                 }
             }
 
-            currTips = null;
-            taskRun.Stop();
+            CurrTips = null;
+            TaskRun.Stop();
         }
 
 
@@ -80,7 +81,7 @@ namespace HotFix.Module.UI
 
         public static void ClearTips() 
         {       
-            tipsQueueList.Clear();
+            TipsQueueList.Clear();
         }
 
     }
