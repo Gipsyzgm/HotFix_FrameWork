@@ -20,9 +20,9 @@ namespace HotFix
 {
     public class UIMgr
     {
-        public Transform _canvas =MainMgr.UI.canvas.transform;
+        public Transform _canvas = MainMgr.UI.canvas.transform;
         private Dictionary<string, BaseUI> Paneldict = new Dictionary<string, BaseUI>();
-        private Dictionary<PanelLayer, Transform> layer_dict;
+        public Dictionary<PanelLayer, Transform> layer_dict;
         /// <summary>
         /// 用于记录当前页面显示顺序并实现关闭当前页面功能。
         /// </summary>
@@ -109,13 +109,7 @@ namespace HotFix
             else 
             {
                 Debug.Log("没有找到对应Ui层级:"+ UIPanel.layer);
-            }
-            //设置位置等等
-            //RectTransform rect = UIPanel.curView.GetComponent<RectTransform>();
-            //rect.anchorMin = Vector2.zero;
-            //rect.anchorMax = Vector2.one;
-            //rect.offsetMin = Vector2.zero;
-            //rect.offsetMax = Vector2.zero;
+            }          
             AddToList(name);          
             UIPanel.OnShow(uIAnim);
         }
