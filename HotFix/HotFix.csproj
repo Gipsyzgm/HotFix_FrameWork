@@ -228,8 +228,10 @@
     <Compile Include="Module\Config\Configs\WarSpecialConfig.cs" />
     <Compile Include="Module\Config\Configs\WarSpecialSymbolConfig.cs" />
     <Compile Include="Module\Config\Configs\WarSymbolConfig.cs" />
+    <Compile Include="Module\Data\BaseDataMgr.cs" />
     <Compile Include="Module\Lang\Lang.cs" />
     <Compile Include="Module\Lang\LangMgr.cs" />
+    <Compile Include="Module\Login\Class1.cs" />
     <Compile Include="Module\Pool\GameObjectPool.cs" />
     <Compile Include="Module\Pool\Pool.cs" />
     <Compile Include="Module\Sound\SoundMgr.cs" />
@@ -239,9 +241,12 @@
     <Compile Include="Module\Time\TimerMgr.cs" />
     <Compile Include="Module\UI\BaseItem.cs" />
     <Compile Include="Module\UI\BaseUI.cs" />
+    <Compile Include="Module\UI\Tips.cs" />
     <Compile Include="Module\UI\UIAtlas.cs" />
     <Compile Include="Module\UI\UIExtension.cs" />
+    <Compile Include="Module\UI\UIItem\Item\TipItem.cs" />
     <Compile Include="Module\UI\UIItem\Item\TopItem.cs" />
+    <Compile Include="Module\UI\UIItem\View\TipItemView.cs" />
     <Compile Include="Module\UI\UIItem\View\TopItemView.cs" />
     <Compile Include="Module\UI\UIMgr.cs" />
     <Compile Include="Module\UI\UIObject.cs" />
