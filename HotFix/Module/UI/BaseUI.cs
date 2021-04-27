@@ -145,13 +145,22 @@ namespace HotFix
         /// 可重写，页面关闭的逻辑。动画等
         /// </summary>
         public virtual void OnClose(UIAnim uIAnim = UIAnim.None)
-        {
-            Debug.LogError("关闭的页面：" + CurViewPath.ToLower());    
-            ShowUIAnim(CurObj, uIAnim);                        
-            topItem?.Dispose();
-            Dispose(); 
-            GameObject.DestroyImmediate(CurObj);
-
+        {         
+            if (uIAnim == UIAnim.None)
+            {
+                topItem?.Dispose();
+                Dispose();
+                GameObject.DestroyImmediate(CurObj);
+            }
+            else 
+            {          
+                ShowUIAnim(CurObj, uIAnim,()=> 
+                {
+                    topItem?.Dispose();
+                    Dispose();
+                    GameObject.DestroyImmediate(CurObj);
+                });
+            }                             
         }
 
         /// <summary>
