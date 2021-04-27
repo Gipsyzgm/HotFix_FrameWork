@@ -16,9 +16,9 @@ namespace HotFix
     {
         /// <summary>UI主界面节点,如:人物头像，右上角地小图，功能栏按钮等</summary>
         UIWar = 0,
-        /// <summary>UI窗口节点,如:商店,人物背包，任务面板，商城面板</summary>
+        /// <summary>UI窗口节点,如:商店,人物背包，任务面板，商城面板，属性面板</summary>
         UIMain = 1,
-        /// <summary>Tips节点,如:物品详细信息</summary>
+        /// <summary>Tips节点,如:物品详细信息，提示面板</summary>
         UITips = 2,
         /// <summary>剧情节点</summary>
         UIStory = 3,
@@ -113,17 +113,24 @@ namespace HotFix
         /// </summary>
         public virtual void OnShow(UIAnim uIAnim = UIAnim.None)
         {
-            ShowUIAnim(CurObj, uIAnim);
             CurObj.SetActive(true);
-               
+            ShowUIAnim(CurObj, uIAnim);               
         }
 
         /// <summary>
         /// 可重写，页面隐藏的逻辑。动画等
         /// </summary>
-        public virtual void OnHide()
+        public virtual void OnHide(UIAnim uIAnim)
         {
-            SetActive(false);
+            if (uIAnim == UIAnim.None)
+            {
+                ShowUIAnim(CurObj, uIAnim);
+            }
+            else
+            {
+                SetActive(false);
+            }
+          
         }
 
         /// <summary>
@@ -131,6 +138,7 @@ namespace HotFix
         /// </summary>
         public virtual void Refresh()
         {
+
 
         }
         /// <summary>
@@ -148,10 +156,10 @@ namespace HotFix
         /// <summary>
         /// 备用的自己隐藏自己的方法
         /// </summary>
-        public virtual void HideSelf()
+        public virtual void HideSelf(UIAnim uIAnim = UIAnim.None)
         {      
             string name = this.GetType().ToString();
-            HotMgr.UI.HidePanel(name);
+            HotMgr.UI.HidePanel(name, uIAnim);
         }
 
         /// <summary>
@@ -208,10 +216,8 @@ namespace HotFix
                 if (HotMgr.UI.Loading!=null)
                 {
                     HotMgr.UI.Loading.SetActive(false);
-                }
-             
+                }            
             }
-
         }
         /// <summary>
         /// 创建公用Top
@@ -221,51 +227,6 @@ namespace HotFix
             if (topItem != null) return;
             topItem = new TopItem();
             await topItem.Instantiate(this.transform);
-        }
-
-        /// <summary>
-        /// 渐现菜单
-        /// </summary>
-        /// <param name="targetGO">菜单游戏对象</param>
-        public void ShowUIAnim(GameObject target, UIAnim anim)
-        {
-            float time = 0.5f;
-            switch (anim)
-            {
-                case UIAnim.FadeOut:
-                    time = 0.35f;
-                    break;
-                case UIAnim.ScaleOut:
-                    time = 0.2f;
-                    break;
-            }
-            if (anim == UIAnim.None || target == null)
-            {
-                return;
-            }
-            //UI淡入淡出效果
-            if (anim == UIAnim.FadeIn || anim == UIAnim.FadeOut)
-            {
-                Graphic[] comps = target.GetComponentsInChildren<Graphic>();
-                for (int i = comps.Length; --i >= 0;)
-                {
-                    if (anim == UIAnim.FadeIn)
-                        comps[i].DOFade(0, time).SetUpdate(true).From();
-                    else
-                        comps[i].DOFade(0, time).SetUpdate(true);
-                }
-            }
-            else if (anim == UIAnim.ScaleIn || anim == UIAnim.ScaleOut)
-            {
-                if (anim == UIAnim.ScaleIn)
-                {
-                    target.transform.DOScale(0, time).SetUpdate(true).SetEase(Ease.OutBack).From();
-                }
-                else
-                {
-                    target.transform.DOScale(0, time).SetUpdate(true).SetEase(Ease.InBack);
-                }
-            }
-        }      
+        }       
     }
 }
