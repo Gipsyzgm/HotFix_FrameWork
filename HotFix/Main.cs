@@ -38,17 +38,32 @@ namespace HotFix
             //    HotMgr.Net.Send(data);
             //}
 
-            for (int i = 0; i < 50; i++)
+            for (int i = 0; i < 10; i++)
             {
                 Tips.Show("卧槽",true);
             }
+         
+     
+
         }
 
-
+        static int count = 0;
         public static void Update(float deltaTime)
         {
             HotMgr.Timer?.timerUpdateEvent(deltaTime);
             HotMgr.Net.Update();
+
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+                count++;
+                Confirm.Show(() =>
+                {
+                    Debug.LogError("确定"+ count);
+                }, () =>
+                {
+                    Debug.LogError("确定"+ count);
+                }, "随便什么把", count.ToString(), false);
+            }
         }
     }
 }

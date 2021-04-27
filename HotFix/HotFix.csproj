@@ -84,6 +84,11 @@
       <HintPath>..\Product\ILR\UnityEngine.CoreModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="UnityEngine.InputLegacyModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Product\ILR\UnityEngine.InputLegacyModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="UnityEngine.Physics2DModule">
       <HintPath>..\Product\ILR\UnityEngine.Physics2DModule.dll</HintPath>
       <Private>False</Private>
@@ -241,11 +246,14 @@
     <Compile Include="Module\Time\TimerMgr.cs" />
     <Compile Include="Module\UI\BaseItem.cs" />
     <Compile Include="Module\UI\BaseUI.cs" />
-    <Compile Include="Module\UI\Tips.cs" />
+    <Compile Include="Module\UI\Extend\Confirm.cs" />
+    <Compile Include="Module\UI\Extend\Tips.cs" />
     <Compile Include="Module\UI\UIAtlas.cs" />
     <Compile Include="Module\UI\UIExtension.cs" />
+    <Compile Include="Module\UI\UIItem\Item\ConfirmItem.cs" />
     <Compile Include="Module\UI\UIItem\Item\TipItem.cs" />
     <Compile Include="Module\UI\UIItem\Item\TopItem.cs" />
+    <Compile Include="Module\UI\UIItem\View\ConfirmItemView.cs" />
     <Compile Include="Module\UI\UIItem\View\TipItemView.cs" />
     <Compile Include="Module\UI\UIItem\View\TopItemView.cs" />
     <Compile Include="Module\UI\UIMgr.cs" />
