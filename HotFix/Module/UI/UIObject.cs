@@ -121,12 +121,13 @@ namespace HotFix
             }
             return parent.Find(path).GetComponent<T>();
         }
-
-         /// <summary>
+        /// <summary>
         /// 渐现菜单,使用关闭动画会在动画结束自动设置隐藏
         /// </summary>
-        /// <param name="targetGO">菜单游戏对象</param>
-        public void ShowUIAnim(GameObject target, UIAnim anim)
+        /// <param name="target">菜单游戏对象</param>
+        /// <param name="anim">动画类型</param>
+        /// <param name="CloseCallBack">关闭动画后需要进行的操作/避免在播动画时物体消毁了</param>
+        public void ShowUIAnim(GameObject target, UIAnim anim ,Action CloseCallBack = null)
         {
             float time = 0.5f;
             switch (anim)
@@ -154,21 +155,28 @@ namespace HotFix
                         {
                             comps[i].DOFade(1, time).SetUpdate(true);
                         }
-                        else 
+                        else
                         {
                             comps[i].DOFade(0, time).SetUpdate(true).From();
-                        }                                           
-                    }                       
-                    else
-                        comps[i].DOFade(0, time).SetUpdate(true).OnComplete(() =>
+                        }
+                    }
+                    else 
+                    {
+                        if (i == 0)
                         {
-                            if (target.activeSelf)
-                            {
-                                target.SetActive(false);                              
-                            }                          
-                        });
-                }
-             
+                            comps[i].DOFade(0, time).SetUpdate(true).OnComplete(() =>
+                            {                            
+                                target.SetActive(false);                                  
+                                CloseCallBack?.Invoke();
+                            });
+                        }
+                        else 
+                        {
+                            comps[i].DOFade(0, time).SetUpdate(true);
+                        }                       
+                    }
+                        
+                }            
             }
             else if (anim == UIAnim.ScaleIn || anim == UIAnim.ScaleOut)
             {
@@ -183,7 +191,8 @@ namespace HotFix
                         if (target.activeSelf)
                         {
                             target.SetActive(false);
-                            target.transform.localScale = Vector3.one;                         
+                            target.transform.localScale = Vector3.one;
+                            CloseCallBack?.Invoke();
                         }
                     }); 
                 }
