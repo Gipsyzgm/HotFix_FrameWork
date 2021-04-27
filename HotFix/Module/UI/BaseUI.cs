@@ -123,12 +123,12 @@ namespace HotFix
         public virtual void OnHide(UIAnim uIAnim)
         {
             if (uIAnim == UIAnim.None)
-            {
-                ShowUIAnim(CurObj, uIAnim);
+            {                
+                SetActive(false);
             }
             else
             {
-                SetActive(false);
+                ShowUIAnim(CurObj, uIAnim);
             }
           
         }
@@ -146,11 +146,12 @@ namespace HotFix
         /// </summary>
         public virtual void OnClose(UIAnim uIAnim = UIAnim.None)
         {
-            Debug.LogError("关闭的页面：" + CurViewPath.ToLower());
-            ShowUIAnim(CurObj, uIAnim);         
+            Debug.LogError("关闭的页面：" + CurViewPath.ToLower());    
+            ShowUIAnim(CurObj, uIAnim);                        
             topItem?.Dispose();
-            Dispose();
+            Dispose(); 
             GameObject.DestroyImmediate(CurObj);
+
         }
 
         /// <summary>
