@@ -166,11 +166,11 @@ namespace HotFix
         /// <summary>
         /// 备用的自己关闭自己的方法
         /// </summary>
-        public virtual void CloseSelf()
+        public virtual void CloseSelf(UIAnim uIAnim = UIAnim.None)
         {
             CloseAction?.Invoke();
             string name = this.GetType().ToString();
-            HotMgr.UI.ClosePanel(name);
+            HotMgr.UI.ClosePanel(name, uIAnim);
         }
         /// <summary>
         /// 清除数据
