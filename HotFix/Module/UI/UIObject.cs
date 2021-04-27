@@ -149,16 +149,26 @@ namespace HotFix
                 for (int i = comps.Length; --i >= 0;)
                 {
                     if (anim == UIAnim.FadeIn)
-                        comps[i].DOFade(0, time).SetUpdate(true).From();
+                    {
+                        if (comps[i].color.a == 0)
+                        {
+                            comps[i].DOFade(1, time).SetUpdate(true);
+                        }
+                        else 
+                        {
+                            comps[i].DOFade(0, time).SetUpdate(true).From();
+                        }                                           
+                    }                       
                     else
                         comps[i].DOFade(0, time).SetUpdate(true).OnComplete(() =>
                         {
                             if (target.activeSelf)
                             {
-                                target.SetActive(false);
-                            }
+                                target.SetActive(false);                              
+                            }                          
                         });
                 }
+             
             }
             else if (anim == UIAnim.ScaleIn || anim == UIAnim.ScaleOut)
             {
