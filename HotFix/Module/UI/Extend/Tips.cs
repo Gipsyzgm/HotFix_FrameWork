@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
+//通用Tips，只清除数据，不消毁实例。
 namespace HotFix.Module.UI
 {
     public class Tips
@@ -14,7 +15,7 @@ namespace HotFix.Module.UI
         /// </summary>
         private static Queue<string> TipsQueueList = new Queue<string>();
         /// <summary>
-        /// 缓存Tips实例，留着下次使用
+        /// 缓存Tips实例，留着下次使用。
         /// </summary>
         public static Queue<TipItem> CacheTipsList = new Queue<TipItem>();
 
@@ -83,6 +84,7 @@ namespace HotFix.Module.UI
         {       
             TipsQueueList.Clear();
         }
+
 
     }
 }
