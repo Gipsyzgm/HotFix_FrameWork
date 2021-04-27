@@ -14,8 +14,6 @@ namespace HotFix
         { 
             args = _args;
 
-
-
             Music.onValueChanged.AddListener((b)=> 
             {
                 Debug.Log("开启音乐："+b);               
