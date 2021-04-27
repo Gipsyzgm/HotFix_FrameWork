@@ -150,7 +150,7 @@ namespace HotFix
         /// 隐藏页面
         /// </summary>
         /// <param name="panelName"></param>
-        public void HidePanel(string panelName)
+        public void HidePanel(string panelName,UIAnim uIAnim = UIAnim.None)
         {           
             BaseUI panel = GetPanel(panelName);
             if (panel != null)
@@ -158,10 +158,9 @@ namespace HotFix
                 if (!panel.CurObj.activeInHierarchy)
                     return;
                 RomoveToList(panelName.ToString());
-                panel.OnHide();
+                panel.OnHide(uIAnim);
             }
         }
-
         /// <summary>
         /// 通过名字获得panel
         /// </summary>
