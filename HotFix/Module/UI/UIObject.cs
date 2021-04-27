@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DG.Tweening;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -31,7 +32,6 @@ namespace HotFix
         /// UI所属节点类型
         /// </summary>
         public PanelLayer layer = PanelLayer.UIMain;
-
         /// <summary>
         /// 是否初始化完成
         /// </summary>
@@ -121,6 +121,64 @@ namespace HotFix
             }
             return parent.Find(path).GetComponent<T>();
         }
+
+         /// <summary>
+        /// 渐现菜单,使用关闭动画会在动画结束自动设置隐藏
+        /// </summary>
+        /// <param name="targetGO">菜单游戏对象</param>
+        public void ShowUIAnim(GameObject target, UIAnim anim)
+        {
+            float time = 0.5f;
+            switch (anim)
+            {
+                case UIAnim.FadeOut:
+                    time = 0.35f;
+                    break;
+                case UIAnim.ScaleOut:
+                    time = 0.2f;
+                    break;
+            }
+            if (anim == UIAnim.None || target == null)
+            {
+                return;
+            }
+            //UI淡入淡出效果
+            if (anim == UIAnim.FadeIn || anim == UIAnim.FadeOut)
+            {
+                Graphic[] comps = target.GetComponentsInChildren<Graphic>();
+                for (int i = comps.Length; --i >= 0;)
+                {
+                    if (anim == UIAnim.FadeIn)
+                        comps[i].DOFade(0, time).SetUpdate(true).From();
+                    else
+                        comps[i].DOFade(0, time).SetUpdate(true).OnComplete(() =>
+                        {
+                            if (target.activeSelf)
+                            {
+                                target.SetActive(false);
+                            }
+                        });
+                }
+            }
+            else if (anim == UIAnim.ScaleIn || anim == UIAnim.ScaleOut)
+            {
+                if (anim == UIAnim.ScaleIn)
+                {
+                    target.transform.DOScale(0, time).SetUpdate(true).SetEase(Ease.OutBack).From();
+                }
+                else
+                {
+                    target.transform.DOScale(0, time).SetUpdate(true).SetEase(Ease.InBack).OnComplete(() =>
+                    {
+                        if (target.activeSelf)
+                        {
+                            target.SetActive(false);
+                            target.transform.localScale = Vector3.one;                         
+                        }
+                    }); 
+                }
+            }
+        }      
 
         public virtual void Dispose()
         {
