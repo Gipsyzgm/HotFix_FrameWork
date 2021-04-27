@@ -30,7 +30,7 @@ namespace HotFix
 
             CloseBtn.AddClick(() =>
             {
-                HideSelf();
+                HideSelf(UIAnim.FadeOut);
             });
         }
 
