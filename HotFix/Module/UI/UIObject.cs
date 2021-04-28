@@ -123,6 +123,7 @@ namespace HotFix
         }
         /// <summary>
         /// 渐现菜单,使用关闭动画会在动画结束自动设置隐藏
+        /// 使用Fade模式的话，不要把Ui对象的a值设为0
         /// </summary>
         /// <param name="target">菜单游戏对象</param>
         /// <param name="anim">动画类型</param>
