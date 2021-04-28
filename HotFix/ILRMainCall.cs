@@ -33,11 +33,9 @@ namespace HotFix
         /// <returns></returns>
         public static string GetLang(string key, int type = -1)
         {
-            //if (type == -1)
-            //    return Mgr.Lang.Get(key);
-            //return Mgr.Lang.Get(key, (ELangType)type);
-            return null;
-
+            if (type == -1)
+                return HotMgr.Lang.Get(key);
+            return HotMgr.Lang.Get(key, (ELangType)type);
         }
 
         /// <summary>
