@@ -112,6 +112,7 @@ namespace HotFix
             }          
             AddToList(name);          
             UIPanel.OnShow(uIAnim);
+            UIPanel.Refresh();
         }
 
         /// <summary>
