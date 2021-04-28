@@ -8,17 +8,17 @@ using DG.Tweening;
 namespace HotFix
 {
     public partial class SettingUI : BaseUI
-    {      
+    {
         /// <summary>添加按钮事件</summary>
         public override void Init(params object[] _args)
-        { 
+        {
             args = _args;
 
-            Music.onValueChanged.AddListener((b)=> 
+            Music.onValueChanged.AddListener((b) =>
             {
-                Debug.Log("开启音乐："+b);               
+                Debug.Log("开启音乐：" + b);
                 HotMgr.Sound.isPlayMusic = b;
-             
+
             });
             Sound.onValueChanged.AddListener((b) =>
             {
@@ -26,7 +26,7 @@ namespace HotFix
                 HotMgr.Sound.isPlayEffect = b;
             });
             ZH_CN.onValueChanged.AddListener((b) =>
-            {               
+            {
                 HotMgr.Lang.LangType = ELangType.ZH_CN;
 
             });
@@ -35,9 +35,9 @@ namespace HotFix
                 HotMgr.Lang.LangType = ELangType.ZH_TW;
 
             });
-            ZH_CN.onValueChanged.AddListener((b) =>
+            EN.onValueChanged.AddListener((b) =>
             {
-                HotMgr.Lang.LangType = ELangType.ZH_CN;
+                HotMgr.Lang.LangType = ELangType.EN;
 
             });
             JA.onValueChanged.AddListener((b) =>
@@ -50,17 +50,12 @@ namespace HotFix
                 HotMgr.Lang.LangType = ELangType.KO;
 
             });
-
             CloseBtn.AddClick(() =>
             {
                 HideSelf(UIAnim.FadeOut);
             });
-
-          
         }
-
-
-         /// <summary>刷新</summary>
+        /// <summary>刷新</summary>
         public override void Refresh()
         {
             switch (HotMgr.Lang.LangType)
@@ -84,13 +79,10 @@ namespace HotFix
                     break;
             }
         }
-
-
-
-
         /// <summary>释放UI引用</summary>
         public override void Dispose()
         {
+
         }
     }
 }
