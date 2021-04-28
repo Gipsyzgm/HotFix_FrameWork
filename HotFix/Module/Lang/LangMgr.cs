@@ -16,7 +16,6 @@ namespace HotFix
         JA,         //日语
         KO,        //韩语 
     }
-
     public class LangMgr
     {
         /// <summary>
@@ -28,7 +27,7 @@ namespace HotFix
         {
             if (!PlayerPrefs.HasKey("ELangType"))
             {
-                UseLangSYS();
+                UseLangSystem();
             }
             else
             {
@@ -60,7 +59,7 @@ namespace HotFix
         /// <summary>
         /// 使用系统语言
         /// </summary>
-        public void UseLangSYS()
+        public void UseLangSystem()
         {
             string sysLang = Application.systemLanguage.ToString();
             switch (sysLang)
@@ -85,8 +84,6 @@ namespace HotFix
                     break;
             }
         }
-
-
         /// <summary>
         /// 跟据Key值
         /// </summary>

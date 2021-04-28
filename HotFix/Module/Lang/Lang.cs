@@ -18,8 +18,8 @@ namespace HotFix {
         }
         public Lang()
         {
-        }
 
+        }
         /// <summary>
         /// 系统黓认语言
         /// </summary>
