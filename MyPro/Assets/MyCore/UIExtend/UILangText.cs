@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
-//[RequireComponent(typeof(Text))]
 public class UILangText : MonoBehaviour
 {
     [SerializeField]
@@ -36,7 +35,11 @@ public class UILangText : MonoBehaviour
 
     public void Refresh()
     {
-        Value = MainMgr.ILR.CallHotFixGetLang(key);
+        if (MainMgr.ILR != null)
+        {
+            Value = MainMgr.ILR.CallHotFixGetLang(key);
+        }
+      
     }
 
     public string Value
