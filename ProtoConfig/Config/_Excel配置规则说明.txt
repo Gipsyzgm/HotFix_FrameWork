@@ -16,7 +16,7 @@ Sheet名做为表名导出,一个Excel文件可以支持多个Sheet
 第一行做为字段注释使用
 第二行为导出配置 CSG  C导出客户端,S导出服务端,G导出GM服务器用
 第三行字段类型
-	字段类型支持 byte,short,int,long,bool,string,date
+	字段类型支持 byte,short,int,long,float,bool,string,date
 	不推荐使用float类型(客户端LitJson也不支持),如果需要使用double代替
 	字段类型 int[],long[]  等表示数组形式，填写时多个使用;号分开	
 	特殊字类型:
