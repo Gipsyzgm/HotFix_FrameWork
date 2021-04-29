@@ -53,7 +53,7 @@ namespace HotFix
             }
             if (title == null)
             {
-                TitleText.text = "提示";
+                TitleText.text = HotMgr.Lang.Get("Com_AlertTitle");
             }
             else 
             {
