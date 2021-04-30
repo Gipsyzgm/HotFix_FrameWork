@@ -67,7 +67,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: de1707e9e55d6a146923ac8fa9c8820c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3641b77987f98314fbb214b76b4e9af1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -188,7 +188,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 363d43bb1f74c1648a34086321e11183, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f1a7b276440a61d41bef5846c53f48f3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -403,7 +403,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e2e8236f4e4c4a446818f7a0b091882e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 70569d17f581cac47805a3b163c4d97e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -504,7 +504,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d4fdceef89915e042beccca8c00fe0f4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 98f677e936af23b479daae5c2056f1a6, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -834,7 +834,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 752e6d35f2fbdf846b0baf0c85edec28, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9b58b54b08076be48b082eb983171cda, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -950,7 +950,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ed6a75219e74df84185ce9cc0b9ab760, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 15fcd2d9e6373c24c9828b7a016e9441, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -970,7 +970,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6601323959260494037}
   - component: {fileID: 6601323959260494034}
-  - component: {fileID: -1199859418676347565}
+  - component: {fileID: 3883280425276205060}
   m_Layer: 5
   m_Name: ConfirmItem
   m_TagString: Untagged
@@ -1028,7 +1028,7 @@ MonoBehaviour:
     ComponentType: UnityEngine.GameObject
     Object: {fileID: 6601323958077898148}
   Layer: 0
---- !u!114 &-1199859418676347565
+--- !u!114 &3883280425276205060
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1041,7 +1041,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AtlasList:
-  - {fileID: 4343727234628468602, guid: 7488a2a142a4af747aa23e9e44cf9e26, type: 2}
+  - {fileID: 4343727234628468602, guid: 7a60788428c17bd4e89c4a7f8fb0e05d, type: 2}
 --- !u!1 &6601323959300352286
 GameObject:
   m_ObjectHideFlags: 0
