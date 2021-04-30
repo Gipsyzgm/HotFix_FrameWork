@@ -1,4 +1,4 @@
-﻿using DG.Tweening;
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -10,7 +10,7 @@ public class Main : MonoBehaviour
     /// <summary>
     /// 是否进行资源更新
     /// </summary>
-    public bool VerCheck = true;
+    public bool EditorVerCheck = true;
 
     bool IsStart = false;
     void Awake()
@@ -21,19 +21,43 @@ public class Main : MonoBehaviour
 #else
         Debug.unityLogger.logEnabled = false;
 #endif
+        MainMgr.Initialize();
+        StartTask().Run();
     }
-    // Start is called before the first frame update
-    public void InitMgr()
-    {
-        MainMgr.Initialize();   
-    }
+  
     public async CTask StartTask()
     {
+        //初始化UI
         MainMgr.UI.Initialize();
+        //创建版本检测的ui
+        await  MainMgr.VersionCheck.CrateCheckUI();
+        //进行版本检测并更新资源
+#if UNITY_EDITOR
+        if (EditorVerCheck)
+#else
+        if (AppSetting.IsVersionCheck)
+#endif
+        {
+            MainMgr.VersionCheck.Check();
+        }
+        else 
+        {
+            //如果不需要检测直接跳过这个流程
+            MainMgr.VersionCheck.IsUpdateCheckComplete = true;
+        }
+        //等待资源检测结束再进行下一步
+        await CTask.WaitUntil(() =>
+        {
+            return MainMgr.VersionCheck.IsUpdateCheckComplete;
+        });
+        Debug.LogError("到这里，资源的流程一定结束了"+ MainMgr.VersionCheck.IsUpdateCheckComplete);        
+
         //初始化ILR
         await MainMgr.ILR.Init();
         IsStart = true;
+        //主工程流程结束，进入热更工程
         MainMgr.ILR.StartHotFixPro();
+
     }
 
 
