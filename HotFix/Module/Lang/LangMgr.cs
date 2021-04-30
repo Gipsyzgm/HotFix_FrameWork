@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
@@ -110,15 +110,15 @@ namespace HotFix
                 switch (type)
                 {
                     case ELangType.ZH_CN:
-                        return config.zh_cn;
+                        return config.Zh_cn;
                     case ELangType.ZH_TW:
-                        return config.zh_tw;
+                        return config.Zh_tw;
                     case ELangType.EN:
-                        return config.en;
+                        return config.En;
                     case ELangType.JA:
-                        return config.ja;
+                        return config.Ja;
                     case ELangType.KO:
-                        return config.ko;
+                        return config.Ko;
                 }
             }
             return $"{ key}";
