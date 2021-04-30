@@ -15,8 +15,12 @@ public partial class VersionCheckMgr : BaseMgr<VersionCheckMgr>
     /// </summary>
     public IResourceLocator LoaclLocator;
     //开始检查更新
+    //报如下错误是因为catalog.hash文件是在build资源之后才有的，需要将PlayModeScript的模式设置成UseExistingBuild
+    //Exception encountered in operation Resource<String>(catalog.hash), status=Failed, result= : Invalid path in TextDataProvider : 'F:/anyelse/HotFix_FrameWork/MyPro/Library/com.unity.addressables/aa/Android/catalog.hash'.
+
     public async CTask StartCheck()
     {
+
         Addressables.InternalIdTransformFunc = InternalIdTransformFunc;
 
 #if UNITY_EDITOR
@@ -24,8 +28,8 @@ public partial class VersionCheckMgr : BaseMgr<VersionCheckMgr>
 #else
         var path = string.Format("{0}/{1}", Addressables.RuntimePath, "catalog.json");
 #endif
-        Debug.Log("地址：" + path);
-        LoaclLocator = await Addressables.LoadContentCatalogAsync(path, true).Task;
+        Debug.Log("首次对比地址：" + path);
+        LoaclLocator = await Addressables.LoadContentCatalogAsync(path,true).Task;
         //更新Catalog文件
         CheckUpdate();
     }
