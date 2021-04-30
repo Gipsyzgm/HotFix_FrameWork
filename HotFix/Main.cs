@@ -1,4 +1,4 @@
-﻿using DG.Tweening;
+using DG.Tweening;
 using HotFix.Module.UI;
 using System;
 using System.Collections.Generic;
@@ -24,10 +24,15 @@ namespace HotFix
         }
         private static async CTask Initialize()
         {
+            //热更的初始化
             await HotMgr.Initialize();              
             HotMgr.Sound.PlayMusic(SoundName.BGM_EmptyPort);
+            //等待游戏主页面的加载
+            await HotMgr.UI.Show<MainUI>();
+            //显示完游戏页面关掉主工程热更页面，即无缝切换。
+            MainMgr.VersionCheck.CloseUpDataUI();
+            //到此主工程的所有流程结束。
 
-            await HotMgr.UI.Show<MainUI>(UIAnim.FadeIn,UILoading.Mask);
    
             //Debug.LogError("开始连接服务器");
             //await HotMgr.Net.Connect("127.0.0.1", 1337);
@@ -62,7 +67,7 @@ namespace HotFix
                 }, () =>
                 {
                     Debug.LogError("确定"+ count);
-                }, "随便什么把", count.ToString(), false);
+                }, "随便什么把", HotMgr.Lang.Get("Setting_Sound"), false);
             }
         }
     }
