@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -8,8 +8,11 @@ public class AppSetting
     /// <summary>
     /// 是否为发布版
     /// </summary>
-    public static bool IsRelease = true;                             //走正式流程设为true(发布会强制修改)
-
+    public static bool IsRelease = true;                          
+    /// <summary>
+    /// 是否启用版本检测 
+    /// </summary>
+    public static bool IsVersionCheck = true;                     
     /// <summary>
     /// 热更工程名
     /// </summary>
