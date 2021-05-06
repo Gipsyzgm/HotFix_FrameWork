@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +11,7 @@ using UnityEngine.UI;
 public class UIMgr : BaseMgr<UIMgr>
 {
     public Canvas canvas;
-    public RectTransform UIRoot;
-    private Dictionary<string, RectTransform> _uiNodeList = new Dictionary<string, RectTransform>();
+    public RectTransform UIRoot;  
     /// <summary>
     /// 初始化
     /// </summary>
