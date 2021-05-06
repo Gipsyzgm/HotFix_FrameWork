@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
@@ -371,14 +371,16 @@ public enum PanelLayer
 {
     /// <summary>UI主界面节点,如:人物头像，右上角地小图，功能栏按钮等</summary>
     UIWar = 0,
-    /// <summary>UI窗口节点,如:商店,人物背包，任务面板，商城面板</summary>
+    /// <summary>UI窗口节点,如:商店,人物背包，任务面板，商城面板，属性面板</summary>
     UIMain = 1,
-    /// <summary>Tips节点,如:物品详细信息</summary>
-    UITips = 2,
+    /// <summary>UI二级页面</summary>
+    UIWindow = 2,
+    /// <summary>Tips节点,如:物品详细信息，提示面板</summary>
+    UITips = 3,
     /// <summary>剧情节点</summary>
-    UIStory = 3,
+    UIStory = 4,
     /// <summary>系统消息节点</summary>
-    UIMsg = 4,
+    UIMsg = 5,
     /// <summary>页面等待</summary>
-    UILoading = 5,
+    UILoading = 6,
 }
