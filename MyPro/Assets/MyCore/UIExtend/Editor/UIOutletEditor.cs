@@ -111,8 +111,6 @@ public class UIOutletEditor : Editor
 
     private string[] layer;
 
-    //默认Ui层级
-    public int templayer = 1;
 
     void OnEnable()
     {
@@ -149,8 +147,8 @@ public class UIOutletEditor : Editor
         if (!target.name.EndsWith("Item") && !target.name.EndsWith("Icon"))
         {
             GUILayout.Space(10);
-            templayer = EditorGUILayout.Popup("选择Layer", templayer, layer);
-            outlet.Layer = templayer;
+            var Chooselayer = EditorGUILayout.Popup("选择Layer", outlet.Layer, layer);             
+            outlet.Layer = Chooselayer;
             GUILayout.Space(10);
         }
         GUILayout.BeginHorizontal();
