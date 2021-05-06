@@ -1,4 +1,4 @@
-﻿using DG.Tweening;
+using DG.Tweening;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -51,9 +51,9 @@ namespace HotFix
                 ObjectList.Add(uiInfo.OutletInfos[i].Name, uiInfo.OutletInfos[i].Object as GameObject);
             }
             layer = (PanelLayer)uiInfo.Layer; 
-            InitComponent();
-            IsInstance = true;
+            InitComponent();         
             Init();
+            IsInstance = true;
         }
         /// <summary>初始化组件(代码生成器生成)</summary>
         public virtual void InitComponent()
