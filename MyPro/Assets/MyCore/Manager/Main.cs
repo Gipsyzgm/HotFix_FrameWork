@@ -30,7 +30,7 @@ public class Main : MonoBehaviour
         //初始化UI
         MainMgr.UI.Initialize();
         //创建版本检测的ui
-        await  MainMgr.VersionCheck.CrateCheckUI();
+        MainMgr.VersionCheck.CrateCheckUI();
         //进行版本检测并更新资源
 #if UNITY_EDITOR
         if (EditorVerCheck)
@@ -43,7 +43,7 @@ public class Main : MonoBehaviour
         else 
         {
             //如果不需要检测直接跳过这个流程
-            MainMgr.VersionCheck.IsUpdateCheckComplete = true;
+            MainMgr.VersionCheck.SkipCheck();
         }
         //等待资源检测结束再进行下一步
         await CTask.WaitUntil(() =>
