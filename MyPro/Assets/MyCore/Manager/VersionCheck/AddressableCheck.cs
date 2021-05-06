@@ -7,6 +7,13 @@ using UnityEngine.AddressableAssets;
 using UnityEngine.AddressableAssets.ResourceLocators;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.ResourceManagement.ResourceProviders;
+/// <summary>
+/// 此方案的热更流程
+/// 1：所有资源全用远程构建远程加载非静态的方式来做。这种远程目录里必须有资源Catalog。否则会在加载对应文件耗时。
+/// 2：首先打包会把bundle资源克隆到对应的StreamingAsset目录。避免首次就需要下载资源，后续全部走Update更新。
+/// 3：进入游戏重定向bundle资源的位置，然后读本地的catalog文件（即首次打入的catalog文件），远程catalog和本地的对比获取到更新的资源。
+/// 4：进行资源更新。
+/// </summary>
 
 public partial class VersionCheckMgr : BaseMgr<VersionCheckMgr>
 {
