@@ -2,6 +2,7 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.UI;
 
 public partial class VersionCheckMgr : BaseMgr<VersionCheckMgr>
@@ -10,17 +11,23 @@ public partial class VersionCheckMgr : BaseMgr<VersionCheckMgr>
 
     public bool IsUpdateCheckComplete = false;
     // Start is called before the first frame update
-    public async CTask CrateCheckUI()
+    public void CrateCheckUI()
     {
         //创建检测UI
         GameObject obj = Resources.Load<GameObject>("VersionCheck/UpDataUI");
         GameObject go = Instantiate(obj);
         go.SetActive(true);
         CheckUI = go.GetComponent<UpDataUI>();
-        CheckUI.transform.SetParent(MainMgr.UI.canvas.transform);    
-        await CTask.WaitForNextFrame();
+        RectTransform tran = CheckUI.GetComponent<RectTransform>();
+        CheckUI.transform.SetParent(MainMgr.UI.canvas.transform);
+        //设置UI，防止错位。
+        tran.offsetMin = Vector2.zero;
+        tran.offsetMax = Vector2.zero;
+        go.transform.localScale = Vector3.one;
         SetVersion();
-        SetTitle(VerCheckLang.CheckResInfo);    //检测资源信息   
+        SetTitle(VerCheckLang.CheckResInfo);    //检测资源信息
+        //无论是否更新，都需要重定向资源，否则不能指向对应资源。
+        Addressables.InternalIdTransformFunc = InternalIdTransformFunc;
     }
 
     public void Check() 
