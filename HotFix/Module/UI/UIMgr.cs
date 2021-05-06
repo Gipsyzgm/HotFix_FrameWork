@@ -1,4 +1,4 @@
-﻿/*
+/*
  *  项目名字：MyFrameWork
  *  创建时间：2019.12.28
  *  描述信息：UI页面控制。
@@ -43,10 +43,8 @@ namespace HotFix
             Debug.Log("初始化layer");        
             if (_canvas == null)
             {
-                //_canvas = GameObject.Find("UICanvas").transform;
                 Debug.Log("UIMgr.InitLayerFail,Canvas is null");
-            }
-               
+            }              
             Transform UIRoot = _canvas.Find("UIRoot");
             if (UIRoot==null)
                 Debug.Log("UICanvas下未找到UIRoot");
