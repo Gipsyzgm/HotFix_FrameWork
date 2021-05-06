@@ -19,10 +19,7 @@ public partial class VersionCheckMgr : BaseMgr<VersionCheckMgr>
     //Exception encountered in operation Resource<String>(catalog.hash), status=Failed, result= : Invalid path in TextDataProvider : 'F:/anyelse/HotFix_FrameWork/MyPro/Library/com.unity.addressables/aa/Android/catalog.hash'.
 
     public async CTask StartCheck()
-    {
-
-        Addressables.InternalIdTransformFunc = InternalIdTransformFunc;
-
+    {  
 #if UNITY_EDITOR
         var path = Application.dataPath.Substring(0, Application.dataPath.LastIndexOf('/')) + "/" + Addressables.BuildPath + "/catalog.json";
 #else
