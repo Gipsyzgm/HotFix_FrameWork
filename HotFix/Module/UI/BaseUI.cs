@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System;
 using System.Collections.Generic;
@@ -18,14 +18,16 @@ namespace HotFix
         UIWar = 0,
         /// <summary>UI窗口节点,如:商店,人物背包，任务面板，商城面板，属性面板</summary>
         UIMain = 1,
+        /// <summary>UI二级页面</summary>
+        UIWindow = 2,
         /// <summary>Tips节点,如:物品详细信息，提示面板</summary>
-        UITips = 2,
+        UITips = 3,
         /// <summary>剧情节点</summary>
-        UIStory = 3,
+        UIStory = 4,
         /// <summary>系统消息节点</summary>
-        UIMsg = 4,
+        UIMsg = 5,
         /// <summary>页面等待</summary>
-        UILoading = 5,
+        UILoading = 6,
     }
 
     /// <summary>
