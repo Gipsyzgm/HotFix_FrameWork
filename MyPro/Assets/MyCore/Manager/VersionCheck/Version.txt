@@ -1,0 +1,18 @@
+[
+	{
+		"Platform": "Android",
+		"AppVersion": "1.0.0",
+		"IsForcedUpdate": true,
+		"AppDownloadURL": "https://www.baidu.com",
+		"ResURL": "http://106.75.166.209:8080/v1.0.0/AssetBundles/Android",
+		"LoginUrl": "http://106.75.166.209:7000/"
+	},
+	{
+		"Platform": "Ios",
+		"AppVersion": "1.0.0",
+		"IsForcedUpdate": true,
+		"AppDownloadURL": "https://www.baidu.com",
+		"ResURL": "http://106.75.166.209:8080/v1.0.0/AssetBundles/Android",
+		"LoginUrl": "http://106.75.166.209:7000/"
+	}
+]
