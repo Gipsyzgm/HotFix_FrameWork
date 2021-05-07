@@ -73,8 +73,9 @@ public partial class VersionCheckMgr : BaseMgr<VersionCheckMgr>
             }, null, VerCheckLang.Version_Low, VerCheckLang.ErrorTitle);
             return;
         }
-        else //版本号相同，检查更新资源
+        else //版本号相同或不需要强制更新，检查更新资源
         {
+            SetVersion(remoteVersion.AppVersion);
 #if UNITY_EDITOR
             var path = Application.dataPath.Substring(0, Application.dataPath.LastIndexOf('/')) + "/" + Addressables.BuildPath + "/catalog.json";
 #else
