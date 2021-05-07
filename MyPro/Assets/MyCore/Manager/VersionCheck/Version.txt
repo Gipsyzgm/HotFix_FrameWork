@@ -5,7 +5,7 @@
 		"IsForcedUpdate": true,
 		"AppDownloadURL": "https://www.baidu.com",
 		"ResURL": "http://106.75.166.209:8080/v1.0.0/AssetBundles/Android",
-		"LoginUrl": "http://106.75.166.209:7000/"
+		"LoginUrl": "http://127.0.1.1:7000/"
 	},
 	{
 		"Platform": "Ios",
@@ -13,6 +13,6 @@
 		"IsForcedUpdate": true,
 		"AppDownloadURL": "https://www.baidu.com",
 		"ResURL": "http://106.75.166.209:8080/v1.0.0/AssetBundles/Android",
-		"LoginUrl": "http://106.75.166.209:7000/"
+		"LoginUrl": "http://127.0.1.1:7000/"
 	}
 ]
