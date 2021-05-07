@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -77,7 +77,7 @@ namespace HotFix.Module.UI
         /// <param name="key"></param>
         public static void ShowLang(string key)
         {
-            //Show(HotMgr.Lang.Get(key));
+            Show(HotMgr.Lang.Get(key));
         }
 
         public static void ClearTips() 
