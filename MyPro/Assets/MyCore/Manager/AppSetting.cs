@@ -6,11 +6,17 @@ using UnityEngine;
 public class AppSetting
 {
 
-    public const string LocalServerURL = "http://192.168.0.219:8010/";    //本地测试地址
+    public const string LocalServerURL = "http://127.0.0.1/HotFix/";    //本地测试地址
     public const string TestServerURL = "http://180.76.242.101:8020/";    //外网测试服地址 
     public const string ReleaseServerURL = "http://106.75.166.209:8010/"; //正式服地址  
-    //HTTP Server地址 (用于请求版本信息，服务器列表)
-    public static string HTTPServerURL;  
+    /// <summary>
+    /// HTTP Server地址 (用于请求版本信息，判断是否需要更新)
+    /// </summary>
+    public static string HTTPServerURL;
+    /// <summary>
+    /// 登录服地址
+    /// </summary>
+    public static string HTTPLoginURL;
     /// <summary>
     /// 是否为发布版
     /// </summary>
