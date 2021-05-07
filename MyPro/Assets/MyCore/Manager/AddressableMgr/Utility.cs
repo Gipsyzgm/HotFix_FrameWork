@@ -22,7 +22,7 @@ public class Utility
             case BuildTarget.Android:
                 return "Android";
             case BuildTarget.iOS:
-                return "iOS";
+                return "IOS";
             case BuildTarget.WebGL:
                 return "WebGL";
             case BuildTarget.StandaloneWindows:
@@ -44,7 +44,7 @@ public class Utility
             case RuntimePlatform.Android:
                 return "Android";
             case RuntimePlatform.IPhonePlayer:
-                return "iOS";
+                return "IOS";
             case RuntimePlatform.WebGLPlayer:
                 return "WebGL";
             case RuntimePlatform.WindowsPlayer:
