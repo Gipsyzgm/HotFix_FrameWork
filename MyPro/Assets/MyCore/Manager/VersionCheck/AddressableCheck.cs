@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.AddressableAssets.ResourceLocators;
+using UnityEngine.Networking;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.ResourceManagement.ResourceProviders;
 /// <summary>
@@ -25,17 +26,65 @@ public partial class VersionCheckMgr : BaseMgr<VersionCheckMgr>
     //报如下错误是因为catalog.hash文件是在build资源之后才有的，需要将PlayModeScript的模式设置成UseExistingBuild
     //Exception encountered in operation Resource<String>(catalog.hash), status=Failed, result= : Invalid path in TextDataProvider : 'F:/anyelse/HotFix_FrameWork/MyPro/Library/com.unity.addressables/aa/Android/catalog.hash'.
 
+    /// <summary>远程服务器版本信息</summary>
+    private VersionInfo remoteVersion;
     public async CTask StartCheck()
-    {  
+    {
+        //首先对比版本号是否需要整包更新,不需要的话就只更新资源
+        string url = GetVersionUrl();
+        UnityWebRequest request = UnityWebRequest.Get(url);
+        await request.SendWebRequest();
+        if (request.error != null || request.downloadHandler.text == "error")
+        {
+            Debug.LogError($"URL Error[{url}]:{request.error} ");
+            //请求资源信息错误
+            CheckUI.Confirm(() => { StartCheck().Run(); }, () => { StartCheck().Run(); }, VerCheckLang.Request_Version_Error,VerCheckLang.ErrorTitle);
+            return;
+        }
+        List<VersionInfo> verInfos = LitJson.JsonMapper.ToObject<List<VersionInfo>>(request.downloadHandler.text); 
+        string platformName = Utility.GetPlatformName().ToLower();
+        foreach (VersionInfo ver in verInfos)
+        {
+            if (ver.Platform.ToLower() == platformName)
+            {
+                remoteVersion = ver;
+            }
+        }
+        if (remoteVersion != null)
+        {
+            Debug.Log($"登录地址remoteVersion.LoginUrl{remoteVersion.LoginUrl}");                 
+            AppSetting.HTTPLoginURL = remoteVersion.LoginUrl;
+        }
+        else
+        {
+            //请求资源信息错误
+            CheckUI.Confirm(() => { StartCheck().Run(); }, ()=> { Application.Quit();}, VerCheckLang.Version_Platform_Error,VerCheckLang.ErrorTitle);
+            return;
+        }
+        //版本号过低,重新下载APK
+        if (Application.version.CompareTo(remoteVersion.AppVersion) < 0 && remoteVersion.IsForcedUpdate)
+        {
+            CheckUI.Confirm(() =>
+            {
+                string updateURL = remoteVersion.AppDownloadURL;
+                if (!string.IsNullOrEmpty(updateURL))
+                    Application.OpenURL(updateURL);
+                Application.Quit();
+            }, null, VerCheckLang.Version_Low, VerCheckLang.ErrorTitle);
+            return;
+        }
+        else //版本号相同，检查更新资源
+        {
 #if UNITY_EDITOR
-        var path = Application.dataPath.Substring(0, Application.dataPath.LastIndexOf('/')) + "/" + Addressables.BuildPath + "/catalog.json";
+            var path = Application.dataPath.Substring(0, Application.dataPath.LastIndexOf('/')) + "/" + Addressables.BuildPath + "/catalog.json";
 #else
         var path = string.Format("{0}/{1}", Addressables.RuntimePath, "catalog.json");
 #endif
-        Debug.Log("首次对比地址：" + path);
-        LoaclLocator = await Addressables.LoadContentCatalogAsync(path,true).Task;
-        //更新Catalog文件
-        CheckUpdate();
+            Debug.Log("首次对比地址：" + path);
+            LoaclLocator = await Addressables.LoadContentCatalogAsync(path, true).Task;
+            //更新Catalog文件
+            CheckUpdate();
+        }
     }
 
     //重新定向一下资源路径
@@ -157,5 +206,10 @@ public partial class VersionCheckMgr : BaseMgr<VersionCheckMgr>
         }
         Debug.Log("更新完成");
     }
-   
+    private string GetVersionUrl()
+    {
+        string url = $"{AppSetting.HTTPServerURL}Version.txt";    
+        Debug.Log($"VersionUrl:{url}");
+        return url;
+    }
 }
