@@ -5,14 +5,24 @@ using UnityEngine;
 
 public class AppSetting
 {
+
+    public const string LocalServerURL = "http://192.168.0.219:8010/";    //本地测试地址
+    public const string TestServerURL = "http://180.76.242.101:8020/";    //外网测试服地址 
+    public const string ReleaseServerURL = "http://106.75.166.209:8010/"; //正式服地址  
+    //HTTP Server地址 (用于请求版本信息，服务器列表)
+    public static string HTTPServerURL;  
     /// <summary>
     /// 是否为发布版
     /// </summary>
-    public static bool IsRelease = true;                          
+    public static bool IsRelease = false;                          
     /// <summary>
     /// 是否启用版本检测 
     /// </summary>
-    public static bool IsVersionCheck = true;                     
+    public static bool IsVersionCheck = true;
+    /// <summary>
+    /// 不使用AB资源加载ILR(只有编辑器下有效) 
+    /// </summary>
+    public static bool ILRNotABTest = false;
     /// <summary>
     /// 热更工程名
     /// </summary>
@@ -80,4 +90,33 @@ public class AppSetting
     }
 
 
+    public static EPlatformType PlatformType
+    {
+        get
+        {
+#if OWN_GP
+            return EPlatformType.OWN_GP;
+#elif OWN_IOS
+            return EPlatformType.OWN_IOS;
+#else
+            return EPlatformType.AccountPwd;
+#endif
+        }
+    }
+}
+public enum EPlatformType
+{
+    AccountPwd = 1,
+    OWN_GP = 101,
+    OWN_IOS = 102,
+}
+
+public enum AppServerType
+{
+    //正式服
+    ReleaseServer,
+    //本地测试服
+    LocalServer,
+    //外网测试服
+    TestServer,
 }

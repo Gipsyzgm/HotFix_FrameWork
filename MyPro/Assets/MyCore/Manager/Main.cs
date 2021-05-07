@@ -11,16 +11,32 @@ public class Main : MonoBehaviour
     /// 是否进行资源更新
     /// </summary>
     public bool EditorVerCheck = true;
+    /// <summary>
+    /// HTTP Server地址类型
+    /// </summary>
+    public AppServerType ServerType;
+    /// <summary>
+    /// 不使用AB包读ILR(只有编辑器下有效果)
+    /// </summary>
+    public bool ILRNotABTest = false;
 
     bool IsStart = false;
     void Awake()
     { 
         DontDestroyOnLoad(this);
-#if UNITY_EDITOR
-        Debug.unityLogger.logEnabled = true;
-#else
-        Debug.unityLogger.logEnabled = false;
-#endif
+        if (!Application.isEditor)
+        {
+            //非编辑器模式下，强制改为true
+            Debug.unityLogger.logEnabled = false;           
+            AppSetting.IsRelease = true;
+            ServerType = AppServerType.ReleaseServer;
+        }
+        else
+        {
+            AppSetting.ILRNotABTest = ILRNotABTest;
+            Debug.unityLogger.logEnabled = true;
+        }
+        SetHttpServer();
         MainMgr.Initialize();
         StartTask().Run();
     }
@@ -66,5 +82,24 @@ public class Main : MonoBehaviour
     {
         if (IsStart)
             MainMgr.ILR.CallHotFixMainUpdate(Time.deltaTime);
+    }
+    /// <summary>
+    /// 设置http地址
+    /// </summary>
+    public void SetHttpServer()
+    {
+        switch (ServerType)
+        {
+            case AppServerType.ReleaseServer:
+                AppSetting.HTTPServerURL = AppSetting.ReleaseServerURL;
+                break;
+            case AppServerType.LocalServer:
+                AppSetting.HTTPServerURL = AppSetting.LocalServerURL;
+                break;
+            case AppServerType.TestServer:
+                AppSetting.HTTPServerURL = AppSetting.TestServerURL;
+                break;      
+        }
+     
     }
 }
