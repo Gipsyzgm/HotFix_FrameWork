@@ -61,11 +61,17 @@ public partial class VersionCheckMgr : BaseMgr<VersionCheckMgr>
     /// <summary>
     /// 设置版本号
     /// </summary>
-    public void SetVersion(int resVersion = 0)
+    public void SetVersion(string resVersion = null)
     {
-        string ver = Application.version;
-        if (resVersion > 0)
-            ver += "." + resVersion;
+        string ver;
+        if (resVersion == null)
+        {
+            ver = Application.version;
+        }
+        else 
+        {
+            ver = resVersion;
+        }
         CheckUI.VersionText.text = ver;
     }
     /// <summary>
