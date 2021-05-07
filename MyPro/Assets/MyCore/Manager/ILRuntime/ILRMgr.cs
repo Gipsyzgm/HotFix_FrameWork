@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using ILRuntime.Runtime.Enviorment;
@@ -44,7 +44,7 @@ public class ILRMgr :BaseMgr<ILRMgr>
         appdomain = new AppDomain();
         byte[] dll = null;
         byte[] pdb = null;
-        if (AppSetting.IsRelease)
+        if (!AppSetting.ILRNotABTest)
         {
             Debug.Log("Addressablesd加载Dll资源");
             // Addressablesd加载Dll资源
