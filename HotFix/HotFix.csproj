@@ -135,7 +135,11 @@
     <Compile Include="Module\Data\BaseDataMgr.cs" />
     <Compile Include="Module\Lang\Lang.cs" />
     <Compile Include="Module\Lang\LangMgr.cs" />
-    <Compile Include="Module\Login\Class1.cs" />
+    <Compile Include="Module\Login\LoginArgsData.cs" />
+    <Compile Include="Module\Login\LoginMgr.cs" />
+    <Compile Include="Module\Login\ServerItemData.cs" />
+    <Compile Include="Module\Login\ServerListMgr.cs" />
+    <Compile Include="Module\Login\ServUrlMsgData.cs" />
     <Compile Include="Module\Pool\GameObjectPool.cs" />
     <Compile Include="Module\Pool\Pool.cs" />
     <Compile Include="Module\Sound\SoundMgr.cs" />
@@ -150,17 +154,24 @@
     <Compile Include="Module\UI\UIAtlas.cs" />
     <Compile Include="Module\UI\UIExtension.cs" />
     <Compile Include="Module\UI\UIItem\Item\ConfirmItem.cs" />
+    <Compile Include="Module\UI\UIItem\Item\SelServerItem.cs" />
     <Compile Include="Module\UI\UIItem\Item\TipItem.cs" />
     <Compile Include="Module\UI\UIItem\Item\TopItem.cs" />
     <Compile Include="Module\UI\UIItem\View\ConfirmItemView.cs" />
+    <Compile Include="Module\UI\UIItem\View\SelServerItemView.cs" />
     <Compile Include="Module\UI\UIItem\View\TipItemView.cs" />
     <Compile Include="Module\UI\UIItem\View\TopItemView.cs" />
     <Compile Include="Module\UI\UIMgr.cs" />
     <Compile Include="Module\UI\UIObject.cs" />
+    <Compile Include="Module\UI\UIPanel\Panel\LoginUI.cs" />
     <Compile Include="Module\UI\UIPanel\Panel\MainUI.cs" />
+    <Compile Include="Module\UI\UIPanel\Panel\SelServerUI.cs" />
     <Compile Include="Module\UI\UIPanel\Panel\SettingUI.cs" />
+    <Compile Include="Module\UI\UIPanel\View\LoginUIView.cs" />
     <Compile Include="Module\UI\UIPanel\View\MainUIView.cs" />
+    <Compile Include="Module\UI\UIPanel\View\SelServerUIView.cs" />
     <Compile Include="Module\UI\UIPanel\View\SettingUIView.cs" />
+    <Compile Include="Net\HttpMsg.cs" />
     <Compile Include="Net\NetMgr.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
