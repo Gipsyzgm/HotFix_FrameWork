@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -160,7 +160,7 @@ namespace HotFix
 
         string selClick = "             //当前对象点击事件需添加Button组件";
         if (ui.GetComponent<Button>() != null)
-           selClick = "             gameObject.GetComponent<Button>().onClick.AddListener(self_Click);  //当前对象点击事件";
+           selClick = "             CurObj.GetComponent<Button>().onClick.AddListener(self_Click);  //当前对象点击事件";
         string fieldStr = $@"using System;
 using System.Collections.Generic;
 using System.Linq;
