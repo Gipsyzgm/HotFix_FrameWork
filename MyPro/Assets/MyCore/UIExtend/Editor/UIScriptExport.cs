@@ -65,14 +65,14 @@ namespace HotFix
 {{
     public partial class {uiName} : BaseUI
     {{      
-        /// <summary>添加按钮事件</summary>
+        /// <summary>仅首次显示调用一次</summary>
         public override void Init(params object[] _args)
         {{ 
             args = _args;
 {eventAddStrs}
         }}
 
-         /// <summary>刷新</summary>
+         /// <summary>刷新(不自动调用)</summary>
         public override void Refresh()
         {{
         }}
@@ -171,14 +171,14 @@ namespace HotFix
     public partial class {uiName} : BaseItem
     {{
 
-        /// <summary>添加按钮事件</summary>
+        /// <summary>仅首次显示调用一次</summary>
         public override void Init()
         {{
 {selClick}
 {eventAddStrs}
         }}
 
-        /// <summary>刷新Item</summary>
+        /// <summary>刷新Item(不自动调用)</summary>
         public override void Refresh()
         {{
         }}
