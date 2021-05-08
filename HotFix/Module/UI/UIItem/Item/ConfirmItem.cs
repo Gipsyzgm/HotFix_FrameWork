@@ -1,4 +1,4 @@
-﻿using HotFix.Module.UI;
+using HotFix.Module.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +11,8 @@ namespace HotFix
 
         private Action ConfirmCallBack;
         private Action CancelCallBack;
+        //是否自动执行
+        private bool AutoClose = true;
 
         /// <summary>添加按钮事件</summary>
         public override void Init()
@@ -78,6 +80,18 @@ namespace HotFix
             }
         }
 
+        public void SetAutoClose(bool autoClose)
+        {
+            if (autoClose)
+            {
+                AutoClose = true;
+            }
+            else
+            {
+                AutoClose = false;
+            }
+        }
+
 
         /// <summary>当前对象点击事件</summary>
         void self_Click()
@@ -89,17 +103,26 @@ namespace HotFix
         void CancelButton_Click()
         {
             CancelCallBack?.Invoke();
-            ShowUIAnim(CurObj, UIAnim.ScaleOut);
-            Confirm.CacheConfirmsList.Enqueue(this);
+            if (AutoClose)
+            {
+                CloseSelf();
+            }          
         }
         /// <summary></summary>
         void ConfirmButton_Click()
         {
-            ConfirmCallBack?.Invoke();
+            ConfirmCallBack?.Invoke();            
+            if (AutoClose)
+            {
+                CloseSelf();
+            }
+        }
+
+        public void CloseSelf() 
+        {          
             ShowUIAnim(CurObj, UIAnim.ScaleOut);
             Confirm.CacheConfirmsList.Enqueue(this);
         }
-
         /// <summary>释放Item引用</summary>
         public override void Dispose()
         {
