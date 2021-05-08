@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -35,17 +35,26 @@ namespace HotFix
         /// </summary>
         /// <param name="img">图片对象</param>
         /// <param name="uiAtlas">UIAtlas</param>
-        public static async CTask SetSprite(this Image img, string spriteName, string uiAtlas, bool autoSetSize = false)
+        public static async CTask SetSprite(this Image img, string spriteName, string uiAtlas, bool autoSetSize = false, float size = 1f)
         {
             if (img == null) return;
             SpriteAtlas atlas = await Addressables.LoadAssetAsync<SpriteAtlas>(uiAtlas).Task;
-            if (img == null) return;
-            img.sprite = atlas.GetSprite(spriteName);
-            if (img.sprite == null && uiAtlas == "ItemIcon") //使用默认头像
-                img.sprite = atlas.GetSprite("Default");
+            if (atlas == null) return;
+            Sprite sp = atlas.GetSprite(spriteName);
+            if (sp == null) 
+            {
+                Debug.Log($"未在图集{uiAtlas}中找到对应图片{spriteName}，启用默认图片。");
+                if (uiAtlas!= UIAtlas.Common)
+                {
+                    atlas = await Addressables.LoadAssetAsync<SpriteAtlas>(UIAtlas.Common).Task;
+                }         
+                sp = atlas.GetSprite("Default");
+            }
+            img.sprite = sp;
             if (autoSetSize)
             {
                 img.SetNativeSize();
+                img.rectTransform.sizeDelta *= size;
             }
         }
         ///// <summary>
