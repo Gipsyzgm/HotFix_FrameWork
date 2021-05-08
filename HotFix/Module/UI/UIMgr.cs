@@ -70,8 +70,8 @@ namespace HotFix
         /// <param name="_args"></param>
         public async CTask Show<T>(UIAnim uIAnim = UIAnim.None,UILoading uILoading =UILoading.None,params object[] _args) where T : BaseUI
         {
-            string name = typeof(T).ToString();
-            Type type = Type.GetType(name);
+            Type type = typeof(T);
+            string name = type.Name;
             if (Paneldict.ContainsKey(name))
             {
                 //设置页面在最后面（摄像机最先渲染位置）
@@ -172,7 +172,11 @@ namespace HotFix
             {
                 return panel;
             }
-            return null;
+            else 
+            {
+                Debug.Log($"未找到页面{name}");
+                return null;
+            }         
         }
         public T GetPanel<T>() where T : BaseUI
         {

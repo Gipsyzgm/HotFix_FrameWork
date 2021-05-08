@@ -170,7 +170,7 @@ namespace HotFix
         /// </summary>
         public virtual void HideSelf(UIAnim uIAnim = UIAnim.None)
         {      
-            string name = this.GetType().ToString();
+            string name = this.GetType().Name;
             HotMgr.UI.HidePanel(name, uIAnim);
         }
 
@@ -180,7 +180,7 @@ namespace HotFix
         public virtual void CloseSelf(UIAnim uIAnim = UIAnim.None)
         {
             CloseAction?.Invoke();
-            string name = this.GetType().ToString();
+            string name = this.GetType().Name;
             HotMgr.UI.ClosePanel(name, uIAnim);
         }
         /// <summary>
