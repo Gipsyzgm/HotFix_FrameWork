@@ -19,6 +19,7 @@ namespace HotFix
         private Button StartGameButton;
         private Text LoginUserName;
         private Button LoginOutButton;
+        private Image TagImage;
  
         /// <summary>初始化UI控件</summary>
         public override void InitComponent()
@@ -34,6 +35,7 @@ namespace HotFix
             StartGameButton = Get<Button>("StartGameButton");
             LoginUserName = Get<Text>("LoginUserName");
             LoginOutButton = Get<Button>("LoginOutButton");
+            TagImage = Get<Image>("TagImage");
 
         }
     }
