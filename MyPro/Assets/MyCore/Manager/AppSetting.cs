@@ -14,9 +14,9 @@ public class AppSetting
     /// </summary>
     public static string HTTPServerURL;
     /// <summary>
-    /// 登录服地址
+    /// 登录服地址/版本检测时会修改成配置地址。
     /// </summary>
-    public static string HTTPLoginURL;
+    public static string HTTPLoginURL = "http://127.0.1.1:7000/";
     /// <summary>
     /// 是否为发布版
     /// </summary>
@@ -33,6 +33,12 @@ public class AppSetting
     /// 热更工程名
     /// </summary>
     public const string HotFixName = "HotFix";
+
+    /// <summary>
+    /// 是否多服务器,是否可选服务器
+    /// </summary>
+    public static bool IsMoreServers = true;
+
 
     /// <summary>
     /// ILR逻辑代码目录,只用于编辑环境
