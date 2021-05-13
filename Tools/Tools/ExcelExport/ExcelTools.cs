@@ -189,42 +189,7 @@ namespace GameServer.XGame.ConfigMgr
             return str;
         }
         #endregion
-
-        #region 生成客户端配置文件模板类
-        /// <summary>
-        /// 获取生成客户端Config配置表as文件
-        /// </summary>
-        /// <param name="configName">配置文件名</param>
-        /// <param name="configDes">配置描述</param>
-        /// <param name="fieldNames">所有字段</param>
-        /// <param name="fieldTypes">所有类型</param>
-        /// <param name="describes">字段描述</param>
-        /// <param name="columnFilters">字段是否过滤掉</param>
-        public static string getClientConfigAS(string configName, string configDes, List<string> fieldNames, List<string> fieldTypes, List<string> describes, List<bool> columnFilters)
-        {
-            StringBuilder fieldStrs = new StringBuilder();
-            for (int i = 0; i < fieldTypes.Count; i++)
-            {
-                if (columnFilters[i])
-                    continue;
-                //生成属性字段
-                string field = $@"        /** {describes[i].Replace("\n", "</br>\r\n        * ")}*/
-        public var {fieldNames[i]}:{ExcelUtil.GetAs3StringType(fieldTypes[i])};
-";
-                fieldStrs.AppendLine(field);
-            }
-
-            string str = $@"//工具生成，不要修改
-package ConfigData.Configs
-{{
-    //{configDes}
-    public class {configName}
-    {{
-{fieldStrs}    }}
-}}";
-            return str;
-        }
-        #endregion
+     
         
         #region 生成C#客户端配置文件模板类
         /// <summary>
