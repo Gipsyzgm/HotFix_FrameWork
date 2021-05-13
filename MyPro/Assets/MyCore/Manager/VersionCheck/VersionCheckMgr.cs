@@ -54,8 +54,6 @@ public partial class VersionCheckMgr : BaseMgr<VersionCheckMgr>
         CheckUI.LoadProgress.value = 0.9f;
         CheckUI.Status.text = VerCheckLang.InitRes;
         MainMgr.VersionCheck.IsUpdateCheckComplete = true;
-
-
     }
 
     /// <summary>
