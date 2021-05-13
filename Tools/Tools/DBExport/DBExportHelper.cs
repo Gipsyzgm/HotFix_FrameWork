@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
@@ -151,7 +151,7 @@ using System;
 /// <summary>
 /// 工具生成，不要修改
 /// </summary>
-namespace GameLib.Comm.DBMgr
+namespace CommonLib.Comm.DBMgr
 {{    
     [BsonIgnoreExtraElements]
     public class {tableInfo[0]} : BaseTable
@@ -201,7 +201,7 @@ using System;
 /// <summary>
 /// 工具生成，不要修改
 /// </summary>
-namespace GameLib.Comm.DBMgr
+namespace CommonLib.Comm.DBMgr
 {{    
     [BsonIgnoreExtraElements]
     public class {tableInfo[0]} : BaseTable
@@ -241,7 +241,7 @@ namespace GameLib.Comm.DBMgr
 /// 工具生成，不要修改
 /// 数据库写入操作,跟据表名转换成表对象
 /// </summary>
-namespace GameLib.Comm.DBMgr
+namespace CommonLib.Comm.DBMgr
 {{
     public partial class DBWrite
     {{
@@ -267,7 +267,6 @@ namespace GameLib.Comm.DBMgr
         }}
     }}
 }}";
-
             Utils.SaveFile(saveFilePath, str, true);
         }
 
@@ -293,7 +292,7 @@ namespace GameLib.Comm.DBMgr
 /// <summary>
 /// 工具生成，不要修改
 /// </summary>
-namespace GameLib.Comm.DBMgr
+namespace CommonLib.Comm.DBMgr
 {{
     public class TableName
     {{
@@ -339,7 +338,7 @@ using System.Collections.Generic;
 /// <summary>
 /// 工具生成，不要修改
 /// </summary>
-namespace GameLib.Comm.DBMgr
+namespace CommonLib.Comm.DBMgr
 {{
     public class TableDBIndex
     {{
@@ -363,7 +362,5 @@ namespace GameLib.Comm.DBMgr
 }}";
             Utils.SaveFile(saveFilePath, str, true);
         }
-
-
     }
 }
