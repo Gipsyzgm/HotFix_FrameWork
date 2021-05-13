@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -137,7 +137,6 @@ namespace {Config.RealityNameSpace}
             string str = $@"/// <summary>
 /// 工具生成，不要修改
 /// </summary>
-using GameLib;
 using System.Collections.Generic;
 
 namespace {Config.RealityNameSpace}
