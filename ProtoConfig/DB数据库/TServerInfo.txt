@@ -1,0 +1,16 @@
+[
+	{
+		"ServerId": 1,
+		"State": 0,
+		"Flag": 1,
+		"ServerName": "测试1服",
+		"URL": "http://127.0.1.1:3000/"
+	},
+	{
+		"ServerId": 2,
+		"State": -1,
+		"Flag": 0,
+		"ServerName": "测试2服",
+		"URL": "http://127.0.1.1:3001/"
+	}
+]
