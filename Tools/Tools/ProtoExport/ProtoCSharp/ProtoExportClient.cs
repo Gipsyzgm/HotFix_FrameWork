@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -225,7 +225,7 @@ namespace {Config.RealityNameSpace}.Net
             }}
             catch (Exception ex)
             {{   
-                {(Config.IsProtobuffForILR ? "CLog.Error" : "Logger.LogError")}(ex.Message+""\n""+ex.StackTrace);
+                {(Config.IsProtobuffForILR ? "UnityEngine.Debug.Log" : "Logger.LogError")}(ex.Message+""\n""+ex.StackTrace);
             }}
         }}
         public void Dispatch({Config.ProtoType}ClientMessage e)
@@ -237,7 +237,7 @@ namespace {Config.RealityNameSpace}.Net
 
             string str = $@"using System;
 using System.Collections.Generic;
-using {(Config.IsProtobuffForILR?Config.RealityNameSpace+".":"")}CSocket;
+using CSocket;
 {(!Config.IsProtobuffForILR? "using GameLib;":"")}
 /// <summary>
 /// 工具生成，不要修改
@@ -263,7 +263,22 @@ namespace {Config.RealityNameSpace}.Net
         /// </summary>
         /// <param name="configList">NetAction</param>
         protected override void CreateNetMessage(List<ProtoConifg> configList, int addIndex = -1)
-        {
+        {          
+            string strcommon = $@"using CSocket;
+using Google.Protobuf;
+namespace  {Config.RealityNameSpace}.Net
+{{
+    public class {Config.ProtoType}ClientMessage:CClientMessage
+    {{
+        public {Config.ProtoType}ClientMessage(ushort protocol, IMessage data) : base(protocol, data)
+        {{
+           
+           
+        }}
+    }}
+}}";
+            Utils.SaveFile(Config.RealityProtocolTypeFile.Replace("ClientProtocol.cs", "ClientMessage.cs"), strcommon);
+
             string savePath = Config.RealityNetReceiveDir;
             string saveFilePath = string.Empty;
             for (int i = 0; i < configList.Count; i++)
