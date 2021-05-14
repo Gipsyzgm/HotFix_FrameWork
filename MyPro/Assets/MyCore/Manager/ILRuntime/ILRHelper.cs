@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -130,7 +130,8 @@ public static class ILRHelper
 
         //注册重定向函数
         appdomain.RegisterCLRMethodRedirection(typeof(Debug).GetMethod("Log", new System.Type[] {typeof(object) }), HotFixLog);
-      
+        appdomain.RegisterCLRMethodRedirection(typeof(Debug).GetMethod("LogError", new System.Type[] { typeof(object) }), HotFixLogError);
+
 
         //注册跨域继承适配器
         Register(appdomain);
@@ -157,6 +158,23 @@ public static class ILRHelper
         var stacktrace = __domain.DebugService.GetStackTrace(__intp);
         //我们在输出信息后面加上DLL堆栈
         UnityEngine.Debug.Log("<color=#FF00FF>[HotFix:]</color>"+message + "\n" + stacktrace);
+
+        return __ret;
+    }
+
+    unsafe static StackObject* HotFixLogError(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+    {
+        ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
+        StackObject* ptr_of_this_method;
+        StackObject* __ret = ILIntepreter.Minus(__esp, 1);
+
+        ptr_of_this_method = ILIntepreter.Minus(__esp, 1);
+        System.Object @message = (System.Object)typeof(System.Object).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack));
+        __intp.Free(ptr_of_this_method);
+        //在真实调用Debug.Log前，我们先获取DLL内的堆栈
+        var stacktrace = __domain.DebugService.GetStackTrace(__intp);
+        //我们在输出信息后面加上DLL堆栈
+        UnityEngine.Debug.LogError("<color=#FF00FF>[HotFix:]</color>" + message + "\n" + stacktrace);
 
         return __ret;
     }
