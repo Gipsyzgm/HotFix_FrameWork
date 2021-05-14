@@ -238,7 +238,7 @@ namespace {Config.RealityNameSpace}.Net
             string str = $@"using System;
 using System.Collections.Generic;
 using CSocket;
-{(!Config.IsProtobuffForILR? "using GameLib;":"")}
+{(!Config.IsProtobuffForILR? "using CommonLib;" : "")}
 /// <summary>
 /// 工具生成，不要修改
 /// </summary>
