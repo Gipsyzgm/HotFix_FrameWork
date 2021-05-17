@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -10,6 +10,7 @@ using Newtonsoft.Json;
 
 namespace CommonLib.Configuration
 {
+    //读取服务器数据配置的信息
     public class ServerSetting
     {
         public ELangType LangType = ELangType.ZH_CN;
@@ -33,9 +34,8 @@ namespace CommonLib.Configuration
         }
 
         private void Load()
-        {
-            string path = "../PublicFolder/ServerSetting.json";
-            Logger.LogError("path:" + path);
+        {            
+            string path = "../../PublicFolder/ServerSetting.json";         
             if (File.Exists(path))
             {
                 using (FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read, bufferSize: 4096, useAsync: true))
@@ -56,7 +56,6 @@ namespace CommonLib.Configuration
                                 GMDB = set.GMDB;
                                 if (string.IsNullOrEmpty(GMDB))
                                     GMDB = MongoDBs[0];
-
                                 foreach (var redis in set.Redis)
                                 {
                                     if (!RedisSettings.ContainsKey(redis.Name))
@@ -83,7 +82,7 @@ namespace CommonLib.Configuration
             }
             else
             {
-                Logger.LogError("配置文件未找到:" + path);
+                Logger.LogError("配置文件未找到:" + path);              
             }
         }
     }
@@ -96,11 +95,15 @@ namespace CommonLib.Configuration
 
     internal class ServerSettingItem
     {
+        //Id
         public int Id;
         public string Name;
         public string Lang;
+        /*数据库 0主库,1日志库*/
         public string[] MongoDBs;
+        /*GM数据库连接地址，不配置或空字符串使用MongoDBs[0]路径*/
         public string GMDB;
+        //一些额外的配置，针对一些通用数据。排行等
         public List<RedisSetting> Redis;
     }
     
