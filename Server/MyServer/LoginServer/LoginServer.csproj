@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -8,5 +8,27 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <OutputPath>..\..\Product\LoginServer\</OutputPath>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="FLogMgr\**" />
+    <Compile Remove="Moudle\DBMgr\**" />
+    <Compile Remove="Moudle\FLogMgr\**" />
+    <EmbeddedResource Remove="FLogMgr\**" />
+    <EmbeddedResource Remove="Moudle\DBMgr\**" />
+    <EmbeddedResource Remove="Moudle\FLogMgr\**" />
+    <None Remove="FLogMgr\**" />
+    <None Remove="Moudle\DBMgr\**" />
+    <None Remove="Moudle\FLogMgr\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Google.Protobuf" Version="3.4.0" />
+    <PackageReference Include="MongoDB.Driver" Version="2.12.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CommonLib\CommonLib.csproj" />
+  </ItemGroup>
 
 </Project>
