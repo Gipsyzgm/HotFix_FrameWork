@@ -60,6 +60,7 @@ public static class ILRHelper
         appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.Collider>();
         appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.Collider2D>();
         appdomain.DelegateManager.RegisterFunctionDelegate<System.Single>();
+        appdomain.DelegateManager.RegisterFunctionDelegate<global::Adapt_IMessage.Adaptor>();
 
         appdomain.DelegateManager.RegisterDelegateConvertor<DG.Tweening.TweenCallback>((act) =>
         {
