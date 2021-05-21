@@ -8,9 +8,9 @@ public class Utility
     public static string GetPlatformName()
     {
 #if UNITY_EDITOR
-        return GetPlatformForAssetBundles(EditorUserBuildSettings.activeBuildTarget);
+         return GetPlatformForAssetBundles(EditorUserBuildSettings.activeBuildTarget);
 #else
-			return GetPlatformForAssetBundles(Application.platform);
+		 return GetPlatformForAssetBundles(Application.platform);
 #endif
     }
 
