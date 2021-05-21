@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using MongoDB.Bson;
@@ -33,7 +33,7 @@ namespace CommonLib.Comm.DBMgr
                 //已经连上的DB
                 Dictionary<string, IMongoDatabase> connectionCache = new Dictionary<string, IMongoDatabase>();
                 _dbs = new IMongoDatabase[connectionString.Length];
-                Logger.LogError();
+                
                 for (int i = 0; i < connectionString.Length; i++)
                 {
                     IMongoDatabase _db;
@@ -65,29 +65,6 @@ namespace CommonLib.Comm.DBMgr
             Type type = typeof(T);            
             return _dbs[TableDBIndex.Instance.GetDB(type)].GetCollection<T>(type.Name);
         }
-
-        //public T RunCommand<T>(ObjectId uid)
-        //{
-        //    var command = new BsonDocument("eval", $"selectOne({uid})");
-        //    return _dbs[0].RunCommand<T>(command);
-        //}
-
-        //public BsonDocument SelectAgg<T>(ObjectId uid, BsonDocument[] pipeline) where T : ITable
-        //{
-        //    IMongoCollection<T> coll = GetCollection<T>();
-
-        //    var match = new BsonDocument("$match", new BsonDocument("_id", uid));
-        //    var lookup1 = new BsonDocument("$lookup", new BsonDocument { { "from", "TAccount" }, { "localField", "_id" }, { "foreignField", "_id" }, { "as", "TAccount" } });
-        //    var lookup2 = new BsonDocument("$lookup", new BsonDocument { { "from", "THero" }, { "localField", "_id" }, { "foreignField", "pId" }, { "as", "THero" } });
-        //    var lookup3 = new BsonDocument("$lookup", new BsonDocument { { "from", "TBuild" }, { "localField", "_id" }, { "foreignField", "pId" }, { "as", "TBuild" } });
-        //    var lookup4 = new BsonDocument("$lookup", new BsonDocument { { "from", "TItemProp" }, { "localField", "_id" }, { "foreignField", "pId" }, { "as", "TItemProp" } });
-        //    var lookup5 = new BsonDocument("$lookup", new BsonDocument { { "from", "TItemEquip" }, { "localField", "_id" }, { "foreignField", "pId" }, { "as", "TItemEquip" } });
-
-        //    //var pipeline = new[] { match, lookup1, lookup2, lookup3, lookup4, lookup5 };
-        //    var result = coll.Aggregate<BsonDocument>(pipeline).First();
-        //    return result;
-        //}
-
 
         /// <summary> 跟据唯一Id查找记录 </summary>
         public T Select<T>(ObjectId uid) where T : ITable

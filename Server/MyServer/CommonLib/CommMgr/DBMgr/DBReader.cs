@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using CommonLib;
 using MongoDB.Bson;
 
 namespace CommonLib.Comm.DBMgr
 {
     /// <summary>
-    ///     读取数据库数据
+    /// 读取数据库数据
     /// </summary>
     public class DBReader
     {
