@@ -16,7 +16,7 @@ namespace HotFix
         /// <summary>
         /// 当前选择的服务器
         /// </summary>
-        private string SelSeverURL = string.Empty;
+        private string SelSeverName = string.Empty;
         /// <summary>添加按钮事件</summary>
         public override void Init(params object[] _args)
         { 
@@ -44,8 +44,8 @@ namespace HotFix
         /// <param name="item"></param>
         void SelectServerItem(SelServerItem item)
         {
-            SelSeverURL = item.Data.URL;
-            ServerListMgr.I.SetServerId(SelSeverURL);
+            SelSeverName = item.Data.ServerName;
+            ServerListMgr.I.SetServerId(SelSeverName);
             CloseSelf();
         }
         /// <summary>刷新</summary>
