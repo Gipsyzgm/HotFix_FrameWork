@@ -13,12 +13,18 @@
     <Compile Remove="FLogMgr\**" />
     <Compile Remove="Moudle\DBMgr\**" />
     <Compile Remove="Moudle\FLogMgr\**" />
+    <Compile Remove="Platform\CySdk\**" />
+    <Compile Remove="Platform\Data\**" />
     <EmbeddedResource Remove="FLogMgr\**" />
     <EmbeddedResource Remove="Moudle\DBMgr\**" />
     <EmbeddedResource Remove="Moudle\FLogMgr\**" />
+    <EmbeddedResource Remove="Platform\CySdk\**" />
+    <EmbeddedResource Remove="Platform\Data\**" />
     <None Remove="FLogMgr\**" />
     <None Remove="Moudle\DBMgr\**" />
     <None Remove="Moudle\FLogMgr\**" />
+    <None Remove="Platform\CySdk\**" />
+    <None Remove="Platform\Data\**" />
   </ItemGroup>
 
   <ItemGroup>
