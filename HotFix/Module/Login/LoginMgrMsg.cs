@@ -15,61 +15,94 @@ namespace HotFix.Module.Login
     {
         public async CTask<bool> Login(string userName, string pwd)
         {
-            string url = $"{AppSetting.HTTPServerURL}ServUrl";
-            Debug.LogError("url："+url);
-            LoginArgsData data = new LoginArgsData();
-            data.PFType = 0;
-            data.PFToken = pwd;
-            string chidTemple = string.Empty;      
-            data.PFId = userName;
-            byte[] byteArray = Encoding.UTF8.GetBytes(data.ToString());
-            UnityWebRequest request = new UnityWebRequest(url, UnityWebRequest.kHttpVerbPOST);
-            request.uploadHandler = new UploadHandlerRaw(byteArray);
-            request.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();
-            await request.SendWebRequest();
-            if (request.error != null) 
+            //如果是走多服务器模式,直接连接对应服务器提供的Ip地址
+            if (AppSetting.IsMoreServers)
             {
-                Tips.ShowLang("Net.ConnectFailed"); //连接服务器失败
-                return false;
-            }
-            else
-            {
-                HttpMsg httpmsg = HttpMsg.Deserialize(request.downloadHandler.text);
-                Debug.Log("request.downloadHandler.text" + request.downloadHandler.text);
-                if (httpmsg.code != 0)
+                ServerItemData server = ServerListMgr.I.GetSelectServer();
+                if (server == null) 
                 {
-                    Tips.Show(httpmsg.msg);
+                    return false;
+                }                  
+                if (!HotMgr.Net.IsConnect)
+                    await HotMgr.Net.Connect(server.IP,server.Port);
+                if (HotMgr.Net.IsConnect)
+                {
+                    CS_login_verify msg = new CS_login_verify();
+                    msg.LoginType = Enum_login_type.LtAccountPwd;
+                    msg.Platform = Enum_login_platform.LpAccountPwd;
+                    msg.PlatformId = userName;
+                    msg.Token = pwd;
+                    msg.ServerId = server.ServerId;
+                    msg.Lang = (int)HotMgr.Lang.LangType;
+                    HotMgr.Net.Send(msg);
+                    return true;
+                }
+                else
+                {
+                    Tips.ShowLang("Net.ConnectFailed"); //连接服务器失败
+                    return false;
+                }
+            }
+            else 
+            {
+                //如果走单一服务器，则向服务器请求最优的服务器并连接
+                string url = $"{AppSetting.HTTPServerURL}ServUrl";
+                Debug.LogError("url：" + url);
+                LoginArgsData data = new LoginArgsData();
+                data.PFType = 0;
+                data.PFId = userName;
+                data.PFToken = pwd;
+                byte[] byteArray = Encoding.UTF8.GetBytes(data.ToString());
+                UnityWebRequest request = new UnityWebRequest(url, UnityWebRequest.kHttpVerbPOST);
+                request.uploadHandler = new UploadHandlerRaw(byteArray);
+                request.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();
+                await request.SendWebRequest();
+                if (request.error != null)
+                {
+                    Tips.ShowLang("Net.ConnectFailed"); //连接服务器失败
                     return false;
                 }
                 else
                 {
-                    ServUrlMsgData serMsg = httpmsg.DeserializeData<ServUrlMsgData>();
-                    reLoginServerInfo = serMsg;
-                    reLoginPfId = userName;
-                    Debug.Log($"连接ip:{serMsg.IP} 端口:{serMsg.Port} ");
-                    await HotMgr.Net.Connect(serMsg.IP, serMsg.Port);
-                    //连接成功
-                    if (HotMgr.Net.IsConnect)
+                    HttpMsg httpmsg = HttpMsg.Deserialize(request.downloadHandler.text);
+                    Debug.Log("request.downloadHandler.text" + request.downloadHandler.text);
+                    if (httpmsg.code != 0)
                     {
-                        Debug.Log("连接成功发送登陆信息");
-                        CS_login_verify msg = new CS_login_verify();
-                        msg.LoginType = Enum_login_type.LtAccountPwd;
-                        msg.Platform = Enum_login_platform.LpAccountPwd;                    
-                        msg.PlatformId = userName;
-                        msg.Token = serMsg.Token;
-                        msg.ServerId = serMsg.ServerId;
-                        msg.Timestamp = serMsg.Timestamp;
-                        msg.Lang = (int)HotMgr.Lang.LangType;
-                        HotMgr.Net.Send(msg);
-                        return true;
+                        Tips.Show(httpmsg.msg);
+                        return false;
                     }
                     else
                     {
-                        Tips.ShowLang("Net.ConnectFailed"); //连接服务器失败
-                        return true;
+                        ServUrlMsgData serMsg = httpmsg.DeserializeData<ServUrlMsgData>();
+                        reLoginServerInfo = serMsg;
+                        reLoginPfId = userName;
+                        Debug.Log($"连接ip:{serMsg.IP} 端口:{serMsg.Port}");
+                        await HotMgr.Net.Connect(serMsg.IP, serMsg.Port);
+                        //连接成功
+                        if (HotMgr.Net.IsConnect)
+                        {
+                            Debug.Log("连接成功发送登陆信息");
+                            CS_login_verify msg = new CS_login_verify();
+                            msg.LoginType = Enum_login_type.LtAccountPwd;
+                            msg.Platform = Enum_login_platform.LpAccountPwd;
+                            msg.PlatformId = userName;
+                            msg.Token = serMsg.Token;
+                            msg.ServerId = serMsg.ServerId;
+                            msg.Timestamp = serMsg.Timestamp;
+                            msg.Lang = (int)HotMgr.Lang.LangType;
+                            HotMgr.Net.Send(msg);
+                            return true;
+                        }
+                        else
+                        {
+                            Tips.ShowLang("Net.ConnectFailed"); //连接服务器失败
+                            return true;
+                        }
                     }
                 }
+
             }
+           
         }
 
         public async CTask<bool> ReLogin()
@@ -80,40 +113,35 @@ namespace HotFix.Module.Login
                 //连接成功
                 if (HotMgr.Net.IsConnect)
                 {
-                    //CS_login_verify msg = new CS_login_verify();
-                    //if (AppSetting.PlatformType == EPlatformType.AccountPwd)
-                    //{
-                    //    msg.Platform = Enum_login_platform.LpAccountPwd;
-                    //}
-                    //else
-                    //{
-                    //    msg.Platform = Enum_login_platform.LpCy;
-                    //    switch (AppSetting.PlatformType)
-                    //    {
-                    //        case EPlatformType.AccountPwd:
-                    //            msg.ChId = "1";
-                    //            break;
-                    //        case EPlatformType.OWN_GP:
-                    //            msg.ChId = "101";
-                    //            break;
-                    //        case EPlatformType.OWN_IOS:
-                    //            msg.ChId = "102";
-                    //            break;
-                    //    }
-                    //    msg.DeviceId = SDKManager.I.DeviceId;
-                    //    msg.Channel = SDKManager.I.MediaChannelId;
-                    //    msg.SdkPayCh = SDKManager.I.ChannelId;
-                    //}
-
-                    //msg.PlatformId = reLoginPfId;
-                    //msg.Token = reLoginServerInfo.Token;
-                    //msg.ServerId = reLoginServerInfo.ServerId;
-                    //msg.Timestamp = reLoginServerInfo.Timestamp;
-                    ////msg.ServerStartTime = HotMgr.Time.ServerStartTime;
-                    //msg.Version = Application.version;
-                    //msg.Lang = (int)HotMgr.Lang.LangType;
-                    //msg.IsReLogin = true;
-                    //HotMgr.Net.Send(msg);
+                    CS_login_verify msg = new CS_login_verify();
+                    if (AppSetting.PlatformType == EPlatformType.AccountPwd)
+                    {
+                        msg.Platform = Enum_login_platform.LpAccountPwd;
+                    }
+                    else
+                    {
+                        msg.Platform = Enum_login_platform.LpCy;
+                        switch (AppSetting.PlatformType)
+                        {
+                            case EPlatformType.AccountPwd:
+                                msg.ChId = "1";
+                                break;
+                            case EPlatformType.OWN_GP:
+                                msg.ChId = "101";
+                                break;
+                            case EPlatformType.OWN_IOS:
+                                msg.ChId = "102";
+                                break;
+                        }
+                    }
+                    msg.PlatformId = reLoginPfId;
+                    msg.Token = reLoginServerInfo.Token;
+                    msg.ServerId = reLoginServerInfo.ServerId;
+                    msg.Timestamp = reLoginServerInfo.Timestamp;
+                    msg.Version = Application.version;
+                    msg.Lang = (int)HotMgr.Lang.LangType;
+                    msg.IsReLogin = true;
+                    HotMgr.Net.Send(msg);
                     return true;
                 }
                 else
@@ -134,16 +162,8 @@ namespace HotFix.Module.Login
             Debug.Log("url     ----" + url + " userid " + userid);
             LoginArgsData data = new LoginArgsData();
             data.PFType = 1;
-            data.PFId = userid;
-            //data.PFToken = SDKManager.I.Sid;
-            //data.ChannelId = SDKManager.I.ChannelId;
-            //data.MediaChannelId = SDKManager.I.MediaChannelId;
-            //data.Tag = RandomHelper.Random(1, 9999999).ToString();
-            //data.DeviceId = SDKManager.I.DeviceId;
-            //data.SdkVer = SDKManager.I.SDKVersion;
+            data.PFId = userid;      
             data.ClientVer = Application.version;
-
-
             Debug.Log($"输出sdk登陆信息:PFId == {data.PFId}," +
                 $"PFToken == {data.PFToken}," +
                 $"ClientVer == {data.ClientVer}," +
@@ -181,34 +201,26 @@ namespace HotFix.Module.Login
                     if (HotMgr.Net.IsConnect)
                     {
                         nowServerId = serMsg.ServerId.ToString();
-                        //AIHelpSDK.Instance.SetServerId(nowServerId);
-
-                        //CS_login_verify msg = new CS_login_verify();
-                        ////msg.LoginType = Enum_login_type.;
-                        //switch (AppSetting.PlatformType)
-                        //{
-                        //    case EPlatformType.AccountPwd:
-                        //        msg.ChId = "1";
-                        //        break;
-                        //    case EPlatformType.OWN_GP:
-                        //        msg.ChId = "101";
-                        //        break;
-                        //    case EPlatformType.OWN_IOS:
-                        //        msg.ChId = "102";
-                        //        break;
-                        //}
-
-                        //msg.Platform = Enum_login_platform.LpCy;
-                        //msg.PlatformId = SDKManager.I.PFId;
-                        //msg.Token = serMsg.Token;
-                        //msg.ServerId = serMsg.ServerId;
-                        //msg.Timestamp = serMsg.Timestamp;
-                        //msg.DeviceId = SDKManager.I.DeviceId;
-                        //msg.Channel = SDKManager.I.MediaChannelId;
-                        //msg.SdkPayCh = SDKManager.I.ChannelId;
-                        //msg.Version = Application.version;
-                        //msg.Lang = (int)HotMgr.Lang.LangType;
-                        //HotMgr.Net.Send(msg);
+                        CS_login_verify msg = new CS_login_verify();
+                        switch (AppSetting.PlatformType)
+                        {
+                            case EPlatformType.AccountPwd:
+                                msg.ChId = "1";
+                                break;
+                            case EPlatformType.OWN_GP:
+                                msg.ChId = "101";
+                                break;
+                            case EPlatformType.OWN_IOS:
+                                msg.ChId = "102";
+                                break;
+                        }
+                        msg.Platform = Enum_login_platform.LpCy;
+                        msg.Token = serMsg.Token;
+                        msg.ServerId = serMsg.ServerId;
+                        msg.Timestamp = serMsg.Timestamp;
+                        msg.Version = Application.version;
+                        msg.Lang = (int)HotMgr.Lang.LangType;
+                        HotMgr.Net.Send(msg);
                         return null;
                     }
                     else

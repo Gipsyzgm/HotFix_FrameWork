@@ -31,10 +31,7 @@ namespace HotFix.Module.Login
         public string PlatformId = string.Empty;
         /// <summary>平台Token</summary>
         public string Token = string.Empty;
-        /// <summary>
-        /// 是否正在连接服务器
-        /// </summary>
-        public bool isConnectIng = false;
+
 
         private ServUrlMsgData reLoginServerInfo;
 
@@ -112,7 +109,6 @@ namespace HotFix.Module.Login
             PfChId = string.Empty;
             PlatformId = string.Empty;
             Token = string.Empty;
-            isConnectIng = false;
         }
 
     }
