@@ -38,7 +38,8 @@ namespace LoginServer.Http
                 info.ServerName = item.ServerName;
                 info.State = item.State;
                 info.Flag = item.Flag;
-                info.URL = item.URL;
+                info.IP = item.IP;
+                info.Port = item.Port;
                 infos.Add(info);
             }      
             Glob.http.ResponseOutput(context.Response, HttpMsg.Message(JsonConvert.SerializeObject(infos)));         
