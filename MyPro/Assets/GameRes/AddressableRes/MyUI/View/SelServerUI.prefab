@@ -513,7 +513,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 024e05a8d4bcdfe4cb28dd57932bd6b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AtlasList: []
+  AtlasList:
+  - {fileID: 4343727234628468602, guid: 7a60788428c17bd4e89c4a7f8fb0e05d, type: 2}
 --- !u!114 &7746001632375339638
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -532,7 +533,7 @@ MonoBehaviour:
     Object: {fileID: 3907088493363841531, guid: 1b319c0559f8f884a86f7b88d4133a89,
       type: 3}
   - Name: Content
-    ComponentType: UnityEngine.UI.ContentSizeFitter
+    ComponentType: UnityEngine.GameObject
     Object: {fileID: 7746001631429360494}
   - Name: CloseBtn
     ComponentType: UnityEngine.UI.Button
@@ -738,7 +739,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: 
 --- !u!114 &7746001632841053121
 MonoBehaviour:
   m_ObjectHideFlags: 0
