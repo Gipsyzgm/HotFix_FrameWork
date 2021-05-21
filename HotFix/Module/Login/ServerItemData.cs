@@ -22,6 +22,6 @@ namespace HotFix.Module.Login
         /// <summary>服务连接IP</summary>
         public string IP;
         /// <summary>服务连接端口</summary>
-        public string Port;
+        public int Port;
     }
 }
