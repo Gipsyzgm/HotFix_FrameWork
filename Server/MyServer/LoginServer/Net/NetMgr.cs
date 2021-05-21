@@ -2,23 +2,26 @@ using CommonLib;
 using CommonLib.Configuration;
 using CSocket;
 using Google.Protobuf;
+using LoginServer;
+using LoginServer.Net;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Timers;
 using Telepathy;
 
-namespace LoginServer.Net
+namespace Telepathy
 {
     public class NetMgr
     {
-        //作为客户端连接中央服
         public Client _socket;
         public const int MaxMessageSize = 16 * 1024;
+        public DictionarySafe<string, HttpListenerContext> dicHttpContext = new DictionarySafe<string, HttpListenerContext>();
 
         public NetMgr()
         {
@@ -27,6 +30,7 @@ namespace LoginServer.Net
             _socket.OnData = OnData;
             _socket.OnDisconnected = OnDisconnected;
             ClientElement config = ClientSet.Instance.GetConfig("LoginToCenterClient");
+            Logger.Log("ip:" + config.ip + "port:" + config.port);
             StartClient(config.ip, config.port);
         }
 
@@ -34,6 +38,12 @@ namespace LoginServer.Net
         {
             Connect(ip, port);
             //多长时间检测一下回调信息，毫秒
+            if (!_socket.Connected)
+            {
+                Logger.Log($"没连接上服务器{ip}:{port}");
+                return;
+            }
+            Logger.Log($"已连接上服务器{ip}:{port}");
             var timer = new System.Timers.Timer(1000.0 / 20);
             // THIS HAPPENS IN DIFFERENT THREADS.
             // so make sure that GetNextMessage is thread safe!
@@ -42,27 +52,38 @@ namespace LoginServer.Net
                 if (_socket.Connected)
                 {
                     _socket.Tick(1);
-                }
+                }                         
             };
         }
-
         /// <summary>
         /// 连接服务器
         /// </summary>
         public void Connect(string ip, int port)
         {
             _socket.Connect(ip, port);
-            Thread.Sleep(15);
+            Thread.Sleep(1500);
         }
 
-  
         public void OnConnected()
         {
-            Console.WriteLine(" Connected");
+            Logger.Log("Connected");
         }
 
         public bool IsConnect => _socket.Connected;
         public bool mIsConnect = false;
+
+        /// <summary>
+        /// 发送消息的重载
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="data"></param>
+        /// <param name="requestUID"></param>
+        /// <param name="context"></param>
+        public void Send<T>(T data, string requestUID, HttpListenerContext context) where T : IMessage
+        {
+            dicHttpContext.Add(requestUID, context);
+            Send(data);
+        }
 
         /// <summary>
         /// 发送消息
@@ -71,7 +92,7 @@ namespace LoginServer.Net
         {
             if (!IsConnect)
             {
-                Logger.LogError("服务器未连接");             
+                Logger.LogError("服务器未连接"); 
                 return;
             }
             ushort protocol = LoginToCenterClientProtocol.Instance.GetProtocolByType(data.GetType());
@@ -103,32 +124,31 @@ namespace LoginServer.Net
         /// <param name="buff"></param>
         public void OnData(ArraySegment<byte> buff)
         {
-            byte[] bt = buff.Array;
-            ushort protocol = BitConverter.ToUInt16(bt, 0);   //协议号          
-            byte[] body = new byte[bt.Length - 2];            //消息内容
-            Array.Copy(bt, 2, body, 0, body.Length);
+            //先解析一下插件的封装
+            byte[] bytes = new byte[buff.Count];
+            Buffer.BlockCopy(buff.Array, buff.Offset, bytes, 0, buff.Count);  
+
+            //解析自己定的协议
+            ushort protocol = BitConverter.ToUInt16(bytes, 0);   //协议号          
+            byte[] body = new byte[bytes.Length - 2];            //消息内容
+            Array.Copy(bytes, 2, body, 0, body.Length);
             IMessage proto = LoginToCenterClientProtocol.Instance.CreateMsgByProtocol(protocol);
             if (proto == null)
             {
-                CNetLog.LogError("LoginToCenterClientProtocol 协议类型未定义:protocol", protocol);
+                NetLog.Error("LoginToCenterClientProtocol 协议类型未定义:protocol", protocol);
                 return;
             }
             try
             {
                 proto.MergeFrom(body);
                 LoginToCenterClientMessage msg = new LoginToCenterClientMessage(protocol, proto);
-                CNetLog.LogMsg(false, protocol, body.Length, proto);
-                Glob.net.LoginToCenterClientMessage_Received(msg);
+                NetLog.LogMsg(false, protocol, body.Length, proto);
+                LoginToCenterClientAction.Instance.Dispatch(msg);
             }
             catch
             {
-                CNetLog.LogError($"消息 {protocol} 解析错误,可能客户端与服务端PB文件不一致");
+                NetLog.Error($"消息 {protocol} 解析错误,可能客户端与服务端PB文件不一致");
             }
-        }
-
-        public void LoginToCenterClientMessage_Received(LoginToCenterClientMessage args)
-        {        
-            LoginToCenterClientAction.Instance.Dispatch(args);
         }
 
         /// <summary>
