@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 
 namespace LoginServer.Http
 {
+    //不直接发Json，自定义一个消息的格式，
     public struct HttpMsg
     {
         public int code;        //错误码 0 正常

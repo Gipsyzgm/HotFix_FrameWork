@@ -66,6 +66,12 @@ namespace LoginServer.Http
             {
                 switch (request.Url.AbsolutePath)
                 {
+                    case "/Version"://客户端请求版本信息
+                        HttpServVersion(context);
+                        break;
+                    case "/ServerList"://客户端请求服务器列表
+                        HttpServerList(context);
+                        break;
                     case "/ServState"://GM通知重载服务器状态和白名单列表
                         HttpServState(request, response);
                         break;
@@ -94,6 +100,7 @@ namespace LoginServer.Http
 
         public void ResponseOutput(HttpListenerResponse response, string str)
         {
+          
             response.Headers.Add("Access-Control-Allow-Origin", "*");
             response.ContentType = "text/html;charset=UTF-8";
             response.ContentEncoding = Encoding.UTF8;
