@@ -20,6 +20,11 @@ public class Main : MonoBehaviour
     /// </summary>
     public bool ILRNotABTest = false;
 
+    /// <summary>
+    /// 是否使用多服务器模式
+    /// </summary>
+    public bool IsMoreServers = true;
+
     bool IsStart = false;
     void Awake()
     { 
@@ -36,6 +41,7 @@ public class Main : MonoBehaviour
             AppSetting.ILRNotABTest = ILRNotABTest;
             Debug.unityLogger.logEnabled = true;
         }
+        AppSetting.IsMoreServers = IsMoreServers;
         SetHttpServer();
         MainMgr.Initialize();
         StartTask().Run();
