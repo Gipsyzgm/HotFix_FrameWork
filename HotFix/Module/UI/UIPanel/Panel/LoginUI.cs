@@ -54,26 +54,34 @@ namespace HotFix
         /// 设置服务器信息
         /// </summary>
         public void SetServerInfo()
-        {           
-            ServerItemData server = ServerListMgr.I.GetSelectServer();
-            CurServerName.text = server != null ? server.ServerName : string.Empty;
-            if (server != null)
-            {
-                switch (server.Flag) //服务器标记
+        {
+            if (AppSetting.IsMoreServers)
+            {   
+                //多服则显示服务器信息
+                ServerItemData server = ServerListMgr.I.GetSelectServer();
+                CurServerName.text = server != null ? server.ServerName : string.Empty;
+                if (server != null)
                 {
-                    case 1: //新服 暂时只一个标记
-                        TagImage.gameObject.SetActive(true);
-                        break;
-                    default:
-                        TagImage.gameObject.SetActive(false);
-                        break;
-                }
-                //如果多个服务器的话需要带上服务器ID
-                if (AppSetting.IsMoreServers)
-                {
+                    switch (server.Flag) //服务器标记
+                    {
+                        case 1: //新服 暂时只一个标记
+                            TagImage.gameObject.SetActive(true);
+                            break;
+                        default:
+                            TagImage.gameObject.SetActive(false);
+                            break;
+                    }
+                    //如果多个服务器的话需要带上服务器ID                    
                     CurServerName.text = server.ServerId.ToString() + ":" + CurServerName.text;
-                }                         
+
+                }
             }
+            else 
+            {
+                //单服只显示开始游戏
+                GoSelServer.transform.GetChild(0).gameObject.SetActive(false);
+            }
+            
         }
 
         /// <summary>
