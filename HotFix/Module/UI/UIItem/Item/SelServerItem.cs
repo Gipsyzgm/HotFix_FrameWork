@@ -41,7 +41,7 @@ namespace HotFix
                     FlagImage.gameObject.SetActive(false);
                     break;
             }
-            if (Data.URL == ServerListMgr.I.ServerURL)
+            if (Data.ServerName == ServerListMgr.I.ServerName)
             {
                 FlagImage.SetSprite("Icon_Last", UIAtlas.Common).Run();
                 FlagImage.gameObject.SetActive(true);
