@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
@@ -9,12 +9,22 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="CommMgr\Redis\**" />
     <Compile Remove="CommMgr\Redis_old\**" />
+    <EmbeddedResource Remove="CommMgr\Redis\**" />
     <EmbeddedResource Remove="CommMgr\Redis_old\**" />
+    <None Remove="CommMgr\Redis\**" />
     <None Remove="CommMgr\Redis_old\**" />
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="CSocket\BufferManager.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Google.Protobuf" Version="3.4.0" />
+    <PackageReference Include="MongoDB.Bson" Version="2.12.3" />
+    <PackageReference Include="MongoDB.Driver" Version="2.12.2" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
   </ItemGroup>
