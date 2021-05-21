@@ -1,6 +1,8 @@
+using LitJson;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -32,30 +34,35 @@ public partial class VersionCheckMgr : BaseMgr<VersionCheckMgr>
     {
         //首先对比版本号是否需要整包更新,不需要的话就只更新资源
         string url = GetVersionUrl();
-        UnityWebRequest request = UnityWebRequest.Get(url);
+        JsonData fields = new JsonData();
+        fields["PF"] = Utility.GetPlatformName();
+        byte[] byteArray = Encoding.UTF8.GetBytes(fields.ToJson());
+        UnityWebRequest request = new UnityWebRequest(url, UnityWebRequest.kHttpVerbPOST);
+        request.uploadHandler = new UploadHandlerRaw(byteArray);
+        request.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();
         await request.SendWebRequest();
+
         if (request.error != null || request.downloadHandler.text == "error")
         {
             Debug.LogError($"URL Error[{url}]:{request.error} ");
             //请求资源信息错误
-            CheckUI.Confirm(() => { StartCheck().Run(); }, () => { StartCheck().Run(); }, VerCheckLang.Request_Version_Error,VerCheckLang.ErrorTitle);
+            CheckUI.Confirm(() => { StartCheck().Run(); }, () => { StartCheck().Run(); }, VerCheckLang.Request_Version_Error, VerCheckLang.ErrorTitle);
             return;
         }
-        List<VersionInfo> verInfos = LitJson.JsonMapper.ToObject<List<VersionInfo>>(request.downloadHandler.text); 
-        string platformName = Utility.GetPlatformName().ToLower();
-        foreach (VersionInfo ver in verInfos)
+        else 
         {
-            if (ver.Platform.ToLower() == platformName)
+            JsonData jsonData = JsonMapper.ToObject(request.downloadHandler.text);
+            if ((int)jsonData["code"]!= 0)
             {
-                remoteVersion = ver;
+                CheckUI.Confirm(() => { StartCheck().Run(); }, () => { StartCheck().Run(); }, (string)jsonData["msg"], VerCheckLang.ErrorTitle);;
+                return;
             }
-        }
-        if (remoteVersion != null)
-        {
-            Debug.Log($"登录地址remoteVersion.LoginUrl{remoteVersion.LoginUrl}");                 
-            AppSetting.HTTPLoginURL = remoteVersion.LoginUrl;
-        }
-        else
+            else
+            {
+                remoteVersion = LitJson.JsonMapper.ToObject<VersionInfo>((string)jsonData["data"]);              
+            }
+        } 
+        if (remoteVersion == null)
         {
             //请求资源信息错误
             CheckUI.Confirm(() => { StartCheck().Run(); }, ()=> { Application.Quit();}, VerCheckLang.Version_Platform_Error,VerCheckLang.ErrorTitle);
@@ -209,7 +216,7 @@ public partial class VersionCheckMgr : BaseMgr<VersionCheckMgr>
     }
     private string GetVersionUrl()
     {
-        string url = $"{AppSetting.HTTPServerURL}Version.txt";    
+        string url = $"{AppSetting.HTTPServerURL}Version";    
         Debug.Log($"VersionUrl:{url}");
         return url;
     }
