@@ -32,39 +32,65 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: cb529a9af64de764190314b1987d3105, type: 3}
-    totalSpriteSurfaceArea: 801836
+    totalSpriteSurfaceArea: 1317951
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
+  - {fileID: 21300000, guid: 167a63b0eea2d4f479b970b7842bb66f, type: 3}
   - {fileID: 21300000, guid: 00a46a52f49ad9d468ae67c193a9a78a, type: 3}
+  - {fileID: 21300000, guid: 49071b62ee1b792449b6f31f01196444, type: 3}
+  - {fileID: 21300000, guid: 8d380574638c3564b91a8a96a1e40a5e, type: 3}
   - {fileID: 21300000, guid: 4bfb1115d2037294f83e8d6e89fa088c, type: 3}
   - {fileID: 21300000, guid: e13cf7f58293fae4abfeb51f2c71d5c1, type: 3}
   - {fileID: 21300000, guid: f1a7b276440a61d41bef5846c53f48f3, type: 3}
   - {fileID: 21300000, guid: 70569d17f581cac47805a3b163c4d97e, type: 3}
+  - {fileID: 21300000, guid: 87bedf77274c48941ae2240bbffe662c, type: 3}
   - {fileID: 21300000, guid: 7d3d29c8a10e87444881c206897a7a19, type: 3}
+  - {fileID: 21300000, guid: 09b389e81610725478ad9694686764da, type: 3}
   - {fileID: 21300000, guid: ab4ca469775c2924da250662235bf04c, type: 3}
   - {fileID: 21300000, guid: 3641b77987f98314fbb214b76b4e9af1, type: 3}
+  - {fileID: 21300000, guid: f8096e992d5c80744b5f027204774ad5, type: 3}
   - {fileID: 21300000, guid: 15fcd2d9e6373c24c9828b7a016e9441, type: 3}
   - {fileID: 21300000, guid: 98f677e936af23b479daae5c2056f1a6, type: 3}
+  - {fileID: 21300000, guid: 4c1419e9e7583ef40a8bc3f72f759ce4, type: 3}
+  - {fileID: 21300000, guid: f911912a176ced84f83170c30fb02781, type: 3}
   - {fileID: 21300000, guid: f6ddfb6a2c71094469356bc16ee24f12, type: 3}
   - {fileID: 21300000, guid: 9b58b54b08076be48b082eb983171cda, type: 3}
+  - {fileID: 21300000, guid: 359e750cdcc0b4c4eb3834f032d5a0a9, type: 3}
   - {fileID: 21300000, guid: 1361ad3c87c30be4ea9809ae821f5318, type: 3}
+  - {fileID: 21300000, guid: e38aee3c523aaef49bcb0deb1b12f712, type: 3}
+  - {fileID: 21300000, guid: 6341140eaae45084894d0b56ad9d3c3d, type: 3}
+  - {fileID: 21300000, guid: 5bb0ea5e8fcf79f479baf4cd09e59091, type: 3}
+  - {fileID: 21300000, guid: aeb5330f35509714bbf476238585daa0, type: 3}
   m_PackedSpriteNamesToIndex:
+  - icon-upgrade
   - DK_Login
+  - Default
+  - new2
   - Choose
   - Justforfun
   - Btn_Confirm
   - DK_Attr_Down
+  - Icon_Last
   - Btn_ClolseX
+  - Eject_Back
   - Btn_6
   - Btn_Cancel
+  - Icon_New
   - DK_Attr_Up
   - Mask
+  - Line_1_1
+  - Eject_Up
   - BK_Input
   - DK_1
+  - Panel_Heroictalent_L
   - frame-Tip
+  - tips_1
+  - Btn_Esc_1
+  - hint
+  - Ornament_8
   m_RenderDataMap: {}
   m_Tag: Common
   m_IsVariant: 0
