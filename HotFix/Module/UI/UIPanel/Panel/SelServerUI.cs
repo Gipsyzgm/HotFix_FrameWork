@@ -32,9 +32,9 @@ namespace HotFix
             {
                 item = new SelServerItem();
                 item.Instantiate(SelServerItem, Content.transform);
-                item.onClick = SelectServerItem;
-                itemList.Add(item);            
                 item.SetData(data);
+                item.onClick = SelectServerItem;
+                itemList.Add(item);                          
             }
         }
 

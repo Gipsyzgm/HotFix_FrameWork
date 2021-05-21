@@ -12,7 +12,8 @@ namespace HotFix
 {
     public partial class LoginUI : BaseUI
     {
-        bool isLogingIng = false;
+        //是否正在登陆
+        bool IsLogingIng = false;
         /// <summary>添加按钮事件</summary>
         public override void Init(params object[] _args)
         { 
@@ -22,16 +23,18 @@ namespace HotFix
             ChangServerBtn.onClick.AddListener(ChangServerBtn_Click);   //选择服务器
             StartGameButton.onClick.AddListener(StartGameButton_Click);   //开始游戏
             LoginOutButton.onClick.AddListener(LoginOutButton_Click);   //注销  
-            SetLoginState();
+            SetLoginState();        
         }
 
         /// <summary>跟据平台类型设置登录状态</summary>
         void SetLoginState()
         {
+            //是否需要选择服务器
+            ChangServerBtn.gameObject.SetActive(AppSetting.IsMoreServers);
             if (AppSetting.PlatformType == EPlatformType.AccountPwd)
             {
                 PasswordLogin.SetActive(!LoginMgr.I.IsLogin);
-                GoSelServer.SetActive(LoginMgr.I.IsLogin);
+                GoSelServer.SetActive(LoginMgr.I.IsLogin);               
                 SdkLogin.gameObject.SetActive(false);        
                 LoginUserName.text = LoginMgr.I.UserName;
             }
@@ -41,11 +44,9 @@ namespace HotFix
                 GoSelServer.SetActive(LoginMgr.I.IsLogin);
                 SdkLogin.gameObject.SetActive(false);
                 LoginUserName.text = LoginMgr.I.UserName;
-            }       
+            }                      
             if (LoginMgr.I.IsLogin)
-            {
-                //如果已经登录，可能需要显示选择服务器
-                GoSelServer.SetActive(true);
+            {                     
                 SetServerInfo();
             }    
         }
@@ -53,8 +54,7 @@ namespace HotFix
         /// 设置服务器信息
         /// </summary>
         public void SetServerInfo()
-        {
-           
+        {           
             ServerItemData server = ServerListMgr.I.GetSelectServer();
             CurServerName.text = server != null ? server.ServerName : string.Empty;
             if (server != null)
@@ -68,17 +68,25 @@ namespace HotFix
                         TagImage.gameObject.SetActive(false);
                         break;
                 }
-                CurServerName.text = server.ServerId.ToString() +":" + CurServerName.text;
+                //如果多个服务器的话需要带上服务器ID
+                if (AppSetting.IsMoreServers)
+                {
+                    CurServerName.text = server.ServerId.ToString() + ":" + CurServerName.text;
+                }                         
             }
         }
 
+        /// <summary>
+        /// 重置登录状态
+        /// </summary>
         public void ResetConnectInt()
         {
-            isLogingIng = false;
+            IsLogingIng = false;
         }
         /// <summary>刷新</summary>
         public override void Refresh()
         {
+
         }
 
         /// <summary></summary>
@@ -98,28 +106,29 @@ namespace HotFix
                 return;
             }
             //登录成功
-            LoginMgr.I.LoginSucc(userName, password);
+            LoginMgr.I.LoginSucc(userName);
             SetLoginState();
         }
-        /// <summary></summary>
+        /// <summary>Sdk登陆</summary>
         void SdkLogin_Click()
         {
-
+            SDKLogin().Run();
         }
-        /// <summary></summary>
+        /// <summary>进入选服页面</summary>
         void ChangServerBtn_Click()
         {
-            HotMgr.UI.Show<SelServerUI>().Run();
+            HotMgr.UI.Show<SelServerUI>(UIAnim.ScaleIn).Run();
         }
-        /// <summary></summary>
+        /// <summary>开始游戏</summary>
         void StartGameButton_Click()
         {
+            if (IsLogingIng) return;
             StartGame_Task().Run();
         }
         private async CTask StartGame_Task()
         {            
-            if (isLogingIng) return;
-            isLogingIng = true;
+            if (IsLogingIng) return;
+            IsLogingIng = true;
             bool isSucc = false;
             if (AppSetting.PlatformType == EPlatformType.AccountPwd)
             {
@@ -130,7 +139,6 @@ namespace HotFix
                 string error = await LoginMgr.I.SDKLogin(LoginMgr.I.UserName);
                 if (!string.IsNullOrEmpty(error))
                 {
-
                     Confirm.ShowConfirm(() => { SDKLogin().Run(); }, error,HotMgr.Lang.Get("Net.DisconnectTitle"));
                 }
                 else
@@ -139,7 +147,7 @@ namespace HotFix
                 }
             }
             if (!isSucc)
-                isLogingIng = false;
+                IsLogingIng = false;
         }
         async CTask SDKLogin()
         {
@@ -147,7 +155,7 @@ namespace HotFix
             string error = await LoginMgr.I.SDKLogin(LoginMgr.I.UserName);
             if (!string.IsNullOrEmpty(error))
             {
-                isLogingIng = false;
+                IsLogingIng = false;
                 Confirm.ShowConfirm(() => { SDKLogin().Run(); }, error, HotMgr.Lang.Get("Net.DisconnectTitle"));
             }
         }
@@ -159,14 +167,11 @@ namespace HotFix
             InputFieldPassword.text = string.Empty;
             LoginMgr.I.Logout();
             SetLoginState();
-
         }
-
-
-
         /// <summary>释放UI引用</summary>
         public override void Dispose()
         {
+
         }
     }
 }
