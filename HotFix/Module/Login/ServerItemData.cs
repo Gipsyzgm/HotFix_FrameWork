@@ -13,17 +13,15 @@ namespace HotFix.Module.Login
     {
         /// <summary>服务器Id</summary>
         public int ServerId;
-        /// <summary>
-        /// 服务器状态  0 正常 1 维护
-        /// </summary>
+        /// <summary>服务器状态  0 正常 1 维护</summary>
         public int State;
-        /// <summary>
-        /// 服务器标记 0无 1新服 2推荐
-        /// </summary>
+        /// <summary>服务器标记 0无 1新服 2推荐</summary>
         public int Flag;
         /// <summary>服务器名</summary>
         public string ServerName;
-        /// <summary>服务连接地址</summary>-1
-        public string URL;
+        /// <summary>服务连接IP</summary>
+        public string IP;
+        /// <summary>服务连接端口</summary>
+        public string Port;
     }
 }
