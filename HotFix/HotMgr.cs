@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -46,7 +46,10 @@ namespace HotFix
             Timer = new TimerMgr();
             Lang = new LangMgr();
             Config = new ConfigMgr();
+            float startTime = Time.realtimeSinceStartup;
             await Config.Initialize();
+            float elapsedTime = Time.realtimeSinceStartup - startTime;
+            Debug.Log("Load Config Use Time " + elapsedTime + " seconds");       
             Debug.Log("初始化完成");
 
         }
