@@ -15,7 +15,7 @@ namespace HotFix.Module.Login
     /// </summary>
     public class ServerListMgr : BaseDataMgr<ServerListMgr>, IDisposable
     {
-        private string Prefs_ServerURL = "Prefs_ServerURL";
+        private string Prefs_ServerName = "Prefs_ServerName";
 
         /// <summary>服务器列表</summary>
         public Dictionary<string, ServerItemData> dicServerList = new Dictionary<string, ServerItemData>();
@@ -23,7 +23,7 @@ namespace HotFix.Module.Login
         /// <summary>
         /// 选中的服务器地址
         /// </summary>
-        public string ServerURL = string.Empty;
+        public string ServerName = string.Empty;
 
         /// <summary>
         /// 是否获取到服务器信息
@@ -32,7 +32,7 @@ namespace HotFix.Module.Login
 
         public ServerListMgr()
         {
-            ServerURL = PlayerPrefs.GetString(Prefs_ServerURL, string.Empty);
+            ServerName = PlayerPrefs.GetString(Prefs_ServerName, string.Empty);
         }
 
         /// <summary>
@@ -40,7 +40,7 @@ namespace HotFix.Module.Login
         /// </summary>
         public ServerItemData GetSelectServer()
         {
-            dicServerList.TryGetValue(ServerURL, out var data);
+            dicServerList.TryGetValue(ServerName, out var data);
             if (data == null && dicServerList.Count > 0)
                 return dicServerList.Values.ElementAt(0);
             return data;
@@ -49,21 +49,21 @@ namespace HotFix.Module.Login
         public int GetSelectServerId()
         {
             ServerItemData data;
-            if (dicServerList.TryGetValue(ServerURL, out data))
+            if (dicServerList.TryGetValue(ServerName, out data))
                 return data.ServerId;
             return 1;
         }
 
         public void SetServerId(string url)
         {
-            if (ServerURL != url)
+            if (ServerName != url)
             {
-                ServerURL = url;
+                ServerName = url;
                 if (HotMgr.Net.IsConnect == true)
                     HotMgr.Net.Close(false);
                 HotMgr.UI.GetPanel<LoginUI>()?.ResetConnectInt();
             }
-            PlayerPrefs.SetString(Prefs_ServerURL, ServerURL);
+            PlayerPrefs.SetString(Prefs_ServerName, ServerName);
             PlayerPrefs.Save();
             HotMgr.UI.GetPanel<LoginUI>()?.SetServerInfo();
         }
@@ -102,7 +102,7 @@ namespace HotFix.Module.Login
                     dicServerList = new Dictionary<string, ServerItemData>();
                     List<ServerItemData> serverList = LitJson.JsonMapper.ToObject<List<ServerItemData>>((string)jsonData["data"]);
                     foreach (ServerItemData data in serverList)
-                        dicServerList.Add(data.URL, data);
+                        dicServerList.Add(data.ServerName, data);
                 }
 
             }         
@@ -112,9 +112,11 @@ namespace HotFix.Module.Login
                 ServerItemData item = new ServerItemData();
                 item.ServerId = 999;
                 item.ServerName = "Jsf-测试服";
-                item.URL = "http://127.0.0.1:7000";
-                if (!dicServerList.ContainsKey(item.URL))
-                    dicServerList.Add(item.URL, item);                     
+                item.Flag = 0;
+                item.IP = "127.0.0.1";
+                item.Port = 3000;
+                if (!dicServerList.ContainsKey(item.ServerName))
+                    dicServerList.Add(item.ServerName, item);                     
             }
 
             if (AppSetting.PlatformType == EPlatformType.AccountPwd)
