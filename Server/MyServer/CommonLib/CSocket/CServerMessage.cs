@@ -65,15 +65,16 @@ namespace CSocket
         {
             byte[] package;
             if (md5 != null)
-                package = new byte[message.Length + 6 + md5.Length];
+                package = new byte[message.Length + 2 + md5.Length];
             else
-                package = new byte[message.Length + 6];
-            Array.Copy(BitConverter.GetBytes(package.Length - 4), package, 4); //内容长度
-            Array.Copy(BitConverter.GetBytes(protocol), 0, package, 4, 2);  //协议号
-            Array.Copy(message, 0, package, 6, message.Length);
+                package = new byte[message.Length + 2];
+           
+            Array.Copy(BitConverter.GetBytes(protocol), 0, package, 0, 2);  //协议号
+            Array.Copy(message, 0, package, 2, message.Length);
             if (md5 != null)
-                Array.Copy(md5, 0, package, 6 + message.Length, md5.Length);
+                Array.Copy(md5, 0, package, 2 + message.Length, md5.Length);
 
+            Log.Error("发送了消息");
             Server.Send(ClientId, new ArraySegment<byte>(package));
         }
 
