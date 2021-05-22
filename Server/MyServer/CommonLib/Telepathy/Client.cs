@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Net.Sockets;
 using System.Threading;
 
@@ -134,7 +134,7 @@ namespace Telepathy
             catch (SocketException exception)
             {
                 // 如果（例如）IP地址正确但在该IP /端口上没有服务器在运行，则会发生这种情况
-                NetLog.Info("Client Recv: failed to connect to ip=" + ip + " port=" + port + " reason=" + exception);
+                Log.Info("Client Recv: failed to connect to ip=" + ip + " port=" + port + " reason=" + exception);
 
                 // 添加“断开连接”事件以接收管道，以便调用者知道连接失败。 否则他们永远不会知道
                 state.receivePipe.Enqueue(0, EventType.Disconnected, default);
@@ -155,7 +155,7 @@ namespace Telepathy
             catch (Exception exception)
             {
                 // 出问题了。 可能很重要。
-                NetLog.Error("Client Recv Exception: " + exception);
+                Log.Error("Client Recv Exception: " + exception);
             }
 
             // sendthread可能正在等待ManualResetEvent，因此请确保在连接关闭的情况下结束它。
@@ -176,7 +176,7 @@ namespace Telepathy
             // not if already started
             if (Connecting || Connected)
             {
-                NetLog.Warning("Telepathy Client can not create connection because an existing connection is connecting or connected");
+                Log.Warning("Telepathy Client can not create connection because an existing connection is connecting or connected");
                 return;
             }
 
@@ -245,17 +245,17 @@ namespace Telepathy
                     else
                     {
                         // log the reason
-                        NetLog.Warning($"Client.Send: sendPipe reached limit of {SendQueueLimit}. This can happen if we call send faster than the network can process messages. Disconnecting to avoid ever growing memory & latency.");
+                        Log.Warning($"Client.Send: sendPipe reached limit of {SendQueueLimit}. This can happen if we call send faster than the network can process messages. Disconnecting to avoid ever growing memory & latency.");
 
                         // just close it. send thread will take care of the rest.
                         state.client.Close();
                         return false;
                     }
                 }
-                NetLog.Error("Client.Send: message too big: " + message.Count + ". Limit: " + MaxMessageSize);
+                Log.Error("Client.Send: message too big: " + message.Count + ". Limit: " + MaxMessageSize);
                 return false;
             }
-            NetLog.Warning("Client.Send: not connected!");
+            Log.Warning("Client.Send: not connected!");
             return false;
         }
 
