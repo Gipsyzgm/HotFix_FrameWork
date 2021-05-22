@@ -50,10 +50,12 @@ namespace Telepathy
             timer.Elapsed += (object sender, ElapsedEventArgs e) =>
             {
                 if (_socket.Connected)
-                {
+                {                   
                     _socket.Tick(1);
                 }                         
             };
+            timer.AutoReset = true;
+            timer.Enabled = true;
         }
         /// <summary>
         /// 连接服务器
@@ -124,6 +126,7 @@ namespace Telepathy
         /// <param name="buff"></param>
         public void OnData(ArraySegment<byte> buff)
         {
+            Log.Error("收到消息");
             //先解析一下插件的封装
             byte[] bytes = new byte[buff.Count];
             Buffer.BlockCopy(buff.Array, buff.Offset, bytes, 0, buff.Count);  
