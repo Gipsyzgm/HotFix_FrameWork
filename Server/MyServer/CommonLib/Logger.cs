@@ -1,4 +1,5 @@
-﻿using System;
+using Google.Protobuf;
+using System;
 using System.IO;
 
 namespace CommonLib
@@ -7,13 +8,46 @@ namespace CommonLib
     {
         public static bool MsgLogOnOff = true;
         public static int ServerId = 0;
+        //是否输出日志
+        public static bool IsDebug = true;
+        public static void SetLogType(bool isShow)
+        {
+            IsDebug = isShow;
+        }
+
+        /// <summary>
+        /// 普通日志
+        /// </summary>
+        /// <param name="args"></param>
+        public static void Log(string args)
+        {
+            logLine(args, ConsoleColor.White);
+        }
+        /// <summary>
+        /// 警告
+        /// </summary>
+        /// <param name="args"></param>
+        public static void LogWarning(string args)
+        {
+            logLine(args, ConsoleColor.Yellow);
+        }
+        /// <summary>
+        /// 错误日志
+        /// </summary>
+        /// <param name="args"></param>
+        public static void LogError(string args)
+        {
+            logLine(args, ConsoleColor.Red);
+        }
+    
+
         /// <summary>
         /// 系统日志
         /// </summary>
         /// <param name="args"></param>
         public static void Sys(params object[] args)
         {
-            logLine(getParamsStr(args), ConsoleColor.Green);
+            logLine(GetParamsStr(args), ConsoleColor.Green);
         }
         /// <summary>
         /// 系统日志,一条日志开始显示(同一行)
@@ -21,14 +55,14 @@ namespace CommonLib
         /// <param name="args"></param>
         public static void SysStart(params object[] args)
         {
-            log(getParamsStr(args), ConsoleColor.Green);
+            log(GetParamsStr(args), ConsoleColor.Green);
         }
         /// <summary>
         /// 系统日志,一条日志结束时显示(同一行)
         /// </summary>
         public static void SysEnd(params object[] args)
         {
-            Console.Write(getParamsStr(args) + "\n");
+            Console.Write(GetParamsStr(args) + "\n");
         }
 
         /// <summary>
@@ -37,7 +71,7 @@ namespace CommonLib
         /// <param name="args"></param>
         public static void Log(params object[] args)
         {
-            logLine(getParamsStr(args), ConsoleColor.White);
+            logLine(GetParamsStr(args), ConsoleColor.White);
         }
         /// <summary>
         /// 警告
@@ -45,7 +79,7 @@ namespace CommonLib
         /// <param name="args"></param>
         public static void LogWarning(params object[] args)
         {
-            logLine(getParamsStr(args), ConsoleColor.Yellow);
+            logLine(GetParamsStr(args), ConsoleColor.Yellow);
         }
         /// <summary>
         /// 错误日志
@@ -53,7 +87,7 @@ namespace CommonLib
         /// <param name="args"></param>
         public static void LogError(params object[] args)
         {
-            logLine(getParamsStr(args), ConsoleColor.Red);
+            logLine(GetParamsStr(args), ConsoleColor.Red);
         }
 
         /// <summary>
@@ -62,23 +96,23 @@ namespace CommonLib
         /// <param name="args"></param>
         public static void LogTemporary(params object[] args)
         {
-            logLine(getParamsStr(args), ConsoleColor.Red);
+            logLine(GetParamsStr(args), ConsoleColor.Red);
         }
 
         public static void LogError(Exception ex)
         {
             LogError(ex.ToString() + ex.StackTrace);
-            errorLog(ex.ToString() + ex.StackTrace);
+            ErrorLog(ex.ToString() + ex.StackTrace);
         }
 
         /// <summary>
-        /// 支付日志（打印并写文件）
+        /// 通讯消息日志
         /// </summary>
         /// <param name="args"></param>
-        public static void PayLog(params object[] args)
+        public static void LogMsg(bool isSend, ushort protocol, int length, IMessage msg)
         {
-            logLine(getParamsStr(args), ConsoleColor.White);
-            payLog(getParamsStr(args));
+            if (protocol <= 100) return; //100以下的消息都过滤掉，一般为心跳包           
+            LogMsg(isSend, $"{(isSend ? "发送" : "收到")}[{protocol } L:{length} {msg.GetType().FullName}]:{msg.ToString()}");
         }
 
         /// <summary>
@@ -87,7 +121,7 @@ namespace CommonLib
         /// <param name="args"></param>
         public static void LogMsg(bool isSend, params object[] args)
         {
-            logLine(getParamsStr(args), isSend ? ConsoleColor.DarkCyan : ConsoleColor.Cyan);
+            logLine(GetParamsStr(args), isSend ? ConsoleColor.DarkCyan : ConsoleColor.Cyan);
         }
 
         /// <summary>
@@ -96,21 +130,24 @@ namespace CommonLib
         /// <param name="args"></param>
         public static void LogWar(params object[] args)
         {
-            logLine(getParamsStr(args), ConsoleColor.Yellow);
+            logLine(GetParamsStr(args), ConsoleColor.Yellow);
         }
 
         private static void logLine(string str, ConsoleColor color)
         {
+            if (!IsDebug) return;
             Console.ForegroundColor = color;
             Console.WriteLine(DateTime.Now.ToString("HH:mm:ss ") + str);
         }
         private static void log(string str, ConsoleColor color)
         {
+            if (!IsDebug) return;
             Console.ForegroundColor = color;
             Console.Write(DateTime.Now.ToString("HH:mm:ss ") + str);
         }
 
-        private static string getParamsStr(params object[] args)
+        //把所有参数都转成String
+        private static string GetParamsStr(params object[] args)
         {
             if (args == null)
             {
@@ -129,7 +166,6 @@ namespace CommonLib
             ServerId = servId;
             if (ServerId > 0)
             {
-                //Logger.Log($"serverid:{servId}");
                 string strSer = ServerId == 0 ? "" : $"/S{ServerId}";
                 string errPath = $"ErrorLog/{strSer}";
                 if (!Directory.Exists(errPath))
@@ -137,7 +173,7 @@ namespace CommonLib
             }
         }
         static object o = new object();
-        private static void errorLog(string str)
+        private static void ErrorLog(string str)
         {
             lock (o)
             {
@@ -148,18 +184,6 @@ namespace CommonLib
                 sw.Close();
             }
         }
-        static object oo = new object();
-        private static void payLog(string str)
-        {
-            if (!Directory.Exists("PayLog"))
-                Directory.CreateDirectory("PayLog");
-            lock (oo)
-            {
-                StreamWriter sw = new StreamWriter($"PayLog/Log{DateTime.Now.ToString("yyyy-MM-dd")}.txt", true);
-                sw.Write($"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}\r {str}\r\n");
-                sw.Flush();
-                sw.Close();
-            }
-        }
+    
     }
 }
