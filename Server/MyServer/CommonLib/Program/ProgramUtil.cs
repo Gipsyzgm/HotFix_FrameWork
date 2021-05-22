@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -59,8 +59,10 @@ namespace CommonLib
             Console.Title = serverName;
 
             string debug = ConfigurationManager.AppSettings["DebugModel"];
-            if (debug == "1")
-                NetLog.SetLogType(ELogType.All);
+            if (debug == "0")
+                Logger.SetLogType(true);
+            else
+                Logger.SetLogType(false);
         }
 
         public static void SetTitle(int serverid,int port)
