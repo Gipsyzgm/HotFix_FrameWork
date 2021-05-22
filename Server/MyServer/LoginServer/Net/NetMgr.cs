@@ -138,19 +138,19 @@ namespace Telepathy
             IMessage proto = LoginToCenterClientProtocol.Instance.CreateMsgByProtocol(protocol);
             if (proto == null)
             {
-                NetLog.Error("LoginToCenterClientProtocol 协议类型未定义:protocol", protocol);
+                Logger.LogError("LoginToCenterClientProtocol 协议类型未定义:protocol", protocol);
                 return;
             }
             try
             {
                 proto.MergeFrom(body);
                 LoginToCenterClientMessage msg = new LoginToCenterClientMessage(protocol, proto);
-                NetLog.LogMsg(false, protocol, body.Length, proto);
+                Logger.LogMsg(false, protocol, body.Length, proto);
                 LoginToCenterClientAction.Instance.Dispatch(msg);
             }
             catch
             {
-                NetLog.Error($"消息 {protocol} 解析错误,可能客户端与服务端PB文件不一致");
+                Logger.LogError($"消息 {protocol} 解析错误,可能客户端与服务端PB文件不一致");
             }
         }
 

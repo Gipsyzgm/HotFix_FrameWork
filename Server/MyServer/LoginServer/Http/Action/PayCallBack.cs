@@ -35,8 +35,7 @@ namespace LoginServer.Http
                 using (StreamReader reader = new StreamReader(context.Request.InputStream))
                 {
                     string notifyArgs = reader.ReadToEnd();
-                    Logger.PayLog($"收到支付通知：============================{context.Request.RemoteEndPoint.Address.ToString()}");
-                    Logger.PayLog($"{notifyArgs}");
+                  
                     payArgs = PayNotifyData.Deserialize(notifyArgs);
                     reader.Close();
                 }

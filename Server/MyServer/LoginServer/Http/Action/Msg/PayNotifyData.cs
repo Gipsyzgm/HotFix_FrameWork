@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
@@ -110,10 +110,10 @@ namespace LoginServer.Http
         {
             string recp = HttpUtility.UrlDecode(this.receipt);
             string sourceStr = $"pushInfo={pushInfo}&receipt={recp}";
-            Logger.PayLog($"sourceStr：{sourceStr}");
+       
             string md5Str = StringHelper.MD5(sourceStr);
             //string md5Str = Glob.platformMgr.pfCySdk.CyMD5(sourceStr);
-            Logger.PayLog($"md5Str：{md5Str}");
+   
             if (sign == md5Str)
                 return true;
             return false;
@@ -165,7 +165,7 @@ namespace LoginServer.Http
         {
             string recp = HttpUtility.UrlDecode(this.receipt);
             recp = StringHelper.Base64Decode(recp);
-            Logger.PayLog($"receipt json:{recp}");
+           
             JObject jObject = (JObject)JsonConvert.DeserializeObject(recp);
             return jObject;
         }
