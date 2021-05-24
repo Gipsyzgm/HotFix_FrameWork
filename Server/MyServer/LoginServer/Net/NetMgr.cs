@@ -25,13 +25,17 @@ namespace Telepathy
 
         public NetMgr()
         {
-            _socket = new Client(MaxMessageSize);
-            _socket.OnConnected = OnConnected;
-            _socket.OnData = OnData;
-            _socket.OnDisconnected = OnDisconnected;
+           
+            _socket = new Client(MaxMessageSize)
+            {
+                OnConnected = OnConnected,
+                OnData = OnData,
+                OnDisconnected = OnDisconnected
+            };
             ClientElement config = ClientSet.Instance.GetConfig("LoginToCenterClient");
-            Logger.Log("ip:" + config.ip + "port:" + config.port);
+            Logger.Log("Ip:" + config.ip + "Port:" + config.port);
             StartClient(config.ip, config.port);
+
         }
 
         public void StartClient(string ip ,int port) 
@@ -49,13 +53,19 @@ namespace Telepathy
             // so make sure that GetNextMessage is thread safe!
             timer.Elapsed += (object sender, ElapsedEventArgs e) =>
             {
-                if (_socket.Connected)
-                {                   
-                    _socket.Tick(1);
-                }                         
+                lock (this)
+                {
+                    if (_socket.Connected)
+                    {
+                        _socket.Tick(1);
+                    }
+                }                                   
             };
             timer.AutoReset = true;
             timer.Enabled = true;
+           
+        
+
         }
         /// <summary>
         /// 连接服务器
@@ -126,7 +136,6 @@ namespace Telepathy
         /// <param name="buff"></param>
         public void OnData(ArraySegment<byte> buff)
         {
-            Log.Error("收到消息");
             //先解析一下插件的封装
             byte[] bytes = new byte[buff.Count];
             Buffer.BlockCopy(buff.Array, buff.Offset, bytes, 0, buff.Count);  
