@@ -1,0 +1,34 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Net\ClientToGameServer\**" />
+    <Compile Remove="Net\Common\**" />
+    <Compile Remove="Net\GameToCenterClient\**" />
+    <Compile Remove="ServerCommand\**" />
+    <Compile Remove="XGame\**" />
+    <EmbeddedResource Remove="Net\ClientToGameServer\**" />
+    <EmbeddedResource Remove="Net\Common\**" />
+    <EmbeddedResource Remove="Net\GameToCenterClient\**" />
+    <EmbeddedResource Remove="ServerCommand\**" />
+    <EmbeddedResource Remove="XGame\**" />
+    <None Remove="Net\ClientToGameServer\**" />
+    <None Remove="Net\Common\**" />
+    <None Remove="Net\GameToCenterClient\**" />
+    <None Remove="ServerCommand\**" />
+    <None Remove="XGame\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Net\ClientToCrossTransit.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Net\" />
+  </ItemGroup>
+
+</Project>
