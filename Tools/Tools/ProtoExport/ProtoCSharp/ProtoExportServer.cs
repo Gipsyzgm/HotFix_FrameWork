@@ -183,6 +183,41 @@ namespace {Config.RealityNameSpace}.Net
         /// <param name="configList">NetAction</param>
         protected override void CreateNetMessage(List<ProtoConifg> configList, int addIndex = -1)
         {
+           
+            string strcommon = $@"using CSocket;
+using Google.Protobuf;
+using CommonLib;
+using Telepathy;
+namespace  {Config.RealityNameSpace}.Net
+{{
+    public class {Config.ProtoType}ServerMessage:CServerMessage
+    {{
+        public {Config.ProtoType}ServerMessage(Server server, int clientid) : base(server,clientid)
+        {{
+                
+        }}
+        public {Config.ProtoType}ServerMessage(Server server,int clientid, IMessage msg, ushort protocol) : base(server,clientid,msg,protocol)
+        {{
+                     
+        }}
+
+        public override void Send<M>(M data)
+        {{
+            ushort protocol = LoginToCenterServerProtocol.Instance.GetProtocolByType(data.GetType());
+            if (protocol == 0)
+            {{
+                Logger.MessageError(data.GetType());
+                return;
+            }}
+            byte[] body = data.ToByteArray();
+            Logger.LogMsg(true, protocol, body.Length, data);
+            SendMessage(body, protocol);                     
+        }}
+    }}    
+}}";
+         
+            Utils.SaveFile(Config.RealityProtocolTypeFile.Replace("ServerProtocol.cs", "ServerMessage.cs"), strcommon);
+            
             string savePath = Config.RealityNetReceiveDir;
             StringBuilder sbProtocol = new StringBuilder();
             string saveFilePath = string.Empty;
