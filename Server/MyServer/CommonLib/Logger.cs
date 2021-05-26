@@ -39,7 +39,16 @@ namespace CommonLib
         {
             logLine(args, ConsoleColor.Red);
         }
-    
+
+        /// <summary>
+        /// 错误日志
+        /// </summary>
+        /// <param name="args"></param>
+        public static void MessageError(params object[] args)
+        {
+            string info = "协议号未定义, 协议类型:" + args[0].ToString();
+            logLine(info, ConsoleColor.Red);
+        }
 
         /// <summary>
         /// 系统日志
