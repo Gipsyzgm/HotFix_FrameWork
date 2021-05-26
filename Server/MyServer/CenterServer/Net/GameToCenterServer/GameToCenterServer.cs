@@ -1,5 +1,4 @@
 using System;
-using System.Diagnostics;
 using System.Net;
 using System.Threading;
 using System.Timers;
@@ -7,17 +6,18 @@ using CommonLib;
 using CommonLib.Configuration;
 using CSocket;
 using Google.Protobuf;
+using MongoDB.Driver.Core.Servers;
 using Telepathy;
 
 namespace CenterServer.Net
 {
-    public class LoginToCenterServer
+    public class GameToCenterServer
     {
         public Server server;
         protected ServerElement config;
-        public LoginToCenterServer()
+        public GameToCenterServer () 
         {
-            config = ServerSet.Instance.GetConfig("LoginToCenterServer");
+            config = ServerSet.Instance.GetConfig("GameToCenterServer");
             if (config == null)
                 Logger.LogError("GameToCenterServer配置未找到");
             InitForConfig();
@@ -45,7 +45,7 @@ namespace CenterServer.Net
             return server.Start(config.port);
         }
 
-        public void StartTick() 
+        public void StartTick()
         {
             var timer = new System.Timers.Timer(1000.0 / 20);
             // THIS HAPPENS IN DIFFERENT THREADS.
@@ -60,9 +60,8 @@ namespace CenterServer.Net
                 }
             };
             timer.AutoReset = true;
-            timer.Enabled = true;        
+            timer.Enabled = true;
         }
-
 
         /// <summary>  
         /// 客户端连接数量变化时触发  
@@ -79,7 +78,7 @@ namespace CenterServer.Net
 
         public void OnConnected(int connectionId)
         {
-            Logger.Log(connectionId + " Connected");
+            Console.WriteLine(connectionId + " Connected");
         }
 
         /// <summary>
@@ -87,17 +86,13 @@ namespace CenterServer.Net
         /// </summary>
         /// <param name="buff"></param>
         public void OnData(int connectionId, ArraySegment<byte> data)
-        {   
-            //先解析一下插件的封装
-            byte[] buff  = new byte[data.Count];
-            Buffer.BlockCopy(data.Array, data.Offset, buff, 0, data.Count);
-
-            //解析自己定的协议
+        {
+            byte[] buff = data.Array;
             ushort protocol = BitConverter.ToUInt16(buff, 0);   //协议号          
             byte[] body = new byte[buff.Length - 2];
             Array.Copy(buff, 2, body, 0, body.Length);
 
-            IMessage proto = LoginToCenterServerProtocol.Instance.CreateMsgByProtocol(protocol);
+            IMessage proto = GameToCenterServerProtocol.Instance.CreateMsgByProtocol(protocol);
             if (proto == null)
             {
                 Logger.LogError("GameToCenterServerProtocol 协议类型未定义:protocol", protocol);
@@ -106,8 +101,9 @@ namespace CenterServer.Net
             try
             {
                 proto.MergeFrom(body);
-                LoginToCenterServerMessage args = new LoginToCenterServerMessage(server,connectionId, proto, protocol);
-                Glob.net.LoginToCenterServerMessage_Received(args);
+                GameToCenterServerMessage args = new GameToCenterServerMessage(server,connectionId, proto, protocol);
+                Glob.net.GameToCenterServerMessage_Received(args);
+
             }
             catch
             {
@@ -122,6 +118,8 @@ namespace CenterServer.Net
         {
             Logger.LogError(connectionId + " Disconnected");
         }
+
+       
     }
 }
 
