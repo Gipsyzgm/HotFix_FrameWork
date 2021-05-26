@@ -67,28 +67,12 @@ namespace CSocket
             if (md5 != null)
                 package = new byte[message.Length + 2 + md5.Length];
             else
-                package = new byte[message.Length + 2];
-           
+                package = new byte[message.Length + 2];           
             Array.Copy(BitConverter.GetBytes(protocol), 0, package, 0, 2);  //协议号
             Array.Copy(message, 0, package, 2, message.Length);
             if (md5 != null)
                 Array.Copy(md5, 0, package, 2 + message.Length, md5.Length);
-
-            Log.Error("发送了消息");
             Server.Send(ClientId, new ArraySegment<byte>(package));
-        }
-
-
-        /// <summary>
-        /// 发送共用错误消息
-        /// </summary>
-        /// <param name="msg"></param>
-        public virtual void SendError(string msg)
-        {
-            //SC_error_code err = new SC_error_code();
-            //err.Protocol = Msg == null ? 0 : Protocol;
-            //err.Msg = msg;
-            //Send(err);
-        }
+        }      
     }
 }
