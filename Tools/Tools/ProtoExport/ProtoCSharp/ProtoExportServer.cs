@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -139,8 +139,7 @@ namespace {Config.RealityNameSpace}.Net
                 dispathThread = $@"        protected void onDispatchMainThread({Config.ProtoType}ServerMessage e)
         {{
             try
-            {{
-                 if (!e.Client.IsConnected) return;
+            {{               
                  ushort protocol = e.Protocol;
                 _actionList[protocol].Invoke(e); 
             }}
@@ -156,7 +155,7 @@ namespace {Config.RealityNameSpace}.Net
             }
             string str = $@"using System;
 using System.Collections.Generic;
-using GameLib;
+using CommonLib;
 using CSocket;
 /// <summary>
 /// 工具生成，不要修改
