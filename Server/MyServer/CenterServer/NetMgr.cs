@@ -27,10 +27,7 @@ namespace CenterServer
                 Logger.Sys("LoginToCenterServer 启动成功!");
                 loginToCenterServer.StartTick();
             }
-              
-
-
-
+        
             gameToCenterServer = new GameToCenterServer();
             bool isGameToCenter = gameToCenterServer.StartForConfig();
             if (isGameToCenter) 
