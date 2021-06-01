@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,8 +22,8 @@ namespace Tools.ProtoExport
     {
       
         protected string Config_FilePath = @"_config.txt";
-        protected int CSThreadNum = 0; //是CS消息处理线程数 没有使用单线程
-        protected int SCThreadNum = 0; //是SC消息处理线程数
+        protected int CSThreadNum = 0; //是C to  S消息处理线程数 没有使用单线程
+        protected int SCThreadNum = 0; //是S to  C消息处理线程数
         public ProtoBase()
         {
 
