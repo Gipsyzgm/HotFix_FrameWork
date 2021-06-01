@@ -1,4 +1,4 @@
-﻿[
+[
 	{
 		"Id":1,
 		"Name":"服务器C#,客户端C#(Unity)导出",		
@@ -52,7 +52,7 @@
 			"OutClassDir":"$GMServerDir$/CommonLib/CommMgr/ConfigMgr/Config",
 			"ConfigMgrDir":"$GMServerDir$/CommonLib/CommMgr/ConfigMgr",			
 			"ConfigInitFile":"$GMServerDir$/CommonLib/CommMgr/ConfigMgr/ConfigInit.cs",
-			"ConfigMgrFile":"$GMServerDir$/CommonLib/CommMgr/ConfigMgr/ConfigMgr.cs",
+			"ConfigMgrFile":"$GMServerDir$/CommonLib/CommMgr/ConfigMgr/ConfigMgr.cs"
 		},		
 		"GMServerDB":{
 			"CodeType":"C#",
@@ -61,7 +61,7 @@
 			"OutDBWriteTableFile":"$GMServerDir$/GMServer/XGame/DBMgr/DBWriteTable.cs",
 			"OutDBTableNameFile":"$GMServerDir$/GMServer/XGame/DBMgr/TableName.cs",
 			"OutDBTableDBIndexFile":"$GMServerDir$/GMServer/XGame/DBMgr/TableDBIndex.cs",
-			"OutDBGameTableClassDir":"$GMServerDir$/GMServer/XGame/DBMgr/GameTable",
+			"OutDBGameTableClassDir":"$GMServerDir$/GMServer/XGame/DBMgr/GameTable"
 		},
 		"GMServerAPI": {
 			"CodeType": "C#",
