@@ -1,32 +1,30 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using DG.Tweening;
-using HotFix_MK.Net;
 using UnityEngine.UI;
+using HotFix.Net;
 
-namespace HotFix_MK
+namespace HotFix
 {
     public class MsgWaiting
     {
-        static HashSet<int> waitProtocalList = new HashSet<int>();
+        //等待的消息列表
+        static HashSet<int> WaitProtocalList = new HashSet<int>();
         private static GameObject m_waiting;
         private static Transform m_waitingAnim;
-        //private static CanvasGroup canvasGroup;
         private static int checkTimerId = 0;
         private static int checkTimeTotal = 0;
-        private static GameObject waiting
+        private static GameObject Waiting
         {
             get
             {
                 if (m_waiting == null)
                 {
-                    m_waiting = CSF.Mgr.UI.UIRoot.transform.Find("MsgWaiting").gameObject;
-                    //m_waiting.GetComponentInChildren<Text>().text = Mgr.Lang.Get("Com_Waiting");
-                    //canvasGroup = m_waiting.GetComponentInChildren<CanvasGroup>();
+                    m_waiting = MainMgr.UI.UIRoot.transform.Find("MsgWaiting").gameObject;
                     m_waitingAnim = m_waiting.transform.Find("Waiting");
                 }
                 return m_waiting;
@@ -38,21 +36,21 @@ namespace HotFix_MK
         {
             if (ClientToGameClientProtocol.Instance.CSList.TryGetValue(csProtocol, out var scProtocol))
             {
-                if (waitProtocalList.Contains(scProtocol))
+                if (WaitProtocalList.Contains(scProtocol))
                     return false;
-                waitProtocalList.Add(scProtocol);               
-                waiting.SetVisible(true);
-                //canvasGroup.alpha = 0;
-                //canvasGroup.DOFade(1, 0.5f).SetEase(Ease.Linear).SetAutoKill(true);
-
+                WaitProtocalList.Add(scProtocol);
+                Waiting.SetActive(true);
                 m_waitingAnim.localScale = Vector3.zero;
                 m_waitingAnim.DOScale(1, 0.1f).SetDelay(2f);
-
                 checkTimeTotal = 0;
                 if (checkTimerId == 0)
                 {
-                    checkTimerId = Mgr.Timer.Loop(1, checkUpdate);
+                    checkTimerId = HotMgr.Timer.Loop(1, checkUpdate);
                 }
+            }
+            else 
+            {
+                Debug.Log($"消息列表不包含消息{csProtocol}");
             }
             return true;
         }
@@ -60,12 +58,11 @@ namespace HotFix_MK
         public static void Close(ushort scProtocol)
         {
             if (!ClientToGameClientProtocol.Instance.SCList.ContainsKey(scProtocol)) return;
-            waitProtocalList.Remove(scProtocol);
-            if (waitProtocalList.Count == 0)
+            WaitProtocalList.Remove(scProtocol);
+            if (WaitProtocalList.Count == 0)
             {
-                //canvasGroup?.DOKill();
                 m_waitingAnim?.DOKill();
-                waiting.SetVisible(false);
+                Waiting.SetActive(false);
             }
         }
 
@@ -74,13 +71,13 @@ namespace HotFix_MK
             if (checkTimeTotal++ > 15)
             {
                 //超过15秒有未回的消息，走重登
-                if (waitProtocalList.Count > 0)
+                if (WaitProtocalList.Count > 0)
                 {
                     string str = string.Empty;
-                    foreach (ushort protocal in waitProtocalList)
+                    foreach (ushort protocal in WaitProtocalList)
                         str += protocal + ";";
-                    CLog.Error("Waiting Protocal:" + str);
-                    Mgr.Net.Close(true);
+                    Debug.Log("Waiting Protocal:" + str);
+                    HotMgr.Net.Close(true);
                 }
                 checkTimeTotal = 0;
             }
@@ -99,9 +96,9 @@ namespace HotFix_MK
         {
             if (m_waiting != null)
             {
-                waiting.SetVisible(false);
+                Waiting.SetActive(false);
             }
-            waitProtocalList.Clear();
+            WaitProtocalList.Clear();
             checkTimerId = 0;
         }
     }

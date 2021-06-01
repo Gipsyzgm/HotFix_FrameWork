@@ -32,7 +32,7 @@ namespace HotFix.Module.Login
                     msg.Platform = Enum_login_platform.LpAccountPwd;
                     msg.PlatformId = userName;
                     msg.Token = pwd;
-                    msg.ServerId = server.ServerId;
+                    msg.ServerId = server.ServerId;               
                     msg.Lang = (int)HotMgr.Lang.LangType;
                     HotMgr.Net.Send(msg);
                     return true;
