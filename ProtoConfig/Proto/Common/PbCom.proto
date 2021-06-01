@@ -10,255 +10,84 @@ message One_AwardItem
 	int32 Count = 2;		//数量
 }
 
-message One_taskAward
-{
-	int32 TemplId = 1;		//物品Id(负数为英雄)
-	int32 Num = 2;			//数量
-}
-
-
 //一个其他玩家信息
 message One_PlayerInfo
 {
 	string PID = 1;								//玩家PID
 	string Name = 2;							//玩家名
 	int32 Level = 3;							//等级
-	int32 Score = 4;							//玩家积分（查看联赛玩家 为联赛积分，其他为竞技积分）
-	int32 Rank = 5;								//玩家排名（查看联赛玩家 为联赛排名，其他为竞技排名
-	repeated One_heroInfo Heros = 6;			//5个英雄信息
 	repeated One_bag_equip Equips = 7;			//5个装备信息
 	repeated int32 Icon = 8;					//玩家头像[头像、背景、角标]
-	repeated int32 Res = 9;						//挑战获得资源预览(0食物 1石头 2胜得积分 3负扣积分)--竞技场独有
-	string ClubID = 10;							//所在联盟ID
-	string ClubName = 11;						//所在联盟名
-	int32 ClubIcon = 12;						//联盟图标 
-	int32 ClubIconBg = 13;						//联盟图标背景
-	int32 ClubRole = 14;						//所在联盟职位
-	int32 ClubJoinTime = 15;					//加入联盟时间
 	repeated int32 HeroIds = 16;				//5个英雄的sid及顺序
 	repeated int32 EquipsIds = 17;				//5个装备的sid及顺序
-	int32 ArenaScore = 18;						//竞技积分（显示段位）
 	int32 LastTime = 19;						//最后活跃时间 0表示现在 其他是时间戳
 }
-
-//一个英雄数据
-message One_heroInfo
-{
-	int32 SID = 1;						//英雄SID
-	int32 TemplID = 2;					//模板id	
-	int32 Level = 3;					//英雄等级
-	int32 Exp = 4;						//英雄经验
-	int32 BreakLv = 5;					//突破等级
-	repeated int32 SkillsLv = 6;		//技能等级
-	repeated int32 Dowers = 7;			//天赋加点
-	bool IsLock = 8;					//是否锁定
-}
-
 
 //一件装备
 message One_bag_equip
 {
-	int32 ItemSID = 1;		//装备短Id
+	int32 SID = 1;          //装备sid（英雄和道具为0）
 	int32 TemplID =2;		//模板Id
 	int32 Level = 3;		//装备等级
-	int32 Exp = 4;			//当前经验
+	int32 breaklv = 4;		//升阶等级
+	int32 Num = 5;          //装备数量
+	int32 Index = 6;        //装备位置
+	bool IsGetHero = 7;     //是否获得英雄
+	int32 HeroExp = 8;        //英雄经验
+	int32 VideoNum = 9;     //当前英雄广告条数
+	int32 Exp = 10;          //装备当前经验
+	int32 GemSID = 11;       //已装备宝石SID
 }
 
-
-
-
-//一个俱乐部日志
-message One_club_log
+//一件宝石
+message One_bag_Gem
 {
-	int32 LogType = 1;	//日志类型 EClubLog
-	string OpName = 2;	//操作人
-	string ByName = 3;	//被操作人
-	int32 Value = 4;		//日志参数值 官位变化为 EClubRole
-	int32 Time =5;		//时间
-}
-
-//泰坦战斗结果
-message One_Titan_Info
-{
-	int32 TitanId = 1;
-	int32 HP = 2;	//剩余血量	
-	int32 LeftTime = 3; //剩余时间
-	int32 Damage = 4; //伤害
-	string TopName = 5;//最高伤害玩家名
-}
-
-//创建俱乐部结果
-enum Enum_createClub_result
-{
-	ClubUnknown = 0;	//未知错误
-	ClubSucceed = 1;	//成功
-	ClubSameName = 2;	//俱乐部名已存在
-	ClubMaxLen = 3;		//俱乐部名字符过长
-	ClubIllegalChar = 4;	//俱乐部名中有非法字符
-	ClubNoPermission = 5;	//没有权限
-	ClubIsIn = 6;				//已在联盟中
+	int32 SID = 1;          //宝石sid
+	int32 TemplID =2;		//模板Id
+	int32 EquipSID = 3;     //已装备SID，未装备为0
 }
 
 //获得新物品、英雄类型
 enum Enum_bag_itemsType
 {
 	BiNone = 0;					//无类型
-	BiForgeOutput = 1;			//工坊制作
-	BiSmithyOutput = 2;			//铁匠铺制作
-	BiFBDrop = 3;				//副本掉落
-	BiSummon = 4;				//召唤
-	BiStore = 5;				//商城购买
-	BiEventFBAward = 6;			//活动副本过关奖励
-	BiTask = 7;					//任务奖励
-	BiTaskBounty = 8;			//赏金任务奖励
-	BiFillRes = 9;				//补齐资源
-	BiTitanAward = 10;			//泰坦奖励
-	BiLevelAward = 11;			//等级奖励
-	BiFirstAward = 12;			//首充奖励
-	BiClubWarAward = 13;		//联盟战奖励
-	BiLeagueAward = 14;			//联赛奖励
-	BiHeroicRoad = 15;			//英勇之路奖励
-	BiEventFBPassAward = 16;	//活动副本通关奖励
-	BiEventFBRankAward = 17;	//活动副本排名奖励
-	BiStoreIcon = 18;			//头像商店购买
-	BiSignInAward = 19;			//每日签到奖励
-	BiSignInTotal = 20;			//累计签到奖励
-	BiNewbieAward = 21;			//新手任务奖励
-	BiNewbieBoxAward = 22;		//新手任务宝箱奖励
-	BiPay = 23;					//充值奖励
-	BiFund = 24;				//基金奖励
-	BiTreasure = 25;			//宝藏抽奖n
-	BiMail = 26;				//邮件领奖
-	BiMonthCard = 27;			//月卡每日领奖
-	BiSevenAward = 28;			//7天奖励
-	BiTrainOutput = 29;			//训练场生产
-	BiGuide = 30;				//新手指引赠送
-	BiClubChest = 31;			//联盟宝箱奖励
-	BiAdsAward = 32;			//广告奖励
-	BiBagUse = 33;				//背包使用道具
-	BindAwardNum=34;			//绑定平台获得
-	BiArena=35;					//竞技场获得
-	BiChap=36;					//章节任务获得
+	BiFBDrop = 1;				//副本掉落
+	BiSummon = 2;				//召唤
+	BiStore = 3;				//商城购买
+	BiEventFBAward = 4;			//活动副本过关奖励
+	BiTask = 5;					//任务奖励
+	BiTaskBounty = 6;			//赏金任务奖励
+	BiFillRes = 7;				//补齐资源
+	BiHangAward = 8;			//挂机奖励
+	BiLevelAward = 9;			//等级奖励
+	BiFirstAward = 10;			//首充奖励
+	BiEventFBPassAward = 11;	//活动副本通关奖励
+	BiEventFBRankAward = 12;	//活动副本排名奖励
+	BiStoreIcon = 13;			//头像商店购买
+	BiSignInAward = 14;			//每日签到奖励
+	BiSignInTotal = 15;			//累计签到奖励
+	BiNewbieAward = 16;			//新手任务奖励
+	BiNewbieBoxAward = 17;		//新手任务宝箱奖励
+	BiPay = 18;					//充值奖励
+	BiMail = 19;				//邮件领奖
+	BiMonthCard = 20;			//月卡每日领奖
+	BiSevenAward = 21;			//7天奖励
+	BiGuide = 22;				//新手指引赠送
+	BiFBChest = 23;			    //章节宝箱奖励
+	BiAdsAward = 24;			//广告奖励
+	BiBagUse = 25;				//背包使用道具
+	BindAwardNum= 26;			//绑定平台获得
+	BiCircleAward= 27;			//转盘奖励
+	BiSeason = 28;			//赛季令牌
+	BiAchieve = 29;             //成就奖励
 }
 
-//一个小组联盟
-message One_groupClub
-{
-	string ClubID = 1;						//联盟ID
-	string ClubName = 2;					//联盟名
-	int32 Score = 3;						//联盟战已获得的积分
-	int32 Icon = 4;							//联盟图标
-	int32 IconBg = 5;						//联盟图标背景
-	repeated One_warMember Members = 6;		//成员据点列表
-}
-//一个联盟成员据点信息
-message One_warMember
-{
-	string PID = 1;								//玩家PID
-	string Name = 2;							//玩家名
-	bool Online = 3;							//是否在线
-	Enum_clubWar_memberState State = 4;			//玩家状态
-	int32 RenewTime = 5;						//复活剩余时间(阵亡状态才有)
-	repeated One_heroInfo Heros = 6;			//5个英雄信息
-	repeated One_HeroHp LastHp = 7;				//5个英雄剩余血量
-	repeated One_bag_equip Equips = 8;			//5个装备信息 
-	int32 Energy = 9;							//剩余能量点
-	string EnemyName = 10;						//对手名(准备、战斗状态才有)
-}
 
 //一个英雄剩余血量
 message One_HeroHp
 {
 	int32 SID = 1;								//英雄SID
 	int32 Hp = 2;								//剩余血量
-}
-
-//一个联盟战排行
-message One_clubWarRank
-{
-	string ClubID = 1;							//所属联盟ID
-	string Name = 2;							//玩家名
-	repeated int32 Icon = 3;					//玩家头像[头像、背景、角标]
-	int32 Score = 4;							//总分
-	int32 ArenaNum = 5;							//竞技积分
-	int32 Level = 6;							//玩家等级
-}
-
-//一个联盟战日志
-message One_clubWarLog
-{
-	string AttackSID = 1;						//攻击方PID
-	string AttackName = 2;						//攻击方玩家名
-	string DefSID = 3;							//防守方PID
-	string DefName = 4;							//防守方玩家名
-	int32 Score = 5;							//获得的分数
-	int32 Time = 6;								//记录时间
-}
-
-//联盟战据点状态结构枚举
-enum Enum_clubWar_memberState
-{
-	CmNormal = 0;	//正常(空闲)
-	CmReady = 1;	//准备攻击
-	CmWar = 2;		//战斗中
-	CmDead = 3;		//阵亡
-}
-
-//一个战斗对象数据
-message One_war_entity
-{	
-	int32 Place = 1;					//位置  (0-4)英雄 (10-24)敌人
-	int32 EntityType = 2;				//玩家对象类型 EWarEntityType  0英雄 1怪
-	int32 TemplId = 3;				//模板Id   英雄/怪物
-	int32 Level = 4;					//等级
-	int32 BreakLv = 5;				//突破等级	
-	repeated int32 SkillsLv = 6;			//技能等级		
-	int32 HP = 7;					//当前生命
-	int32 MaxHP = 8;				//生命上限
-	int32 MP = 9;					//当前能量
-	int32 MaxMP = 10;				//最大能量上限
-	int32 Antibody = 11;				//同类元素攻击抗性
-	int32 Attack = 12;				//攻击
-	int32 Defend = 13;				//防御
-	int32 Miss = 14;					//闪避
-	int32 Crit = 15;					//爆击
-	int32 AttackInterval = 16;			//当前攻击间隔
-	int32 AttackIntervalMax = 17;		//最大攻击间隔
-	repeated int32 Dowers = 18;			//天赋加点
-}
-
-//一个英雄数据（Cross用）
-message Cross_heroInfo
-{
-	string ID = 1;						//英雄ID
-	int32 TemplID = 2;					//模板id	
-	int32 Level = 3;					//英雄等级
-	int32 Exp = 4;						//英雄经验
-	int32 BreakLv = 5;					//突破等级
-	repeated int32 SkillsLv = 6;		//技能等级
-	repeated int32 Dowers = 7;			//天赋加点
-	bool IsLock = 8;					//是否锁定
-}
-
-//一件装备（Cross用）
-message Cross_bag_equip
-{
-	string ItemID = 1;		//装备Id
-	int32 TemplID =2;		//模板Id
-	int32 Level = 3;		//装备等级
-	int32 Exp = 4;			//当前经验
-}
-
-//联赛状态结构枚举
-enum Enum_league_state
-{
-	CsReadyDay = 0;	//准备日
-	CsWarDay1 = 1;	//战斗日1
-	CsWarDay2 = 2;	//战斗日2
-	CsWarDay3 = 3;	//战斗日3
-	CsWarDay4 = 4;	//战斗日4
-	CsWarDay5 = 5;	//战斗日5
-	CsEndDay = 6;	//结束日
 }
 
 //充值下定单结果
@@ -319,11 +148,4 @@ message One_chat_msg
 	int32 Time = 7;			//发送时间
 	string Club = 8;			//联盟名（公聊有，联盟聊天没有）
 	int32 Role = 9;			//联盟职位（公聊没有，联盟聊天有）
-}
-
-//一个泰坦顶尖攻击者
-message One_TopDamage
-{
-	string Name = 1;			//玩家名
-	int32 Damage = 2;			//总伤害
 }

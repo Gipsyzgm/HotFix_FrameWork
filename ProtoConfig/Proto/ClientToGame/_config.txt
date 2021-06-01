@@ -90,6 +90,10 @@
 3,34007 = PbEquipUp.SC_equip_Resolve			#收到分解装备
 3,34008,34009 = PbEquipUp.CS_equip_merge		#请求装备融合
 3,34009 = PbEquipUp.SC_equip_merge			    #收到装备融合
+3,34010,34011 = PbEquipUp.CS_gems_resolve		#请求分解宝石
+3,34011 = PbEquipUp.SC_gems_resolve			    #收到分解宝石
+3,34012,34013 = PbEquipUp.CS_gems_Inlay		    #请求镶嵌(卸下)宝石
+3,34013 = PbEquipUp.SC_gems_Inlay			    #收到镶嵌(卸下)宝石
 
 #玩家福利相关
 3,35000 = PbBonus.SC_bonus_info					#收到福利信息
@@ -134,6 +138,19 @@
 3,35099 = PbBonus.SC_Circle_GetBox		        #收到开启转盘宝箱
 3,35100,35101 = PbBonus.CS_FloatBox_award	    #请求悬浮宝箱广告获取
 3,35101 = PbBonus.SC_FloatBox_award		        #收到悬浮宝箱广告获取结果
+3,35102,35103 = PbBonus.CS_Achievement_List	    #请求成就列表
+3,35103 = PbBonus.SC_Achievement_List	        #收到成就列表
+3,35104,35105 = PbBonus.CS_Achievement_GetAward	    #请求领取成就奖励
+3,35105 = PbBonus.SC_Achievement_GetAward	        #收到领取成就奖励
+3,35106 = PbBonus.SC_Achievement_finish	        #收到成就达成信息
+3,35107 = PbBonus.CS_Gem_GetOne	        #请求单抽宝石
+3,35108 = PbBonus.SC_Gem_GetOne	        #收到单抽宝石
+3,35109 = PbBonus.CS_Gem_GetFive	        #请求五连抽宝石
+3,35110 = PbBonus.SC_Gem_GetFive	        #收到五连抽宝石
+3,35111 = PbBonus.CS_Gem_FreshChange	        #请求刷新精粹兑换
+3,35112 = PbBonus.SC_Gem_FreshChange	        #收到刷新精粹兑换
+3,35113 = PbBonus.CS_Gem_Change	        #请求精粹兑换
+3,35114 = PbBonus.SC_Gem_Change	        #收到精粹兑换
 
 #Vip,充值,月卡相关
 3,36001 = PbPay.SC_vip_info				#收到VIP信息月卡信息充值信息(登录发)
@@ -199,6 +216,8 @@
 5,52010 = PbActivity.SC_Activiyt_AllOpen		#收到一键领取节日奖励
 5,52011 = PbActivity.CS_Activiyt_packFresh		#请求钻石刷新活动礼包
 5,52012 = PbActivity.SC_Activiyt_packFresh		#收到钻石刷新活动礼包
+5,52013 = PbActivity.CS_Activiyt_OpenOne		#请求单个领取节日奖励
+5,52014 = PbActivity.SC_Activiyt_OpenOne		#收到单个领取节日奖励
 
 #战斗相关
 5,60101,60102 = PbWar.CS_war_fb				#请求副本挑战
