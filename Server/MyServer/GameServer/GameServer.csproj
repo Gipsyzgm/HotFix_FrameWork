@@ -6,29 +6,27 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Net\ClientToGameServer\**" />
-    <Compile Remove="Net\Common\**" />
-    <Compile Remove="Net\GameToCenterClient\**" />
-    <Compile Remove="ServerCommand\**" />
     <Compile Remove="XGame\**" />
-    <EmbeddedResource Remove="Net\ClientToGameServer\**" />
-    <EmbeddedResource Remove="Net\Common\**" />
-    <EmbeddedResource Remove="Net\GameToCenterClient\**" />
-    <EmbeddedResource Remove="ServerCommand\**" />
     <EmbeddedResource Remove="XGame\**" />
-    <None Remove="Net\ClientToGameServer\**" />
-    <None Remove="Net\Common\**" />
-    <None Remove="Net\GameToCenterClient\**" />
-    <None Remove="ServerCommand\**" />
     <None Remove="XGame\**" />
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Module\Hero\Data\HeroTeam.cs" />
     <Compile Remove="Net\ClientToCrossTransit.cs" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Net\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CenterServer\CenterServer.csproj" />
+    <ProjectReference Include="..\CommonLib\CommonLib.csproj" />
   </ItemGroup>
 
 </Project>

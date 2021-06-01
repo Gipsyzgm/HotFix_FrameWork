@@ -21,13 +21,21 @@ namespace CommonLib.Comm.DBMgr
         /// </summary>
         public int chId { get; set; }
         /// <summary>
-        /// 是否通关
+        /// 关卡ID25
         /// </summary>
-        public bool isFinish { get; set; }
+        public int levelId { get; set; }
         /// <summary>
-        /// 玩家id
+        /// 阶段ID9
         /// </summary>
-        public ObjectId pid { get; set; }
+        public int stageId { get; set; }
+        /// <summary>
+        /// 副本ID
+        /// </summary>
+        public int FBID { get; set; }
+        /// <summary>
+        /// 次数
+        /// </summary>
+        public int Num { get; set; }
        
     }
 }

@@ -13,6 +13,7 @@ namespace CommonLib.Comm.DBMgr
 
         private TableDBIndex()
         {
+            tableIndexs.Add(typeof(TChat), 2);
             tableIndexs.Add(typeof(TLogShop), 1);
             tableIndexs.Add(typeof(TLogTicket), 1);
             tableIndexs.Add(typeof(TLogFun), 1);
@@ -24,6 +25,8 @@ namespace CommonLib.Comm.DBMgr
             tableIndexs.Add(typeof(TLogTenMin), 1);
             tableIndexs.Add(typeof(TLogSevenDay), 1);
             tableIndexs.Add(typeof(TLogServer), 1);
+            tableIndexs.Add(typeof(TLogBuild), 1);
+            tableIndexs.Add(typeof(TLogBuildWork), 1);
             tableIndexs.Add(typeof(TLogFB), 1);
             tableIndexs.Add(typeof(TLogFBWin), 1);
             tableIndexs.Add(typeof(TLogFBExit), 1);
@@ -31,6 +34,7 @@ namespace CommonLib.Comm.DBMgr
             tableIndexs.Add(typeof(TLogDower), 1);
             tableIndexs.Add(typeof(TLogPlayerLv), 1);
             tableIndexs.Add(typeof(TLogSummonBuy), 1);
+            tableIndexs.Add(typeof(TLogArena), 1);
             tableIndexs.Add(typeof(TLogTask), 1);
             tableIndexs.Add(typeof(TLogFBNum), 1);
             tableIndexs.Add(typeof(TlogClubRank), 1);

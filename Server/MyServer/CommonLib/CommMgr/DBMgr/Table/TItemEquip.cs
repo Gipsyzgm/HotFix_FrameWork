@@ -56,19 +56,7 @@ namespace CommonLib.Comm.DBMgr
         /// </summary>
         public int level { get; set; }
         /// <summary>
-        /// 装备品阶等级
-        /// </summary>
-        public int breakLv { get; set; }
-        /// <summary>
-        /// 装备位置（0 未装备）
-        /// </summary>
-        public int index { get; set; }
-        /// <summary>
-        /// 碎片数量
-        /// </summary>
-        public int num { get; set; }
-        /// <summary>
-        /// 装备经验
+        /// 当前经验
         /// </summary>
         public int exp { get; set; }
 

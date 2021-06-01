@@ -52,45 +52,29 @@ namespace CommonLib.Comm.DBMgr
         /// </summary>
         public int templId { get; set; }
         /// <summary>
-        /// 英雄等级（强化）
+        /// 英雄等级
         /// </summary>
         public int level { get; set; }
         /// <summary>
-        /// 当前经验（强化）
+        /// 当前经验
         /// </summary>
         public int exp { get; set; }
         /// <summary>
-        /// 突破等级（品阶）
+        /// 突破等级
         /// </summary>
         public int breakLv { get; set; }
         /// <summary>
-        /// 技能等级
+        /// 技能等级[主动技能,被动技1,被动技2]
         /// </summary>
-        public int skillLv { get; set; }
+        public int[] skillLvArr { get; set; }
         /// <summary>
-        /// 副本经验
+        /// 激活的天赋节点编号
         /// </summary>
-        public int fbExp { get; set; }
+        public List<int> dowers { get; set; }
         /// <summary>
-        /// 副本等级
+        /// 是否锁定
         /// </summary>
-        public int fbLevel { get; set; }
-        /// <summary>
-        /// 当前英雄广告条数
-        /// </summary>
-        public int videoNum { get; set; }
-        /// <summary>
-        /// 装备位置（0 未装备）
-        /// </summary>
-        public int index { get; set; }
-        /// <summary>
-        /// 碎片叠加数量
-        /// </summary>
-        public int num { get; set; }
-        /// <summary>
-        /// 是否获得
-        /// </summary>
-        public bool IsGet { get; set; }
+        public bool isLock { get; set; }
 
         /// <summary>
         /// 简短Id转ObjectId

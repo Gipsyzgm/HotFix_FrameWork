@@ -80,9 +80,56 @@ namespace CommonLib.Comm.DBMgr
         /// </summary>
         public int ticket { get; set; }
         /// <summary>
-        /// 体力
+        /// 食物
         /// </summary>
-        public int power { get; set; }
+        public int food { get; set; }
+        /// <summary>
+        /// 石头
+        /// </summary>
+        public int stone { get; set; }
+        /// <summary>
+        /// 人口
+        /// </summary>
+        public int people { get; set; }
+        /// <summary>
+        /// 副本行动点数
+        /// </summary>
+        public int actionPoint { get; set; }
+        /// <summary>
+        /// 竞技行动点数
+        /// </summary>
+        public int arenaPoint { get; set; }
+        /// <summary>
+        /// 公会Boss行动点
+        /// </summary>
+        public int bossPoint { get; set; }
+        /// <summary>
+        /// 上次恢复副本行动点时间
+        /// </summary>
+        [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
+        public DateTime? lastAddApTime { get; set; }
+        /// <summary>
+        /// 上次恢复副本行动点时间
+        /// </summary>
+        [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
+        public DateTime? lastAddArenaPTime { get; set; }
+        /// <summary>
+        /// 上次恢复公会行动点时间
+        /// </summary>
+        [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
+        public DateTime? lastAddBpTime { get; set; }
+        /// <summary>
+        /// 同时可升级建筑数量
+        /// </summary>
+        public int buildLvupNum { get; set; }
+        /// <summary>
+        /// 竞技积分
+        /// </summary>
+        public int arenaScore { get; set; }
+        /// <summary>
+        /// 剩余签到奖励次数
+        /// </summary>
+        public int singInNum { get; set; }
         /// <summary>
         /// 已领在线奖励档位
         /// </summary>
@@ -100,9 +147,42 @@ namespace CommonLib.Comm.DBMgr
         /// </summary>
         public int guideStep { get; set; }
         /// <summary>
-        /// 玩家累计广告次数
+        /// 俱乐部贡献值(现用于累计登录天数)
         /// </summary>
-        public int adNum { get; set; }
+        public int contri { get; set; }
+        /// <summary>
+        /// 副本信息[最大通关StageId]
+        /// </summary>
+        public List<int> fbInfo { get; set; }
+        /// <summary>
+        /// 工坊已开启的生产项
+        /// </summary>
+        public List<int> forgeIds { get; set; }
+        /// <summary>
+        /// 训练场已开启的生产项
+        /// </summary>
+        public List<int> trainingIds { get; set; }
+        /// <summary>
+        /// 铁匠铺已开启的生产项
+        /// </summary>
+        public List<int> smithyIds { get; set; }
+        /// <summary>
+        /// 玩家改名次数
+        /// </summary>
+        public int renameNum { get; set; }
+        /// <summary>
+        /// 上次每日召唤时间
+        /// </summary>
+        [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
+        public DateTime? lastSummonTime { get; set; }
+        /// <summary>
+        /// 四种召唤的次数(每10次出高级产出)
+        /// </summary>
+        public int[] summonNum { get; set; }
+        /// <summary>
+        /// 主城等级
+        /// </summary>
+        public int cityLv { get; set; }
         /// <summary>
         /// 是否禁言
         /// </summary>
@@ -112,117 +192,17 @@ namespace CommonLib.Comm.DBMgr
         /// </summary>
         public int payMoney { get; set; }
         /// <summary>
-        /// 俱乐部贡献值(现用于累计登录天数)
+        /// 最高连击
         /// </summary>
-        public int contri { get; set; }
+        public int maxCombo { get; set; }
         /// <summary>
-        /// 上次恢复体力时间
+        /// 额外增加的数量[0额外英雄卡槽]
         /// </summary>
-        [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
-        public DateTime? lastAddApTime { get; set; }
+        public int[] extraNum { get; set; }
         /// <summary>
-        /// 是否购买赛季令牌
+        /// 是否评分 0否 1是
         /// </summary>
-        public bool isSeasonVip { get; set; }
-        /// <summary>
-        /// 每日获取体力广告观看次数
-        /// </summary>
-        public int adtimes { get; set; }
-        /// <summary>
-        /// 每日购买体力次数
-        /// </summary>
-        public int buyPowerNum { get; set; }
-        /// <summary>
-        /// 赛季令牌经验
-        /// </summary>
-        public int seasonExp { get; set; }
-        /// <summary>
-        /// 升级天赋点次数
-        /// </summary>
-        public int dowerTimes { get; set; }
-        /// <summary>
-        /// 可用天赋点数
-        /// </summary>
-        public int dowerPoint { get; set; }
-        /// <summary>
-        /// 天赋点等级（9个天赋点）
-        /// </summary>
-        public int[] dowerLevel { get; set; }
-        /// <summary>
-        /// 可升级天赋id
-        /// </summary>
-        public List<int> dowerLeftId { get; set; }
-        /// <summary>
-        /// 最高章节id（简单）
-        /// </summary>
-        public int maxChapter { get; set; }
-        /// <summary>
-        /// 当前章节id（简单）
-        /// </summary>
-        public int curChapter { get; set; }
-        /// <summary>
-        /// 当日副本重生次数
-        /// </summary>
-        public int fbRebirthNum { get; set; }
-        /// <summary>
-        /// 上次叠加挂机奖励时间
-        /// </summary>
-        [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
-        public DateTime? lastAddhangTime { get; set; }
-        /// <summary>
-        /// 最高章节id（困难）
-        /// </summary>
-        public int maxhardChapter { get; set; }
-        /// <summary>
-        /// 当前章节id（困难）
-        /// </summary>
-        public int curhardChapter { get; set; }
-        /// <summary>
-        /// 当前副本类型
-        /// </summary>
-        public int curFbType { get; set; }
-        /// <summary>
-        /// 是否完成新手指引
-        /// </summary>
-        public bool isFinishGuide { get; set; }
-        /// <summary>
-        /// 已获得赛季奖励id 数量
-        /// </summary>
-        [BsonDictionaryOptions(MongoDB.Bson.Serialization.Options.DictionaryRepresentation.ArrayOfArrays)]
-        public Dictionary<int,int[]> seasonAwards { get; set; }
-        /// <summary>
-        /// 赛季id
-        /// </summary>
-        public int seasonId { get; set; }
-        /// <summary>
-        /// 赛季过期时间
-        /// </summary>
-        [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
-        public DateTime? seasonFreshTime { get; set; }
-        /// <summary>
-        /// 最高章节最高关卡数
-        /// </summary>
-        public int maxChpStage { get; set; }
-        /// <summary>
-        /// 最高困难章节最高关卡数
-        /// </summary>
-        public int maxHardStage { get; set; }
-        /// <summary>
-        /// 金币副本剩余次数
-        /// </summary>
-        public int goldFbLeft { get; set; }
-        /// <summary>
-        /// 金币副本广告剩余次数
-        /// </summary>
-        public int goldFbAdLeft { get; set; }
-        /// <summary>
-        /// 装备副本剩余次数
-        /// </summary>
-        public int eqFbLeft { get; set; }
-        /// <summary>
-        /// 装备副本广告剩余次数
-        /// </summary>
-        public int eqFbAdLeft { get; set; }
+        public int estimate { get; set; }
 
         /// <summary>
         /// 简短Id转ObjectId

@@ -21,11 +21,15 @@ namespace CommonLib.Comm.DBMgr
         /// </summary>
         public ObjectId pId { get; set; }
         /// <summary>
+        /// 英雄ID
+        /// </summary>
+        public ObjectId hId { get; set; }
+        /// <summary>
         /// 天赋树Id
         /// </summary>
         public int treeId { get; set; }
         /// <summary>
-        /// 等级
+        /// 节点Id（等级=nodeId/10）
         /// </summary>
         public int nodeId { get; set; }
         /// <summary>

@@ -21,79 +21,37 @@ namespace CommonLib.Comm.DBMgr
         /// </summary>
         public ObjectId pid { get; set; }
         /// <summary>
-        /// 章节Id
+        /// 活动副本Id
         /// </summary>
-        public int chapterId { get; set; }
+        public int eventId { get; set; }
         /// <summary>
-        /// 章节模式(1 简单 2 困难)
+        /// 已通过最大关卡Id
+        /// </summary>
+        public int[] maxId { get; set; }
+        /// <summary>
+        /// 活动类型
         /// </summary>
         public int type { get; set; }
         /// <summary>
-        /// 章节随机关卡id（用于恢复客户端数据）
+        /// 挑战活动3个难度的分数
         /// </summary>
-        public List<int> stageIds { get; set; }
+        public int[] score { get; set; }
         /// <summary>
-        /// 当前关卡id
+        /// 挑战活动3个难度的通关奖励状态
         /// </summary>
-        public int   curStageId { get; set; }
+        public int[] award { get; set; }
         /// <summary>
-        /// 英雄当前血量
+        /// 3个难度攻击队伍英雄Ids
         /// </summary>
-        public int heroHP { get; set; }
+        public List<ObjectId[]> heroIds { get; set; }
         /// <summary>
-        /// 英雄最大血量
+        /// 3个难度攻击队伍装备Ids
         /// </summary>
-        public int heroHPmax { get; set; }
+        public List<ObjectId[]> equipIds { get; set; }
         /// <summary>
-        /// 技能id，等级
+        /// 3个难度攻击队伍道具Ids
         /// </summary>
-        [BsonDictionaryOptions(MongoDB.Bson.Serialization.Options.DictionaryRepresentation.ArrayOfArrays)]
-        public Dictionary<int,int> skills { get; set; }
-        /// <summary>
-        /// 已获得奖励id 数量
-        /// </summary>
-        [BsonDictionaryOptions(MongoDB.Bson.Serialization.Options.DictionaryRepresentation.ArrayOfArrays)]
-        public Dictionary<int,int> awards { get; set; }
-        /// <summary>
-        /// 是否退出章节
-        /// </summary>
-        public bool isExit { get; set; }
-        /// <summary>
-        /// 击杀小怪数
-        /// </summary>
-        public int killnum { get; set; }
-        /// <summary>
-        /// 击杀boss数
-        /// </summary>
-        public int killbossnum { get; set; }
-        /// <summary>
-        /// 战斗等级
-        /// </summary>
-        public int warlevel { get; set; }
-        /// <summary>
-        /// 战斗经验
-        /// </summary>
-        public int warexp { get; set; }
-        /// <summary>
-        /// 最高关卡数
-        /// </summary>
-        public int maxStage { get; set; }
-        /// <summary>
-        /// 通关次数
-        /// </summary>
-        public int finishnum { get; set; }
-        /// <summary>
-        /// 是否商人已出现
-        /// </summary>
-        public bool IsTraderOpen { get; set; }
-        /// <summary>
-        /// 是否已使用广告复活
-        /// </summary>
-        public bool IsUseReBorn { get; set; }
-        /// <summary>
-        /// 剩余技能复活次数
-        /// </summary>
-        public int leftRebirthnum { get; set; }
+        public List<int[]> itemids { get; set; }
        
     }
 }

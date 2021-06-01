@@ -5,38 +5,38 @@ using System.Collections.Generic;
 /// </summary>
 namespace CommonLib.Comm
 {
-    /// <summary>VIP&充值相关_商品名</summary>
+    /// <summary>公用语言</summary>
     public class LanguageConfig : BaseConfig
     {
         /// <summary>
         /// 唯一ID
         /// </summary>
-        public override object UniqueID => id;
+        public override object UniqueID => Id;
         /// <summary>
         /// id
         /// 例UI:UILogin.btnLoing
         /// 例表:Test/id或Test/字段/id
         /// </summary>
-        public string id { get; set; }
+        public string Id { get; set; }
         /// <summary>
         /// 中文
         /// </summary>
-        public string zh_cn { get; set; }
+        public string Zh_cn { get; set; }
         /// <summary>
         /// 繁体
         /// </summary>
-        public string zh_tw { get; set; }
+        public string Zh_tw { get; set; }
         /// <summary>
         /// 英语
         /// </summary>
-        public string en { get; set; }
+        public string En { get; set; }
         /// <summary>
         /// 日语
         /// </summary>
-        public string ja { get; set; }
+        public string Ja { get; set; }
         /// <summary>
         /// 韩语
         /// </summary>
-        public string ko { get; set; }
+        public string Ko { get; set; }
     }
 }

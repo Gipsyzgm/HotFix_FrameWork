@@ -22,15 +22,14 @@ namespace CommonLib.Comm.DBMgr
         [BsonDictionaryOptions(MongoDB.Bson.Serialization.Options.DictionaryRepresentation.ArrayOfArrays)]
         public Dictionary<int,int[]> buyInfos { get; set; }
         /// <summary>
-        /// 广告物品Id，<当日广告次数,当日领取次数>
+        /// 已购买的护盾Id（开始冷却时清除）
         /// </summary>
-        [BsonDictionaryOptions(MongoDB.Bson.Serialization.Options.DictionaryRepresentation.ArrayOfArrays)]
-        public Dictionary<int,int[]> adItems { get; set; }
+        public int[] shields { get; set; }
         /// <summary>
-        /// 礼包id，<礼包内物品id，数量>
+        /// 护盾冷却完成时间
         /// </summary>
-        [BsonDictionaryOptions(MongoDB.Bson.Serialization.Options.DictionaryRepresentation.ArrayOfArrays)]
-        public Dictionary<int,List<int[]>> gifts { get; set; }
+        [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
+        public DateTime? shieldTime { get; set; }
        
     }
 }

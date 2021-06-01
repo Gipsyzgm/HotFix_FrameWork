@@ -171,7 +171,7 @@ namespace CommonLib.Comm
         /// <summary>
         /// 【商城】商城广告赠送道具（不包含礼包）系数（实际数量 = 系数 * 最大章节id * 配表数）
         /// </summary>
-        public double ShopFactorByChapter { get; set; }
+        public int ShopFactorByChapter { get; set; }
         /// <summary>
         /// 【每日任务】每日任务固定条数
         /// </summary>

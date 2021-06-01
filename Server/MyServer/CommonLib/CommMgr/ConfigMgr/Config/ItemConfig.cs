@@ -38,11 +38,6 @@ namespace CommonLib.Comm
         /// </summary>
         public int type { get; set; }
         /// <summary>
-        /// 物品大类
-        /// 语言ID
-        /// </summary>
-        public Lang typeDes { get; set; }
-        /// <summary>
         /// 物品子类
         /// 101英雄碎片
         /// 102宠物碎片
