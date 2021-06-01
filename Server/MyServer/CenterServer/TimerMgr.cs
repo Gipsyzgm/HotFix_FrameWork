@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
 
-namespace CenterServer.XGame
+namespace CenterServer
 {
 
     public class TimerMgr

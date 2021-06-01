@@ -4,7 +4,6 @@ using System.Threading;
 using MongoDB.Bson;
 using System.Linq;
 
-
 namespace GameServer
 {
     /// <summary>

@@ -1,5 +1,6 @@
-using CenterServer;
+
 using CommonLib;
+using GameServer.Module;
 using PbPlayer;
 using System;
 using System.Timers;
@@ -113,12 +114,7 @@ namespace GameServer
 
                 if (mm == "00"|| mm == "10" || mm == "20" || mm == "30" || mm == "40" || mm == "50")
                 {
-                    //统计12天留存
-                    try { Glob.logMgr.UpdateSevenDay(); } catch (Exception ex) { Logger.LogError(ex); }
-
-                    //重新统计服务器数据
-                    try { Glob.logMgr.UpdateLogServer(dtNow); } catch (Exception ex) { Logger.LogError(ex); }
-
+                   
                     //检测宝藏开启状态
                     try { Glob.bonusMgr.CheckTreasureState(); } catch (Exception ex) { Logger.LogError(ex); }
 
@@ -161,8 +157,6 @@ namespace GameServer
                 Glob.vipMgr.ResetEverdayData(player);
                 //重置签到次数和在线奖励记录
                 Glob.bonusMgr.ResetEverdayData(player);
-
-                player.Data.adtimes = 0;
                 data.KeepLoginNum = player.AccountData.keepLoginNum;
                 data.RegDay = Glob.timerMgr.GetAcrossDay((DateTime)player.AccountData.regDate) + 1;
                 data.LeftAdNum = Glob.config.settingConfig.MaxADTimes;

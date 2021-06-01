@@ -11,41 +11,24 @@ using Telepathy;
 
 namespace CenterServer.Net
 {
-    public class LoginToCenterServer
+    public class LoginToCenterServer : Server
     {
-        public Server server;
-        protected ServerElement config;
-        public LoginToCenterServer()
-        {
-            config = ServerSet.Instance.GetConfig("LoginToCenterServer");
-            if (config == null)
-                Logger.LogError("GameToCenterServer配置未找到");
-            InitForConfig();
-        }
-        public void InitForConfig()
-        {
-            int numConnections = 0;
-            int receiveBufferSize = 0;
-            if (config != null)
-            {
-                numConnections = config.maxConnection;
-                receiveBufferSize = config.receiveBufferSize;
-            }
-            //从配置表里读取参数
-            server = new Server(receiveBufferSize);
-            server.OnConnected = OnConnected;
-            server.OnData = OnData;
-            server.OnDisconnected = OnDisconnected;
 
+        public int ClientCount = 0;
+        public LoginToCenterServer(int MaxMessageSize) : base(MaxMessageSize)
+        {
+            OnConnected = OnConnect;
+            OnData = OnMsgData;
+            OnDisconnected = OnDisconnect;
         }
+
         //从配置文件里读取启动
-        public bool StartForConfig()
+        public bool StartForConfig(int port)
         {
-            if (config == null) return false;
-            return server.Start(config.port);
+            return Start(port);
         }
 
-        public void StartTick() 
+        public void StartTick()
         {
             var timer = new System.Timers.Timer(1000.0 / 20);
             // THIS HAPPENS IN DIFFERENT THREADS.
@@ -56,37 +39,24 @@ namespace CenterServer.Net
                 {
                     // tick and process as many as we can. will auto reply.
                     // (100k limit to avoid deadlocks)
-                    server.Tick(100000);
+                    Tick(100000);
                 }
             };
             timer.AutoReset = true;
-            timer.Enabled = true;        
+            timer.Enabled = true;
         }
 
-
-        /// <summary>  
-        /// 客户端连接数量变化时触发  
-        /// </summary>  
-        /// <param name="num">当前增加客户的个数(用户退出时为负数,增加时为正数,为1)</param>  
-        /// <param name="token">增加用户的信息</param>  
-        //protected override void OnClientNumberChange(int num, GameToCenterServerSession token)
-        //{
-        //    if (num < 0) //GameServer 与 中央服断开连接
-        //    {
-        //        Glob.gameServer.RemoveServerAllPlayer(token.GameServerId);             
-        //    }
-        //}
-
-        public void OnConnected(int connectionId)
+        public void OnConnect(int connectionId)
         {
-            Logger.Log(connectionId + " Connected");
+            Console.WriteLine(connectionId + " Connected");
+            ClientCount++;
         }
 
         /// <summary>
         /// 收到消息
         /// </summary>
         /// <param name="buff"></param>
-        public void OnData(int connectionId, ArraySegment<byte> data)
+        public void OnMsgData(int connectionId, ArraySegment<byte> data)
         {   
             //先解析一下插件的封装
             byte[] buff  = new byte[data.Count];
@@ -106,7 +76,7 @@ namespace CenterServer.Net
             try
             {
                 proto.MergeFrom(body);
-                LoginToCenterServerMessage args = new LoginToCenterServerMessage(server,connectionId, proto, protocol);
+                LoginToCenterServerMessage args = new LoginToCenterServerMessage(this,connectionId, proto, protocol);
                 Glob.net.LoginToCenterServerMessage_Received(args);
             }
             catch
@@ -118,9 +88,10 @@ namespace CenterServer.Net
         /// <summary>
         /// 断线事件
         /// </summary>
-        public void OnDisconnected(int connectionId)
+        public void OnDisconnect(int connectionId)
         {
             Logger.LogError(connectionId + " Disconnected");
+            ClientCount--;
         }
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using MongoDB.Bson;
 using System.Linq;
-
+using GameServer.Module;
 
 namespace GameServer
 {
@@ -20,7 +20,6 @@ namespace GameServer
             if (Glob.playerMgr.onlinePlayerList.TryGetValue(id, out player))
             {
                 string name = player.Data.name;
-                player.Session.Close();
                 return (true,"踢掉玩家["+ name + "]操作成功!");
             }
             else

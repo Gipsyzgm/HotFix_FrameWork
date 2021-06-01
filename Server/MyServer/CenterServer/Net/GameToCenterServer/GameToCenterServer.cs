@@ -11,38 +11,21 @@ using Telepathy;
 
 namespace CenterServer.Net
 {
-    public class GameToCenterServer
+    public class GameToCenterServer:Server
     {
-        public Server server;
-        protected ServerElement config;
-        public GameToCenterServer () 
-        {
-            config = ServerSet.Instance.GetConfig("GameToCenterServer");
-            if (config == null)
-                Logger.LogError("GameToCenterServer配置未找到");
-            InitForConfig();
-        }
-        public void InitForConfig()
-        {
-            int numConnections = 0;
-            int receiveBufferSize = 0;
-            if (config != null)
-            {
-                numConnections = config.maxConnection;
-                receiveBufferSize = config.receiveBufferSize;
-            }
-            //从配置表里读取参数
-            server = new Server(receiveBufferSize);
-            server.OnConnected = OnConnected;
-            server.OnData = OnData;
-            server.OnDisconnected = OnDisconnected;
 
-        }
-        //从配置文件里读取启动
-        public bool StartForConfig()
+        public int ClientCount = 0;
+        public GameToCenterServer(int MaxMessageSize) : base(MaxMessageSize)
         {
-            if (config == null) return false;
-            return server.Start(config.port);
+            OnConnected = OnConnect;
+            OnData = OnMsgData;
+            OnDisconnected = OnDisconnect;
+        }
+
+        //从配置文件里读取启动
+        public bool StartForConfig(int port)
+        {
+            return Start(port);
         }
 
         public void StartTick()
@@ -56,36 +39,56 @@ namespace CenterServer.Net
                 {
                     // tick and process as many as we can. will auto reply.
                     // (100k limit to avoid deadlocks)
-                    server.Tick(100000);
+                    Tick(100000);
                 }
             };
             timer.AutoReset = true;
             timer.Enabled = true;
         }
 
-        /// <summary>  
-        /// 客户端连接数量变化时触发  
-        /// </summary>  
-        /// <param name="num">当前增加客户的个数(用户退出时为负数,增加时为正数,为1)</param>  
-        /// <param name="token">增加用户的信息</param>  
-        //protected override void OnClientNumberChange(int num, GameToCenterServerSession token)
-        //{
-        //    if (num < 0) //GameServer 与 中央服断开连接
-        //    {
-        //        Glob.gameServer.RemoveServerAllPlayer(token.GameServerId);             
-        //    }
-        //}
-
-        public void OnConnected(int connectionId)
+        public void OnConnect(int connectionId)
         {
             Console.WriteLine(connectionId + " Connected");
+            ClientCount++;
+        }
+
+
+
+
+        /// <summary>
+        /// 向会话的客户端发送消息
+        /// </summary>
+        /// <param name="data"></param>
+        public void Send<M>(M data, int connectionId) where M : IMessage
+        {
+            ushort protocol = GameToCenterServerProtocol.Instance.GetProtocolByType(data.GetType());
+            if (protocol == 0)
+            {
+                Logger.LogError("ProtocolType 协议号未定义,协议类型:" + data.GetType());
+                return;
+            }
+            byte[] body = data.ToByteArray();
+            Logger.LogMsg(true, protocol, body.Length, data);
+            byte[] md5 = null;
+            if (GameToCenterServerProtocol.Instance.IsEncryptProtocol(protocol))
+                md5 = CSocketUtils.MD5Encrypt(ref body, protocol);
+            byte[] package;
+            if (md5 != null)
+                package = new byte[body.Length + 2 + md5.Length];
+            else
+                package = new byte[body.Length + 2];
+            Array.Copy(BitConverter.GetBytes(protocol), 0, package, 0, 2);  //协议号
+            Array.Copy(body, 0, package, 2, body.Length);
+            if (md5 != null)
+                Array.Copy(md5, 0, package, 2 + body.Length, md5.Length);
+            Send(connectionId,new ArraySegment<byte>(package));
         }
 
         /// <summary>
         /// 收到消息
         /// </summary>
         /// <param name="buff"></param>
-        public void OnData(int connectionId, ArraySegment<byte> data)
+        public void OnMsgData(int connectionId, ArraySegment<byte> data)
         {
             byte[] buff = data.Array;
             ushort protocol = BitConverter.ToUInt16(buff, 0);   //协议号          
@@ -101,7 +104,7 @@ namespace CenterServer.Net
             try
             {
                 proto.MergeFrom(body);
-                GameToCenterServerMessage args = new GameToCenterServerMessage(server,connectionId, proto, protocol);
+                GameToCenterServerMessage args = new GameToCenterServerMessage(this,connectionId, proto, protocol);
                 Glob.net.GameToCenterServerMessage_Received(args);
 
             }
@@ -114,12 +117,11 @@ namespace CenterServer.Net
         /// <summary>
         /// 断线事件
         /// </summary>
-        public void OnDisconnected(int connectionId)
+        public void OnDisconnect(int connectionId)
         {
             Logger.LogError(connectionId + " Disconnected");
-        }
-
-       
+            ClientCount--;
+        }      
     }
 }
 

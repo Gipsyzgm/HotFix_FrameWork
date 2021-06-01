@@ -34,8 +34,8 @@ namespace CenterServer
         public override void ExecStop()
         {
             base.ExecStop();
-            Glob.net?.gameToCenterServer.server.Stop();
-            Glob.net?.loginToCenterServer.server.Stop();
+            Glob.net?.gameToCenterServer.Stop();
+            Glob.net?.loginToCenterServer.Stop();
             //Glob.net?.gmToCenterServer.Stop();
             System.Timers.Timer exitTimer = new System.Timers.Timer(1000);
             exitTimer.Elapsed += new System.Timers.ElapsedEventHandler(exit_ElapsedCheck);

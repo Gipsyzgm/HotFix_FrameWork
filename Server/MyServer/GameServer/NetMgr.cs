@@ -6,6 +6,7 @@ using CSocket;
 using System.Net;
 using System;
 using CommonLib;
+using CommonLib.Configuration;
 
 namespace GameServer.Net
 {
@@ -21,16 +22,19 @@ namespace GameServer.Net
         public int ClientToGameCount => clientToGameServer == null ? 0 : clientToGameServer.ClientCount;
         
         public NetMgr()
-        {            
-            clientToGameServer = new ClientToGameServer();
-            bool isLoginGameServer = clientToGameServer.StartForConfig();
+        {
+            ServerElement config = ServerSet.Instance.GetConfig("ClientToGameServer");
+            clientToGameServer = new ClientToGameServer(config.receiveBufferSize);
+            bool isLoginGameServer = clientToGameServer.StartForConfig(config.port);
             if (isLoginGameServer)
             {
                 Logger.Sys("clientToGameServer 启动成功!");
                 clientToGameServer.StartTick();
             }
-            ////连接到中央服务器
-            gameToCenterClient = new GameToCenterClient();       
+            //连接到中央服务器
+            ServerElement config1 = ServerSet.Instance.GetConfig("GameToCenterClient");
+            gameToCenterClient = new GameToCenterClient(config1.receiveBufferSize);
+            gameToCenterClient.StartClient(config1.ip,config1.port);
         }
 
         //GameServer 收到客户端发过来的消息

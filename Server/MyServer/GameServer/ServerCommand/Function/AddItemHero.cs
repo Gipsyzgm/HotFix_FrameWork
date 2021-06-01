@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using MongoDB.Bson;
 using System.Linq;
-
+using GameServer.Module;
 
 namespace GameServer
 {
