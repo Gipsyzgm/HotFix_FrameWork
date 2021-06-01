@@ -63,9 +63,7 @@ namespace Telepathy
             };
             timer.AutoReset = true;
             timer.Enabled = true;
-           
-        
-
+               
         }
         /// <summary>
         /// 连接服务器
