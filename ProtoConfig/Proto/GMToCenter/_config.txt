@@ -9,7 +9,7 @@
 # 1玩家相关
 
 #CS接收线程处理数,SC接收线程处理数
-@Thread 1,1
+@Thread 0,0
 
 #玩家操作
 1,101 = PbGMPlayer.CS_GMPlayer_BanTalk				#请求玩家禁言

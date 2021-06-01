@@ -8,7 +8,7 @@
 #协议号最大 65535
 #1系统  2玩家  3支付
 #CS接收线程处理数(0单线程),SC接收线程处理数(0单线程)
-@Thread 3,3
+@Thread 0,0
 
 #系统模块相关
 1,101 = PbRegister.CS_Register_GameServer			#请求注册GameServer

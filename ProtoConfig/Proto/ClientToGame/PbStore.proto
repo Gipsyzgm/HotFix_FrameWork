@@ -1,6 +1,6 @@
 //商城相关
 syntax = "proto3";
-import "PbHero.proto";
+import "PbCom.proto";
 package PbStore;
 
 //请求商城购买记录
@@ -29,6 +29,12 @@ message SC_store_buyItem
 	int32 Num = 2;		//购买数量
 }
 
+//请求商城每日超级奖励内容
+message SC_store_DailyItems
+{
+	int32 Id = 1;                                //商城物品id
+	repeated PbCom.One_AwardItem Item = 2;       //一个奖励内容
+}
 
 //请求召唤
 message CS_summon_buy
@@ -71,55 +77,34 @@ enum Enum_summon_result
 	SrNotItem = 3;		//所需道具不足
 }
 
-//收到头像商店数据
-message SC_store_icons
+//请求领取一次商城广告奖励
+message CS_store_ADTimes
 {
-	int32 SiftId = 1;					//精选头像商品Id
-	int32 SiftNextTime = 2;				//精选头像下次刷新时间
-	repeated int32 DailyIds = 3;		//每日头像商品Id（2个头像、1个背景、1个角标）
+    int32 Id = 1;                        //商城物品id
 }
 
-//请求购买商城头像
-message CS_store_buyIcon
+//收到商城广告获取物品剩余次数
+message SC_store_ADTimes
 {
-	int32 Id = 1;		//购买的商品Id
-}
-//收到购买商城头像
-message SC_store_buyIcon
-{
-	int32 Id = 1;		//购买的商品Id
+	repeated One_store_Ad Info = 1;      //一个商城物品详情
 }
 
-
-
-//请求资源商店数据
-message CS_store_res
+//一个广告物品次数信息
+message One_store_Ad
 {
-
-}
-//收到资源商店数据
-message SC_store_res
-{
-	repeated int32 ShieldIds = 1;		//已购买的护盾Id
-	int32 ShieldCD = 2;					//护盾冷却完成时间（客户端时间到了重新请求）
+	int32 Id = 1;		//商城物品id
+	int32 Num = 2;		//剩余领取次数
+	int32 ADNum = 3;    //已观看广告次数
 }
 
-//请求购买商城资源
-message CS_store_buyRes
+//请求商城兑换金币
+message CS_store_exchange
 {
-	int32 Id = 1;						//购买的商品Id
+    int32 Id = 1;                        //商城物品id
 }
-//收到购买商城资源
-message SC_store_buyRes
+
+//收到商城兑换金币
+message SC_store_exchange
 {
-	int32 Id = 1;						//购买的商品Id
-	//以下字段对应功能类型
-	int32 ResNum = 2;					//增加的食物、矿石数量
-	int32 ActionPoint = 3;				//世界能量点（客户端自行置空 世界能量恢复时间戳）
-	int32 ArenaPoint = 4;				//竞技能量点（客户端自行置空 竞技能量恢复时间戳）
-	int32 BossPoint = 5;				//泰坦能量点（客户端自行置空 泰坦能量恢复时间戳）
-	int32 ExtraCard = 6;				//额外英雄卡槽数量
-	int32 TeamNum = 7;					//战队总数量（客户端自行向队伍列表中添加NewTeam）
-	PbHero.One_team NewTeam = 8;		//新战队数据
-	int32 ShieldTime = 9;				//护盾有效到期时间戳（自行处理竞技场护盾有效时间，商品id加入已购买的护盾ids）
+	int32 Id = 1;                        //商城物品id
 }

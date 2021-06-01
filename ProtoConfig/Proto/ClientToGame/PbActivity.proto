@@ -12,6 +12,10 @@ message CS_Activity_Info
 message SC_Activity_Info
 {
 	repeated One_Activity ActivityList = 1;		//活动列表
+	repeated One_ActivityPack Pack = 2;         //活动商品列表
+	int32 CelebratedNum = 3;                    //玩家庆典值
+	repeated One_ActivityCele GetAwardIds = 4;  //已领取庆典奖励ID
+	int32 CurDay = 5;                           //当前领取天数
 }
 
 //一个活动数据
@@ -23,6 +27,22 @@ message One_Activity
 	int32 End = 4;								//结束时间		
 	repeated One_Activity_Task TaskList = 5;	//活动任务列表	
 	
+}
+
+//一个活动庆典奖励
+message One_ActivityCele
+{
+	int32 Id = 1;                                //天数ID
+	repeated int32 IndexId = 2;                  //奖励序号ID
+}
+
+//一个活动礼包数据
+message One_ActivityPack
+{
+	int32 PackId = 1;							//活动礼包Id
+	bool IsOpen = 2;                            //是否已开启
+	int32 LeftNum = 3;                          //广告类型剩余次数
+	int32 LeftBuyNum = 4;                       //剩余可购买次数
 }
 
 //一个活动任务数据
@@ -67,6 +87,53 @@ message SC_Activity_Get
 	int32 Progress = 2;							//完成进度
 	bool IsGet = 3;								//是否已领取
 	int32 Mid=4;
+}
+
+//请求开启活动礼包
+message CS_Activiyt_packOpen
+{
+	int32 Id = 1;                               //礼包ID
+}
+//收到开启活动礼包
+message SC_Activiyt_packOpen
+{
+	int32 Id = 1;                               //礼包ID
+	int32 LeftNum = 2;                          //广告类型剩余次数
+	int32 LeftBuyNum = 3;                       //剩余可购买次数
+}
+
+//请求钻石刷新活动礼包
+message CS_Activiyt_packFresh
+{
+}
+
+//收到钻石刷新活动礼包
+message SC_Activiyt_packFresh
+{
+	repeated One_ActivityPack Pack = 1;         //活动商品列表
+}
+//请求一键领取节日奖励
+message CS_Activiyt_AllOpen
+{
+	
+}
+//收到一键领取节日奖励
+message SC_Activiyt_AllOpen
+{
+	repeated One_ActivityCele GetAwardIds = 1;  //已领取庆典奖励ID
+}
+
+//请求单个领取节日奖励
+message CS_Activiyt_OpenOne
+{
+	int32 DayID = 1;                            //日ID
+	int32 Index = 2;                            //序号Id 从1开始
+}
+
+//收到单个领取节日奖励
+message SC_Activiyt_OpenOne
+{
+	repeated One_ActivityCele GetAwardIds = 1;  //已领取庆典奖励ID
 }
 
 //通知活动礼包

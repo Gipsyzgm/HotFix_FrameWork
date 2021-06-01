@@ -72,3 +72,9 @@ message SC_mail_getAward
 {
 	int32 SID = 1;						//邮件SID
 }
+
+//请求一键领取所有未读邮件
+message CS_mail_openAll
+{
+	
+}

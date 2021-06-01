@@ -1,83 +1,24 @@
 //英雄信息
 syntax = "proto3";
-import "PbCom.proto";
 package PbHero;
 
-
-//收到英雄列表
-message SC_hero_list
-{
-	repeated PbCom.One_heroInfo List = 1;		//英雄列表
-	PlayerTeamInfo TeamInfo = 2;		//队伍信息
-	int32 TeamNum = 3;					//战队总数量（默认5，购买可变大）
-}
-
-
-
-//所有队伍信息
-message PlayerTeamInfo
-{
-	int32 DefTeam = 1;					//防御队伍
-	repeated One_team TeamList = 2;		//队伍列表
-	repeated int32 ClubWarTeam = 3;		//联盟战防御队伍英雄
-	repeated int32 ClubWarEquip = 4;	//联盟战防御队伍装备
-	repeated int32 LeagueTeam = 5;		//联赛防御队伍英雄
-	repeated int32 LeagueEquip = 6;		//联赛防御队伍装备	
-}
-
-//一个队伍信息
-message One_team
-{
-	int32 TeamId = 1;					//队伍Id（从1开始）
-	repeated int32 TeamHeroIds = 2;		//队伍英雄SID
-	repeated int32 TeamItems = 3;		//队伍道具列表
-	repeated int32 TeamEquips = 4;		//队伍装备列表
-}
-
-//请求修改队伍信息
-message CS_teamInfo_edit
-{
-	PlayerTeamInfo TeamInfo = 1;	//队伍信息
-}
-
-//收到修改修改成功
-message SC_teamInfo_edit
-{
-}
-
-
-
-//获得一个新英雄
-message SC_hero_new
-{
-	PbCom.One_heroInfo Hero = 1;			//新的英雄数据
-	PbCom.Enum_bag_itemsType NewType = 2;	//英雄来源
-}
-
-//收到队伍英雄改变
-message SC_teamInfo_change
-{
-	int32 TeamId = 1;				//队伍Id
-	repeated int32 Team1 = 2;		//队伍1英雄SID
-}
 
 //请求英雄升级
 message CS_hero_levelUp
 {
-	int32 SID = 1;	//英雄SID
-	repeated int32 ResSIDs = 2;	//当资源吞食的英雄Id
+	int32 SID = 1;	             //英雄SID
+	//int32 PopID = 2;             //道具Id
 }
 
 //收到英雄升级结果
 message SC_hero_levelUp
 {
 	int32 SID = 1;				//英雄ID
-	int32 Level = 2;				//英雄等级
-	int32 Exp = 3;				//英雄经验
-	repeated int32 ResSIDs = 4;	//当资源吞食的英雄Id
-	repeated int32 SkillsLv = 5;//技能等级
+	int32 Level = 2;		    //英雄等级
+	//int32 Exp = 3;				//英雄经验
+	int32 Num = 4;              //当前道具剩余数量
+	//int32 PopID = 5;            //道具Id
 }
-
 
 //请求英雄突破
 message CS_hero_break
@@ -92,78 +33,37 @@ message SC_hero_break
 	int32 Level = 2;			//英雄等级
 	int32 Exp = 3;				//英雄经验
 	int32 BreakLv = 4;			//英雄突破等级
-	repeated int32 SkillsLv = 5;//技能等级
+	int32 Left = 5;             //突破剩余道具数量
 }
 
-//请求英雄升星结果
-message CS_hero_starLvUp
+//请求英雄获取
+message CS_hero_Get
 {
-	int32 SID = 1;				//英雄SID
-	repeated int32 ResSIDs = 2;	//当资源吞食的英雄Id
+	int32 SID = 1;				//英雄模板id
+	int32 Type = 2;             //获取类型（1 钻石购买 2 广告次数获取）
 }
 
-//收到英雄升星结果
-message SC_hero_starLvUp
+//收到英雄获取结果
+message SC_hero_Get
 {
-	int32 SID = 1;				//英雄SID
-	int32 Level = 2;			//英雄等级
-	int32 Exp = 3;				//英雄经验
-	int32 TemplID = 4;			//英雄升级后的模板ID
-	repeated int32 ResSIDs = 5;	//当资源吞食的英雄Id
+	int32 SID = 1;				//英雄模板id
+	int32 Type = 2;             //获取类型（1 钻石购买 2 广告次数获取）
+	int32 Level = 3;			//英雄等级
+	int32 Exp = 4;				//英雄经验
+	int32 BreakLv = 5;			//英雄突破等级
 }
 
-//请求技能升级
-message CS_hero_skillLvUp
+//请求更换出战英雄
+message CS_hero_Change
 {
-	int32 SID = 1;				//英雄SID
-	int32 SkillId = 2;			//技能Id
-}
-//收到技能升级结果
-message SC_hero_skillLvUp
-{
-	int32 SID = 1;				//英雄SID
-	int32 SkillId = 2;			//技能Id
-	bool IsSuccess = 3;			//是否升级成功
-	int32 SkillLv = 4;			//技能等级
+	int32 SID = 1;				//英雄模板id
 }
 
-
-//请求重置英雄天赋
-message CS_hero_dowerReset
+//收到英雄获取结果
+message SC_hero_Change
 {
-	int32 SID = 1;				//英雄SID
-	bool IsTicket = 2;			//是否使用钻石消耗 (0使用重置纹章 1使用钻石)
-}
-
-//收到重置英雄天赋
-message SC_hero_dowerReset
-{
-	int32 SID = 1;				//英雄SID
-}
-
-//请求英雄天赋升级
-message CS_hero_dowerLevelUp
-{
-	int32 SID = 1;				//英雄SID
-	int32 NodeNo = 2;			//节点编号	
-}
-
-//收到英雄天赋升级
-message SC_hero_dowerLevelUp
-{
-	int32 SID = 1;				//英雄SID
-	int32 NodeNo = 2;			//节点编号	
-}
-
-//请求英雄锁定
-message CS_hero_lock
-{
-	int32 SID = 1;				//英雄SID
-}
-
-//收到英雄锁定
-message SC_hero_lock
-{
-	int32 SID = 1;				//英雄SID
-	bool IsLock = 2;			//是否锁定
+	int32 SID = 1;				//出战英雄模板id
+	int32 CSid = 2;             //被替换英雄模板ID
+	int32 NewInCutId = 3;       //新上阵英雄内刀id（默认装备上，为0表示没有此装备）
+	int32 OldInCutId = 4;       //原始已装备内刀id（原位置无内刀为 0）
 }

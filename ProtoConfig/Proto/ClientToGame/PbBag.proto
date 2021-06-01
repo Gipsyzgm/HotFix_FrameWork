@@ -9,6 +9,7 @@ message SC_bag_list
 {
 	repeated One_bag_prop PropList = 1;	//道具列有
 	repeated PbCom.One_bag_equip EquipList = 2; //装备列表	
+	repeated PbCom.One_bag_Gem GemList = 3;     //宝石列表
 }
 
 
@@ -32,11 +33,16 @@ message SC_bag_updateItemCount
 //一个物品(装备，道具，虚拟物品)
 message One_bag_item
 {
-	int32 ItemSID = 1;		//装备短Id  道具为0
+	int32 SID = 1;          //装备sid （道具和英雄都为0）
 	int32 TemplID =2;		//模板Id
 	int32 Num = 3;			//数量   装备Num为0 
 	int32 Level = 4;		//装备等级
-	int32 Exp = 5;			//装备经验
+	int32 Exp = 5;			//经验（英雄以外为 0）
+	int32 BreakLv = 6;      //品阶等级（道具为 0）
+	int32 index = 7;        //位置（默认 0）
+	bool IsGetHero = 8;    //是否获得英雄
+	int32 HeroExp = 9;      //英雄经验
+	int32 VedioNum = 10;    //英雄广告数
 }
 
 
