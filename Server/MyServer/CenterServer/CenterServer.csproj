@@ -5,6 +5,10 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>..\..\Product\CenterServer\</OutputPath>
+  </PropertyGroup>
+
   <ItemGroup>
     <Compile Remove="Net\GMToCenterServer\**" />
     <EmbeddedResource Remove="Net\GMToCenterServer\**" />
