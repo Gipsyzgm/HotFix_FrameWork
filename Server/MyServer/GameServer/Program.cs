@@ -10,12 +10,6 @@ namespace GameServer
         static bool isInit = false;
         static void Main(string[] args)
         {
-            string debug = ConfigurationManager.AppSettings["DebugModel"];
-            if (debug == "0")
-                Logger.SetLogType(true);
-            else
-                Logger.SetLogType(false);
-
             ProgramUtil.Initialize(closeEvent, unhandledException, true);
             ProgramUtil.SetTitle();
             //初始化

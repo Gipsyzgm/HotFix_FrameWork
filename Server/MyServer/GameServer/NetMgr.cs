@@ -32,7 +32,7 @@ namespace GameServer.Net
                 clientToGameServer.StartTick();
             }
             //连接到中央服务器
-            ServerElement config1 = ServerSet.Instance.GetConfig("GameToCenterClient");
+            ClientElement config1 = ClientSet.Instance.GetConfig("GameToCenterClient");
             gameToCenterClient = new GameToCenterClient(config1.receiveBufferSize);
             gameToCenterClient.StartClient(config1.ip,config1.port);
         }
