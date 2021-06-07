@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
@@ -29,6 +29,13 @@ namespace CommonLib.Configuration
         {
             get => (int)base["port"];
             set => base["port"] = value;
+        }
+
+        [ConfigurationProperty("receiveBufferSize", IsRequired = false, DefaultValue = "1024")]
+        public int receiveBufferSize
+        {
+            get => (int)base["receiveBufferSize"];
+            set => base["receiveBufferSize"] = value;
         }
     }
 }
