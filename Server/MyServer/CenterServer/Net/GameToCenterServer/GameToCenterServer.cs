@@ -90,7 +90,11 @@ namespace CenterServer.Net
         /// <param name="buff"></param>
         public void OnMsgData(int connectionId, ArraySegment<byte> data)
         {
-            byte[] buff = data.Array;
+            //先解析一下插件的封装
+            byte[] buff = new byte[data.Count];
+            Buffer.BlockCopy(data.Array, data.Offset, buff, 0, data.Count);
+
+            //解析自己定的协议
             ushort protocol = BitConverter.ToUInt16(buff, 0);   //协议号          
             byte[] body = new byte[buff.Length - 2];
             Array.Copy(buff, 2, body, 0, body.Length);
