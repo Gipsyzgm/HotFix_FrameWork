@@ -203,7 +203,7 @@ namespace  {Config.RealityNameSpace}.Net
 
         public override void Send<M>(M data)
         {{
-            ushort protocol = LoginToCenterServerProtocol.Instance.GetProtocolByType(data.GetType());
+            ushort protocol = {Config.ProtoType}ServerProtocol.Instance.GetProtocolByType(data.GetType());
             if (protocol == 0)
             {{
                 Logger.MessageError(data.GetType());
