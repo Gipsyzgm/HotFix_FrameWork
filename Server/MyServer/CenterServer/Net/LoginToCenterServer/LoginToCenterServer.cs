@@ -57,7 +57,7 @@ namespace CenterServer.Net
         /// </summary>
         /// <param name="buff"></param>
         public void OnMsgData(int connectionId, ArraySegment<byte> data)
-        {   
+        {
             //先解析一下插件的封装
             byte[] buff  = new byte[data.Count];
             Buffer.BlockCopy(data.Array, data.Offset, buff, 0, data.Count);
@@ -74,10 +74,10 @@ namespace CenterServer.Net
                 return;
             }
             try
-            {
+            {             
                 proto.MergeFrom(body);
                 LoginToCenterServerMessage args = new LoginToCenterServerMessage(this,connectionId, proto, protocol);
-                Glob.net.LoginToCenterServerMessage_Received(args);
+                LoginToCenterServerAction.Instance.Dispatch(args);
             }
             catch
             {
