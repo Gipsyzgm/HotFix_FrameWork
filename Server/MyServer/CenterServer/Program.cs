@@ -1,6 +1,7 @@
 using CommonLib;
 using System;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace CenterServer
 {
@@ -18,16 +19,18 @@ namespace CenterServer
             isInit = Glob.Initialize();
             //启动完成
             ProgramUtil.StartEnd(isInit);
-
-            CommandState commState = CommandState.Continue;
+          
             while (true)
             {
-                commState = ServerCommand.Command(Console.ReadLine());
-                if (commState == CommandState.Break)
-                    break;
-                else if (commState == CommandState.Continue)
-                    continue;
+                Glob.net.StartTick();
+                WaitCommand();
             }
+        }
+        public static async Task WaitCommand()         
+        {
+            await Task.Run(() => {
+                ServerCommand.Command(Console.ReadLine());
+            });          
         }
         static void closeEvent()
         {
