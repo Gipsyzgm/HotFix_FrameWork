@@ -26,7 +26,7 @@ namespace GameServer.Net
         public int Port = 0;
         /// <summary>获得当前客户端总数</summary>
         public int ClientToGameCount => clientToGameServer == null ? 0 : clientToGameServer.ClientCount;
-        
+        public bool isLoginGameServer = false;
         public NetMgr()
         {
             config = ServerSet.Instance.GetConfig("ClientToGameServer");
@@ -50,7 +50,6 @@ namespace GameServer.Net
             if (isLoginGameServer)
             {
                 Logger.Sys("clientToGameServer 启动成功!");
-                clientToGameServer.StartTick();
             }
             //连接到中央服务器
             ClientElement config1 = ClientSet.Instance.GetConfig("GameToCenterClient");
@@ -82,7 +81,20 @@ namespace GameServer.Net
         {
             GameToCenterClientAction.Instance.Dispatch(args);
         }
-        
-        
+
+
+        public void StartTick()
+        {        
+            if (isLoginGameServer)
+            {
+                clientToGameServer.Tick(100000);
+            }
+            if (gameToCenterClient.Connected)
+            {
+                gameToCenterClient.Tick(1);
+            }
+        }
+
+
     }
 }
