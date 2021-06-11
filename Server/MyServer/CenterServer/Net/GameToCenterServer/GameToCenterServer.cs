@@ -28,6 +28,7 @@ namespace CenterServer.Net
             return Start(port);
         }
 
+        //暂时舍弃的timer.Elapsed监听
         public void StartTick()
         {
             var timer = new System.Timers.Timer(1000.0 / 20);
@@ -109,7 +110,7 @@ namespace CenterServer.Net
             {
                 proto.MergeFrom(body);
                 GameToCenterServerMessage args = new GameToCenterServerMessage(this,connectionId, proto, protocol);
-                Glob.net.GameToCenterServerMessage_Received(args);
+                GameToCenterServerAction.Instance.Dispatch(args);
 
             }
             catch
