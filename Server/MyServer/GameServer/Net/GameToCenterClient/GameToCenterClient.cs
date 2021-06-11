@@ -7,7 +7,6 @@ using CommonLib.Configuration;
 using System.Timers;
 using System.Threading;
 using Google.Protobuf;
-using PbRegister;
 
 namespace GameServer.Net
 {
