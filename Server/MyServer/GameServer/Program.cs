@@ -17,10 +17,10 @@ namespace GameServer
             //启动完成
             ProgramUtil.StartEnd(isInit);
 
-
             while (true)
             {
                 Thread.Sleep(1);
+                Glob.net.StartTick();
                 MainThreadContext.Instance.Update();
             }
         }
