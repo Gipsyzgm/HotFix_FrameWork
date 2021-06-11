@@ -1,6 +1,7 @@
 using CommonLib;
 using System;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace LoginServer
 {
@@ -20,16 +21,20 @@ namespace LoginServer
             ProgramUtil.StartEnd(IsInit);
 
             //避免服务器直接关闭，直接while(true)
-            CommandState commState = CommandState.Continue;
+          
             while (true)
             {
-                commState = ServerCommand.Command(Console.ReadLine());
-                if (commState == CommandState.Break)
-                    break;
-                else if (commState == CommandState.Continue)
-                    continue;
+                Glob.net.StartTick();
+                WaitCommand();
             }
         }
+        public static async Task WaitCommand()
+        {
+            await Task.Run(() => {
+                ServerCommand.Command(Console.ReadLine());
+            });
+        }
+
         static void CloseEvent()
         {
             Logger.Sys("正在关闭服务器...");
