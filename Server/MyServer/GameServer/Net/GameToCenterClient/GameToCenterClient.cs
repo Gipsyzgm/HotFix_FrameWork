@@ -7,12 +7,13 @@ using CommonLib.Configuration;
 using System.Timers;
 using System.Threading;
 using Google.Protobuf;
+using PbRegister;
 
 namespace GameServer.Net
 {
     public class GameToCenterClient: Client
     {
-  
+
         public GameToCenterClient(int MaxMessageSize):base(MaxMessageSize)
         {
             OnConnected = OnConnect;
@@ -44,9 +45,9 @@ namespace GameServer.Net
                 }
             };
             timer.AutoReset = true;
-            timer.Enabled = true;
-
+            timer.Enabled = true;           
         }
+
         /// <summary>
         /// 连接服务器
         /// </summary>
