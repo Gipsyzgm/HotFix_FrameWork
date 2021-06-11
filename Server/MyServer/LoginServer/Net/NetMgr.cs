@@ -22,7 +22,6 @@ namespace Telepathy
         public Client _socket;
         public const int MaxMessageSize = 16 * 1024;
         public DictionarySafe<string, HttpListenerContext> dicHttpContext = new DictionarySafe<string, HttpListenerContext>();
-
         public NetMgr()
         {
            
@@ -47,24 +46,18 @@ namespace Telepathy
                 Logger.Log($"没连接上服务器{ip}:{port}");
                 return;
             }
-            Logger.Log($"已连接上服务器{ip}:{port}");
-            var timer = new System.Timers.Timer(1000.0 / 20);
-            // THIS HAPPENS IN DIFFERENT THREADS.
-            // so make sure that GetNextMessage is thread safe!
-            timer.Elapsed += (object sender, ElapsedEventArgs e) =>
-            {
-                lock (this)
-                {
-                    if (_socket.Connected)
-                    {
-                        _socket.Tick(1);
-                    }
-                }                                   
-            };
-            timer.AutoReset = true;
-            timer.Enabled = true;
-               
+            Logger.Log($"已连接上服务器{ip}:{port}");                        
         }
+
+        public void StartTick() 
+        {
+            Thread.Sleep(1000 / 50);
+            if (_socket.Connected)
+            {         
+                _socket.Tick(1);
+            }       
+        }
+
         /// <summary>
         /// 连接服务器
         /// </summary>
