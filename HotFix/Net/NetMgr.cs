@@ -9,6 +9,7 @@ using Telepathy;
 using Google.Protobuf;
 using HotFix.Net;
 using CSocket;
+using HotFix.Module.UI;
 
 namespace HotFix
 {
@@ -118,12 +119,48 @@ namespace HotFix
         {
             //收到消息解析一下，获取真实长度的数据
             byte[] bytes = new byte[buff.Count];
-            Buffer.BlockCopy(buff.Array, buff.Offset, bytes, 0, buff.Count);
+            Buffer.BlockCopy(buff.Array, buff.Offset, bytes, 0, buff.Count);        
+            ushort protocol = BitConverter.ToUInt16(bytes, 0);   //协议号 
+            byte[] body;
+            if (ClientToGameClientProtocol.Instance.IsEncryptProtocol(protocol))
+            {
+                body = CSocketUtils.MD5Decode(bytes, protocol);
+                if (body == null)
+                {
+                    Debug.LogError("ProtocolType 解析错误:protocol" + protocol);
+                    MsgWaiting.Close(protocol);
+                    return;
+                }
+            }
+            else
+            {
+                body = new byte[bytes.Length - 2];            //消息内容
+                Array.Copy(bytes, 2, body, 0, body.Length);
+            }
 
-            Debug.LogError("收到回复信息，信息长度："+ bytes.Length);
-            Debug.LogError(System.Text.Encoding.Default.GetString(bytes) + ":111");
-
-
+            IMessage proto = ClientToGameClientProtocol.Instance.CreateMsgByProtocol(protocol);
+            if (proto == null)
+            {
+                Debug.LogError("ProtocolType 协议类型未定义:protocol"+ protocol);
+                MsgWaiting.Close(protocol);
+                return;
+            }
+            try
+            {
+                proto.MergeFrom(body);
+                //暂时用Message 后面可以不需要
+                ClientToGameClientMessage msg = new ClientToGameClientMessage(protocol, proto);
+                LogMsg(false, protocol, body.Length, proto);
+                ClientToGameClientAction.Instance.Dispatch(msg);
+            }
+            catch
+            {
+                Debug.LogError($"消息 {protocol} 解析错误,可能客户端与服务端PB文件不一致");
+            }
+            finally
+            {
+                MsgWaiting.Close(protocol);
+            }
         }
 
         /// <summary>
@@ -132,94 +169,25 @@ namespace HotFix
         public void OnDisconnected()
         {
             Debug.LogError("断开连接!!!");
-            //if (ReLoginMgr.IsReLogin)
-            //{
-            //    ReLoginMgr.Show(); //走重连
-            //}
-            //else
-            //{
-            //    if (!_isAlertMsg) return;
-            //    showDisconnectConfirm();
-            //}
+            //如果有重连逻辑在这个触发
+            if (!_isAlertMsg) return;
+            showDisconnectConfirm();
+            
         }
 
-        ///// <summary>
-        ///// 收到消息
-        ///// </summary>
-        ///// <param name="buff"></param>
-        //protected void OnServerDataReceived(byte[] buff)
-        //{
-        //    ushort protocol = BitConverter.ToUInt16(buff, 0);   //协议号 
-
-        //    byte[] body;
-        //    if (ClientToGameClientProtocol.Instance.IsEncryptProtocol(protocol))
-        //    {
-        //        body = CSocketUtils.MD5Decode(buff, protocol);
-        //        if (body == null)
-        //        {
-        //            Debug.LogError("ProtocolType 解析错误:protocol" + protocol);
-        //            MsgWaiting.Close(protocol);
-        //            return;
-        //        }
-        //    }
-        //    else
-        //    {
-        //        body = new byte[buff.Length - 2];            //消息内容
-        //        Array.Copy(buff, 2, body, 0, body.Length);
-        //    }
-        //    IMessage proto = ClientToGameClientProtocol.Instance.CreateMsgByProtocol(protocol);
-        //    if (proto == null)
-        //    {
-        //        Debug.LogError("ProtocolType 协议类型未定义:protocol"+protocol);
-        //        MsgWaiting.Close(protocol);
-        //        return;
-        //    }
-        //    try
-        //    {
-        //        proto.MergeFrom(body);
-        //        //暂时用Message 后面可以不需要
-        //        ClientToGameClientMessage msg = new ClientToGameClientMessage(protocol, proto);
-        //        LogMsg(false, protocol, body.Length, proto);
-        //        ClientToGameClientAction.Instance.Dispatch(msg);
-        //    }
-        //    catch
-        //    {
-        //        Debug.LogError($"消息 {protocol} 解析错误,可能客户端与服务端PB文件不一致");
-        //    }
-        //    finally
-        //    {
-        //        MsgWaiting.Close(protocol);
-        //    }
-        //}
 
 
+        public void showDisconnectConfirm()
+        {
+            Confirm.ShowConfirm(()=>
+            {
+                Debug.Log("退出游戏");
+                Application.Quit();
 
-        //public void showDisconnectConfirm()
-        //{
-        //    Common.Confirm.AlertLangTop(() =>
-        //    {
-        //        if (AppSetting.PlatformType != EPlatformType.AccountPwd)
-        //        {
-        //            CYSDK.Instance.logout();
-        //            CLog.Log("logout");
-        //        }
-        //        Mgr.Dispose();
-        //        Mgr.UI.Show<LoginUI>();
-        //        LoginMgr.I.isConnectIng = false;
-        //        ReLoginMgr.Close();
+            }, "Net.Disconnect", "Net.DisconnectTitle"); //与服务器断开连接
+        }
 
-        //    }, "Net.Disconnect", "Net.DisconnectTitle").Run(); //与服务器断开连接
-        //}
 
-        /// <summary>
-        /// 通讯消息日志
-        /// </summary>
-        /// <param name="args"></param>
-        //private void LogMsg(bool isSend, ushort protocol, int length, IMessage msg)
-        //{
-        //    if (protocol < 10) return;
-        //    Debug.LogError(isSend, $"{(isSend ? "发送" : "收到")}[{protocol } L:{length} {msg.GetType().FullName}]:{Dumper.DumpAsString(msg)}");
-        //}
 
         /// <summary>
         /// 主动断开连接
@@ -249,14 +217,6 @@ namespace HotFix
         //        var data = noSendMessage.Dequeue();
         //        Send(data);
         //    }
-        //}
-
-        //bool isReconnectTest = false;
-        //public void TestReconnect()
-        //{
-        //    CLog.Log("断线测试");
-        //    isReconnectTest = true;
-        //    _socket.Disconnect();
         //}
     }
 }
