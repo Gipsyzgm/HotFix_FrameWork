@@ -12,9 +12,7 @@ using PbRegister;
 namespace GameServer.Net
 {
     public class NetMgr
-    {
-
-     
+    {   
         /// <summary>为客户端提供连接的通讯服务对象</summary>
 
         public ClientToGameServer clientToGameServer;
@@ -46,7 +44,7 @@ namespace GameServer.Net
                         Port++;
                 }
             }
-            bool isLoginGameServer = clientToGameServer.StartForConfig(Port);
+            isLoginGameServer = clientToGameServer.StartForConfig(Port);
             if (isLoginGameServer)
             {
                 Logger.Sys("clientToGameServer 启动成功!");
@@ -55,7 +53,7 @@ namespace GameServer.Net
             ClientElement config1 = ClientSet.Instance.GetConfig("GameToCenterClient");
             gameToCenterClient = new GameToCenterClient(config1.receiveBufferSize);
             gameToCenterClient.StartClient(config1.ip,config1.port);
-            RegisterToCenterServer(config.netIP, Port, ServerId);
+            RegisterToCenterServer(config.netIP, Port, ServerId);          
         }
 
         //通知中央服务器注册服务器信息
@@ -84,17 +82,15 @@ namespace GameServer.Net
 
 
         public void StartTick()
-        {        
-            if (isLoginGameServer)
-            {
-                clientToGameServer.Tick(100000);
-            }
+        {          
             if (gameToCenterClient.Connected)
-            {
+            {          
                 gameToCenterClient.Tick(1);
             }
+            if (isLoginGameServer)
+            {          
+                clientToGameServer.Tick(100000);
+            }
         }
-
-
     }
 }
