@@ -19,7 +19,7 @@ namespace GameServer
 
             while (true)
             {
-                Thread.Sleep(1);
+                Thread.Sleep(1000/50);
                 Glob.net.StartTick();
                 MainThreadContext.Instance.Update();
             }
