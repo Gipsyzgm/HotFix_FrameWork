@@ -28,8 +28,23 @@ namespace HotFix.Module.UI
         /// <param name="title">标题,不传使用默认标题</param>
         /// <param name="autoClose">是否点击按钮后自动关闭页面，不需要的话需要手动调用ManualClose()关闭</param>
         /// <param name="ShowMask">是否使用遮罩</param>
-        public static void Show(Action confirmCB, Action cancelCB, string content, string title = null, bool autoClose = true, bool ShowMask = true) 
+        /// <param name="SurperTips">是否在所有Ui上</param>
+        public static void Show(Action confirmCB, Action cancelCB, string content, string title = null, bool autoClose = true, bool ShowMask = true,bool SurperTips = false)
         {
+            if (SurperTips)
+            {
+                if (HotMgr.UI.layer_dict.TryGetValue(PanelLayer.UITips, out var transform))
+                {
+                    transform.GetComponent<Canvas>().sortingOrder = 2000;
+                }
+            }
+            else
+            {
+                if (HotMgr.UI.layer_dict.TryGetValue(PanelLayer.UITips, out var transform))
+                {
+                    transform.GetComponent<Canvas>().sortingOrder = 200;
+                }
+            }           
             RunShow(confirmCB, cancelCB, content, title, autoClose, ShowMask).Run();
         }
 
@@ -40,8 +55,23 @@ namespace HotFix.Module.UI
         /// <param name="content">消息内容</param>
         /// <param name="title">标题,不传使用默认标题</param>
         /// <param name="ShowMask">是否使用遮罩</param>
-        public static void ShowConfirm(Action confirmCB, string content, string title = null, bool autoClose = true, bool ShowMask = true)
-        {      
+        /// <param name="SurperTips">是否在所有Ui上</param>
+        public static void ShowConfirm(Action confirmCB, string content, string title = null, bool autoClose = true, bool ShowMask = true, bool SurperTips = false)
+        {
+            if (SurperTips)
+            {
+                if (HotMgr.UI.layer_dict.TryGetValue(PanelLayer.UITips, out var transform))
+                {
+                    transform.GetComponent<Canvas>().sortingOrder = 2000;
+                }
+            }
+            else
+            {
+                if (HotMgr.UI.layer_dict.TryGetValue(PanelLayer.UITips, out var transform))
+                {
+                    transform.GetComponent<Canvas>().sortingOrder = 200;
+                }
+            }
             RunShow(confirmCB, null, content, title, autoClose, ShowMask).Run();
         }
 
@@ -83,6 +113,7 @@ namespace HotFix.Module.UI
                 ConfirmNeedCloseList.Pop().CloseSelf();
             }
         }
+
     }
 }
 
