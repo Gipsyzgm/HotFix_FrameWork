@@ -208,6 +208,9 @@ namespace HotFix
             }
             return value;
         }
+        /// <summary>
+        /// Loading可自行扩展
+        /// </summary>
         protected virtual void ShowLoading()
         {
             if (IsLoading != UILoading.None)
