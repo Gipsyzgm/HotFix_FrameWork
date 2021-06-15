@@ -18,6 +18,7 @@ public class UIMgr : BaseMgr<UIMgr>
     public void Initialize()
     {
         canvas = GameObject.Find("UICanvas").GetComponent<Canvas>();
+        UIRoot = canvas.transform.Find("UIRoot").GetComponent<RectTransform>();
         DontDestroyOnLoad(canvas);     
     }
 
