@@ -32,7 +32,7 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: cb529a9af64de764190314b1987d3105, type: 3}
-    totalSpriteSurfaceArea: 1317951
+    totalSpriteSurfaceArea: 1319511
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -63,6 +63,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: e38aee3c523aaef49bcb0deb1b12f712, type: 3}
   - {fileID: 21300000, guid: 6341140eaae45084894d0b56ad9d3c3d, type: 3}
   - {fileID: 21300000, guid: 5bb0ea5e8fcf79f479baf4cd09e59091, type: 3}
+  - {fileID: 21300000, guid: 6eacf1ee015e5f34dae12450759633a9, type: 3}
   - {fileID: 21300000, guid: aeb5330f35509714bbf476238585daa0, type: 3}
   m_PackedSpriteNamesToIndex:
   - icon-upgrade
@@ -90,6 +91,7 @@ SpriteAtlas:
   - tips_1
   - Btn_Esc_1
   - hint
+  - loding
   - Ornament_8
   m_RenderDataMap: {}
   m_Tag: Common
