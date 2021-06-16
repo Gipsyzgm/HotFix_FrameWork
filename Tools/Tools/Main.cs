@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Runtime.Remoting;
@@ -9,6 +9,7 @@ namespace Tools
     public partial class Main : Form
     {
         private static Main _instance;
+        private static bool IsIncludeGM = false;
         public Main()
         {
             InitializeComponent();
@@ -75,7 +76,7 @@ namespace Tools
                 _instance.TabPages[2].Parent = isClient || isServer ? _instance.tabControl : null; //Proto
                 _instance.TabPages[3].Parent = isServer ? _instance.tabControl : null; //数据库
                 _instance.TabPages[4].Parent = isClient || isServer ? _instance.tabControl : null; //CDKey
-                _instance.TabPages[5].Parent = isServer ? _instance.tabControl : null;     //GM
+                _instance.TabPages[5].Parent = (isServer&&IsIncludeGM) ? _instance.tabControl : null;     //GM
                 _instance.TabPages[6].Parent = isServer ? _instance.tabControl : null;  //服务器日志
             }
         }
