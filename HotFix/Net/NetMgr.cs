@@ -184,7 +184,7 @@ namespace HotFix
                 Debug.Log("退出游戏");
                 Application.Quit();
 
-            }, "Net.Disconnect", "Net.DisconnectTitle"); //与服务器断开连接
+            }, "Net.Disconnect", "Net.DisconnectTitle", true,true,true); //与服务器断开连接
         }
 
 

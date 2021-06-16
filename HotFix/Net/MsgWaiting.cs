@@ -24,8 +24,9 @@ namespace HotFix
             {
                 if (m_waiting == null)
                 {
-                    m_waiting = MainMgr.UI.UIRoot.transform.Find("MsgWaiting").gameObject;
-                    m_waitingAnim = m_waiting.transform.Find("Waiting");
+
+                    m_waiting = MainMgr.UI.UIRoot.transform.Find("MsgWaiting").Find("Waiting").gameObject;
+                    m_waitingAnim = m_waiting.transform;
                 }
                 return m_waiting;
             }
