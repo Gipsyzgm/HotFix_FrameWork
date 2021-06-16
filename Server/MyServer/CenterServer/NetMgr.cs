@@ -15,7 +15,6 @@ namespace CenterServer
 
         public LoginToCenterServer loginToCenterServer;
         public GameToCenterServer gameToCenterServer;
-
         public bool isLoginToCentert = false;
         public bool isGameToCenter = false;
         public NetMgr()
@@ -49,12 +48,10 @@ namespace CenterServer
             Thread.Sleep(1000/50);
             if (isLoginToCentert)
             {
-            
                 loginToCenterServer.Tick(100000);
             }
             if (isGameToCenter)
-            {
-             
+            {  
                 gameToCenterServer.Tick(100000);
             }
 
