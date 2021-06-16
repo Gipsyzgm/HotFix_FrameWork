@@ -33,7 +33,7 @@ namespace HotFix.Module.Login
                     msg.PlatformId = userName;
                     msg.Token = pwd;
                     msg.ServerId = server.ServerId;               
-                    msg.Lang = (int)HotMgr.Lang.LangType;
+                    msg.Lang = (int)HotMgr.Lang.LangType;                             
                     HotMgr.Net.Send(msg);
                     return true;
                 }
