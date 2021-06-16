@@ -57,11 +57,11 @@
 		"GMServerDB":{
 			"CodeType":"C#",
 			"DBFile":"$ProjectDir$/ProtoConfig/GM/GM数据库.xlsx",			
-			"OutDBTableClassDir":"$GMServerDir$/GMServer/XGame/DBMgr/Table",
-			"OutDBWriteTableFile":"$GMServerDir$/GMServer/XGame/DBMgr/DBWriteTable.cs",
-			"OutDBTableNameFile":"$GMServerDir$/GMServer/XGame/DBMgr/TableName.cs",
-			"OutDBTableDBIndexFile":"$GMServerDir$/GMServer/XGame/DBMgr/TableDBIndex.cs",
-			"OutDBGameTableClassDir":"$GMServerDir$/GMServer/XGame/DBMgr/GameTable"
+			"OutDBTableClassDir":"$GMServerDir$/GMServer/DBMgr/Table",
+			"OutDBWriteTableFile":"$GMServerDir$/GMServer/DBMgr/DBWriteTable.cs",
+			"OutDBTableNameFile":"$GMServerDir$/GMServer/DBMgr/TableName.cs",
+			"OutDBTableDBIndexFile":"$GMServerDir$/GMServer/DBMgr/TableDBIndex.cs",
+			"OutDBGameTableClassDir":"$GMServerDir$/GMServer/DBMgr/GameTable"
 		},
 		"GMServerAPI": {
 			"CodeType": "C#",
@@ -130,19 +130,6 @@
 				"ProtocolTypeFile": "$ServerDir$/$NameSpace$/Net/$ProtoType$Client/$ProtoType$ClientProtocol.cs",
 				"NetReceiveDir": "$ServerDir$/$NameSpace$/Net/$ProtoType$Client/Receive",
 				"NetActionFile": "$ServerDir$/$NameSpace$/Net/$ProtoType$Client/$ProtoType$ClientAction.cs"
-			},
-			{
-				"CodeType": "C#", /*序号Client 5  机器人*/
-				"NameSpace": "ClientRobot",
-				"ProtoType": "ClientToGame", /*客户端->游戏服 Client*/
-				"OutClassDir": "$ProjectDir$/Client/ClientRobot/Net/Proto",
-				"ProtocolTypeFile": "$ProjectDir$/Client/ClientRobot/Net/$ProtoType$ClientProtocol.cs",
-				"NetReceiveDir": "$ProjectDir$/Client/ClientRobot/Net/Receive",
-				"NetActionFile": "$ProjectDir$/Client/ClientRobot/Net/$ProtoType$ClientAction.cs",
-				"CommonProtoDir": "$ProjectDir$/Client/ClientRobot/Net/Common", /*共用Proto导出目录，没有指定就会不导出*/
-				"IsMultClinet": true, /*一个进程里是否同时存在多个客户端*/
-				"IsProtobuffForILR": false,
-				"IsClientDev": true
 			},
 			{
 				"CodeType": "C#", /*序号Client 6 GM*/
