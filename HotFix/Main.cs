@@ -13,6 +13,8 @@ namespace HotFix
 {
     public class Main
     {
+        public static bool IsDataEnd = false;
+        public static bool IsUIEnd = false;
         public static void Start()
         {
             Debug.Log("=====进入热更主程序,启动游戏!!!!=====");
@@ -35,21 +37,14 @@ namespace HotFix
             }
             //进入登录页面
             await HotMgr.UI.Show<LoginUI>();
-            //显示完游戏页面关掉主工程热更页面，即无缝切换。
+            //显示完登录页面关掉主工程热更页面，热更流程结束，即无缝切换。
             MainMgr.VersionCheck.CloseUpDataUI();
-            //到此主工程的所有流程结束。
-
-            //await LoginMgr.I.Login();
-
-            //Debug.LogError("开始连接服务器");
-            //await HotMgr.Net.Connect("127.0.0.1", 1337);
-            //byte[] data = System.Text.Encoding.Default.GetBytes("你好");
-            //for (int i = 0; i < 50; i++)
-            //{
-            //    HotMgr.Net.TestSend(data);
-            //}
-
-
+            //等待Login流程结束直到接收到必要的进入游戏的数据。     
+            await CTask.WaitUntil(() => { return IsDataEnd;});                   
+            await HotMgr.UI.Show<MainUI>();
+            //等待游戏主页打开之后关闭Login页面,到此主工程的所有流程结束。
+            HotMgr.UI.ClosePanel<LoginUI>();
+         
 
         }
 
