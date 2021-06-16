@@ -201,6 +201,7 @@
     <Compile Include="Net\Receive\PbActivity\Activity_Get.cs" />
     <Compile Include="Net\Receive\PbActivity\Activity_Info.cs" />
     <Compile Include="Net\Receive\PbActivity\Activiyt_AllOpen.cs" />
+    <Compile Include="Net\Receive\PbActivity\Activiyt_OpenOne.cs" />
     <Compile Include="Net\Receive\PbActivity\Activiyt_packFresh.cs" />
     <Compile Include="Net\Receive\PbActivity\Activiyt_packOpen.cs" />
     <Compile Include="Net\Receive\PbActivity\Activiyt_Updata.cs" />
@@ -209,6 +210,9 @@
     <Compile Include="Net\Receive\PbBag\Bag_sellEquip.cs" />
     <Compile Include="Net\Receive\PbBag\Bag_updateItemCount.cs" />
     <Compile Include="Net\Receive\PbBag\Bag_useItem.cs" />
+    <Compile Include="Net\Receive\PbBonus\Achievement_finish.cs" />
+    <Compile Include="Net\Receive\PbBonus\Achievement_GetAward.cs" />
+    <Compile Include="Net\Receive\PbBonus\Achievement_List.cs" />
     <Compile Include="Net\Receive\PbBonus\Ads_award.cs" />
     <Compile Include="Net\Receive\PbBonus\Bonus_info.cs" />
     <Compile Include="Net\Receive\PbBonus\Box_GetEquip.cs" />
@@ -219,6 +223,10 @@
     <Compile Include="Net\Receive\PbBonus\Circle_Get.cs" />
     <Compile Include="Net\Receive\PbBonus\Circle_GetBox.cs" />
     <Compile Include="Net\Receive\PbBonus\FloatBox_award.cs" />
+    <Compile Include="Net\Receive\PbBonus\Gem_Change.cs" />
+    <Compile Include="Net\Receive\PbBonus\Gem_FreshChange.cs" />
+    <Compile Include="Net\Receive\PbBonus\Gem_GetFive.cs" />
+    <Compile Include="Net\Receive\PbBonus\Gem_GetOne.cs" />
     <Compile Include="Net\Receive\PbBonus\Hang_Get.cs" />
     <Compile Include="Net\Receive\PbBonus\Hang_Open.cs" />
     <Compile Include="Net\Receive\PbBonus\LevelAward_get.cs" />
@@ -237,6 +245,8 @@
     <Compile Include="Net\Receive\PbEquipUp\Equip_merge.cs" />
     <Compile Include="Net\Receive\PbEquipUp\Equip_Resolve.cs" />
     <Compile Include="Net\Receive\PbEquipUp\Equip_streng.cs" />
+    <Compile Include="Net\Receive\PbEquipUp\Gems_Inlay.cs" />
+    <Compile Include="Net\Receive\PbEquipUp\Gems_resolve.cs" />
     <Compile Include="Net\Receive\PbError\Error_code.cs" />
     <Compile Include="Net\Receive\PbHero\Hero_break.cs" />
     <Compile Include="Net\Receive\PbHero\Hero_Change.cs" />
