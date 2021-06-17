@@ -11,6 +11,7 @@ using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
@@ -216,8 +217,12 @@ namespace HotFix
         {
             ExictPanel.Remove(item);
         }
-       
 
+        public void CloseAll() 
+        {
+            for (int i = Paneldict.Count; i-- > 0;)
+                Paneldict.Values.ElementAt(i).CloseSelf();
+            Paneldict.Clear();
+        }
     }
-
 }
