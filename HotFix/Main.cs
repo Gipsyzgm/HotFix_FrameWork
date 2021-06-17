@@ -30,21 +30,31 @@ namespace HotFix
             //热更的初始化
             await HotMgr.Initialize();              
             HotMgr.Sound.PlayMusic(SoundName.BGM_EmptyPort);
-            //如果需要显示多个服务器，需要先获取服务器列表
-            if (AppSetting.IsMoreServers)
+            //如果不是单机模式
+            if (AppSetting.GameType != GameType.NoServers)
             {
-                ServerListMgr.I.ReqServerList().Run(); //请求服务器列表                
+                //如果需要显示多个服务器，需要先获取服务器列表
+                if (AppSetting.GameType == GameType.MoreServers)
+                {
+                    ServerListMgr.I.ReqServerList().Run(); //请求服务器列表                
+                }
+                //进入登录页面
+                await HotMgr.UI.Show<LoginUI>();
+                //显示完登录页面关掉主工程热更页面，热更流程结束，即无缝切换。
+                MainMgr.VersionCheck.CloseUpDataUI();
+                //等待Login流程结束直到接收到必要的进入游戏的数据。     
+                await CTask.WaitUntil(() => { return IsDataEnd; });
+                await HotMgr.UI.Show<MainUI>();
+                //等待游戏主页打开之后关闭Login页面,到此主工程的所有流程结束。
+                HotMgr.UI.ClosePanel<LoginUI>();
             }
-            //进入登录页面
-            await HotMgr.UI.Show<LoginUI>();
-            //显示完登录页面关掉主工程热更页面，热更流程结束，即无缝切换。
-            MainMgr.VersionCheck.CloseUpDataUI();
-            //等待Login流程结束直到接收到必要的进入游戏的数据。     
-            await CTask.WaitUntil(() => { return IsDataEnd;});                   
-            await HotMgr.UI.Show<MainUI>();
-            //等待游戏主页打开之后关闭Login页面,到此主工程的所有流程结束。
-            HotMgr.UI.ClosePanel<LoginUI>();
-         
+            else 
+            {
+                //如果是单机模式，直接进入游戏场景
+                await HotMgr.UI.Show<MainUI>();
+                MainMgr.VersionCheck.CloseUpDataUI();
+            }
+
 
         }
 
