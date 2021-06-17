@@ -19,9 +19,9 @@ namespace HotFix
         public static TimerMgr Timer;
         /// <summary>多语言管理器</summary>
         public static LangMgr Lang;
-        ///// <summary>网络消息管理器</summary>
+        /// <summary>网络消息管理器</summary>
         public static NetMgr Net;
-        ///// <summary>与服务器相关的时间管理器</summary>
+        /// <summary>与服务器相关的时间管理器</summary>
         public static TimeMgr TimeMgr;
         /// <summary>配置表管理器</summary>
         public static ConfigMgr Config;
