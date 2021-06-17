@@ -17,8 +17,7 @@ namespace HotFix
     {
         Client _socket;
         private bool _isAlertMsg = true;
-        public const int MaxMessageSize = 16 * 1024;
-        //断线是否走断线重连
+        public const int MaxMessageSize = 16 * 1024; 
         public NetMgr()
         {
             _socket = new Client(MaxMessageSize);
