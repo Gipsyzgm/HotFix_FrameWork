@@ -12,13 +12,17 @@ namespace HotFix
     public class PlayerMgr : BaseDataMgr<PlayerMgr>, IDisposable
     {
         /// <summary>
-        /// 当前角色对像
+        /// 当前角色数据
         /// </summary>
         public static PlayerData MainPlayer;
-
-
+        /// <summary>
+        /// 当前角色战斗数据
+        /// </summary>
         public static PlayerWarData PlayerWarData;
 
+        /// <summary>
+        /// 如果需要的话，玩家的唯一标识ID
+        /// </summary>
         public static string UID = "000";
 
         //保存玩家数据
