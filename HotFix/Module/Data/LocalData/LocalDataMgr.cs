@@ -25,7 +25,12 @@ namespace HotFix
                 };
                 IsNewPlayer = true;
                 player.Save();
-            }                
+            }
+            //给玩家数据赋值
+            PlayerMgr.MainPlayer = new PlayerData(player);
+            PlayerMgr.PlayerWarData = new PlayerWarData();
+
+
             if (IsNewPlayer) //加一个新装备
             {
                 ItemMgr.I.AddNewItem(4001, 10, EItemEquipPlace.OutWeapon, false); //加一个外刀

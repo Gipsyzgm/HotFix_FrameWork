@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace HotFix
 {
+    //主要处理在游戏过程中玩家的游戏数据
     public class PlayerData
     {
         public TPlayer Data { get; }
@@ -168,114 +169,17 @@ namespace HotFix
 
         }
 
-        /// <summary>最高通关副本章节Id</summary>
-        public int FBChapterId
-        {
-            get => Data.FBChapterId;
-            set => Data.FBChapterId = value;
-        }
-
-        /// <summary>最高通关副本关卡数</summary>
-        public int FBLevelNo
-        {
-            get => Data.FBLevelNo;
-            set => Data.FBLevelNo = value;
-        }
+       
 
         public PlayerData(TPlayer data)
         {
             Data = data;
-            MaxLevel = (int)Mgr.Config.dicPlayerExp.Keys.Last(); //最大等级
+            MaxLevel = (int)HotFix.Config.dicPlayerExp.Keys.Last(); //最大等级
         }
 
 
-        /// <summary>
-        /// 增加队伍经验
-        /// </summary>
-        /// <param name="val"></param>
-        public int AddExp(int val)
-        {
-            if (val <= 0) return 0;
-            int leftExp = val;
-            PlayerExpConfig config;
-            int lv = Level;
-            int exp = Exp;
-
-            while (leftExp > 0)
-            {
-                if (Mgr.Config.dicPlayerExp.TryGetValue(lv, out config))
-                {
-                    exp = exp + leftExp;
-                    if (exp >= config.exp) //升级了
-                    {
-                        leftExp = exp - config.exp;
-                        exp = 0;
-                        lv += 1;
-                    }
-                    else
-                        leftExp = 0;
-                }
-                else
-                {
-                    lv = lv - 1;
-                    exp = Mgr.Config.dicPlayerExp[lv].exp;
-                    leftExp = 0;
-                }
-            }
-
-            int addLv = lv - Level;
-            if (Level != lv || Exp != exp) //等级发生变化
-            {
-                if (Level != lv)
-                    Level = lv;
-                Exp = exp;
-                ExpMax = Mgr.Config.dicPlayerExp[Level].exp;
-                MaxLevel = Mgr.Config.dicPlayerExp.Values.Last().level;
-            }
-
-            return addLv; //增加等级
-        }
-
-        /// <summary>
-        /// 设置通关的章节和编号
-        /// </summary>
-        /// <param name="chapterId">章节Id</param>
-        /// <param name="no">通过编号</param>
-        /// <returns></returns>
-        public bool SetChapterPass(int chapterId, int no)
-        {
-            if (Mgr.Config.dicFBChapter.TryGetValue(chapterId, out var ch))
-            {
-                //没开放的关卡不记录
-                if (!ch.isOpen)
-                {
-                    WarMapMgr.I.ChapterId--;
-                    chapterId--;
-                    return false;
-                }
-            }
-            else
-            {   //没有对应章节不记录
-                chapterId--;
-                WarMapMgr.I.ChapterId--;
-            }
-            if (chapterId > FBChapterId)
-            {
-
-                FBChapterId = chapterId;
-                FBLevelNo = no;
-                //PlayerMgr.I.SavePlayerData();
-                return true;
-            }
-            if (FBChapterId == chapterId && no > FBLevelNo)
-            {
-                FBLevelNo = no;
-                return true;
-            }
-
-
-            return false;
-        }
+      
+       
 
         public void Dispose()
         {
