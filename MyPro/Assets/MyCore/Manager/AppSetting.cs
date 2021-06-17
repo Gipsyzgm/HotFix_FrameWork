@@ -34,8 +34,7 @@ public class AppSetting
     /// <summary>
     /// 是否多服务器,是否可选服务器
     /// </summary>
-    public static bool IsMoreServers = true;
-
+    public static GameType GameType = GameType.SingleServer;
 
     /// <summary>
     /// ILR逻辑代码目录,只用于编辑环境
@@ -128,4 +127,14 @@ public enum AppServerType
     LocalServer,
     //外网测试服
     TestServer,
+}
+
+public enum GameType
+{
+    //单一服务器
+    SingleServer = 0,
+    //多服务器模式
+    MoreServers = 1,
+    //单机模式
+    NoServers =2,
 }

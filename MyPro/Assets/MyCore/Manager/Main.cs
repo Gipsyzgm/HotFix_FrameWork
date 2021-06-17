@@ -23,7 +23,7 @@ public class Main : MonoBehaviour
     /// <summary>
     /// 是否使用多服务器模式
     /// </summary>
-    public bool IsMoreServers = true;
+    public GameType IsMoreServers;
 
     bool IsStart = false;
     void Awake()
@@ -41,7 +41,7 @@ public class Main : MonoBehaviour
             AppSetting.ILRNotABTest = ILRNotABTest;
             Debug.unityLogger.logEnabled = true;
         }
-        AppSetting.IsMoreServers = IsMoreServers;
+        AppSetting.GameType = IsMoreServers;
         SetHttpServer();
         MainMgr.Initialize();
         StartTask().Run();
