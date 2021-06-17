@@ -12,6 +12,7 @@ namespace  HotFix.Net
             //收到的数据
             SC_login_verify msg = e.Msg as SC_login_verify;
             Debug.Log("收到登录数据");
+            HotMgr.TimeMgr.UpdateServerTimestamp(msg.ServerTime);
             switch (msg.Result)
             {
                 case Enum_verify_result.VrUnknown:
