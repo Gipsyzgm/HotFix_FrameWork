@@ -30,7 +30,7 @@ namespace HotFix
         void SetLoginState()
         {
             //是否需要选择服务器
-            ChangServerBtn.gameObject.SetActive(AppSetting.IsMoreServers);
+            ChangServerBtn.gameObject.SetActive(AppSetting.GameType==GameType.MoreServers);
             if (AppSetting.PlatformType == EPlatformType.AccountPwd)
             {
                 PasswordLogin.SetActive(!LoginMgr.I.IsLogin);
@@ -55,7 +55,7 @@ namespace HotFix
         /// </summary>
         public void SetServerInfo()
         {
-            if (AppSetting.IsMoreServers)
+            if (AppSetting.GameType == GameType.MoreServers)
             {   
                 //多服则显示服务器信息
                 ServerItemData server = ServerListMgr.I.GetSelectServer();
@@ -80,8 +80,7 @@ namespace HotFix
             {
                 //单服只显示开始游戏
                 GoSelServer.transform.GetChild(0).gameObject.SetActive(false);
-            }
-            
+            }            
         }
 
         /// <summary>

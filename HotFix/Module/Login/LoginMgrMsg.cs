@@ -16,7 +16,7 @@ namespace HotFix.Module.Login
         public async CTask<bool> Login(string userName, string pwd)
         {
             //如果是走多服务器模式,直接连接对应服务器提供的Ip地址
-            if (AppSetting.IsMoreServers)
+            if (AppSetting.GameType == GameType.MoreServers)
             {
                 ServerItemData server = ServerListMgr.I.GetSelectServer();
                 if (server == null) 
