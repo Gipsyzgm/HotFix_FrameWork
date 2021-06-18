@@ -8,6 +8,8 @@ using UnityEngine;
 
 namespace HotFix
 {
+    //所有需要存在本地的数据的基类，可根据自己的需求扩展类型。
+    //理论上单机数据有玩家和道具数据可以了。
     public class BaseTable
     {
         /// <summary>

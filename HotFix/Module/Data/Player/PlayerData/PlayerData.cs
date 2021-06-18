@@ -144,32 +144,53 @@ namespace HotFix
             }
         }
 
-        /// <summary>最大体力</summary>
-        public int PowerMax = 20;
-
-        /// <summary>体力进度</summary>
-        public float PowerProgress => Power / (float)PowerMax;
-
-
-        public int PowerRecoverTime = 600;
-
-        /// <summary>下次恢复副本行动点时间戳</summary>
-        public int NextAddPowerTime
+        /// <summary>
+        /// 增加队伍经验
+        /// </summary>
+        /// <param name="val"></param>
+        public int AddExp(int val)
         {
-            get => Data.NextAddPowerTime;
+            if (val <= 0) return 0;
+            int leftExp = val;
+            PlayerExpConfig config;
+            int lv = Level;
+            int exp = Exp;
 
-            set
+            while (leftExp > 0)
             {
-                if (Data.NextAddPowerTime != value)
+                if (HotMgr.Config.dicPlayerExp.TryGetValue(lv, out config))
                 {
-                    Data.NextAddPowerTime = value;
+                    exp = exp + leftExp;
+                    if (exp >= config.exp) //升级了
+                    {
+                        leftExp = exp - config.exp;
+                        exp = 0;
+                        lv += 1;
+                    }
+                    else
+                        leftExp = 0;
                 }
-                PlayerMgr.I.SavePlayerData();
+                else
+                {
+                    lv = lv - 1;
+                    exp = Mgr.Config.dicPlayerExp[lv].exp;
+                    leftExp = 0;
+                }
             }
 
+            int addLv = lv - Level;
+            if (Level != lv || Exp != exp) //等级发生变化
+            {
+                if (Level != lv)
+                    Level = lv;
+                Exp = exp;
+                MaxLevel = Mgr.Config.dicPlayerExp.Values.Last().level;
+            }
+            return addLv; //增加等级
         }
 
-       
+
+
 
         public PlayerData(TPlayer data)
         {
@@ -178,9 +199,7 @@ namespace HotFix
         }
 
 
-      
-       
-
+   
         public void Dispose()
         {
             //PlayerPrefs.SetInt("HeroSortType", (int)EHeroSortType.Power);
