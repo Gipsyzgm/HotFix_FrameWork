@@ -27,7 +27,7 @@ namespace HotFix
     {
         /// <summary>模板Id</summary>
         public int TemplId;
-        /// <summary>装备唯一Id/联网需要区分不同玩家的不同装备时用</summary>
+        /// <summary>装备唯一Id/联网需要区分玩家的相同TempID的不同装备时用</summary>
         public int SId;
         /// <summary>星级</summary>
         public int Star = 1;
