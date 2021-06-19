@@ -33,17 +33,17 @@ namespace HotFix
             ItemMgr.I.SetData(LoadCreate<TItems>());
             if (IsNewPlayer) //加一个新装备
             {
-                ItemMgr.I.AddNewItem(4001, 10, EItemEquipPlace.OutWeapon, false); //加一个外刀             
-                ItemMgr.I.AddNewItem(2001, 1, EItemEquipPlace.Hero, false);  //增加一个英雄面具              
-                ItemMgr.I.AddNewItem(5004, 1, EItemEquipPlace.InnerWeapon, false); //加一个内刀   
-                ItemMgr.I.AddNewItem(3001, 1, EItemEquipPlace.None, false); //增加宠物A              
+                ItemMgr.I.AddNewItem(4001, 10,0, EItemEquipPlace.OutWeapon, false); //加一个外刀             
+                ItemMgr.I.AddNewItem(2001, 1,0, EItemEquipPlace.Hero, false);  //增加一个英雄面具              
+                ItemMgr.I.AddNewItem(5004, 1,0, EItemEquipPlace.InnerWeapon, false); //加一个内刀   
+                ItemMgr.I.AddNewItem(3001, 1,0, EItemEquipPlace.None, false); //增加宠物A              
                 if (Application.isEditor)
                 {
-                    ItemMgr.I.AddNewItem(1, 1000000, EItemEquipPlace.None, false); //增加金币
+                    ItemMgr.I.AddNewItem(1, 1000000,0, EItemEquipPlace.None, false); //增加金币
                 }
                 else
                 {
-                    ItemMgr.I.AddNewItem(1, 1000, EItemEquipPlace.None, false); //增加金币
+                    ItemMgr.I.AddNewItem(1, 1000,0, EItemEquipPlace.None, false); //增加金币
                 }
             }
             PlayerMgr.PlayerWarData.Recount();
