@@ -17,7 +17,7 @@ namespace HotFix
         {
             if (tempId == 0) return null;
             ItemConfig config;
-            if (!HotMgr.Config.dicItem.TryGetValue(tempId, out config))
+            if (!HotMgr.Config.Item.TryGetValue(tempId, out config))
                 Debug.LogError($"物品[{tempId}]未找到模板配置!!");
             return config;
         }
@@ -47,21 +47,9 @@ namespace HotFix
             ItemConfig config = GetItemConfig((int)type);
             return config.name.Value;
         }
-
-        ///// <summary>
-        ///// 获取玩家道具物品数量
-        ///// </summary>
-        ///// <returns></returns>+
-        //public static int GetItemPropNum(int templId)
-        //{
-        //    ItemProp item;
-        //    if (ItemMgr.I.dicItemProp.TryGetValue(templId, out item))
-        //        return item.Num;
-        //    return 0;
-        //}
-
+     
         /// <summary>
-        /// 跟据物品品质获取物品边框
+        /// 跟据物品品质获取物品边框,需要有对应名称的图片
         /// </summary>
         /// <param name="quality"></param>
         public static string GetItemBK(int quality)

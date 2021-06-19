@@ -107,20 +107,20 @@ namespace HotFix
         }
              
         //是否达到最高等级最高星级
-        public bool IsMaxStarLevel=> StarLevelConfig.costItem == 0;
+        //public bool IsMaxStarLevel=> StarLevelConfig.costItem == 0;
 
         //是否达到当前星级最高等级
-        public bool IsMaxLevel=> Level >= StarLevelConfig.lvMax;
+        //public bool IsMaxLevel=> Level >= StarLevelConfig.lvMax;
         //升级花费
-        public int LevelUpCost => StarLevelConfig.costMoney + StarLevelConfig.costMoneyAdd * (Level - 1);
+        //public int LevelUpCost => StarLevelConfig.costMoney + StarLevelConfig.costMoneyAdd * (Level - 1);
 
         PlayerWarData warData = PlayerMgr.PlayerWarData;
 
         //执行升级
         public void LevelUp()
         {
-            if (IsMaxLevel) return;
-            PlayerMgr.MainPlayer.Gold -= LevelUpCost;
+            //if (IsMaxLevel) return;
+            //PlayerMgr.MainPlayer.Gold -= LevelUpCost;
             Level += 1;
             setAttribs();
             ItemMgr.I.SaveData();
@@ -131,8 +131,8 @@ namespace HotFix
         //执行升星
         public void StartUp()
         {
-            if (IsMaxStarLevel) return;
-            Count -= StarLevelConfig.costItem;
+            //if (IsMaxStarLevel) return;
+            //Count -= StarLevelConfig.costItem;
             Star += 1;
             Level = 1; //升完星后变成1级
             setStarLevelConfig();
