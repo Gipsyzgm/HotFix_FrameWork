@@ -226,15 +226,24 @@ namespace HotFix
 
 
         /// <summary>
-        /// 移除物体
+        /// 移除物品
         /// </summary>
         /// <param name="id"></param>
         /// <param name="type"></param>
         public void RemoveItem(int TempID)
         {
+            if (dicItemProp.TryGetValue(TempID, out var itemProp))
+            {
+                dicItemProp.Remove(TempID);
+                return;
+            }
+            if (dicItemEquip.TryGetValue(TempID, out var itemEquip))
+            {
+                dicItemEquip.Remove(TempID);
+                return;
+            }
 
-           
-            
+            Debug.LogError("未找到对应物品数据！");
         }
 
 
