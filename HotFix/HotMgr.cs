@@ -25,11 +25,9 @@ namespace HotFix
         public static TimeMgr TimeMgr;
         /// <summary>配置表管理器</summary>
         public static ConfigMgr Config;
-      
         ///// <summary>特效管理器</summary>
         //public static EffectMgr Effect;
-
-        ///// <summary>声音管理器</summary>
+        ///// <summary>特效管理器</summary>
         //public static UIItemEffectMgr UIItemEffect;
 
 
