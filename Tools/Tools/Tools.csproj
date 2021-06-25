@@ -110,7 +110,6 @@
       <DependentUpon>CDKeyForm.cs</DependentUpon>
     </Compile>
     <Compile Include="CDKey\CDKeyHelper.cs" />
-    <Compile Include="GMExport\ClassField.cs" />
     <Compile Include="DBExport\DBExportForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -136,6 +135,7 @@
     <Compile Include="ExcelExport\SQLiteServer.cs" />
     <Compile Include="Glob.cs" />
     <Compile Include="GMExport\APIExportHelper.cs" />
+    <Compile Include="GMExport\ClassField.cs" />
     <Compile Include="GMExport\GMExportForm.cs">
       <SubType>Form</SubType>
     </Compile>
