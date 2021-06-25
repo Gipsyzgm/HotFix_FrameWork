@@ -462,7 +462,7 @@ MonoBehaviour:
   EditorVerCheck: 1
   ServerType: 1
   ILRNotABTest: 1
-  IsMoreServers: 0
+  IsMoreServers: 2
 --- !u!4 &808457578
 Transform:
   m_ObjectHideFlags: 0
