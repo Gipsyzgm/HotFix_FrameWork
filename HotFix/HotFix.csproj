@@ -340,6 +340,7 @@
     <Compile Include="Net\Receive\PbWar\War_worldBossFbGet.cs" />
     <Compile Include="Net\Receive\PbWar\War_worldBossFbInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
