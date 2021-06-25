@@ -1,0 +1,632 @@
+DateTime:2021-05-24 11:41:22 
+ Newtonsoft.Json.JsonSerializationException: No JSON content found and type 'LoginServer.Http.LoginArgsData' is not nullable. Path '', line 0, position 0.
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at LoginServer.Http.LoginArgsData.Deserialize(String data) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Http\Action\Msg\LoginArgsData.cs:line 54
+   at LoginServer.Net.LoginToCenterClientAction.Get_GameServer(LoginToCenterClientMessage e) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Net\LoginToCenterClient\Receive\PbGetServer\Get_GameServer.cs:line 33   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at LoginServer.Http.LoginArgsData.Deserialize(String data) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Http\Action\Msg\LoginArgsData.cs:line 54
+   at LoginServer.Net.LoginToCenterClientAction.Get_GameServer(LoginToCenterClientMessage e) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Net\LoginToCenterClient\Receive\PbGetServer\Get_GameServer.cs:line 33 
+
+DateTime:2021-05-24 11:41:22 
+ Newtonsoft.Json.JsonSerializationException: No JSON content found and type 'LoginServer.Http.LoginArgsData' is not nullable. Path '', line 0, position 0.
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at LoginServer.Http.LoginArgsData.Deserialize(String data) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Http\Action\Msg\LoginArgsData.cs:line 54
+   at LoginServer.Net.LoginToCenterClientAction.Get_GameServer(LoginToCenterClientMessage e) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Net\LoginToCenterClient\Receive\PbGetServer\Get_GameServer.cs:line 33   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at LoginServer.Http.LoginArgsData.Deserialize(String data) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Http\Action\Msg\LoginArgsData.cs:line 54
+   at LoginServer.Net.LoginToCenterClientAction.Get_GameServer(LoginToCenterClientMessage e) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Net\LoginToCenterClient\Receive\PbGetServer\Get_GameServer.cs:line 33 
+
+DateTime:2021-05-24 11:41:22 
+ Newtonsoft.Json.JsonSerializationException: No JSON content found and type 'LoginServer.Http.LoginArgsData' is not nullable. Path '', line 0, position 0.
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at LoginServer.Http.LoginArgsData.Deserialize(String data) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Http\Action\Msg\LoginArgsData.cs:line 54
+   at LoginServer.Net.LoginToCenterClientAction.Get_GameServer(LoginToCenterClientMessage e) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Net\LoginToCenterClient\Receive\PbGetServer\Get_GameServer.cs:line 33   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at LoginServer.Http.LoginArgsData.Deserialize(String data) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Http\Action\Msg\LoginArgsData.cs:line 54
+   at LoginServer.Net.LoginToCenterClientAction.Get_GameServer(LoginToCenterClientMessage e) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Net\LoginToCenterClient\Receive\PbGetServer\Get_GameServer.cs:line 33 
+
+DateTime:2021-05-24 11:41:22 
+ Newtonsoft.Json.JsonSerializationException: No JSON content found and type 'LoginServer.Http.LoginArgsData' is not nullable. Path '', line 0, position 0.
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at LoginServer.Http.LoginArgsData.Deserialize(String data) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Http\Action\Msg\LoginArgsData.cs:line 54
+   at LoginServer.Net.LoginToCenterClientAction.Get_GameServer(LoginToCenterClientMessage e) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Net\LoginToCenterClient\Receive\PbGetServer\Get_GameServer.cs:line 33   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at LoginServer.Http.LoginArgsData.Deserialize(String data) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Http\Action\Msg\LoginArgsData.cs:line 54
+   at LoginServer.Net.LoginToCenterClientAction.Get_GameServer(LoginToCenterClientMessage e) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Net\LoginToCenterClient\Receive\PbGetServer\Get_GameServer.cs:line 33 
+
+DateTime:2021-05-24 11:41:22 
+ Newtonsoft.Json.JsonSerializationException: No JSON content found and type 'LoginServer.Http.LoginArgsData' is not nullable. Path '', line 0, position 0.
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at LoginServer.Http.LoginArgsData.Deserialize(String data) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Http\Action\Msg\LoginArgsData.cs:line 54
+   at LoginServer.Net.LoginToCenterClientAction.Get_GameServer(LoginToCenterClientMessage e) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Net\LoginToCenterClient\Receive\PbGetServer\Get_GameServer.cs:line 33   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at LoginServer.Http.LoginArgsData.Deserialize(String data) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Http\Action\Msg\LoginArgsData.cs:line 54
+   at LoginServer.Net.LoginToCenterClientAction.Get_GameServer(LoginToCenterClientMessage e) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Net\LoginToCenterClient\Receive\PbGetServer\Get_GameServer.cs:line 33 
+
+DateTime:2021-05-24 11:42:04 
+ Newtonsoft.Json.JsonSerializationException: No JSON content found and type 'LoginServer.Http.LoginArgsData' is not nullable. Path '', line 0, position 0.
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at LoginServer.Http.LoginArgsData.Deserialize(String data) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Http\Action\Msg\LoginArgsData.cs:line 54
+   at LoginServer.Net.LoginToCenterClientAction.Get_GameServer(LoginToCenterClientMessage e) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Net\LoginToCenterClient\Receive\PbGetServer\Get_GameServer.cs:line 33   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at LoginServer.Http.LoginArgsData.Deserialize(String data) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Http\Action\Msg\LoginArgsData.cs:line 54
+   at LoginServer.Net.LoginToCenterClientAction.Get_GameServer(LoginToCenterClientMessage e) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Net\LoginToCenterClient\Receive\PbGetServer\Get_GameServer.cs:line 33 
+
+DateTime:2021-05-24 11:42:04 
+ Newtonsoft.Json.JsonSerializationException: No JSON content found and type 'LoginServer.Http.LoginArgsData' is not nullable. Path '', line 0, position 0.
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at LoginServer.Http.LoginArgsData.Deserialize(String data) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Http\Action\Msg\LoginArgsData.cs:line 54
+   at LoginServer.Net.LoginToCenterClientAction.Get_GameServer(LoginToCenterClientMessage e) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Net\LoginToCenterClient\Receive\PbGetServer\Get_GameServer.cs:line 33   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at LoginServer.Http.LoginArgsData.Deserialize(String data) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Http\Action\Msg\LoginArgsData.cs:line 54
+   at LoginServer.Net.LoginToCenterClientAction.Get_GameServer(LoginToCenterClientMessage e) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Net\LoginToCenterClient\Receive\PbGetServer\Get_GameServer.cs:line 33 
+
+DateTime:2021-05-24 11:42:04 
+ Newtonsoft.Json.JsonSerializationException: No JSON content found and type 'LoginServer.Http.LoginArgsData' is not nullable. Path '', line 0, position 0.
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at LoginServer.Http.LoginArgsData.Deserialize(String data) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Http\Action\Msg\LoginArgsData.cs:line 54
+   at LoginServer.Net.LoginToCenterClientAction.Get_GameServer(LoginToCenterClientMessage e) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Net\LoginToCenterClient\Receive\PbGetServer\Get_GameServer.cs:line 33   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at LoginServer.Http.LoginArgsData.Deserialize(String data) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Http\Action\Msg\LoginArgsData.cs:line 54
+   at LoginServer.Net.LoginToCenterClientAction.Get_GameServer(LoginToCenterClientMessage e) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Net\LoginToCenterClient\Receive\PbGetServer\Get_GameServer.cs:line 33 
+
+DateTime:2021-05-24 11:42:04 
+ Newtonsoft.Json.JsonSerializationException: No JSON content found and type 'LoginServer.Http.LoginArgsData' is not nullable. Path '', line 0, position 0.
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at LoginServer.Http.LoginArgsData.Deserialize(String data) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Http\Action\Msg\LoginArgsData.cs:line 54
+   at LoginServer.Net.LoginToCenterClientAction.Get_GameServer(LoginToCenterClientMessage e) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Net\LoginToCenterClient\Receive\PbGetServer\Get_GameServer.cs:line 33   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at LoginServer.Http.LoginArgsData.Deserialize(String data) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Http\Action\Msg\LoginArgsData.cs:line 54
+   at LoginServer.Net.LoginToCenterClientAction.Get_GameServer(LoginToCenterClientMessage e) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Net\LoginToCenterClient\Receive\PbGetServer\Get_GameServer.cs:line 33 
+
+DateTime:2021-05-24 11:46:23 
+ Newtonsoft.Json.JsonSerializationException: No JSON content found and type 'LoginServer.Http.LoginArgsData' is not nullable. Path '', line 0, position 0.
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at LoginServer.Http.LoginArgsData.Deserialize(String data) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Http\Action\Msg\LoginArgsData.cs:line 54
+   at LoginServer.Net.LoginToCenterClientAction.Get_GameServer(LoginToCenterClientMessage e) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Net\LoginToCenterClient\Receive\PbGetServer\Get_GameServer.cs:line 33   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at LoginServer.Http.LoginArgsData.Deserialize(String data) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Http\Action\Msg\LoginArgsData.cs:line 54
+   at LoginServer.Net.LoginToCenterClientAction.Get_GameServer(LoginToCenterClientMessage e) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Net\LoginToCenterClient\Receive\PbGetServer\Get_GameServer.cs:line 33 
+
+DateTime:2021-05-24 11:46:23 
+ Newtonsoft.Json.JsonSerializationException: No JSON content found and type 'LoginServer.Http.LoginArgsData' is not nullable. Path '', line 0, position 0.
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at LoginServer.Http.LoginArgsData.Deserialize(String data) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Http\Action\Msg\LoginArgsData.cs:line 54
+   at LoginServer.Net.LoginToCenterClientAction.Get_GameServer(LoginToCenterClientMessage e) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Net\LoginToCenterClient\Receive\PbGetServer\Get_GameServer.cs:line 33   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at LoginServer.Http.LoginArgsData.Deserialize(String data) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Http\Action\Msg\LoginArgsData.cs:line 54
+   at LoginServer.Net.LoginToCenterClientAction.Get_GameServer(LoginToCenterClientMessage e) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Net\LoginToCenterClient\Receive\PbGetServer\Get_GameServer.cs:line 33 
+
+DateTime:2021-05-24 11:48:31 
+ Newtonsoft.Json.JsonSerializationException: No JSON content found and type 'LoginServer.Http.LoginArgsData' is not nullable. Path '', line 0, position 0.
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at LoginServer.Http.LoginArgsData.Deserialize(String data) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Http\Action\Msg\LoginArgsData.cs:line 54
+   at LoginServer.Net.LoginToCenterClientAction.Get_GameServer(LoginToCenterClientMessage e) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Net\LoginToCenterClient\Receive\PbGetServer\Get_GameServer.cs:line 33   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at LoginServer.Http.LoginArgsData.Deserialize(String data) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Http\Action\Msg\LoginArgsData.cs:line 54
+   at LoginServer.Net.LoginToCenterClientAction.Get_GameServer(LoginToCenterClientMessage e) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Net\LoginToCenterClient\Receive\PbGetServer\Get_GameServer.cs:line 33 
+
+DateTime:2021-05-24 11:48:31 
+ Newtonsoft.Json.JsonSerializationException: No JSON content found and type 'LoginServer.Http.LoginArgsData' is not nullable. Path '', line 0, position 0.
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at LoginServer.Http.LoginArgsData.Deserialize(String data) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Http\Action\Msg\LoginArgsData.cs:line 54
+   at LoginServer.Net.LoginToCenterClientAction.Get_GameServer(LoginToCenterClientMessage e) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Net\LoginToCenterClient\Receive\PbGetServer\Get_GameServer.cs:line 33   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at LoginServer.Http.LoginArgsData.Deserialize(String data) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Http\Action\Msg\LoginArgsData.cs:line 54
+   at LoginServer.Net.LoginToCenterClientAction.Get_GameServer(LoginToCenterClientMessage e) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Net\LoginToCenterClient\Receive\PbGetServer\Get_GameServer.cs:line 33 
+
+DateTime:2021-05-24 11:52:06 
+ Newtonsoft.Json.JsonSerializationException: No JSON content found and type 'LoginServer.Http.LoginArgsData' is not nullable. Path '', line 0, position 0.
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at LoginServer.Http.LoginArgsData.Deserialize(String data) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Http\Action\Msg\LoginArgsData.cs:line 54
+   at LoginServer.Net.LoginToCenterClientAction.Get_GameServer(LoginToCenterClientMessage e) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Net\LoginToCenterClient\Receive\PbGetServer\Get_GameServer.cs:line 33   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at LoginServer.Http.LoginArgsData.Deserialize(String data) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Http\Action\Msg\LoginArgsData.cs:line 54
+   at LoginServer.Net.LoginToCenterClientAction.Get_GameServer(LoginToCenterClientMessage e) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Net\LoginToCenterClient\Receive\PbGetServer\Get_GameServer.cs:line 33 
+
+DateTime:2021-05-24 11:52:06 
+ Newtonsoft.Json.JsonSerializationException: No JSON content found and type 'LoginServer.Http.LoginArgsData' is not nullable. Path '', line 0, position 0.
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at LoginServer.Http.LoginArgsData.Deserialize(String data) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Http\Action\Msg\LoginArgsData.cs:line 54
+   at LoginServer.Net.LoginToCenterClientAction.Get_GameServer(LoginToCenterClientMessage e) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Net\LoginToCenterClient\Receive\PbGetServer\Get_GameServer.cs:line 33   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at LoginServer.Http.LoginArgsData.Deserialize(String data) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Http\Action\Msg\LoginArgsData.cs:line 54
+   at LoginServer.Net.LoginToCenterClientAction.Get_GameServer(LoginToCenterClientMessage e) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Net\LoginToCenterClient\Receive\PbGetServer\Get_GameServer.cs:line 33 
+
+DateTime:2021-05-24 12:05:46 
+ Newtonsoft.Json.JsonSerializationException: No JSON content found and type 'LoginServer.Http.LoginArgsData' is not nullable. Path '', line 0, position 0.
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at LoginServer.Http.LoginArgsData.Deserialize(String data) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Http\Action\Msg\LoginArgsData.cs:line 54
+   at LoginServer.Net.LoginToCenterClientAction.Get_GameServer(LoginToCenterClientMessage e) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Net\LoginToCenterClient\Receive\PbGetServer\Get_GameServer.cs:line 33   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at LoginServer.Http.LoginArgsData.Deserialize(String data) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Http\Action\Msg\LoginArgsData.cs:line 54
+   at LoginServer.Net.LoginToCenterClientAction.Get_GameServer(LoginToCenterClientMessage e) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Net\LoginToCenterClient\Receive\PbGetServer\Get_GameServer.cs:line 33 
+
+DateTime:2021-05-24 12:05:46 
+ Newtonsoft.Json.JsonSerializationException: No JSON content found and type 'LoginServer.Http.LoginArgsData' is not nullable. Path '', line 0, position 0.
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at LoginServer.Http.LoginArgsData.Deserialize(String data) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Http\Action\Msg\LoginArgsData.cs:line 54
+   at LoginServer.Net.LoginToCenterClientAction.Get_GameServer(LoginToCenterClientMessage e) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Net\LoginToCenterClient\Receive\PbGetServer\Get_GameServer.cs:line 33   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at LoginServer.Http.LoginArgsData.Deserialize(String data) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Http\Action\Msg\LoginArgsData.cs:line 54
+   at LoginServer.Net.LoginToCenterClientAction.Get_GameServer(LoginToCenterClientMessage e) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Net\LoginToCenterClient\Receive\PbGetServer\Get_GameServer.cs:line 33 
+
+DateTime:2021-05-24 12:15:18 
+ Newtonsoft.Json.JsonSerializationException: No JSON content found and type 'LoginServer.Http.LoginArgsData' is not nullable. Path '', line 0, position 0.
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at LoginServer.Http.LoginArgsData.Deserialize(String data) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Http\Action\Msg\LoginArgsData.cs:line 54
+   at LoginServer.Net.LoginToCenterClientAction.Get_GameServer(LoginToCenterClientMessage e) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Net\LoginToCenterClient\Receive\PbGetServer\Get_GameServer.cs:line 33   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at LoginServer.Http.LoginArgsData.Deserialize(String data) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Http\Action\Msg\LoginArgsData.cs:line 54
+   at LoginServer.Net.LoginToCenterClientAction.Get_GameServer(LoginToCenterClientMessage e) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Net\LoginToCenterClient\Receive\PbGetServer\Get_GameServer.cs:line 33 
+
+DateTime:2021-05-24 12:15:18 
+ Newtonsoft.Json.JsonSerializationException: No JSON content found and type 'LoginServer.Http.LoginArgsData' is not nullable. Path '', line 0, position 0.
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at LoginServer.Http.LoginArgsData.Deserialize(String data) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Http\Action\Msg\LoginArgsData.cs:line 54
+   at LoginServer.Net.LoginToCenterClientAction.Get_GameServer(LoginToCenterClientMessage e) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Net\LoginToCenterClient\Receive\PbGetServer\Get_GameServer.cs:line 33   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at LoginServer.Http.LoginArgsData.Deserialize(String data) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Http\Action\Msg\LoginArgsData.cs:line 54
+   at LoginServer.Net.LoginToCenterClientAction.Get_GameServer(LoginToCenterClientMessage e) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Net\LoginToCenterClient\Receive\PbGetServer\Get_GameServer.cs:line 33 
+
+DateTime:2021-05-24 14:39:39 
+ Newtonsoft.Json.JsonSerializationException: No JSON content found and type 'LoginServer.Http.LoginArgsData' is not nullable. Path '', line 0, position 0.
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at LoginServer.Http.LoginArgsData.Deserialize(String data) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Http\Action\Msg\LoginArgsData.cs:line 54
+   at LoginServer.Net.LoginToCenterClientAction.Get_GameServer(LoginToCenterClientMessage e) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Net\LoginToCenterClient\Receive\PbGetServer\Get_GameServer.cs:line 33   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at LoginServer.Http.LoginArgsData.Deserialize(String data) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Http\Action\Msg\LoginArgsData.cs:line 54
+   at LoginServer.Net.LoginToCenterClientAction.Get_GameServer(LoginToCenterClientMessage e) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Net\LoginToCenterClient\Receive\PbGetServer\Get_GameServer.cs:line 33 
+
+DateTime:2021-05-24 14:39:40 
+ Newtonsoft.Json.JsonSerializationException: No JSON content found and type 'LoginServer.Http.LoginArgsData' is not nullable. Path '', line 0, position 0.
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at LoginServer.Http.LoginArgsData.Deserialize(String data) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Http\Action\Msg\LoginArgsData.cs:line 54
+   at LoginServer.Net.LoginToCenterClientAction.Get_GameServer(LoginToCenterClientMessage e) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Net\LoginToCenterClient\Receive\PbGetServer\Get_GameServer.cs:line 33   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at LoginServer.Http.LoginArgsData.Deserialize(String data) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Http\Action\Msg\LoginArgsData.cs:line 54
+   at LoginServer.Net.LoginToCenterClientAction.Get_GameServer(LoginToCenterClientMessage e) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Net\LoginToCenterClient\Receive\PbGetServer\Get_GameServer.cs:line 33 
+
+DateTime:2021-05-24 15:27:36 
+ Newtonsoft.Json.JsonSerializationException: No JSON content found and type 'LoginServer.Http.LoginArgsData' is not nullable. Path '', line 0, position 0.
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at LoginServer.Http.LoginArgsData.Deserialize(String data) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Http\Action\Msg\LoginArgsData.cs:line 54
+   at LoginServer.Net.LoginToCenterClientAction.Get_GameServer(LoginToCenterClientMessage e) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Net\LoginToCenterClient\Receive\PbGetServer\Get_GameServer.cs:line 33   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at LoginServer.Http.LoginArgsData.Deserialize(String data) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Http\Action\Msg\LoginArgsData.cs:line 54
+   at LoginServer.Net.LoginToCenterClientAction.Get_GameServer(LoginToCenterClientMessage e) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Net\LoginToCenterClient\Receive\PbGetServer\Get_GameServer.cs:line 33 
+
+DateTime:2021-05-24 15:27:36 
+ Newtonsoft.Json.JsonSerializationException: No JSON content found and type 'LoginServer.Http.LoginArgsData' is not nullable. Path '', line 0, position 0.
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at LoginServer.Http.LoginArgsData.Deserialize(String data) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Http\Action\Msg\LoginArgsData.cs:line 54
+   at LoginServer.Net.LoginToCenterClientAction.Get_GameServer(LoginToCenterClientMessage e) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Net\LoginToCenterClient\Receive\PbGetServer\Get_GameServer.cs:line 33   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at LoginServer.Http.LoginArgsData.Deserialize(String data) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Http\Action\Msg\LoginArgsData.cs:line 54
+   at LoginServer.Net.LoginToCenterClientAction.Get_GameServer(LoginToCenterClientMessage e) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Net\LoginToCenterClient\Receive\PbGetServer\Get_GameServer.cs:line 33 
+
+DateTime:2021-05-24 15:29:11 
+ Newtonsoft.Json.JsonSerializationException: No JSON content found and type 'LoginServer.Http.LoginArgsData' is not nullable. Path '', line 0, position 0.
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at LoginServer.Http.LoginArgsData.Deserialize(String data) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Http\Action\Msg\LoginArgsData.cs:line 54
+   at LoginServer.Net.LoginToCenterClientAction.Get_GameServer(LoginToCenterClientMessage e) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Net\LoginToCenterClient\Receive\PbGetServer\Get_GameServer.cs:line 33   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at LoginServer.Http.LoginArgsData.Deserialize(String data) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Http\Action\Msg\LoginArgsData.cs:line 54
+   at LoginServer.Net.LoginToCenterClientAction.Get_GameServer(LoginToCenterClientMessage e) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Net\LoginToCenterClient\Receive\PbGetServer\Get_GameServer.cs:line 33 
+
+DateTime:2021-05-24 15:29:11 
+ Newtonsoft.Json.JsonSerializationException: No JSON content found and type 'LoginServer.Http.LoginArgsData' is not nullable. Path '', line 0, position 0.
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at LoginServer.Http.LoginArgsData.Deserialize(String data) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Http\Action\Msg\LoginArgsData.cs:line 54
+   at LoginServer.Net.LoginToCenterClientAction.Get_GameServer(LoginToCenterClientMessage e) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Net\LoginToCenterClient\Receive\PbGetServer\Get_GameServer.cs:line 33   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at LoginServer.Http.LoginArgsData.Deserialize(String data) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Http\Action\Msg\LoginArgsData.cs:line 54
+   at LoginServer.Net.LoginToCenterClientAction.Get_GameServer(LoginToCenterClientMessage e) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Net\LoginToCenterClient\Receive\PbGetServer\Get_GameServer.cs:line 33 
+
+DateTime:2021-05-24 15:29:11 
+ Newtonsoft.Json.JsonSerializationException: No JSON content found and type 'LoginServer.Http.LoginArgsData' is not nullable. Path '', line 0, position 0.
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at LoginServer.Http.LoginArgsData.Deserialize(String data) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Http\Action\Msg\LoginArgsData.cs:line 54
+   at LoginServer.Net.LoginToCenterClientAction.Get_GameServer(LoginToCenterClientMessage e) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Net\LoginToCenterClient\Receive\PbGetServer\Get_GameServer.cs:line 33   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at LoginServer.Http.LoginArgsData.Deserialize(String data) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Http\Action\Msg\LoginArgsData.cs:line 54
+   at LoginServer.Net.LoginToCenterClientAction.Get_GameServer(LoginToCenterClientMessage e) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Net\LoginToCenterClient\Receive\PbGetServer\Get_GameServer.cs:line 33 
+
+DateTime:2021-05-24 15:30:35 
+ Newtonsoft.Json.JsonSerializationException: No JSON content found and type 'LoginServer.Http.LoginArgsData' is not nullable. Path '', line 0, position 0.
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at LoginServer.Http.LoginArgsData.Deserialize(String data) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Http\Action\Msg\LoginArgsData.cs:line 54
+   at LoginServer.Net.LoginToCenterClientAction.Get_GameServer(LoginToCenterClientMessage e) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Net\LoginToCenterClient\Receive\PbGetServer\Get_GameServer.cs:line 33   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at LoginServer.Http.LoginArgsData.Deserialize(String data) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Http\Action\Msg\LoginArgsData.cs:line 54
+   at LoginServer.Net.LoginToCenterClientAction.Get_GameServer(LoginToCenterClientMessage e) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Net\LoginToCenterClient\Receive\PbGetServer\Get_GameServer.cs:line 33 
+
+DateTime:2021-05-24 15:30:35 
+ Newtonsoft.Json.JsonSerializationException: No JSON content found and type 'LoginServer.Http.LoginArgsData' is not nullable. Path '', line 0, position 0.
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at LoginServer.Http.LoginArgsData.Deserialize(String data) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Http\Action\Msg\LoginArgsData.cs:line 54
+   at LoginServer.Net.LoginToCenterClientAction.Get_GameServer(LoginToCenterClientMessage e) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Net\LoginToCenterClient\Receive\PbGetServer\Get_GameServer.cs:line 33   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at LoginServer.Http.LoginArgsData.Deserialize(String data) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Http\Action\Msg\LoginArgsData.cs:line 54
+   at LoginServer.Net.LoginToCenterClientAction.Get_GameServer(LoginToCenterClientMessage e) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Net\LoginToCenterClient\Receive\PbGetServer\Get_GameServer.cs:line 33 
+
+DateTime:2021-05-24 15:32:47 
+ Newtonsoft.Json.JsonSerializationException: No JSON content found and type 'LoginServer.Http.LoginArgsData' is not nullable. Path '', line 0, position 0.
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at LoginServer.Http.LoginArgsData.Deserialize(String data) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Http\Action\Msg\LoginArgsData.cs:line 54
+   at LoginServer.Net.LoginToCenterClientAction.Get_GameServer(LoginToCenterClientMessage e) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Net\LoginToCenterClient\Receive\PbGetServer\Get_GameServer.cs:line 33   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at LoginServer.Http.LoginArgsData.Deserialize(String data) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Http\Action\Msg\LoginArgsData.cs:line 54
+   at LoginServer.Net.LoginToCenterClientAction.Get_GameServer(LoginToCenterClientMessage e) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Net\LoginToCenterClient\Receive\PbGetServer\Get_GameServer.cs:line 33 
+
+DateTime:2021-05-24 15:32:47 
+ Newtonsoft.Json.JsonSerializationException: No JSON content found and type 'LoginServer.Http.LoginArgsData' is not nullable. Path '', line 0, position 0.
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at LoginServer.Http.LoginArgsData.Deserialize(String data) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Http\Action\Msg\LoginArgsData.cs:line 54
+   at LoginServer.Net.LoginToCenterClientAction.Get_GameServer(LoginToCenterClientMessage e) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Net\LoginToCenterClient\Receive\PbGetServer\Get_GameServer.cs:line 33   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at LoginServer.Http.LoginArgsData.Deserialize(String data) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Http\Action\Msg\LoginArgsData.cs:line 54
+   at LoginServer.Net.LoginToCenterClientAction.Get_GameServer(LoginToCenterClientMessage e) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Net\LoginToCenterClient\Receive\PbGetServer\Get_GameServer.cs:line 33 
+
+DateTime:2021-05-24 15:55:55 
+ Newtonsoft.Json.JsonSerializationException: No JSON content found and type 'LoginServer.Http.LoginArgsData' is not nullable. Path '', line 0, position 0.
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at LoginServer.Http.LoginArgsData.Deserialize(String data) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Http\Action\Msg\LoginArgsData.cs:line 54
+   at LoginServer.Net.LoginToCenterClientAction.Get_GameServer(LoginToCenterClientMessage e) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Net\LoginToCenterClient\Receive\PbGetServer\Get_GameServer.cs:line 33   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at LoginServer.Http.LoginArgsData.Deserialize(String data) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Http\Action\Msg\LoginArgsData.cs:line 54
+   at LoginServer.Net.LoginToCenterClientAction.Get_GameServer(LoginToCenterClientMessage e) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Net\LoginToCenterClient\Receive\PbGetServer\Get_GameServer.cs:line 33 
+
+DateTime:2021-05-24 15:55:55 
+ Newtonsoft.Json.JsonSerializationException: No JSON content found and type 'LoginServer.Http.LoginArgsData' is not nullable. Path '', line 0, position 0.
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at LoginServer.Http.LoginArgsData.Deserialize(String data) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Http\Action\Msg\LoginArgsData.cs:line 54
+   at LoginServer.Net.LoginToCenterClientAction.Get_GameServer(LoginToCenterClientMessage e) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Net\LoginToCenterClient\Receive\PbGetServer\Get_GameServer.cs:line 33   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at LoginServer.Http.LoginArgsData.Deserialize(String data) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Http\Action\Msg\LoginArgsData.cs:line 54
+   at LoginServer.Net.LoginToCenterClientAction.Get_GameServer(LoginToCenterClientMessage e) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Net\LoginToCenterClient\Receive\PbGetServer\Get_GameServer.cs:line 33 
+
+DateTime:2021-05-24 16:49:16 
+ Newtonsoft.Json.JsonSerializationException: No JSON content found and type 'LoginServer.Http.LoginArgsData' is not nullable. Path '', line 0, position 0.
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at LoginServer.Http.LoginArgsData.Deserialize(String data) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Http\Action\Msg\LoginArgsData.cs:line 54
+   at LoginServer.Net.LoginToCenterClientAction.Get_GameServer(LoginToCenterClientMessage e) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Net\LoginToCenterClient\Receive\PbGetServer\Get_GameServer.cs:line 33   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at LoginServer.Http.LoginArgsData.Deserialize(String data) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Http\Action\Msg\LoginArgsData.cs:line 54
+   at LoginServer.Net.LoginToCenterClientAction.Get_GameServer(LoginToCenterClientMessage e) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Net\LoginToCenterClient\Receive\PbGetServer\Get_GameServer.cs:line 33 
+
+DateTime:2021-05-24 16:49:16 
+ Newtonsoft.Json.JsonSerializationException: No JSON content found and type 'LoginServer.Http.LoginArgsData' is not nullable. Path '', line 0, position 0.
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at LoginServer.Http.LoginArgsData.Deserialize(String data) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Http\Action\Msg\LoginArgsData.cs:line 54
+   at LoginServer.Net.LoginToCenterClientAction.Get_GameServer(LoginToCenterClientMessage e) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Net\LoginToCenterClient\Receive\PbGetServer\Get_GameServer.cs:line 33   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at LoginServer.Http.LoginArgsData.Deserialize(String data) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Http\Action\Msg\LoginArgsData.cs:line 54
+   at LoginServer.Net.LoginToCenterClientAction.Get_GameServer(LoginToCenterClientMessage e) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Net\LoginToCenterClient\Receive\PbGetServer\Get_GameServer.cs:line 33 
+
+DateTime:2021-05-24 17:02:41 
+ System.InvalidCastException: Unable to cast object of type 'Telepathy.NetMgr' to type 'System.ComponentModel.ISynchronizeInvoke'.
+   at Telepathy.NetMgr.StartClient(String ip, Int32 port) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Net\NetMgr.cs:line 64
+   at Telepathy.NetMgr..ctor() in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Net\NetMgr.cs:line 37
+   at LoginServer.Glob.Initialize() in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Glob.cs:line 39
+   at LoginServer.Program.Main(String[] args) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Program.cs:line 18   at Telepathy.NetMgr.StartClient(String ip, Int32 port) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Net\NetMgr.cs:line 64
+   at Telepathy.NetMgr..ctor() in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Net\NetMgr.cs:line 37
+   at LoginServer.Glob.Initialize() in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Glob.cs:line 39
+   at LoginServer.Program.Main(String[] args) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Program.cs:line 18 
+
+DateTime:2021-05-24 17:03:29 
+ System.InvalidCastException: Unable to cast object of type 'System.Object' to type 'System.ComponentModel.ISynchronizeInvoke'.
+   at Telepathy.NetMgr.StartClient(String ip, Int32 port) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Net\NetMgr.cs:line 65
+   at Telepathy.NetMgr..ctor() in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Net\NetMgr.cs:line 37
+   at LoginServer.Glob.Initialize() in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Glob.cs:line 39
+   at LoginServer.Program.Main(String[] args) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Program.cs:line 18   at Telepathy.NetMgr.StartClient(String ip, Int32 port) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Net\NetMgr.cs:line 65
+   at Telepathy.NetMgr..ctor() in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Net\NetMgr.cs:line 37
+   at LoginServer.Glob.Initialize() in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Glob.cs:line 39
+   at LoginServer.Program.Main(String[] args) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Program.cs:line 18 
+

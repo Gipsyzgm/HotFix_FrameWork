@@ -1,0 +1,6 @@
+DateTime:2021-05-20 18:00:58 
+ System.NullReferenceException: Object reference not set to an instance of an object.
+   at LoginServer.Http.HttpServer.HttpServVersion(HttpListenerContext context) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Http\Action\Version.cs:line 36
+   at LoginServer.Http.HttpServer.OnGetContext(IAsyncResult ar) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Http\HttpServer.cs:line 70   at LoginServer.Http.HttpServer.HttpServVersion(HttpListenerContext context) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Http\Action\Version.cs:line 36
+   at LoginServer.Http.HttpServer.OnGetContext(IAsyncResult ar) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Http\HttpServer.cs:line 70 
+

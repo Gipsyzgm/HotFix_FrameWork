@@ -1,0 +1,14 @@
+DateTime:2021-05-17 14:45:44 
+ System.NullReferenceException: Object reference not set to an instance of an object.
+   at CommonLib.Comm.DBMgr.MongoDBHelper.GetCollection[T]() in F:\anyelse\HotFix_FrameWork\Server\MyServer\CommonLib\CommMgr\DBMgr\MongoDBHelper.cs:line 66
+   at CommonLib.Comm.DBMgr.MongoDBHelper.Select[T](Expression`1 filter) in F:\anyelse\HotFix_FrameWork\Server\MyServer\CommonLib\CommMgr\DBMgr\MongoDBHelper.cs:line 87
+   at LoginServer.ServerStateMgr.GetServInfo() in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\ServState\ServerStateMgr.cs:line 31
+   at LoginServer.ServerStateMgr..ctor() in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\ServState\ServerStateMgr.cs:line 24
+   at LoginServer.Glob.Initialize() in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Glob.cs:line 39
+   at LoginServer.Program.Main(String[] args) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Program.cs:line 18   at CommonLib.Comm.DBMgr.MongoDBHelper.GetCollection[T]() in F:\anyelse\HotFix_FrameWork\Server\MyServer\CommonLib\CommMgr\DBMgr\MongoDBHelper.cs:line 66
+   at CommonLib.Comm.DBMgr.MongoDBHelper.Select[T](Expression`1 filter) in F:\anyelse\HotFix_FrameWork\Server\MyServer\CommonLib\CommMgr\DBMgr\MongoDBHelper.cs:line 87
+   at LoginServer.ServerStateMgr.GetServInfo() in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\ServState\ServerStateMgr.cs:line 31
+   at LoginServer.ServerStateMgr..ctor() in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\ServState\ServerStateMgr.cs:line 24
+   at LoginServer.Glob.Initialize() in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Glob.cs:line 39
+   at LoginServer.Program.Main(String[] args) in F:\anyelse\HotFix_FrameWork\Server\MyServer\LoginServer\Program.cs:line 18 
+
